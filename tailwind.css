@@ -26,11 +26,144 @@
     overflow: hidden;
     height: 100vh;
   }
+
+  /* --------------------- */
+  /*    headline fonts     */
+  /* ----------------------*/
+  
+  .h1-bold{
+    @apply text-black text-5xl font-bold font-[var(--font-family)] leading-[140px]
+  }
+  .h1-regular{
+    @apply text-black text-5xl font-normal font-[var(--font-family)] leading-[67.20px]
+  }
+
+  .h1-underline{
+    @apply text-black text-5xl font-normal font-[var(--font-family)] leading-[67.20px] underline
+  }
+
+  .h2-bold{
+    @apply text-black text-4xl font-bold font-[var(--font-family)] leading-[140px]
+  }
+
+  .h2-regular{
+    @apply text-black text-4xl font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  .h2-underline{
+    @apply text-black text-4xl font-normal font-[var(--font-family)] leading-[140px] underline
+  }
+
+  .h3-bold{
+    @apply text-black text-3xl font-bold font-[var(--font-family)] leading-[140px]
+  }
+  .h3-regular{
+    @apply text-black text-3xl font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  .h3-underline{
+    @apply text-black text-3xl font-normal font-[var(--font-family)] leading-[140px] underline
+  }
+
+  .h4-bold{
+    @apply text-black text-2xl font-bold font-[var(--font-family)] leading-[140px]
+  }
+
+  .h4-regular{
+    @apply text-black text-2xl font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  
+  .h4-underline{
+    @apply text-black text-2xl font-normal font-[var(--font-family)] leading-[140px] underline
+  }
+
+  .h5-bold{
+    @apply text-black text-xl font-bold font-[var(--font-family)] leading-[140px]
+  }
+
+  .h5-regular{
+    @apply text-black text-xl font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  .h5-underline{
+    @apply text-black text-xl font-normal font-[var(--font-family)] leading-[140px] underline
+  }
+
+  .h6-bold{
+    @apply text-black text-lg font-bold font-[var(--font-family)] leading-[140px]
+  }
+
+  .h6-regular{
+    @apply text-black text-lg font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  
+  .h6-underline{
+    @apply text-black text-lg font-normal font-[var(--font-family)] leading-[140px] underline
+  }
+
+
+  /* --------------------- */
+  /*    body fonts     */
+  /* ----------------------*/
+
+  .body-bold{
+    @apply text-black text-base font-bold font-[var(--font-family)] leading-[140px]
+  }
+
+  .body-regular{
+    @apply text-black text-base font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  
+  .body-underline{
+    @apply text-black text-base font-normal font-[var(--font-family)] leading-[140px] underline
+  }
+
+  .small-bold{
+    @apply text-black text-sm font-bold font-[var(--font-family)] leading-[140px]
+  }
+
+  .small-regular{
+    @apply text-black text-sm font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  .small-underline{
+    @apply text-black text-sm font-normal font-[var(--font-family)] leading-[140px] underline
+  }
+
+  .x-small-bold{
+    @apply text-black text-xs font-bold font-[var(--font-family)] leading-[140px]
+  }
+
+  .x-small-regular{
+    @apply text-black text-xs font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  
+  .x-small-underline{
+    @apply text-black text-xs font-normal font-[var(--font-family)] leading-[140px] underline
+  }
+
+  .xx-small-bold{
+    @apply text-black text-[9px] font-bold font-[var(--font-family)] leading-[140px]
+  }
+
+  .xx-small-regular{
+    @apply text-black text-[9px] font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+  .xx-small-underline{
+    @apply text-black text-[9px] font-normal font-[var(--font-family)] leading-[140px] underline
+  }
 }
 
 .group:disabled .group-disabled\:animate-progress {
   animation: progress-frame ease normal
 }
+
+
 
 @keyframes progress-frame {
   0% {
