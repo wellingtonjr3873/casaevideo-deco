@@ -129,6 +129,11 @@
     @apply text-black text-sm font-normal font-[var(--font-family)] leading-[140px]
   }
 
+  .small-regular-placeholder::placeholder{
+    @apply text-black text-sm font-normal font-[var(--font-family)] leading-[140px]
+  }
+
+
   .small-underline{
     @apply text-black text-sm font-normal font-[var(--font-family)] leading-[140px] underline
   }
