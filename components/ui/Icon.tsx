@@ -40,6 +40,19 @@ export type AvailableIcons =
   | "Visa"
   | "WhatsApp"
   | "XMark"
+  | "User2"
+  | "cvlbCross"
+  | "arrowAccordion"
+  | "arrowBack"
+  | "myOrders"
+  | "myCoupons"
+  | "buyWhatsapp"
+  | "televendas"
+  | "helpCentral"
+  | "creditCard"
+  | "ourStores"
+  | "googlePlayImg"
+  | "appleStoreImg"
   | "Zoom";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {

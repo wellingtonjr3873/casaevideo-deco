@@ -23,20 +23,24 @@ export interface Props {
 }
 
 const Aside = (
-  { title, onClose, children }: {
+  { title, iconTitle, onClose, children }: {
     title: string;
+    iconTitle: ComponentChildren;
     onClose?: () => void;
     children: ComponentChildren;
   },
 ) => (
-  <div class="bg-base-100 grid grid-rows-[auto_1fr] h-full divide-y max-w-[100vw]">
-    <div class="flex justify-between items-center">
+  <div class="grid grid-rows-[auto_1fr] h-full divide-y bg-[#F3F3F3] max-w-[368px] w-[100%]">
+    <div class="flex justify-between items-center bg-[#FFF100] max-w-[368px] w-[100%]">
       <h1 class="px-4 py-3">
-        <span class="font-medium text-2xl">{title}</span>
+        <span class="font-medium text-2xl flex inline-flex items-center">
+          {iconTitle && iconTitle}
+          {title}
+        </span>
       </h1>
       {onClose && (
         <Button class="btn btn-ghost" onClick={onClose}>
-          <Icon id="XMark" size={24} strokeWidth={2} />
+          <Icon id="cvlbCross" size={24} strokeWidth={2} />
         </Button>
       )}
     </div>
@@ -68,7 +72,8 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
             displayMenu.value = false;
             displaySearchDrawer.value = false;
           }}
-          title={displayMenu.value ? "Menu" : "Buscar"}
+          iconTitle={<Icon id="User2" size={24} strokeWidth={2} />}
+          title={"Olá Usuário"}
         >
           {displayMenu.value && <Menu {...menu} />}
           {searchbar && displaySearchDrawer.value && (
@@ -87,6 +92,7 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
           <Aside
             title="Minha sacola"
             onClose={() => displayCart.value = false}
+            iconTitle={null}
           >
             <Cart platform={platform} />
           </Aside>
