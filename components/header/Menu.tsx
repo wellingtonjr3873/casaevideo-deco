@@ -60,10 +60,11 @@ function MenuItem(
       </button>
 
       <div
-        class={`subMenu-content py-[14px] flex-grow flex flex-col divide-y divide-base-200 gap-[2px] bg-[#F3F3F3] ${displaySubMenu.value && index === displaySubMenuIndex.value
+        class={`subMenu-content py-[14px] flex-grow flex flex-col divide-y divide-base-200 gap-[2px] bg-[#F3F3F3] ${
+          displaySubMenu.value && index === displaySubMenuIndex.value
             ? "open"
             : "closed"
-          }`}
+        }`}
       >
         <div class="flex justify-between items-center bg-[#F3F3F3] max-w-[368px] w-[100%] pb-[28px]">
           <h1 class="">
@@ -177,7 +178,8 @@ function Menu({ items }: Props) {
                           src={item?.image?.url}
                           alt="ícone da imagem"
                         />
-                      )}
+                      )
+                    }
                     <MenuItem item={item} index={idx} />
                   </div>
                 )
