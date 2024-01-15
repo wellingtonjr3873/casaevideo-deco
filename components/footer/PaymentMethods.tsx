@@ -20,9 +20,8 @@ export default function PaymentMethods(
                   title={item.label}
                 >
                   <Icon
-                    width={48}
-                    height={32}
-                    strokeWidth={1}
+                    width={26.7}
+                    height={19.7}
                     id={item.label}
                   />
                 </li>
