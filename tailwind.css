@@ -26,11 +26,165 @@
     overflow: hidden;
     height: 100vh;
   }
+
+  /* --------------------- */
+  /*    headline fonts     */
+  /* ----------------------*/
+  
+  .h1-bold{
+    @apply text-black text-5xl font-bold  leading-[140%]
+  }
+  .h1-regular{
+    @apply text-black text-5xl font-normal  leading-[67.20%]
+  }
+
+  .h1-underline{
+    @apply text-black text-5xl font-normal  leading-[67.20%] underline
+  }
+
+  .h2-bold{
+    @apply text-black text-4xl font-bold  leading-[140%]
+  }
+
+  .h2-regular{
+    @apply text-black text-4xl font-normal  leading-[140%]
+  }
+
+  .h2-underline{
+    @apply text-black text-4xl font-normal  leading-[140%] underline
+  }
+
+  .h3-bold{
+    @apply text-black text-3xl font-bold  leading-[140%]
+  }
+  .h3-regular{
+    @apply text-black text-3xl font-normal  leading-[140%]
+  }
+
+  .h3-underline{
+    @apply text-black text-3xl font-normal  leading-[140%] underline
+  }
+
+  .h4-bold{
+    @apply text-black text-2xl font-bold  leading-[140%]
+  }
+
+  .h4-regular{
+    @apply text-black text-2xl font-normal  leading-[140%]
+  }
+
+  
+  .h4-underline{
+    @apply text-black text-2xl font-normal  leading-[140%] underline
+  }
+
+  .h5-bold{
+    @apply text-black text-xl font-bold  leading-[140%]
+  }
+
+  .h5-regular{
+    @apply text-black text-xl font-normal  leading-[140%]
+  }
+
+  .h5-underline{
+    @apply text-black text-xl font-normal  leading-[140%] underline
+  }
+
+  .h6-bold{
+    @apply text-black text-lg font-bold  leading-[140%]
+  }
+
+  .h6-regular{
+    @apply text-black text-lg font-normal  leading-[140%]
+  }
+
+  
+  .h6-underline{
+    @apply text-black text-lg font-normal  leading-[140%] underline
+  }
+
+
+  /* --------------------- */
+  /*    body fonts     */
+  /* ----------------------*/
+
+  .body-bold{
+    @apply text-black text-base font-bold  leading-[140%]
+  }
+
+  .body-regular{
+    @apply text-black text-base font-normal  leading-[140%]
+  }
+
+  
+  .body-underline{
+    @apply text-black text-base font-normal  leading-[140%] underline
+  }
+
+  .small-bold{
+    @apply text-black text-sm font-bold leading-[140%]
+  }
+
+  .small-regular{
+    @apply text-black text-sm font-normal leading-[140%]
+  }
+
+  .small-regular-placeholder::placeholder{
+    @apply text-black text-sm font-normal  leading-[140%]
+  }
+
+
+  .small-underline{
+    @apply text-black text-sm font-normal  leading-[140%] underline
+  }
+
+  .x-small-bold{
+    @apply text-black text-xs font-bold  leading-[140%]
+  }
+
+  .x-small-regular{
+    @apply text-black text-xs font-normal  leading-[140%]
+  }
+
+  
+  .x-small-underline{
+    @apply text-black text-xs font-normal  leading-[140%] underline
+  }
+
+  .xx-small-bold{
+    @apply text-black text-[9px] font-bold  leading-[140%]
+  }
+
+  .xx-small-regular{
+    @apply text-black text-[9px] font-normal  leading-[140%]
+  }
+
+  .xx-small-underline{
+    @apply text-black text-[9px] font-normal leading-[140%] underline
+  }
+
+  .text-nowrap{
+    text-wrap: nowrap;
+  }
+  
+
+
 }
 
 .group:disabled .group-disabled\:animate-progress {
   animation: progress-frame ease normal
 }
+.collapse-arrow > .collapse-title:after{
+  width: 0.75rem;
+  height: 0.75rem;
+  box-shadow: 1px 1px;
+}
+
+
+
+
+
+
 
 @keyframes progress-frame {
   0% {

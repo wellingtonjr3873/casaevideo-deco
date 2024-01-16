@@ -4,7 +4,7 @@ export default function MobileApps(
   return (
     <>
       {(content?.apple || content?.android) && (
-        <div class="flex gap-2 lg:flex-wrap">
+        <div class="flex gap-2 mb-[24px]">
           {content?.apple && (
             <a href={content?.apple} target="_blank">
               <img
