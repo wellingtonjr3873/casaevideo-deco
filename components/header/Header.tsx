@@ -8,7 +8,6 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Image from "apps/website/components/Image.tsx";
 import { headerHeight } from "./constants.ts";
 
-
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;

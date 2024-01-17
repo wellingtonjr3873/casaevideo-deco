@@ -343,16 +343,6 @@ function Section({
   brandColorsTerciary,
   colorScheme,
 }: Props) {
-  console.log(
-    "colors",
-    defaultColors,
-    statusColors,
-    complementaryColors,
-    brandColorsPrimary,
-    brandColorsSecondary,
-    brandColorsTerciary,
-  );
-
   const theme = {
     ...defaultColors,
     ...statusColors,
@@ -370,8 +360,6 @@ function Section({
     ],
   ]
     .map(([name, value]) => ({ name, value }));
-
-  console.log(variables, "variables");
 
   return (
     <SiteTheme
