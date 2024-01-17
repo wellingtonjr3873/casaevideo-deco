@@ -6,7 +6,10 @@ export type AvailableIcons =
   | "Bars3"
   | "ChevronLeft"
   | "ChevronRight"
+  | "sliderArrowLeft"
+  | "sliderArrowRight"
   | "ChevronUp"
+  | "ChevronTop"
   | "ChevronDown"
   | "CreditCard"
   | "Deco"
@@ -53,7 +56,26 @@ export type AvailableIcons =
   | "ourStores"
   | "googlePlayImg"
   | "appleStoreImg"
-  | "Zoom";
+  | "Zoom"
+  | "Discord"
+  | "Facebook"
+  | "Instagram"
+  | "Linkedin"
+  | "Tiktok"
+  | "Twitter"
+  | "Youtube"
+  | "Diners"
+  | "Elo"
+  | "Mastercard"
+  | "Pix"
+  | "Visa"
+  | "Hypercard"
+  | "Picpay"
+  | "Casaevideo"
+  | "AmericanExpress"
+  | "Padlock"
+  | "Cart"
+  | "Hamburguer";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

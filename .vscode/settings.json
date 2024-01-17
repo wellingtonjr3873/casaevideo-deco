@@ -16,6 +16,9 @@
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
   },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "vscode.typescript-language-features"
+  },
   "[xml]": {
     "editor.defaultFormatter": "redhat.vscode-xml"
   }
