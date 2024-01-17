@@ -82,11 +82,12 @@ function DepartamentList(props: Props) {
                     />
                   </figure>
                 )}
-                {description && 
-                  <span class="text-base-content text-center" >
+              {description &&
+                (
+                  <span class="text-base-content text-center">
                     {description}
                   </span>
-                }
+                )}
             </a>
           </Slider.Item>
         ))}
