@@ -7,173 +7,175 @@
 import SiteTheme, { Font } from "apps/website/components/Theme.tsx";
 import Color from "npm:colorjs.io";
 
+import { DEFAULT_PROPS as defaultColors } from "$store/themes/defaultProps.ts";
+
 export interface BrandColorsPrimary {
   /** @format color */
   "brand-primary-1": string;
   /** @format color */
-  "brand-primary-900"?: string;
+  "brand-primary-900": string;
   /** @format color */
-  "brand-primary-800"?: string;
+  "brand-primary-800": string;
   /** @format color */
-  "brand-primary-700"?: string;
+  "brand-primary-700": string;
   /** @format color */
-  "brand-primary-600"?: string;
+  "brand-primary-600": string;
   /** @format color */
-  "brand-primary-500"?: string;
+  "brand-primary-500": string;
   /** @format color */
-  "brand-primary-400"?: string;
+  "brand-primary-400": string;
   /** @format color */
-  "brand-primary-300"?: string;
+  "brand-primary-300": string;
   /** @format color */
-  "brand-primary-200"?: string;
+  "brand-primary-200": string;
   /** @format color */
-  "brand-primary-100"?: string;
+  "brand-primary-100": string;
   /** @format color */
-  "brand-primary-50"?: string;
+  "brand-primary-50": string;
 }
 export interface BrandColorsSecondary {
   /** @format color */
-  "brand-secondary-1"?: string;
+  "brand-secondary-1": string;
   /** @format color */
-  "brand-secondary-900"?: string;
+  "brand-secondary-900": string;
   /** @format color */
-  "brand-secondary-800"?: string;
+  "brand-secondary-800": string;
   /** @format color */
-  "brand-secondary-700"?: string;
+  "brand-secondary-700": string;
   /** @format color */
-  "brand-secondary-600"?: string;
+  "brand-secondary-600": string;
   /** @format color */
-  "brand-secondary-500"?: string;
+  "brand-secondary-500": string;
   /** @format color */
-  "brand-secondary-400"?: string;
+  "brand-secondary-400": string;
   /** @format color */
-  "brand-secondary-300"?: string;
+  "brand-secondary-300": string;
   /** @format color */
-  "brand-secondary-200"?: string;
+  "brand-secondary-200": string;
   /** @format color */
-  "brand-secondary-100"?: string;
+  "brand-secondary-100": string;
   /** @format color */
-  "brand-secondary-50"?: string;
+  "brand-secondary-50": string;
 }
 
 export interface BrandColorsTerciary {
   /** @format color */
-  "brand-terciary-1"?: string;
+  "brand-terciary-1": string;
 }
 
 export interface ComplementaryColors {
   /** @format color */
-  "complementary-1"?: string;
+  "complementary-1": string;
   /** @format color */
-  "complementary-2"?: string;
+  "complementary-2": string;
   /** @format color */
-  "complementary-3"?: string;
+  "complementary-3": string;
   /** @format color */
-  "complementary-4"?: string;
+  "complementary-4": string;
 }
 
 export interface StatusColors {
   /** @format color */
-  "success"?: string;
+  "success": string;
   /** @format color */
-  "success-light"?: string;
+  "success-light": string;
   /** @format color */
-  "information"?: string;
+  "information": string;
   /** @format color */
-  "information-light"?: string;
+  "information-light": string;
   /** @format color */
-  "warning"?: string;
+  "warning": string;
   /** @format color */
-  "warning-light"?: string;
+  "warning-light": string;
   /** @format color */
-  "warning-dark"?: string;
+  "warning-dark": string;
   /** @format color */
-  "error"?: string;
+  "error": string;
   /** @format color */
-  "error-light"?: string;
+  "error-light": string;
 }
 
 export interface ThemeColors {
   /** @format color */
-  "brand-primary-1"?: string;
+  "brand-primary-1": string;
   /** @format color */
-  "brand-primary-900"?: string;
+  "brand-primary-900": string;
   /** @format color */
-  "brand-primary-800"?: string;
+  "brand-primary-800": string;
   /** @format color */
-  "brand-primary-700"?: string;
+  "brand-primary-700": string;
   /** @format color */
-  "brand-primary-600"?: string;
+  "brand-primary-600": string;
   /** @format color */
-  "brand-primary-500"?: string;
+  "brand-primary-500": string;
   /** @format color */
-  "brand-primary-400"?: string;
+  "brand-primary-400": string;
   /** @format color */
-  "brand-primary-300"?: string;
+  "brand-primary-300": string;
   /** @format color */
-  "brand-primary-200"?: string;
+  "brand-primary-200": string;
   /** @format color */
-  "brand-primary-100"?: string;
+  "brand-primary-100": string;
   /** @format color */
-  "brand-primary-50"?: string;
+  "brand-primary-50": string;
 
   /** @format color */
-  "success"?: string;
+  "success": string;
   /** @format color */
-  "success-light"?: string;
+  "success-light": string;
   /** @format color */
-  "information"?: string;
+  "information": string;
   /** @format color */
-  "information-light"?: string;
+  "information-light": string;
   /** @format color */
-  "warning"?: string;
+  "warning": string;
   /** @format color */
-  "warning-light"?: string;
+  "warning-light": string;
   /** @format color */
-  "warning-dark"?: string;
+  "warning-dark": string;
   /** @format color */
-  "error"?: string;
+  "error": string;
   /** @format color */
-  "error-light"?: string;
+  "error-light": string;
 
   /** @format color */
-  "brand-terciary-1"?: string;
+  "brand-terciary-1": string;
 
   /** @format color */
-  "brand-secondary-1"?: string;
+  "brand-secondary-1": string;
   /** @format color */
-  "brand-secondary-900"?: string;
+  "brand-secondary-900": string;
   /** @format color */
-  "brand-secondary-800"?: string;
+  "brand-secondary-800": string;
   /** @format color */
-  "brand-secondary-700"?: string;
+  "brand-secondary-700": string;
   /** @format color */
-  "brand-secondary-600"?: string;
+  "brand-secondary-600": string;
   /** @format color */
-  "brand-secondary-500"?: string;
+  "brand-secondary-500": string;
   /** @format color */
-  "brand-secondary-400"?: string;
+  "brand-secondary-400": string;
   /** @format color */
-  "brand-secondary-300"?: string;
+  "brand-secondary-300": string;
   /** @format color */
-  "brand-secondary-200"?: string;
+  "brand-secondary-200": string;
   /** @format color */
-  "brand-secondary-100"?: string;
+  "brand-secondary-100": string;
   /** @format color */
-  "brand-secondary-50"?: string;
+  "brand-secondary-50": string;
   /** @format color */
-  "complementary-1"?: string;
+  "complementary-1": string;
   /** @format color */
-  "complementary-2"?: string;
+  "complementary-2": string;
   /** @format color */
-  "complementary-3"?: string;
+  "complementary-3": string;
   /** @format color */
-  "complementary-4"?: string;
+  "complementary-4": string;
 }
 
 // export interface ComplementaryColors {
 //   /** @format color */
-//   "base-200"?: string;
+//   "base-200": string;
 //   /** @format color */
 //   "base-300"?: string;
 //   /** @format color */
@@ -198,98 +200,40 @@ export interface ThemeColors {
 //   "info-content"?: string;
 // }
 
-export interface Button {
-  /**
-   * @default 1px
-   * @title Border width
-   */
-  "--border-btn": "1px" | "2px" | "3px" | "4px" | "5px" | "6px" | "7px" | "8px";
-  /**
-   * @default 0.2rem
-   * @title Radius
-   * @description Button and similar elements
-   */
-  "--rounded-btn": "0" | "0.2rem" | "0.4rem" | "0.8rem" | "2rem";
-  /**
-   * @default 0.95
-   * @title Scale on click
-   */
-  "--btn-focus-scale": "0.9" | "0.95" | "1" | "1.05" | "1.1";
-  /**
-   * @default 0.25s
-   * @title Animation
-   * @description Duration when you click
-   */
-  "--animation-btn": "0.1s" | "0.15s" | "0.2s" | "0.25s" | "0.3s" | "0.35s";
-}
-
-export interface Miscellaneous {
-  /**
-   * @default 1rem
-   * @title Rounded box
-   * @description border radius rounded-box utility class, used in card and other large boxes
-   */
-  "--rounded-box": string;
-  /**
-   * @default 1.9rem
-   * @title Rounded badge
-   * @description border radius rounded-badge utility class, used in badges and similar
-   */
-  "--rounded-badge": string;
-  /**
-   * @default 0.2s
-   * @title Animation input
-   * @description duration of animation for inputs like checkbox, toggle, radio, etc
-   */
-  "--animation-input": string;
-  /**
-   * @default 1px
-   * @title Tab border
-   * @description border width of tabs
-   */
-  "--tab-border": string;
-  /**
-   * @default 0.5rem
-   * @title Tab radius
-   * @description border radius of tabs
-   */
-  "--tab-radius": string;
-}
-
 export interface Props {
-  brandColorsPrimary: BrandColorsPrimary;
-  brandColorsSecondary: BrandColorsSecondary;
-  brandColorsTerciary: BrandColorsTerciary;
-  statusColors: StatusColors;
+  brandColorsPrimary?: BrandColorsPrimary;
+  brandColorsSecondary?: BrandColorsSecondary;
+  brandColorsTerciary?: BrandColorsTerciary;
+  statusColors?: StatusColors;
   complementaryColors?: ComplementaryColors;
   neutralColors?: NeutralColors;
   font?: Font;
-  colorScheme: "light" | "dark";
+  colorScheme?: "light" | "dark";
 }
 
 interface NeutralColors {
   /** @format color */
-  "neutral-900"?: string;
+  "neutral-900": string;
   /** @format color */
-  "neutral-800"?: string;
+  "neutral-800": string;
   /** @format color */
-  "neutral-700"?: string;
+  "neutral-700": string;
   /** @format color */
-  "neutral-600"?: string;
+  "neutral-600": string;
   /** @format color */
-  "neutral-500"?: string;
+  "neutral-500": string;
   /** @format color */
-  "neutral-400"?: string;
+  "neutral-400": string;
   /** @format color */
-  "neutral-300"?: string;
+  "neutral-300": string;
   /** @format color */
-  "neutral-200"?: string;
+  "neutral-200": string;
   /** @format color */
-  "neutral-100"?: string;
+  "neutral-100": string;
   /** @format color */
-  "neutral-50"?: string;
+  "neutral-50": string;
   /** @format color */
-  "neutral-1"?: string;
+  "neutral-1": string;
 }
 
 type Theme =
@@ -320,6 +264,7 @@ const toVariables = (
 
     return `${(l * 100).toFixed(0)}% ${c.toFixed(2)} ${(h || 0).toFixed(0)}deg`;
   };
+
   const colors = Object.entries({
     "--brand-primary-1": t["brand-primary-1"],
     "--brand-primary-900": t["brand-primary-900"],
@@ -368,12 +313,15 @@ const toVariables = (
     "--complementary-2": t["complementary-2"],
     "--complementary-3": t["complementary-3"],
     "--complementary-4": t["complementary-4"],
-  }).map(([key, color]) => [key, toValue(color)] as [string, string]);
+  }).map(([key, color]) => {
+    if (typeof color === "string") {
+      return [key, toValue(color || "")] as [string, string];
+    }
 
-  const colorVariables = Object.entries(t).map(([key, color]) =>
-    [key, toValue(color)] as [string, string]
-  );
-  return [...colors, ...colorVariables];
+    return [key, "#ffffff"] as [string, string];
+  });
+
+  return [...colors, ...colors];
 };
 
 /**
@@ -381,60 +329,11 @@ const toVariables = (
  * this function transforms props into
  *
  * :root {
- *   --color-primary: #FFFFFF;
+ *   --color-primary: #ffffffFFF;
  *   --color-secondary: "#461616"
  * }
  */
 
-const defaultColors = {
-  "brand-primary-1": "#FFF",
-  "brand-primary-900": "#FFF",
-  "brand-primary-800": "#FFF",
-  "brand-primary-700": "#FFF",
-  "brand-primary-600": "#FFF",
-  "brand-primary-500": "#FFF",
-  "brand-primary-400": "#FFF",
-  "brand-primary-300": "#FFF",
-  "brand-primary-200": "#FFF",
-  "brand-primary-100": "#FFF",
-  "brand-primary-50": "#FFF",
-  "brand-secondary-1": "#FFF",
-  "brand-secondary-900": "#FFF",
-  "brand-secondary-800": "#FFF",
-  "brand-secondary-700": "#FFF",
-  "brand-secondary-600": "#FFF",
-  "brand-secondary-500": "#FFF",
-  "brand-secondary-400": "#FFF",
-  "brand-secondary-300": "#FFF",
-  "brand-secondary-200": "#FFF",
-  "brand-secondary-100": "#FFF",
-  "brand-secondary-50": "#FFF",
-  "brand-terciary-1": "#FFF",
-  "neutral-900": "white",
-  "neutral-800": "white",
-  "neutral-700": "white",
-  "neutral-600": "white",
-  "neutral-500": "white",
-  "neutral-400": "white",
-  "neutral-300": "white",
-  "neutral-200": "white",
-  "neutral-100": "white",
-  "neutral-50": "white",
-  "neutral-1": "white",
-  "success": "#FFF",
-  "success-light": "#FFF",
-  "information": "#FFF",
-  "information-light": "#FFF",
-  "warning": "#FFF",
-  "warning-light": "#FFF",
-  "warning-dark": "#FFF",
-  "error": "#FFF",
-  "error-light": "#FFF",
-  "complementary-1": "#FFF",
-  "complementary-2": "#FFF",
-  "complementary-3": "#FFF",
-  "complementary-4": "#FFF",
-};
 function Section({
   complementaryColors,
   font,
@@ -461,8 +360,6 @@ function Section({
     ],
   ]
     .map(([name, value]) => ({ name, value }));
-
-  console.log(variables, "variables");
 
   return (
     <SiteTheme
