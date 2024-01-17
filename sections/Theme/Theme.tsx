@@ -257,15 +257,13 @@ const contrasted = (color: string, percentage = 0.8) => {
 };
 
 const toVariables = (
-  t: Theme & Required<ThemeColors>,
+  t: Theme,
 ): [string, string][] => {
   const toValue = (color: string | ReturnType<typeof darken>) => {
     const [l, c, h] = new Color(color).oklch;
 
     return `${(l * 100).toFixed(0)}% ${c.toFixed(2)} ${(h || 0).toFixed(0)}deg`;
   };
-
-  console.log("theme", t);
 
   const colors = Object.entries({
     "--brand-primary-1": t["brand-primary-1"],
@@ -335,6 +333,7 @@ const toVariables = (
  *   --color-secondary: "#461616"
  * }
  */
+
 function Section({
   complementaryColors,
   font,
@@ -362,7 +361,6 @@ function Section({
     ...brandColorsSecondary,
     ...brandColorsTerciary,
   };
-
   const variables = [
     ...toVariables(theme),
     [
@@ -372,6 +370,8 @@ function Section({
     ],
   ]
     .map(([name, value]) => ({ name, value }));
+
+  console.log(variables, "variables");
 
   return (
     <SiteTheme
