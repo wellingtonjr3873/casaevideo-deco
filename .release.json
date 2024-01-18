@@ -2323,33 +2323,29 @@
         "title": "Parcele em até 10x",
         "buttonText": "Ver regras",
         "href": "#",
-        "image":
-          "https://casaevideonewio.vteximg.com.br/arquivos/icon-card.png",
+        "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-card.png"
       },
       {
         "label": "Retire na loja",
         "title": "Retire na loja",
         "buttonText": "Ver regras",
         "href": "#",
-        "image":
-          "https://casaevideonewio.vteximg.com.br/arquivos/icon-retire.png",
+        "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-retire.png"
       },
       {
         "label": "Entrega em até 24 horas*",
         "title": "Entrega em até 24 horas*",
         "buttonText": "Ver regras",
         "href": "#",
-        "image":
-          "https://casaevideonewio.vteximg.com.br/arquivos/icon-entrega.png",
+        "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-entrega.png"
       },
       {
         "label": "Parcele em até 10x",
         "title": "Parcele em até 10x",
         "buttonText": "Como podemos ajudar?",
         "href": "#",
-        "image":
-          "https://casaevideonewio.vteximg.com.br/arquivos/icon-chat.png",
-      },
+        "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-chat.png"
+      }
     ],
     "__resolveType": "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx"
   },
