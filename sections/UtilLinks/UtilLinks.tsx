@@ -26,29 +26,33 @@ function UtilLinks(props: Props) {
         "title": "Parcele em até 10x",
         "buttonText": "Ver regras",
         "href": "#",
-        "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-card.png"
-      },   
+        "image":
+          "https://casaevideonewio.vteximg.com.br/arquivos/icon-card.png",
+      },
       {
         "label": "Retire na loja",
         "title": "Retire na loja",
         "buttonText": "Ver regras",
         "href": "#",
-        "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-retire.png"
-      },   
+        "image":
+          "https://casaevideonewio.vteximg.com.br/arquivos/icon-retire.png",
+      },
       {
         "label": "Entrega em até 24 horas*",
         "title": "Entrega em até 24 horas*",
         "buttonText": "Ver regras",
         "href": "#",
-        "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-entrega.png"
-      },   
+        "image":
+          "https://casaevideonewio.vteximg.com.br/arquivos/icon-entrega.png",
+      },
       {
         "label": "Parcele em até 10x",
         "title": "Parcele em até 10x",
         "buttonText": "Como podemos ajudar?",
         "href": "#",
-        "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-chat.png"
-      }
+        "image":
+          "https://casaevideonewio.vteximg.com.br/arquivos/icon-chat.png",
+      },
     ],
   } = props;
 
@@ -58,7 +62,7 @@ function UtilLinks(props: Props) {
       class="lg:flex lg:justify-center p-[24px] lg:py-10 lg:gap-[117px] max-[600px]:gap-[22px] max-[600px]:grid max-[600px]:grid-cols-2"
     >
       {list.map((
-        { label, title, href, image, buttonText }
+        { label, title, href, image, buttonText },
       ) => (
         <a
           href={href}
@@ -76,8 +80,7 @@ function UtilLinks(props: Props) {
                   loading="lazy"
                 />
               </figure>
-            )
-          }
+            )}
 
           <div class="flex flex-col items-start">
             <span class="text-base-content text-center max-[600px]:text-[12px]">

@@ -45,7 +45,6 @@ function Header({
   return (
     <>
       <header className="bg-brand-terciary-1 h-[168px]">
-
         <div className="h-[48px] flex items-center justify-center bg-complementary-2">
           <p>Destaque</p>
         </div>
