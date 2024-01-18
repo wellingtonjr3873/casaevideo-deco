@@ -39,6 +39,7 @@ import * as $$$$$$31 from "./sections/Product/Wishlist.tsx";
 import * as $$$$$$32 from "./sections/Social/InstagramPosts.tsx";
 import * as $$$$$$33 from "./sections/Social/WhatsApp.tsx";
 import * as $$$$$$34 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$35 from "./sections/UtilLinks/UtilLinks.tsx";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -84,6 +85,7 @@ const manifest = {
     "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$32,
     "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$33,
     "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$34,
+    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$35,
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,

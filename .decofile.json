@@ -2305,6 +2305,9 @@
     },
     "__resolveType": "deco-sites/casaevideo/sections/Category/CategoryList.tsx"
   },
+  "UtilLinks List - 01": {
+    "__resolveType": "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx"
+  },
   "Image Gallery - 01": {
     "title": "New collections",
     "banners": [
@@ -2887,6 +2890,9 @@
               ],
               "preload": true,
               "__resolveType": "deco-sites/casaevideo/sections/Images/Carousel.tsx"
+            },
+            {
+              "__resolveType": "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx"
             },
             {
               "__resolveType": "Campaign Timer - 01"
