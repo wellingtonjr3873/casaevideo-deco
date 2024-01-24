@@ -36,8 +36,9 @@ import * as $$$$$$28 from "./sections/Social/InstagramPosts.tsx";
 import * as $$$$$$29 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$30 from "./sections/Links/LinkTree.tsx";
 import * as $$$$$$31 from "./sections/Links/Shortcuts.tsx";
-import * as $$$$$$32 from "./sections/Newsletter/Newsletter.tsx";
-import * as $$$$$$33 from "./sections/Header/Header.tsx";
+import * as $$$$$$32 from "./sections/HiddenContentLogin/HiddenContentLogin.tsx";
+import * as $$$$$$33 from "./sections/Newsletter/Newsletter.tsx";
+import * as $$$$$$34 from "./sections/Header/Header.tsx";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 
@@ -55,7 +56,9 @@ const manifest = {
     "deco-sites/casaevideo/sections/Content/Testimonials.tsx": $$$$$$12,
     "deco-sites/casaevideo/sections/Footer/Footer.tsx": $$$$$$1,
     "deco-sites/casaevideo/sections/Gallery.tsx": $$$$$$0,
-    "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$33,
+    "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$34,
+    "deco-sites/casaevideo/sections/HiddenContentLogin/HiddenContentLogin.tsx":
+      $$$$$$32,
     "deco-sites/casaevideo/sections/Images/BannerGrid.tsx": $$$$$$5,
     "deco-sites/casaevideo/sections/Images/Carousel.tsx": $$$$$$7,
     "deco-sites/casaevideo/sections/Images/ImageGallery.tsx": $$$$$$6,
@@ -68,7 +71,7 @@ const manifest = {
     "deco-sites/casaevideo/sections/Links/Shortcuts.tsx": $$$$$$31,
     "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$25,
     "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$26,
-    "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$32,
+    "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$33,
     "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
       $$$$$$22,
     "deco-sites/casaevideo/sections/Product/ImageGallerySlider.tsx": $$$$$$21,
