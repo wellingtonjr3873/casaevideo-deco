@@ -29,7 +29,7 @@ function HiddenContentLogin({
 }: Props) {
   const { user } = useUser();
   const isUserLoggedIn = Boolean(user.value?.email);
-  console.log('aqui - isUserLoggedIn', isUserLoggedIn)
+  console.log("aqui - isUserLoggedIn", isUserLoggedIn);
 
   return (
     <section class="max-w-[1280px] my-[48px] mx-[auto] max-[768px]:mx-[16px] max-[768px]:my-[24px]">

@@ -3,9 +3,7 @@ import { default as SearchButtonComponent } from "$store/components/header/Butto
 import { useUser } from "apps/vtex/hooks/useUser.ts";
 
 export function MenuButton() {
-  return (
-      <MenuButtonComponent />
-  );
+  return <MenuButtonComponent />;
 }
 
 export function SearchButton() {
