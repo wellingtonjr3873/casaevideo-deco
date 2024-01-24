@@ -46,8 +46,8 @@ export default function IslandBanners({
               <Source
                 media="(min-width: 768px)"
                 src={srcDesktop ? srcDesktop : srcMobile}
-                width={250}
-                height={250}
+                width={272}
+                height={327}
               />
               <img
                 class="w-full"
