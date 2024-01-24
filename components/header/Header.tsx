@@ -1,16 +1,17 @@
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import Searchbar from "$store/components/search/Searchbar.tsx";
+import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
-
-import Searchbar, {
-  Props as SearchbarProps,
-} from "$store/components/search/Searchbar.tsx";
+import Image from "apps/website/components/Image.tsx";
+import { headerHeight } from "./constants.ts";
 
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
+  alerts: string[];
   /**
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus

@@ -264,6 +264,7 @@ const toVariables = (
 
     return `${(l * 100).toFixed(0)}% ${c.toFixed(2)} ${(h || 0).toFixed(0)}deg`;
   };
+
   const colors = Object.entries({
     "--brand-primary-1": t["brand-primary-1"],
     "--brand-primary-900": t["brand-primary-900"],
@@ -312,12 +313,15 @@ const toVariables = (
     "--complementary-2": t["complementary-2"],
     "--complementary-3": t["complementary-3"],
     "--complementary-4": t["complementary-4"],
-  }).map(([key, color]) => [key, toValue(color)] as [string, string]);
+  }).map(([key, color]) => {
+    if (typeof color === "string") {
+      return [key, toValue(color || "")] as [string, string];
+    }
 
-  const colorVariables = Object.entries(t).map(([key, color]) =>
-    [key, toValue(color)] as [string, string]
-  );
-  return [...colors, ...colorVariables];
+    return [key, "#ffffff"] as [string, string];
+  });
+
+  return [...colors, ...colors];
 };
 
 /**
@@ -325,10 +329,11 @@ const toVariables = (
  * this function transforms props into
  *
  * :root {
- *   --color-primary: #FFFFFF;
+ *   --color-primary: #ffffffFFF;
  *   --color-secondary: "#461616"
  * }
  */
+
 function Section({
   complementaryColors,
   font,
@@ -355,8 +360,6 @@ function Section({
     ],
   ]
     .map(([name, value]) => ({ name, value }));
-
-  console.log(variables, "variables");
 
   return (
     <SiteTheme

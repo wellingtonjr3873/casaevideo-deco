@@ -54,6 +54,12 @@
     },
     "global": [
       {
+        "__resolveType": "website/sections/Analytics/Analytics.tsx"
+      },
+      {
+        "__resolveType": "algolia/sections/Analytics/Algolia.tsx"
+      },
+      {
         "__resolveType": "analytics/sections/Analytics/DecoAnalytics.tsx"
       }
     ],
@@ -73,9 +79,6 @@
         "__resolveType": "website/loaders/redirects.ts"
       }
     ],
-    "caching": {
-      "directives": []
-    },
     "commerce": {
       "platform": "other"
     },
@@ -84,10 +87,10 @@
   },
   "vtex": {
     "appKey": "vtexappkey-bravtexfashionstore-VCSBOC",
-    "account": "casaevideonewio",
+    "account": "bravtexfashionstore",
     "appToken": "FWXIWXGDEVTPKERCJIVFXDCEEFUXCBUOBKWZYVYHCUYXJANQUUVRTZUKIWIESDXJXNAMRQBIZFYMSCIKHHWGMEBRZDBEHQLXOXNDCIFAASMVKFOOSTXRPXCCMVQDDEGB",
     "platform": "vtex",
-    "publicUrl": "https://www.casaevideo.com.br/",
+    "publicUrl": "fashion.bravtexstores.com.br",
     "salesChannel": "1",
     "__resolveType": "decohub/apps/vtex.ts",
     "defaultSegment": {
@@ -405,6 +408,13 @@
   "plausible": {
     "__resolveType": "decohub/apps/analytics.ts"
   },
+  "typesense": {
+    "apiKey": "90b213e1-5b08-4cab-9979-52ff92bc3302",
+    "apiUrls": [
+      "https://dry-pond-5415.fly.dev/"
+    ],
+    "__resolveType": "decohub/apps/typesense.ts"
+  },
   "Intro Deco": {
     "links": [
       {
@@ -566,7 +576,7 @@
       "items": [
         {
           "link": "http://deco.cx/",
-          "label": "Instagram"
+          "label": "Discord"
         },
         {
           "link": "http://deco.cx/",
@@ -574,11 +584,19 @@
         },
         {
           "link": "http://deco.cx/",
+          "label": "Instagram"
+        },
+        {
+          "link": "http://deco.cx/",
+          "label": "Linkedin"
+        },
+        {
+          "link": "http://deco.cx/",
           "label": "Tiktok"
         },
         {
-          "link": "/",
-          "label": "Youtube"
+          "link": "http://deco.cx/",
+          "label": "Twitter"
         }
       ],
       "title": "Siga-nos nas redes"
@@ -586,203 +604,164 @@
     "payments": {
       "items": [
         {
-          "label": "Casaevideo"
-        },
-        {
-          "label": "Diners"
-        },
-        {
           "label": "Elo"
         },
         {
           "label": "Mastercard"
         },
         {
-          "label": "Visa"
-        },
-        {
-          "label": "Hypercard"
-        },
-        {
-          "label": "Picpay"
-        },
-        {
-          "label": "AmericanExpress"
-        },
-        {
           "label": "Pix"
+        },
+        {
+          "label": "Visa"
         }
-      ]
+      ],
+      "title": "Formas de pagamento"
     },
     "sections": [
       {
         "items": [
           {
-            "href": "/",
-            "label": "Nossas lojas"
+            "href": "/quem-somos",
+            "label": "Quem somos"
           },
           {
-            "href": "/",
-            "label": "Sobre a empresa"
+            "href": "/privacidade",
+            "label": "Privacidade e segurança"
           },
           {
-            "href": "/",
-            "label": "nossas Marcas"
+            "href": "/termos-de-uso",
+            "label": "Termos de uso"
           },
           {
-            "href": "/",
-            "label": "Assistência Técnica de Produtos"
-          },
-          {
-            "href": "/",
-            "label": "Blod da Le Biscuit"
-          },
-          {
-            "href": "/",
-            "label": "Trabalhe Conosco"
+            "href": "/trabalhe-conosco",
+            "label": "Trabalhe conosco"
           }
         ],
-        "label": "Institucional"
+        "label": "Sobre",
+        "children": [
+          {
+            "href": "/quemsomos",
+            "label": "Quem somos"
+          },
+          {
+            "href": "/privacidadeeseguranca",
+            "label": "Privacidade e segurança"
+          },
+          {
+            "href": "/termosdeuso",
+            "label": "Termos de uso"
+          },
+          {
+            "href": "/trabalheconosco",
+            "label": "Trabalhe conosco"
+          }
+        ]
       },
       {
         "items": [
           {
-            "href": "/",
-            "label": "Empréstimo Dim Dim"
+            "href": "/central-de-atendimento",
+            "label": "Central de atendimento"
           },
           {
-            "href": "/",
-            "label": "Cartão Casa & Video"
+            "href": "/fale-whatsapp",
+            "label": "Fale conosco pelo Whatsapp"
+          },
+          {
+            "href": "/troca-e-devolucao",
+            "label": "Troca e devolução"
           }
         ],
-        "label": "Nossos Serviços"
+        "label": "Atendimento",
+        "children": [
+          {
+            "href": "/centraldeatendimento",
+            "label": "Central de atendimento"
+          },
+          {
+            "href": "/whatsapp",
+            "label": "Fale conosco pelo WhatsApp"
+          },
+          {
+            "href": "/trocaedevolucao",
+            "label": "Troca e devolução"
+          }
+        ]
       },
       {
         "items": [
           {
-            "href": "/",
-            "label": "Prazo e Forma de Entrega"
+            "href": "/login",
+            "label": "Login e cadastro"
           },
           {
-            "href": "/",
-            "label": "Politicas de Trocas"
-          },
-          {
-            "href": "/",
-            "label": "Politica de privacidade e segurança"
-          },
-          {
-            "href": "/",
-            "label": "Termos e condições de uso"
+            "href": "/meus-pedidos",
+            "label": "Meus pedidos"
           }
         ],
-        "label": "Dúvidas?"
-      },
-      {
-        "items": [
+        "label": "Minha conta",
+        "children": [
           {
-            "href": "/",
-            "label": "Televendas | (21) 4002-3535"
+            "href": "/loginecadastro",
+            "label": "Login e cadastro"
           },
           {
-            "href": "/",
-            "label": "WhatsApp | (21) 99104-3269"
-          },
-          {
-            "href": "/",
-            "label": "Central de Atendimento | (21) 4020-3636"
-          },
-          {
-            "href": "/",
-            "label": "Fale Conosco"
-          },
-          {
-            "href": "/",
-            "label": "Canal Confidencial"
+            "href": "/meuspedidos",
+            "label": "Meus pedidos"
           }
-        ],
-        "label": "Atendimento"
+        ]
       }
     ],
-    "security": {
-      "images": [
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/1f9d7d33-5a8e-4301-aa8a-a91c93a4201c",
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/af73cd48-3451-487e-8a06-72ddb76d32aa",
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/12529fb0-38db-466a-9039-09ff92b63f4b",
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/e6cbe056-8bd0-4efc-b500-5482fef331f6",
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/c2aefee7-5a10-4173-b337-8efc34dc5f4b",
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/97ac6ec5-b57f-4dd9-9dfd-d01463cb3477"
-      ]
-    },
-    "categories": [
+    "extraLinks": [
       {
-        "link": "/",
-        "label": "Telefones e Celulares"
+        "href": "http://www.google.com",
+        "link": "http://www.google.com/",
+        "label": "Política de privacidade"
       },
       {
-        "link": "/",
-        "label": "Ar e ventilação"
-      },
-      {
-        "link": "/",
-        "label": "Eletroport[ateis"
-      },
-      {
-        "link": "/",
-        "label": "Brinquedos"
-      },
-      {
-        "link": "/",
-        "label": "Áudio"
-      },
-      {
-        "link": "/",
-        "label": "Utilidades Domésticas"
-      },
-      {
-        "link": "/",
-        "label": "Informática"
-      },
-      {
-        "link": "/",
-        "label": "Gamer"
-      },
-      {
-        "link": "/",
-        "label": "Beleza"
-      },
-      {
-        "link": "/",
-        "label": "Eletrodomésticos"
-      },
-      {
-        "link": "/",
-        "label": "Tc e Vídeo"
-      },
-      {
-        "link": "/",
-        "label": "Esporte e Lazer"
-      },
-      {
-        "link": "/",
-        "label": "Saúde"
-      },
-      {
-        "link": "/",
-        "label": "Ferramentas e Construção"
+        "href": "http://www.google.com",
+        "link": "http://www.google.com",
+        "label": "Termos de serviço"
       }
     ],
     "mobileApps": {
       "apple": "http://www.google.com",
       "android": "http://www.google.com"
     },
-    "developedBy": {
-      "images": [
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/04b0f3b5-0f5d-46d0-85f7-0524e48bfb6b",
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/1ca9ff79-a1e0-4241-9a0d-d612c67c1fdf"
-      ]
+    "newsletter": {
+      "form": {
+        "helpText": "<p>Ao se inscrever, você está aceitando nossa <a href=\"/\" class=\"link\">Política de Privacidade</a>.</p>"
+      },
+      "title": "Assine nossa newsletter",
+      "description": "Participe e ganhe 10% de desconto na primeira compra"
     },
-    "__resolveType": "deco-sites/casaevideo/sections/Footer/Footer.tsx"
+    "backToTheTop": {
+      "text": "Voltar ao topo"
+    },
+    "__resolveType": "deco-sites/casaevideo/sections/Footer/Footer.tsx",
+    "regionOptions": {
+      "currency": [
+        {
+          "href": "/",
+          "label": "Brasil BRL"
+        },
+        {
+          "href": "/",
+          "label": "United Stated USD"
+        }
+      ],
+      "language": [
+        {
+          "href": "/",
+          "label": "PT"
+        },
+        {
+          "href": "/",
+          "label": "EN"
+        }
+      ]
+    }
   },
   "Footer - 02": {
     "logo": {
@@ -1618,15 +1597,7 @@
     },
     "logo": {
       "alt": "Fashion logo by deco",
-      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/50f36c94-fb4a-4a46-aaec-ebddf61c563c",
-      "mobile": {
-        "alt": "Casa e Video",
-        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/eb63462a-aa9a-4c76-af68-387e5291888a"
-      },
-      "desktop": {
-        "alt": "Casa e video",
-        "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/dfb47a2d-e1f2-4187-856e-a460874780ba"
-      }
+      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/50f36c94-fb4a-4a46-aaec-ebddf61c563c"
     },
     "alerts": [
       "Use this template to create your store at deco.cx"
@@ -1641,8 +1612,6 @@
       "loader": {
         "data": {
           "count": 4,
-          "products": [],
-          "searches": [],
           "highlight": true,
           "__resolveType": "algolia/loaders/product/suggestions.ts"
         },
@@ -1867,19 +1836,12 @@
       "--btn-text-case": "normal-case",
       "--btn-focus-scale": "0.95"
     },
-    "colorScheme": "light",
-    "statusColors": {},
     "__resolveType": "deco-sites/casaevideo/sections/Theme/Theme.tsx",
-    "brandColorsPrimary": {
-      "brand-primary-1": "#ff0000"
-    },
-    "brandColorsTerciary": {},
     "complementaryColors": {
       "primary": {
         "primary-content": "#ffffff"
       }
-    },
-    "brandColorsSecondary": {}
+    }
   },
   "LinkTree - 01": {
     "links": [
@@ -1914,86 +1876,6 @@
   "configShopify": {
     "__resolveType": "deco-sites/std/accounts/shopify.ts"
   },
-  "theme-default": {
-    "font": {
-      "fonts": [
-        {
-          "family": "Lato",
-          "variations": [
-            {
-              "italic": false,
-              "weight": "400"
-            },
-            {
-              "weight": "700"
-            }
-          ]
-        }
-      ],
-      "__resolveType": "website/loaders/fonts/googleFonts.ts"
-    },
-    "colorScheme": "light",
-    "statusColors": {
-      "error": "#cf040a",
-      "success": "#007552",
-      "warning": "#f8d13a",
-      "error-light": "#f2cbcc",
-      "information": "#006ca1",
-      "warning-dark": "#bf9800",
-      "success-light": "#a7d0b8",
-      "warning-light": "#fff6e0",
-      "information-light": "#e5eeff"
-    },
-    "__resolveType": "deco-sites/casaevideo/sections/Theme/Theme.tsx",
-    "neutralColors": {
-      "neutral-1": "#000000",
-      "neutral-50": "#f3f3f3",
-      "neutral-100": "#dddddd",
-      "neutral-200": "#c6c6c6",
-      "neutral-300": "#b0b0b0",
-      "neutral-400": "#868686",
-      "neutral-500": "#727272",
-      "neutral-600": "#727272",
-      "neutral-700": "#5e5e5e",
-      "neutral-800": "#4b4b4b",
-      "neutral-900": "#393939"
-    },
-    "brandColorsPrimary": {
-      "brand-primary-1": "#b10200",
-      "brand-primary-50": "#ffeee7",
-      "brand-primary-100": "#ffccba",
-      "brand-primary-200": "#ffab90",
-      "brand-primary-300": "#ff8b6b",
-      "brand-primary-400": "#ff6c4b",
-      "brand-primary-500": "#ee4f31",
-      "brand-primary-600": "#d5351d",
-      "brand-primary-700": "#b8200e",
-      "brand-primary-800": "#971306",
-      "brand-primary-900": "#740f02"
-    },
-    "brandColorsTerciary": {
-      "brand-terciary-1": "#fff100"
-    },
-    "complementaryColors": {
-      "complementary-1": "#d4ff00",
-      "complementary-2": "#a310f2",
-      "complementary-3": "#ff00a5",
-      "complementary-4": "#cdebf7"
-    },
-    "brandColorsSecondary": {
-      "brand-secondary-1": "#141414",
-      "brand-secondary-50": "#f3f3f3",
-      "brand-secondary-100": "#dddddd",
-      "brand-secondary-200": "#c6c6c6",
-      "brand-secondary-300": "#b0b0b0",
-      "brand-secondary-400": "#9b9b9b",
-      "brand-secondary-500": "#868686",
-      "brand-secondary-600": "#727272",
-      "brand-secondary-700": "#5e5e5e",
-      "brand-secondary-800": "#4b4b4b",
-      "brand-secondary-900": "#393939"
-    }
-  },
   "Shortcuts - 01": {
     "layout": {
       "tooltip": true
@@ -2027,6 +1909,10 @@
       }
     ],
     "__resolveType": "deco-sites/casaevideo/sections/Links/Shortcuts.tsx"
+  },
+  "implementation": {
+    "__resolveType": "decohub/apps/implementation.ts",
+    "expectedGoLive": "2023-11-30"
   },
   "random-product": {
     "rootEndpoint": "https://random-data-api.com/api/v2",
@@ -2638,6 +2524,14 @@
     "description": "The best selection for you",
     "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
   },
+  "Algolia Integration": {
+    "adminAPIKey": "72d4757e3b28da7e2b18ca1c8b96a4e3",
+    "adminApiKey": "2e33bc18d1e3405d74176853f837b434",
+    "searchAPIKey": "f48360f6586a1c440d91fcc3af63db56",
+    "searchApiKey": "c1db0c388028afd574750a0f3abc911d",
+    "__resolveType": "decohub/apps/algolia.ts",
+    "applicationId": "3MINZHT36Y"
+  },
   "Campaign Timer - 01": {
     "link": {
       "href": "https://github.com/deco-cx",
@@ -2835,270 +2729,132 @@
   "pages-home-c4bcbfb771e9": {
     "name": "Home",
     "path": "/",
-    "sections": {
-      "variants": [
-        {
-          "rule": {
-            "__resolveType": "website/matchers/always.ts"
+    "sections": [
+      {
+        "noIndexing": false,
+        "__resolveType": "website/sections/Seo/Seo.tsx"
+      },
+      {
+        "__resolveType": "Header - 01"
+      },
+      {
+        "images": [
+          {
+            "alt": "/feminino",
+            "action": {
+              "href": "https://www.deco.cx/",
+              "label": "deco.cx",
+              "title": "VTEX Store",
+              "subTitle": "Visit our site and start building now:"
+            },
+            "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/24278f9e-412d-4a8a-b2d3-57353bb1b368",
+            "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/96e58473-71aa-4419-af42-7d1a3d66b1ae"
           },
-          "value": [
-            {
-              "noIndexing": false,
-              "__resolveType": "website/sections/Seo/Seo.tsx"
+          {
+            "alt": "/feminino",
+            "action": {
+              "href": "https://www.deco.cx/",
+              "label": "deco.cx",
+              "title": "VTEX Store",
+              "subTitle": "Visit our site and start building now:"
             },
-            {
-              "__resolveType": "Header - 01"
+            "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/eeaa624c-a3e1-45e8-a6fe-034233cfbcd0",
+            "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7949d031-9a79-4639-b85e-62fd90af85a9"
+          },
+          {
+            "alt": "/feminino",
+            "action": {
+              "href": "https://www.deco.cx/",
+              "label": "deco.cx",
+              "title": "VTEX Store",
+              "subTitle": "Visit our site and start building now:"
             },
-            {
-              "images": [
-                {
-                  "alt": "/feminino",
-                  "action": {
-                    "href": "https://www.deco.cx/",
-                    "label": "deco.cx",
-                    "title": "VTEX Store",
-                    "subTitle": "Visit our site and start building now:"
-                  },
-                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/24278f9e-412d-4a8a-b2d3-57353bb1b368",
-                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/96e58473-71aa-4419-af42-7d1a3d66b1ae"
-                },
-                {
-                  "alt": "/feminino",
-                  "action": {
-                    "href": "https://www.deco.cx/",
-                    "label": "deco.cx",
-                    "title": "VTEX Store",
-                    "subTitle": "Visit our site and start building now:"
-                  },
-                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/eeaa624c-a3e1-45e8-a6fe-034233cfbcd0",
-                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7949d031-9a79-4639-b85e-62fd90af85a9"
-                },
-                {
-                  "alt": "/feminino",
-                  "action": {
-                    "href": "https://www.deco.cx/",
-                    "label": "deco.cx",
-                    "title": "VTEX Store",
-                    "subTitle": "Visit our site and start building now:"
-                  },
-                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ae89571c-4a7c-44bf-9aeb-a341fd049d19",
-                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7ec121e4-5cfe-4b7b-b942-d1ed4493803d"
-                }
-              ],
-              "preload": true,
-              "__resolveType": "deco-sites/casaevideo/sections/Images/Carousel.tsx"
-            },
-            {
-              "__resolveType": "Campaign Timer - 01"
-            },
-            {
-              "__resolveType": "Category List - 01"
-            },
-            {
-              "list": [
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Pegue seu cupom"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Smartphones"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "TVs e Smart Tvs"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Informática"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Eletroportáteis"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                },
-                {
-                  "href": "/masculino",
-                  "image": "https://casaevideonewio.vteximg.com.br/arquivos/icon-exemple-deco.png",
-                  "label": "Departamento exemplo",
-                  "description": "Amazing"
-                }
-              ],
-              "__resolveType": "deco-sites/casaevideo/sections/Departament/DepartamentList.tsx"
-            },
-            {
-              "tabs": [
-                {
-                  "title": "Woman",
-                  "products": {
-                    "props": {
-                      "sort": "price:desc",
-                      "count": 8,
-                      "query": "vestido"
-                    },
-                    "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
-                  }
-                },
-                {
-                  "title": "Man",
-                  "products": {
-                    "props": {
-                      "sort": "price:desc",
-                      "count": 8,
-                      "collection": "140"
-                    },
-                    "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
-                  }
-                }
-              ],
-              "title": "Best Sellers",
-              "layout": {
-                "headerfontSize": "Large",
-                "headerAlignment": "center"
+            "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ae89571c-4a7c-44bf-9aeb-a341fd049d19",
+            "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7ec121e4-5cfe-4b7b-b942-d1ed4493803d"
+          }
+        ],
+        "preload": true,
+        "__resolveType": "deco-sites/casaevideo/sections/Images/Carousel.tsx"
+      },
+      {
+        "__resolveType": "Campaign Timer - 01"
+      },
+      {
+        "__resolveType": "Category List - 01"
+      },
+      {
+        "tabs": [
+          {
+            "title": "Woman",
+            "products": {
+              "props": {
+                "sort": "price:desc",
+                "count": 8,
+                "query": "vestido"
               },
-              "cardLayout": {
-                "__resolveType": "Product Card Layout - 01"
-              },
-              "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx"
-            },
-            {
-              "__resolveType": "Shoppable Banner - 01"
-            },
-            {
-              "title": "Best Sellers",
-              "products": {
-                "props": {
-                  "sort": "",
-                  "count": 4,
-                  "collection": "139"
-                },
-                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
-              },
-              "cardLayout": {
-                "__resolveType": "Product Card Layout - 01"
-              },
-              "description": "Check these out!",
-              "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
-            },
-            {
-              "__resolveType": "Testimonials - 01"
-            },
-            {
-              "__resolveType": "Benefits - 01"
-            },
-            {
-              "__resolveType": "Logos - 01"
-            },
-            {
-              "__resolveType": "Newsletter - 01"
-            },
-            {
-              "__resolveType": "FAQ - 01"
-            },
-            {
-              "__resolveType": "Footer - 01"
-            },
-            {
-              "__resolveType": "theme-default"
+              "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
             }
-          ]
-        }
-      ],
-      "__resolveType": "website/flags/multivariate.ts"
-    },
+          },
+          {
+            "title": "Man",
+            "products": {
+              "props": {
+                "sort": "price:desc",
+                "count": 8,
+                "collection": "140"
+              },
+              "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+            }
+          }
+        ],
+        "title": "Best Sellers",
+        "layout": {
+          "headerfontSize": "Large",
+          "headerAlignment": "center"
+        },
+        "cardLayout": {
+          "__resolveType": "Product Card Layout - 01"
+        },
+        "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx"
+      },
+      {
+        "__resolveType": "Shoppable Banner - 01"
+      },
+      {
+        "title": "Best Sellers",
+        "products": {
+          "props": {
+            "sort": "",
+            "count": 4,
+            "collection": "139"
+          },
+          "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+        },
+        "cardLayout": {
+          "__resolveType": "Product Card Layout - 01"
+        },
+        "description": "Check these out!",
+        "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
+      },
+      {
+        "__resolveType": "Testimonials - 01"
+      },
+      {
+        "__resolveType": "Benefits - 01"
+      },
+      {
+        "__resolveType": "Logos - 01"
+      },
+      {
+        "__resolveType": "Newsletter - 01"
+      },
+      {
+        "__resolveType": "FAQ - 01"
+      },
+      {
+        "__resolveType": "Footer - 01"
+      }
+    ],
     "__resolveType": "website/pages/Page.tsx"
   },
   "Product Card Layout - 01": {
