@@ -3,16 +3,8 @@ import { default as SearchButtonComponent } from "$store/components/header/Butto
 import { useUser } from "apps/vtex/hooks/useUser.ts";
 
 export function MenuButton() {
-  const { user } = useUser();
-  const loggedUser = user?.value?.email ? true : false;
-  console.log("aqui - MenuButton - loggedUser", loggedUser);
-  console.log("aqui - user 2", user?.value?.email);
-
   return (
-    <>
       <MenuButtonComponent />
-      banana
-    </>
   );
 }
 

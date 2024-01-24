@@ -28,9 +28,8 @@ function HiddenContentLogin({
   shelfProps,
 }: Props) {
   const { user } = useUser();
-
-  const loggedUser = user?.value?.email ? true : false;
-
+  const isUserLoggedIn = Boolean(user.value?.email);
+  console.log('aqui - isUserLoggedIn', isUserLoggedIn)
 
   return (
     <section class="max-w-[1280px] my-[48px] mx-[auto] max-[768px]:mx-[16px] max-[768px]:my-[24px]">
@@ -38,7 +37,7 @@ function HiddenContentLogin({
         {titleComponent}
       </h5>
       <div class="">
-        {loggedUser
+        {isUserLoggedIn
           ? (
             <>
               <ProductShelf {...shelfProps} />
