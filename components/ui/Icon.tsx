@@ -4,10 +4,10 @@ import type { JSX } from "preact";
 export type AvailableIcons =
   | "ArrowsPointingOut"
   | "Bars3"
-  | "Cart"
   | "ChevronLeft"
   | "ChevronRight"
   | "ChevronUp"
+  | "ChevronTop"
   | "ChevronDown"
   | "CreditCard"
   | "Deco"
@@ -42,7 +42,25 @@ export type AvailableIcons =
   | "WhatsApp"
   | "XMark"
   | "Zoom"
-  | "hamburguer";
+  | "Discord"
+  | "Facebook"
+  | "Instagram"
+  | "Linkedin"
+  | "Tiktok"
+  | "Twitter"
+  | "Youtube"
+  | "Diners"
+  | "Elo"
+  | "Mastercard"
+  | "Pix"
+  | "Visa"
+  | "Hypercard"
+  | "Picpay"
+  | "Casaevideo"
+  | "AmericanExpress"
+  | "Padlock"
+  | "Cart"
+  | "Hamburguer";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
@@ -52,6 +70,9 @@ interface Props extends JSX.SVGAttributes<SVGSVGElement> {
    */
   id: AvailableIcons;
   size?: number;
+  strokeWidth?: number;
+  width?: string | number;
+  height?: string | number;
 }
 
 function Icon(

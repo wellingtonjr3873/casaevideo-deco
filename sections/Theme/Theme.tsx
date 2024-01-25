@@ -63,10 +63,7 @@ const toVariables = (
     return [key, toValue(color)] as [string, string];
   });
 
-  const colorVariables = Object.entries(t).map(([key, color]) =>
-    [key, toValue(color)] as [string, string]
-  );
-  return [...colors, ...colorVariables];
+  return [...colors, ...colors];
 };
 
 /**
@@ -74,7 +71,7 @@ const toVariables = (
  * this function transforms props into
  *
  * :root {
- *   --color-primary: #FFFFFF;
+ *   --color-primary: #ffffffFFF;
  *   --color-secondary: "#461616"
  * }
  */

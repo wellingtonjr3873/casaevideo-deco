@@ -9,9 +9,9 @@ import Image from "apps/website/components/Image.tsx";
 import { headerHeight } from "./constants.ts";
 
 export interface Props {
-  alerts: string[];
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
+  alerts: string[];
   /**
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
@@ -31,7 +31,6 @@ export interface Props {
 }
 
 function Header({
-  alerts,
   searchbar,
   logo,
   // navItems,
@@ -51,29 +50,31 @@ function Header({
             <div class="flex gap-[8px] items-center content-start">
               <span className="py-[6px] pr-[4px] pl-[0]">
                 <Icon
-                  id="hamburguer"
+                  id="Hamburguer"
                   className="text-neutral-900"
                   width="17"
                   height="12"
                   strokeWidth={1.5}
                 />
               </span>
-              <Picture>
-                <Source
-                  media="(max-width: 768px)"
-                  src={logo?.mobile.src || ""}
-                  width={140}
-                  height={24}
-                />
-                <Source
-                  media="(min-width: 768px)"
-                  src={logo?.desktop.src || ""}
-                  width={240}
-                  height={40}
-                />
+              {logo && (
+                <Picture>
+                  <Source
+                    media="(max-width: 768px)"
+                    src={logo.mobile.src}
+                    width={140}
+                    height={24}
+                  />
+                  <Source
+                    media="(min-width: 768px)"
+                    src={logo.desktop.src}
+                    width={240}
+                    height={40}
+                  />
 
-                <img src={logo?.desktop.src} />
-              </Picture>
+                  <img src={logo?.desktop.src} />
+                </Picture>
+              )}
               {/* <Image src={logo?.src} alt={logo?.alt} width={100} height={50} /> */}
             </div>
 
