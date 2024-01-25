@@ -1,5 +1,6 @@
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
+import Searchbar from "$store/components/search/Searchbar.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
@@ -7,14 +8,10 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Image from "apps/website/components/Image.tsx";
 import { headerHeight } from "./constants.ts";
 
-import Searchbar, {
-  Props as SearchbarProps,
-} from "$store/components/search/Searchbar.tsx";
-
 export interface Props {
   alerts: string[];
   /** @title Search Bar */
-  searchbar?: Omit<SearchbarProps, "platform">;
+  searchbar: Omit<SearchbarProps, "platform">;
   /**
    * @title Navigation items
    * @description Navigation items used both on mobile and desktop menus
@@ -36,10 +33,11 @@ export interface Props {
 function Header({
   alerts,
   searchbar,
-  navItems,
   logo,
+  // navItems,
 }: Props) {
   const platform = usePlatform();
+
   return (
     <>
       <header className="bg-brand-terciary-1 h-[168px]">
@@ -63,13 +61,13 @@ function Header({
               <Picture>
                 <Source
                   media="(max-width: 768px)"
-                  src={logo?.mobile.src}
+                  src={logo?.mobile.src || ""}
                   width={140}
                   height={24}
                 />
                 <Source
                   media="(min-width: 768px)"
-                  src={logo?.desktop.src}
+                  src={logo?.desktop.src || ""}
                   width={240}
                   height={40}
                 />
