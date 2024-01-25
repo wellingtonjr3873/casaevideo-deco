@@ -57,8 +57,8 @@ const relative = (url: string) => {
   return `${link.pathname}${link.search}`;
 };
 
-const WIDTH = 200;
-const HEIGHT = 279;
+const WIDTH = 210;
+const HEIGHT = 210;
 
 function ProductCard(
   { product, preload, itemListName, layout, platform, index }: Props,
@@ -108,7 +108,7 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full ${
+      class={`card card-compact group w-full px-2 ${
         align === "center" ? "text-center" : "text-start"
       } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
         ${
@@ -196,7 +196,7 @@ function ProductCard(
             />
           )}
         </a>
-        <figcaption
+        {/* <figcaption
           class={`
           absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
             l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
@@ -204,14 +204,14 @@ function ProductCard(
               : "lg:hidden"
           }`}
         >
-          {/* SKU Selector */}
+          
           {l?.onMouseOver?.showSkuSelector && (
             <ul class="flex justify-center items-center gap-2 w-full">
               {skuSelector}
             </ul>
           )}
           {l?.onMouseOver?.showCta && cta}
-        </figcaption>
+        </figcaption> */}
       </figure>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col p-2 gap-3 lg:gap-4">
@@ -241,12 +241,7 @@ function ProductCard(
                   dangerouslySetInnerHTML={{ __html: name ?? "" }}
                 />
               )}
-              {l?.hide?.productDescription ? "" : (
-                <div
-                  class="truncate text-sm lg:text-sm text-neutral"
-                  dangerouslySetInnerHTML={{ __html: description ?? "" }}
-                />
-              )}
+              
             </div>
           )}
         {l?.hide?.allPrices ? "" : (
