@@ -163,6 +163,24 @@
     @apply text-black text-[9px] font-normal leading-[140%] underline
   }
 
+  /* --------------------- */
+  /*    box shadow     */
+  /* ----------------------*/
+  .shadow-near {
+    box-shadow: 0px 2px 8px 0px #39393914;
+  }
+
+  .shadow-normal {
+    box-shadow: 0px 4px 16px 0px #39393914;
+  }
+
+  .shadow-far {
+    box-shadow: 0px 8px 24px 4px #39393914;
+  }
+
+  .shadow-farest {
+    box-shadow: 0px 16px 32px 8px #39393914;
+  }
   .text-nowrap{
     text-wrap: nowrap;
   }

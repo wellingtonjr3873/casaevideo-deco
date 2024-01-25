@@ -85,6 +85,9 @@ interface Props extends JSX.SVGAttributes<SVGSVGElement> {
    */
   id: AvailableIcons;
   size?: number;
+  strokeWidth?: number;
+  width?: string | number;
+  height?: string | number;
 }
 
 function Icon(

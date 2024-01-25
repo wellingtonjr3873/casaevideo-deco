@@ -14,7 +14,7 @@ const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
 export interface Props {
   menu: MenuProps;
-  searchbar?: SearchbarProps;
+  searchbar: Omit<SearchbarProps, "platform">;
   /**
    * @ignore_gen true
    */
@@ -78,7 +78,7 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
           {displayMenu.value && <Menu {...menu} />}
           {searchbar && displaySearchDrawer.value && (
             <div class="w-screen">
-              <Searchbar {...searchbar} />
+              <Searchbar {...searchbar} platform={platform}/>
             </div>
           )}
         </Aside>

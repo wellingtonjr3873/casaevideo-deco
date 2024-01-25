@@ -14,7 +14,7 @@ import { headerHeight } from "./constants.ts";
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
-  navItems?: SiteNavigationElement[] | null;
+  navItems: SiteNavigationElement[] | null;
   alerts: string[];
   /**
    * @title Navigation items
@@ -38,6 +38,7 @@ function Header({
   searchbar,
   navItems,
   logo,
+  // navItems,
 }: Props) {
   const platform = usePlatform();
   const items = navItems ?? [];
