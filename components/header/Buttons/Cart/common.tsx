@@ -34,13 +34,18 @@ function CartButton({ loading, currency, total, items }: Props) {
       </span>
 
       <Button
-        class="btn-circle btn-sm btn-ghost"
+        class="btn-circle btn-sm btn-ghost pl-[4px] py-[3px] pr-[0] h-auto w-auto min-h-fit"
         aria-label="open cart"
         data-deco={displayCart.value && "open-cart"}
         loading={loading}
         onClick={onClick}
       >
-        <Icon id="ShoppingCart" size={24} strokeWidth={2} />
+        <Icon
+          id="Cart"
+          size={16}
+          strokeWidth={2}
+          className="fill-brand-secondary-900"
+        />
       </Button>
     </div>
   );

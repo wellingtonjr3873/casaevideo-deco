@@ -49,11 +49,11 @@ export interface Props {
    */
   loader: Resolved<Suggestion | null>;
 
-  platform?: Platform;
+  platform: Platform;
 }
 
 function Searchbar({
-  placeholder = "What are you looking for?",
+  placeholder = "Buscar pro produto ou marca...",
   action = "/s",
   name = "q",
   loader,
@@ -74,26 +74,16 @@ function Searchbar({
   }, [displaySearchPopup.value]);
 
   return (
-    <div
-      class="w-full grid gap-8 px-4 py-6 overflow-y-hidden"
-      style={{ gridTemplateRows: "min-content auto" }}
-    >
-      <form id={id} action={action} class="join">
-        <Button
-          type="submit"
-          class="join-item btn-square"
-          aria-label="Search"
-          for={id}
-          tabIndex={-1}
-        >
-          {loading.value
-            ? <span class="loading loading-spinner loading-xs" />
-            : <Icon id="MagnifyingGlass" size={24} strokeWidth={0.01} />}
-        </Button>
+    <div class="w-full grid gap-8 overflow-y-hidden h-[40px]">
+      <form
+        id={id}
+        action={action}
+        class="flex bg-[white] rounded-[4px] shadow-[0px_2px_8px_0px_rgba(57, 57, 57, 0.08)] overflow-hidden"
+      >
         <input
           ref={searchInputRef}
           id="search-input"
-          class="input input-bordered join-item flex-grow"
+          class="flex-grow h-[40px] pl-[8px] pt-[8px] pb-[8px] outline-none small-regular text-brand-secondary-900 placeholder:text-brand-secondary-900 placeholder:font-[var(--font-family)]"
           name={name}
           onInput={(e) => {
             const value = e.currentTarget.value;
@@ -107,17 +97,21 @@ function Searchbar({
 
             setQuery(value);
           }}
-          placeholder={placeholder}
+          placeholder={"Buscar pro produto ou marca..."}
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
         />
         <Button
-          type="button"
-          class="join-item btn-ghost btn-square hidden sm:inline-flex"
-          onClick={() => displaySearchPopup.value = false}
+          type="submit"
+          class="border-none h-[40px] p-[12px] min-h-fit"
+          aria-label="Search"
+          for={id}
+          tabIndex={-1}
         >
-          <Icon id="XMark" size={24} strokeWidth={2} />
+          {loading.value
+            ? <span class="loading loading-spinner loading-xs" />
+            : <Icon id="MagnifyingGlass" size={16} strokeWidth={0.01} />}
         </Button>
       </form>
 

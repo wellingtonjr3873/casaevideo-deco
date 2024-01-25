@@ -7,6 +7,7 @@ export type AvailableIcons =
   | "ChevronLeft"
   | "ChevronRight"
   | "ChevronUp"
+  | "ChevronTop"
   | "ChevronDown"
   | "CreditCard"
   | "Deco"
@@ -40,7 +41,26 @@ export type AvailableIcons =
   | "Visa"
   | "WhatsApp"
   | "XMark"
-  | "Zoom";
+  | "Zoom"
+  | "Discord"
+  | "Facebook"
+  | "Instagram"
+  | "Linkedin"
+  | "Tiktok"
+  | "Twitter"
+  | "Youtube"
+  | "Diners"
+  | "Elo"
+  | "Mastercard"
+  | "Pix"
+  | "Visa"
+  | "Hypercard"
+  | "Picpay"
+  | "Casaevideo"
+  | "AmericanExpress"
+  | "Padlock"
+  | "Cart"
+  | "Hamburguer";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
@@ -50,6 +70,9 @@ interface Props extends JSX.SVGAttributes<SVGSVGElement> {
    */
   id: AvailableIcons;
   size?: number;
+  strokeWidth?: number;
+  width?: string | number;
+  height?: string | number;
 }
 
 function Icon(
