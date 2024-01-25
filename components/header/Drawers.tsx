@@ -78,7 +78,7 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
           {displayMenu.value && <Menu {...menu} />}
           {searchbar && displaySearchDrawer.value && (
             <div class="w-screen">
-              <Searchbar {...searchbar} platform={platform}/>
+              <Searchbar {...searchbar} platform={platform} />
             </div>
           )}
         </Aside>
