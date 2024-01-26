@@ -59,18 +59,18 @@ function UtilLinks(props: Props) {
   return (
     <div
       id={id}
-      class="lg:flex lg:justify-center p-[24px] lg:py-10 lg:gap-[117px] max-[600px]:gap-[22px] max-[600px]:grid max-[600px]:grid-cols-2"
+      class="lg:flex lg:justify-center p-[24px] lg:py-10 lg:gap-[117px] max-[768px]:gap-[22px] max-[768px]:grid max-[768px]:grid-cols-2"
     >
       {list.map((
         { label, title, href, image, buttonText },
       ) => (
         <a
           href={href}
-          class="flex items-center gap-[8px] max-[600px]:flex-wrap"
+          class="flex items-center gap-[8px] max-[768px]:flex-wrap"
         >
           {image &&
             (
-              <figure class="max-w-[44px] max-h-[44px] lg:h-auto max-[600px]:max-w-[32px] max-[600px]:max-h-[32px] rounded-[6px]">
+              <figure class="max-w-[44px] max-h-[44px] lg:h-auto max-[768px]:max-w-[32px] max-[768px]:max-h-[32px] rounded-[6px]">
                 <Image
                   class="card w-full rounded-[6px]"
                   src={image}
@@ -83,10 +83,10 @@ function UtilLinks(props: Props) {
             )}
 
           <div class="flex flex-col items-start">
-            <span class="text-base-content text-center max-[600px]:text-[12px]">
+            <span class="text-base-content text-center max-[768px]:text-[12px]">
               {title}
             </span>
-            <span class="text-base-content text-center underline max-[600px]:text-[12px]">
+            <span class="text-base-content text-center underline max-[768px]:text-[12px]">
               {buttonText}
             </span>
           </div>

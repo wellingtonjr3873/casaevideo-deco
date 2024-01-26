@@ -30,8 +30,8 @@ const Aside = (
     children: ComponentChildren;
   },
 ) => (
-  <div class="grid grid-rows-[auto_1fr] h-full divide-y bg-[#F3F3F3] max-w-[368px] w-[100%]">
-    <div class="flex justify-between items-center bg-[#FFF100] max-w-[368px] w-[100%]">
+  <div class="grid grid-rows-[auto_1fr] h-full divide-y bg-rand-secondary-50 max-w-[368px] w-[100%]">
+    <div class="flex justify-between items-center bg-brand-terciary-1 max-w-[368px] w-[100%]">
       <h1 class="px-4 py-3">
         <span class="font-medium text-2xl flex inline-flex items-center">
           {iconTitle && iconTitle}
@@ -40,7 +40,7 @@ const Aside = (
       </h1>
       {onClose && (
         <Button class="btn btn-ghost" onClick={onClose}>
-          <Icon id="cvlbCross" size={24} strokeWidth={2} />
+          <Icon id="CvlbCross" size={24} strokeWidth={2} />
         </Button>
       )}
     </div>
