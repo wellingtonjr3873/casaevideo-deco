@@ -1,4 +1,4 @@
-import { removeCharactersFromObjectKey } from "deco-sites/casaevideo/utils/removeCharacterFromObjectKey.ts";
+import { removeCharactersFromObjectKey } from "./removeCharacterFromObjectKey.ts";
 
 export function addOklchColor(
   theme: Record<string, unknown>,

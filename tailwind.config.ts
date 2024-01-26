@@ -1,6 +1,6 @@
 import daisyui from "daisyui";
-import { DEFAULT_THEME } from "deco-sites/casaevideo/styles/default_theme.ts";
-import { addOklchColor } from "deco-sites/casaevideo/utils/addOklchColor.ts";
+import { DEFAULT_THEME } from "./styles/default_theme.ts";
+import { addOklchColor } from "./utils/addOklchColor.ts";
 
 export default {
   plugins: [daisyui],
