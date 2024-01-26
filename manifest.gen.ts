@@ -10,10 +10,17 @@ import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
 import * as $$$$$$3 from "./sections/Content/Faq.tsx";
 import * as $$$$$$4 from "./sections/Content/Logos.tsx";
 import * as $$$$$$5 from "./sections/Content/Testimonials.tsx";
+
+import * as $$$$$$6 from "./sections/Departament/DepartamentList.tsx";
+import * as $$$$$$7 from "./sections/Footer/Footer.tsx";
+import * as $$$$$$8 from "./sections/Gallery.tsx";
+import * as $$$$$$9 from "./sections/Header/Header.tsx";
+
 import * as $$$$$$6 from "./sections/Footer/Footer.tsx";
 import * as $$$$$$7 from "./sections/Gallery.tsx";
 import * as $$$$$$8 from "./sections/Header/Header.tsx";
 import * as $$$$$$9 from "./sections/HiddenContentLogin/HiddenContentLogin.tsx";
+
 import * as $$$$$$10 from "./sections/Images/BannerGrid.tsx";
 import * as $$$$$$11 from "./sections/Images/Carousel.tsx";
 import * as $$$$$$12 from "./sections/Images/ImageGallery.tsx";
@@ -54,11 +61,14 @@ const manifest = {
     "deco-sites/casaevideo/sections/Content/Faq.tsx": $$$$$$3,
     "deco-sites/casaevideo/sections/Content/Logos.tsx": $$$$$$4,
     "deco-sites/casaevideo/sections/Content/Testimonials.tsx": $$$$$$5,
+    "deco-sites/casaevideo/sections/Departament/DepartamentList.tsx": $$$$$$6,
+    "deco-sites/casaevideo/sections/Footer/Footer.tsx": $$$$$$7,
+    "deco-sites/casaevideo/sections/Gallery.tsx": $$$$$$8,
+    "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$9,
     "deco-sites/casaevideo/sections/Footer/Footer.tsx": $$$$$$6,
     "deco-sites/casaevideo/sections/Gallery.tsx": $$$$$$7,
     "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$8,
     "deco-sites/casaevideo/sections/HiddenContentLogin/HiddenContentLogin.tsx":
-      $$$$$$9,
     "deco-sites/casaevideo/sections/Images/BannerGrid.tsx": $$$$$$10,
     "deco-sites/casaevideo/sections/Images/Carousel.tsx": $$$$$$11,
     "deco-sites/casaevideo/sections/Images/ImageGallery.tsx": $$$$$$12,
@@ -85,6 +95,9 @@ const manifest = {
     "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$32,
     "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$33,
     "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$34,
+
+    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$35,
+
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,

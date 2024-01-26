@@ -142,7 +142,7 @@ function Footer({
   ],
   aboutEnterprise =
     `Casa e Video Brasil S/A - CNPJ: 11.114.284/0001-63 - Rua da Assembléia, 100 (7º, 8º e 9º andar) - Rio de Janeiro/RJ - CEP 20.011-904
-  Os preços, promoções e condições de pagamento são válidos durante o dia de hoje, para o site e TeleVendas, não valendo necessariamente para nossa rede de lojas físicas.
+  Os preços, promoções e condições de pagamento são válidos durante o dia de hoje, para o site e Televendas, não valendo necessariamente para nossa rede de lojas físicas.
   O frete não está incluído no preço do produto. Ofertas válidas enquanto durarem nossos estoques. As fotos de produtos são meramente ilustrativas.`,
   footerRodapeText =
     `2022 . Casa e Video Brasil S/A © Todos os direitos reservados`,
