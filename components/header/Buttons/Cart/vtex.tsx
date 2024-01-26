@@ -1,7 +1,11 @@
 import { itemToAnalyticsItem, useCart } from "apps/vtex/hooks/useCart.ts";
 import Button from "./common.tsx";
+import { h } from "preact";
 
-function CartButton() {
+export interface Props {
+  children?: h.JSX.Element;
+}
+function CartButton({ children }: Props) {
   const { loading, cart } = useCart();
   const {
     totalizers = [],
@@ -23,7 +27,9 @@ function CartButton() {
       items={items.map((item, index) =>
         itemToAnalyticsItem({ ...item, coupon }, index)
       )}
-    />
+    >
+      {children}
+    </Button>
   );
 }
 

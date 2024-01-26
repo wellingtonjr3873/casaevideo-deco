@@ -60,7 +60,9 @@ export type AvailableIcons =
   | "AmericanExpress"
   | "Padlock"
   | "Cart"
-  | "Hamburguer";
+  | "Hamburguer"
+  | "Wishlist"
+  | "MyOrders";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
