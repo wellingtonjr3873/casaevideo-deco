@@ -24,7 +24,7 @@ function SubMenuItem(
           {menu.children?.map((node, idx) => (
             <li
               key={idx}
-              class="border-none py-[14px] px-[24px] w-[100%] bg-rand-secondary-50"
+              class="border-none py-[14px] px-[24px] w-[100%] bg-brand-secondary-50"
             >
               {node.children
                 ? <SubMenuItem menu={node} parentIndex={parentIndex} />
@@ -60,13 +60,13 @@ function MenuItem(
       </button>
 
       <div
-        class={`subMenu-content py-[14px] flex-grow flex flex-col divide-y divide-base-200 gap-[2px] bg-rand-secondary-50 ${
+        class={`subMenu-content py-[14px] flex-grow flex flex-col divide-y divide-base-200 gap-[2px] bg-brand-secondary-50 ${
           displaySubMenu.value && index === displaySubMenuIndex.value
             ? "open"
             : "closed"
         }`}
       >
-        <div class="flex justify-between items-center bg-rand-secondary-50 max-w-[368px] w-[100%] pb-[28px]">
+        <div class="flex justify-between items-center bg-brand-secondary-50 max-w-[368px] w-[100%] pb-[28px]">
           <h1 class="">
             <span class="font-medium text-2xl flex inline-flex items-center">
               <button
@@ -115,9 +115,9 @@ function MenuItem(
 
 function Menu({ items }: Props) {
   return (
-    <div class="flex flex-col h-full px-[7px] py-[16px]">
+    <div class="flex flex-col h-full px-[7px] py-[16px] overflow-auto">
       <div class="flex flex-col h-full">
-        <ul class="flex flex-col gap-[2px] pb-[16px] bg-rand-secondary-50">
+        <ul class="flex flex-col gap-[2px] pb-[16px] bg-brand-secondary-50">
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
@@ -164,7 +164,7 @@ function Menu({ items }: Props) {
           </li>
         </ul>
 
-        <ul class="flex flex-col gap-[2px] bg-rand-secondary-50">
+        <ul class="flex flex-col gap-[2px] bg-brand-secondary-50">
           {items.map((item, idx) => (
             <li class="border-none" key={idx}>
               {item.children
@@ -197,7 +197,7 @@ function Menu({ items }: Props) {
           ))}
         </ul>
 
-        <ul class="flex flex-col pt-[16px] gap-[2px] bg-rand-secondary-50">
+        <ul class="flex flex-col pt-[16px] gap-[2px] bg-brand-secondary-50">
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
