@@ -10,11 +10,9 @@ import type { ComponentChildren } from "preact";
 import { lazy, Suspense } from "preact/compat";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
-const Searchbar = lazy(() => import("$store/components/search/Searchbar.tsx"));
 
 export interface Props {
   menu: MenuProps;
-  searchbar?: SearchbarProps;
   /**
    * @ignore_gen true
    */
@@ -33,7 +31,7 @@ const Aside = (
   <div class="grid grid-rows-[auto_1fr] h-full divide-y bg-[#F3F3F3] max-w-[368px] w-[100%]">
     <div class="flex justify-between items-center bg-[#FFF100] max-w-[368px] w-[100%]">
       <h1 class="px-4 py-3">
-        <span class="font-medium text-2xl flex inline-flex items-center">
+        <span class="small-regular items-center flex gap-[8px]">
           {iconTitle && iconTitle}
           {title}
         </span>
@@ -56,7 +54,7 @@ const Aside = (
   </div>
 );
 
-function Drawers({ menu, searchbar, children, platform }: Props) {
+function Drawers({ menu, children, platform }: Props) {
   const { displayCart, displayMenu, displaySearchDrawer } = useUI();
 
   return (
@@ -72,15 +70,10 @@ function Drawers({ menu, searchbar, children, platform }: Props) {
             displayMenu.value = false;
             displaySearchDrawer.value = false;
           }}
-          iconTitle={<Icon id="User2" size={24} strokeWidth={2} />}
+          iconTitle={<Icon id="User" size={24} strokeWidth={2} />}
           title={"Olá Usuário"}
         >
           {displayMenu.value && <Menu {...menu} />}
-          {searchbar && displaySearchDrawer.value && (
-            <div class="w-screen">
-              <Searchbar {...searchbar} />
-            </div>
-          )}
         </Aside>
       }
     >

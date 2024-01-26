@@ -4,20 +4,21 @@ import Searchbar from "$store/components/search/Searchbar.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import { MenuButton, SearchButton } from "$store/islands/Header/Buttons.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-<<<<<<< HEAD
-=======
 import Drawers from "$store/islands/Header/Drawers.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
-import Image from "apps/website/components/Image.tsx";
-import { headerHeight } from "./constants.ts";
->>>>>>> origin/feat/site-1272
+import { MenuButton } from "$store/islands/Header/Buttons.tsx";
 
+
+interface Categories {
+  items: {
+    label: string,
+    isSazonal: boolean,
+    href: string
+  }[]
+}
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
-  navItems?: SiteNavigationElement[] | null;
   alerts: string[];
   /**
    * @title Navigation items
@@ -35,19 +36,24 @@ export interface Props {
       alt: string;
     };
   };
+  categories?: Categories
 }
 
 function Header({
   searchbar,
-  navItems,
   logo,
+  categories = {items: [
+    {href: "/", isSazonal: false, label: "Categoria"}, 
+    {href: "/", isSazonal: false, label: "Categoria 1"}, 
+    {href: "/", isSazonal: false, label: "Categoria 2"}, 
+    {href: "/", isSazonal: false, label: "Categoria 3"},
+    {href: "/", isSazonal: false, label: "Categoria 4"},
+    {href: "/", isSazonal: false, label: "Categoria 5"},
+    {href: "/", isSazonal: false, label: "Categoria 6"}
+  ]}
   // navItems,
 }: Props) {
   const platform = usePlatform();
-<<<<<<< HEAD
-=======
-  const items = navItems ?? [];
->>>>>>> origin/feat/site-1272
 
   return (
     <>
@@ -58,7 +64,9 @@ function Header({
 
         {/* desktop version */}
 
-        <div class="hidden lg:grid grid-cols-[140px_auto_280px] items-center max-w-[1280px] mx-auto">
+
+        <div class="hidden lg:flex flex-col max-w-[1280px] mx-auto pt-[20px] gap-[20px]">
+          <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-[16px]">
           <figure>
             {logo && (
               <Picture>
@@ -120,15 +128,41 @@ function Header({
             )}
           </div>
         </div>
+          
+          <div class="flex w-full pb-[8px]">
+            
+              <nav class="w-full flex">
+                <ul class="w-full flex items-center justify-between">
+                  <li class="flex items-center">
 
+                      <MenuButton />
+                    <Drawers
+                      menu={{items: []}}
+                      platform={platform}
+                    />
+                  <span class="small-bold hover:underline-offset-1">Categorias</span>
+                  </li>
+                  {categories?.items?.map(item => {
+                    return <li class="hover:underline-offset-1 small-regular" key={item.label}><a href={item.href}>{item.label}</a></li>
+                  })}
+                </ul>
+              </nav>
+          </div>
+        </div>
+        
+      
         {/* mobile version */}
 
         <div class="flex flex-col bg-brand-terciary-1 p-[16px] gap-[24px] lg:hidden">
           <div className="flex justify-between">
             <div class="flex gap-[8px] items-center content-start">
-              <span className="py-[6px] pr-[4px] pl-[0]">
-              </span>
+              <span>
               <MenuButton />
+                      <Drawers
+                        menu={{items: []}}
+                        platform={platform}
+                      />
+              </span>
               {logo && (
                 <Picture>
                   <Source
@@ -176,12 +210,6 @@ function Header({
           <div>
             <Searchbar {...searchbar} platform={platform} />
           </div>
-          <Drawers
-            menu={{ items }}
-            searchbar={searchbar}
-            platform={platform}
-          >
-          </Drawers>
         </div>
       </header>
     </>
