@@ -4,11 +4,20 @@ import Searchbar from "$store/components/search/Searchbar.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
+import { MenuButton, SearchButton } from "$store/islands/Header/Buttons.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
+<<<<<<< HEAD
+=======
+import Drawers from "$store/islands/Header/Drawers.tsx";
+import type { SiteNavigationElement } from "apps/commerce/types.ts";
+import Image from "apps/website/components/Image.tsx";
+import { headerHeight } from "./constants.ts";
+>>>>>>> origin/feat/site-1272
 
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
+  navItems?: SiteNavigationElement[] | null;
   alerts: string[];
   /**
    * @title Navigation items
@@ -30,10 +39,15 @@ export interface Props {
 
 function Header({
   searchbar,
+  navItems,
   logo,
   // navItems,
 }: Props) {
   const platform = usePlatform();
+<<<<<<< HEAD
+=======
+  const items = navItems ?? [];
+>>>>>>> origin/feat/site-1272
 
   return (
     <>
@@ -113,14 +127,8 @@ function Header({
           <div className="flex justify-between">
             <div class="flex gap-[8px] items-center content-start">
               <span className="py-[6px] pr-[4px] pl-[0]">
-                <Icon
-                  id="Hamburguer"
-                  className="text-neutral-900"
-                  width="17"
-                  height="12"
-                  strokeWidth={1.5}
-                />
               </span>
+              <MenuButton />
               {logo && (
                 <Picture>
                   <Source
@@ -168,6 +176,12 @@ function Header({
           <div>
             <Searchbar {...searchbar} platform={platform} />
           </div>
+          <Drawers
+            menu={{ items }}
+            searchbar={searchbar}
+            platform={platform}
+          >
+          </Drawers>
         </div>
       </header>
     </>
