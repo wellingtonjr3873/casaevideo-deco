@@ -6,6 +6,8 @@ export type AvailableIcons =
   | "Bars3"
   | "ChevronLeft"
   | "ChevronRight"
+  | "sliderArrowLeft"
+  | "sliderArrowRight"
   | "ChevronUp"
   | "ChevronTop"
   | "ChevronDown"
@@ -41,6 +43,19 @@ export type AvailableIcons =
   | "Visa"
   | "WhatsApp"
   | "XMark"
+  | "User2"
+  | "CvlbCross"
+  | "ArrowAccordion"
+  | "ArrowBack"
+  | "MyOrders"
+  | "MyCoupons"
+  | "BuyWhatsapp"
+  | "Televendas"
+  | "HelpCentral"
+  | "CreditCard"
+  | "OurStores"
+  | "GooglePlayImg"
+  | "AppleStoreImg"
   | "Zoom"
   | "Discord"
   | "Facebook"
@@ -70,6 +85,9 @@ interface Props extends JSX.SVGAttributes<SVGSVGElement> {
    */
   id: AvailableIcons;
   size?: number;
+  strokeWidth?: number;
+  width?: string | number;
+  height?: string | number;
 }
 
 function Icon(

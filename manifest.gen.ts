@@ -10,13 +10,7 @@ import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
 import * as $$$$$$3 from "./sections/Content/Faq.tsx";
 import * as $$$$$$4 from "./sections/Content/Logos.tsx";
 import * as $$$$$$5 from "./sections/Content/Testimonials.tsx";
-import * as $$$$$$6 from "./sections/Footer/Footer.tsx";
-import * as $$$$$$7 from "./sections/Gallery.tsx";
-import * as $$$$$$8 from "./sections/Header/Header.tsx";
-import * as $$$$$$9 from "./sections/Images/BannerGrid.tsx";
-import * as $$$$$$10 from "./sections/Images/Carousel.tsx";
-import * as $$$$$$11 from "./sections/Images/ImageGallery.tsx";
-import * as $$$$$$12 from "./sections/Images/IslandBanner.tsx";
+
 import * as $$$$$$13 from "./sections/Images/ShoppableBanner.tsx";
 import * as $$$$$$14 from "./sections/Layout/Container.tsx";
 import * as $$$$$$15 from "./sections/Layout/Flex.tsx";
@@ -54,13 +48,7 @@ const manifest = {
     "deco-sites/casaevideo/sections/Content/Faq.tsx": $$$$$$3,
     "deco-sites/casaevideo/sections/Content/Logos.tsx": $$$$$$4,
     "deco-sites/casaevideo/sections/Content/Testimonials.tsx": $$$$$$5,
-    "deco-sites/casaevideo/sections/Footer/Footer.tsx": $$$$$$6,
-    "deco-sites/casaevideo/sections/Gallery.tsx": $$$$$$7,
-    "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$8,
-    "deco-sites/casaevideo/sections/Images/BannerGrid.tsx": $$$$$$9,
-    "deco-sites/casaevideo/sections/Images/Carousel.tsx": $$$$$$10,
-    "deco-sites/casaevideo/sections/Images/ImageGallery.tsx": $$$$$$11,
-    "deco-sites/casaevideo/sections/Images/IslandBanner.tsx": $$$$$$12,
+
     "deco-sites/casaevideo/sections/Images/ShoppableBanner.tsx": $$$$$$13,
     "deco-sites/casaevideo/sections/Layout/Container.tsx": $$$$$$14,
     "deco-sites/casaevideo/sections/Layout/Flex.tsx": $$$$$$15,
@@ -84,6 +72,7 @@ const manifest = {
     "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$32,
     "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$33,
     "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$34,
+
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,
