@@ -13,7 +13,12 @@ export default function MenuButton() {
         displayMenu.value = true;
       }}
     >
-      <Icon id="Hamburguer" size={24} strokeWidth={0.01} class="text-neutral-900"/>
+      <Icon
+        id="Hamburguer"
+        size={24}
+        strokeWidth={0.01}
+        class="text-neutral-900"
+      />
     </Button>
   );
 }
