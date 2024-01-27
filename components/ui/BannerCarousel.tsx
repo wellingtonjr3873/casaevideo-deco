@@ -14,81 +14,121 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
  * @titleBy alt
  */
 export interface Banner {
-  /** @description desktop otimized image */
+
+  /**
+   * @title Data inicial do banner
+   * @format datetime
+  */
+  dateStartAt: string;
+  /**
+   * @title Data final do banner
+   * @format datetime
+  */
+  dateEndAt: string;
+
+  /** @description Imagem Desktop */
   desktop: ImageWidget;
-  /** @description mobile otimized image */
+  /** @description Imagem Mobile */
   mobile: ImageWidget;
-  /** @description Image's alt text */
+  /** @description Texto ALT da imagem */
   alt: string;
+
   action?: {
-    /** @description when user clicks on the image, go to this link */
+    /** @description Link da imagem */
     href: string;
-    /** @description Image text title */
+    /** @description Texto imagem title */
     title: string;
-    /** @description Image text subtitle */
+    /** @description Texto imagem subtitle */
     subTitle: string;
-    /** @description Button label */
+    /** @description Texto do botão */
     label: string;
   };
 }
 
 export interface Props {
-  images?: Banner[];
+  bannerImages?: Banner[];
   /**
-   * @description Check this option when this banner is the biggest image on the screen for image optimizations
+   * @description Marque esta opção quando este banner for a maior imagem na tela para otimizações de imagem
    */
   preload?: boolean;
   /**
-   * @title Autoplay interval
-   * @description time (in seconds) to start the carousel autoplay
+   * @title Intervalo AutoPlay
+   * @description Tempo (em segundos) para iniciar a reprodução automática do carrossel.
    */
   interval?: number;
 }
 
-const DEFAULT_PROPS = {
-  images: [
+const IMAGES_PROPS = {
+  bannerImages: [
     {
+      dateStartAt: "2024-01-27T00:19:00.000Z",
+      dateEndAt: "2024-02-20T00:19:00.000Z",
       alt: "/feminino",
-      action: {
-        href: "https://www.deco.cx/",
-        label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
-      },
+      // action: {
+      //   href: "https://www.deco.cx/",
+      //   label: "deco.cx",
+      //   title: "Demo Store",
+      //   subTitle: "Visit our site and start building now:",
+      // },
       mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/24278f9e-412d-4a8a-b2d3-57353bb1b368",
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
       desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/afa2c07c-74f4-496d-8647-5cc58f48117b",
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
     },
     {
+      dateStartAt: "2024-01-27T00:19:00.000Z",
+      dateEndAt: "2024-02-20T00:19:00.000Z",
       alt: "/feminino",
-      action: {
-        href: "https://www.deco.cx/",
-        label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
-      },
+      // action: {
+      //   href: "https://www.deco.cx/",
+      //   label: "deco.cx",
+      //   title: "Demo Store",
+      //   subTitle: "Visit our site and start building now:",
+      // },
       mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/eeaa624c-a3e1-45e8-a6fe-034233cfbcd0",
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
       desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7949d031-9a79-4639-b85e-62fd90af85a9",
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
     },
     {
+      dateStartAt: "2024-01-27T00:19:00.000Z",
+      dateEndAt: "2024-02-20T00:19:00.000Z",
       alt: "/feminino",
-      action: {
-        href: "https://www.deco.cx/",
-        label: "deco.cx",
-        title: "Demo Store",
-        subTitle: "Visit our site and start building now:",
-      },
+      // action: {
+      //   href: "https://www.deco.cx/",
+      //   label: "deco.cx",
+      //   title: "Demo Store",
+      //   subTitle: "Visit our site and start building now:",
+      // },
       mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ae89571c-4a7c-44bf-9aeb-a341fd049d19",
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
       desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7ec121e4-5cfe-4b7b-b942-d1ed4493803d",
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
+    },
+    {
+      dateStartAt: "2024-02-20T00:19:00.000Z",
+      dateEndAt: "2024-02-29T00:19:00.000Z",
+      alt: "/feminino",
+      // action: {
+      //   href: "https://www.deco.cx/",
+      //   label: "deco.cx",
+      //   title: "Demo Store",
+      //   subTitle: "Visit our site and start building now:",
+      // },
+      mobile:
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
+      desktop:
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
     },
   ],
   preload: true,
 };
+
+function getCurrentDateTime() {
+  const now = new Date();
+
+  return now.toISOString();
+}
 
 function BannerItem(
   { image, lcp, id }: { image: Banner; lcp?: boolean; id: string },
@@ -105,22 +145,22 @@ function BannerItem(
       id={id}
       href={action?.href ?? "#"}
       aria-label={action?.label}
-      class="relative h-[600px] overflow-y-hidden w-full"
+      class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={mobile}
-          width={360}
-          height={600}
+          width={320}
+          height={280}
         />
         <Source
           media="(min-width: 768px)"
           fetchPriority={lcp ? "high" : "auto"}
           src={desktop}
-          width={1440}
-          height={600}
+          width={1280}
+          height={280}
         />
         <img
           class="object-cover w-full h-full"
@@ -144,7 +184,7 @@ function BannerItem(
   );
 }
 
-function Dots({ images, interval = 0 }: Props) {
+function Dots({ bannerImages, interval = 0 }: Props) {
   return (
     <>
       <style
@@ -158,19 +198,24 @@ function Dots({ images, interval = 0 }: Props) {
           `,
         }}
       />
-      <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4">
-        {images?.map((_, index) => (
-          <li class="carousel-item">
-            <Slider.Dot index={index}>
-              <div class="py-5">
-                <div
-                  class="w-16 sm:w-20 h-0.5 rounded group-disabled:animate-progress bg-gradient-to-r from-base-100 from-[length:var(--dot-progress)] to-[rgba(255,255,255,0.4)] to-[length:var(--dot-progress)]"
-                  style={{ animationDuration: `${interval}s` }}
-                />
-              </div>
-            </Slider.Dot>
-          </li>
-        ))}
+      <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4 h-[11px] absolute bottom-[-18px] left-1/2 max-[768px]:transform -translate-x-1/2">
+        {bannerImages?.map((image, index) => {
+          const dateEndtAt = getCurrentDateTime() >= image.dateStartAt && getCurrentDateTime() <= image.dateEndAt;
+          return (
+            <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
+              {dateEndtAt &&
+                <Slider.Dot index={index}>
+                  <div class="">
+                    <div
+                      class="h-[11px] w-[11px] max-[768px]:w-[6px] max-[768px]:h-[6px] border border-[2px] max-[768px]:border-[1px] border-[#ED1B2F] rounded-full group-disabled:bg-[#ED1B2F]"
+                      style={{ animationDuration: `${interval}s` }}
+                    />
+                  </div>
+                </Slider.Dot>
+              }
+            </li>
+          )
+        })}
       </ul>
     </>
   );
@@ -179,23 +224,23 @@ function Dots({ images, interval = 0 }: Props) {
 function Buttons() {
   return (
     <>
-      <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
-        <Slider.PrevButton class="btn btn-circle glass">
+      <div class="absolute left-[-20px] top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden">
+        <Slider.PrevButton class="">
           <Icon
             class="text-base-100"
-            size={24}
-            id="ChevronLeft"
-            strokeWidth={3}
+            size={41}
+            id="SliderArrowLeft"
+            strokeWidth={0}
           />
         </Slider.PrevButton>
       </div>
-      <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
-        <Slider.NextButton class="btn btn-circle glass">
+      <div class="absolute right-[-20px] top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden">
+        <Slider.NextButton class="">
           <Icon
             class="text-base-100"
-            size={24}
-            id="ChevronRight"
-            strokeWidth={3}
+            size={41}
+            id="SliderArrowRight"
+            strokeWidth={0}
           />
         </Slider.NextButton>
       </div>
@@ -205,18 +250,20 @@ function Buttons() {
 
 function BannerCarousel(props: Props) {
   const id = useId();
-  const { images, preload, interval } = { ...DEFAULT_PROPS, ...props };
+  const { bannerImages, preload, interval } = { ...IMAGES_PROPS, ...props };
 
   return (
     <div
       id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px]"
+      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto]"
     >
-      <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
-        {images?.map((image, index) => {
+      <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6 max-[768px]:px-4">
+        {bannerImages?.map((image, index) => {
           const params = { promotion_name: image.alt };
+          const dateEndtAt = getCurrentDateTime() >= image.dateStartAt && getCurrentDateTime() <= image.dateEndAt;
 
           return (
+            dateEndtAt &&
             <Slider.Item index={index} class="carousel-item w-full">
               <BannerItem
                 image={image}
@@ -232,13 +279,13 @@ function BannerCarousel(props: Props) {
                 event={{ name: "view_promotion", params }}
               />
             </Slider.Item>
-          );
+          )
         })}
       </Slider>
 
       <Buttons />
 
-      <Dots images={images} interval={interval} />
+      <Dots bannerImages={bannerImages} interval={interval} />
 
       <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
     </div>
