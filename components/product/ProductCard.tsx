@@ -108,9 +108,9 @@ function ProductCard(
   return (
     <div
       id={id}
-      class={`card card-compact group w-full px-2 ${
+      class={`card card-compact group w-full px-2 card-bordered ${
         align === "center" ? "text-center" : "text-start"
-      } ${l?.onMouseOver?.showCardShadow ? "lg:hover:card-bordered" : ""}
+      } 
         ${
         l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
@@ -237,7 +237,7 @@ function ProductCard(
             <div class="flex flex-col gap-0">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate text-base lg:text-lg text-base-content"
+                  class="truncate text-base lg:text-lg text-base-content line-clamp-2 whitespace-break-spaces"
                   dangerouslySetInnerHTML={{ __html: name ?? "" }}
                 />
               )}
