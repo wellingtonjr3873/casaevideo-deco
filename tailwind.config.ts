@@ -1,4 +1,6 @@
 import daisyui from "daisyui";
+import { DEFAULT_THEME } from "./styles/default_theme.ts";
+import { addOklchColor } from "./utils/addOklchColor.ts";
 
 import { DEFAULT_THEME } from "./styles/default_theme.ts";
 import { addOklchColor } from "./utils/addOklchColor.ts";

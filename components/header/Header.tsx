@@ -18,6 +18,7 @@ interface Categories {
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
+  navItems: SiteNavigationElement[] | null;
   alerts: string[];
   /**
    * @title Navigation items

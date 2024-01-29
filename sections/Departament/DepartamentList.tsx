@@ -20,7 +20,7 @@ export interface Props {
 
 function ButtonsDepartamentSlider() {
   return (
-    <div class="absolute w-full h-full flex items-center justify-between max-[600px]:hidden max-h-[100px]">
+    <div class="absolute w-full h-full flex items-center justify-between max-[768px]:hidden max-h-[100px]">
       <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
         <Slider.PrevButton class="btn btn-circle glass right-1/2">
           <Icon
@@ -67,11 +67,11 @@ function DepartamentList(props: Props) {
           >
             <a
               href={href}
-              class="flex flex-col gap-[8px] lg:w-[100px] w-40 max-[600px]:max-w-[72px]"
+              class="flex flex-col gap-[8px] lg:w-[100px] w-40 max-[768px]:max-w-[72px]"
             >
               {image &&
                 (
-                  <figure class="max-w-[100px] max-h-[100px] lg:h-auto max-[600px]:max-w-[72px] max-[600px]:max-h-[72px]">
+                  <figure class="max-w-[100px] max-h-[100px] lg:h-auto max-[768px]:max-w-[72px] max-[768px]:max-h-[72px]">
                     <Image
                       class="card w-full"
                       src={image}

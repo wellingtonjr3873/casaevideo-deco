@@ -13,18 +13,18 @@ function SubMenuItem(
   return (
     <div class="collapse collapse-plus rounded-none border-none">
       <input type="checkbox" />
-      <div class="flex justify-between items-center absolute py-[14px] px-[24px] w-[100%] bg-[#FFF]">
+      <div class="flex justify-between items-center absolute py-[14px] px-[24px] w-[100%] bg-neutral-50">
         {menu.name}
         <span class={`rotate-[90deg] w-[24px] block`}>
-          <Icon id="arrowAccordion" size={24} strokeWidth={2} />
+          <Icon id="ArrowAccordion" size={24} strokeWidth={2} />
         </span>
       </div>
       <div class="p-0 pb-0 collapse-content">
-        <ul class="flex-grow flex flex-col divide-y divide-base-200 gap-[2px] bg-[#FFF]">
+        <ul class="flex-grow flex flex-col divide-y divide-base-200 gap-[2px] bg-neutral-50">
           {menu.children?.map((node, idx) => (
             <li
               key={idx}
-              class="border-none py-[14px] px-[24px] w-[100%] bg-[#F3F3F3]"
+              class="border-none py-[14px] px-[24px] w-[100%] bg-brand-secondary-50"
             >
               {node.children
                 ? <SubMenuItem menu={node} parentIndex={parentIndex} />
@@ -47,7 +47,7 @@ function MenuItem(
   return (
     <div class="menu-content">
       <button
-        class="open-sub-menu flex justify-between items-center text-left py-[14px] px-[24px] w-[100%] bg-[#FFF]"
+        class="open-sub-menu flex justify-between items-center text-left py-[14px] px-[24px] w-[100%] bg-neutral-50"
         onClick={() => {
           displaySubMenuIndex.value = index;
           displaySubMenu.value = !displaySubMenu.value;
@@ -55,18 +55,18 @@ function MenuItem(
       >
         <span class="text-sm flex justify-between items-center text-left w-[100%]">
           {item.name}
-          <Icon id="arrowAccordion" size={24} strokeWidth={2} />
+          <Icon id="ArrowAccordion" size={24} strokeWidth={2} />
         </span>
       </button>
 
       <div
-        class={`subMenu-content py-[14px] flex-grow flex flex-col divide-y divide-base-200 gap-[2px] bg-[#F3F3F3] ${
+        class={`subMenu-content py-[14px] flex-grow flex flex-col divide-y divide-base-200 gap-[2px] bg-brand-secondary-50 ${
           displaySubMenu.value && index === displaySubMenuIndex.value
             ? "open"
             : "closed"
         }`}
       >
-        <div class="flex justify-between items-center bg-[#F3F3F3] max-w-[368px] w-[100%] pb-[28px]">
+        <div class="flex justify-between items-center bg-brand-secondary-50 max-w-[368px] w-[100%] pb-[28px]">
           <h1 class="">
             <span class="font-medium text-2xl flex inline-flex items-center">
               <button
@@ -76,7 +76,7 @@ function MenuItem(
                 }}
               >
                 <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                  <Icon id="arrowBack" size={24} strokeWidth={2} />
+                  <Icon id="ArrowBack" size={24} strokeWidth={2} />
                   {item.name}
                 </span>
               </button>
@@ -89,7 +89,7 @@ function MenuItem(
               displaySubMenu.value = !displaySubMenu.value;
             }}
           >
-            <Icon id="cvlbCross" size={24} strokeWidth={2} />
+            <Icon id="CvlbCross" size={24} strokeWidth={2} />
           </Button>
         </div>
 
@@ -99,7 +99,7 @@ function MenuItem(
               {node.children
                 ? <SubMenuItem menu={node} parentIndex={index} key={idx} />
                 : (
-                  <div class="py-[14px] px-[24px] w-[100%] bg-[#FFF]">
+                  <div class="py-[14px] px-[24px] w-[100%] bg-neutral-50">
                     <span class="text-sm flex justify-between items-center text-left w-[100%]">
                       <a href={node.url}>{node.name}</a>
                     </span>
@@ -115,48 +115,48 @@ function MenuItem(
 
 function Menu({ items }: Props) {
   return (
-    <div class="flex flex-col h-full px-[7px] py-[16px]">
+    <div class="flex flex-col h-full px-[7px] py-[16px] overflow-auto">
       <div class="flex flex-col h-full">
-        <ul class="flex flex-col gap-[2px] pb-[16px] bg-[#F3F3F3]">
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-[#FFF]">
+        <ul class="flex flex-col gap-[2px] pb-[16px] bg-brand-secondary-50">
+          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="/wishlist"
             >
-              <Icon id="myOrders" size={24} strokeWidth={2} />
+              <Icon id="MyOrders" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Meus Pedidos
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-[#FFF]">
+          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="https://www.deco.cx"
             >
-              <Icon id="myCoupons" size={24} strokeWidth={2} />
+              <Icon id="MyCoupons" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Pegue seu Cupom
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-[#FFF]">
+          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="https://www.deco.cx"
             >
-              <Icon id="buyWhatsapp" size={24} strokeWidth={2} />
+              <Icon id="BuyWhatsapp" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Faça sua compra pelo Whatsapp!
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-[#FFF]">
+          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="https://www.deco.cx"
             >
-              <Icon id="televendas" size={24} strokeWidth={2} />
+              <Icon id="Televendas" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Televendas: (21) 4002-3535
               </span>
@@ -164,7 +164,7 @@ function Menu({ items }: Props) {
           </li>
         </ul>
 
-        <ul class="flex flex-col gap-[2px] bg-[#F3F3F3]">
+        <ul class="flex flex-col gap-[2px] bg-brand-secondary-50">
           {items.map((item, idx) => (
             <li class="border-none" key={idx}>
               {item.children
@@ -186,7 +186,7 @@ function Menu({ items }: Props) {
                 : (
                   <a
                     href={item.url}
-                    class="block py-[14px] px-[24px] w-[100%] bg-[#FFF]"
+                    class="block py-[14px] px-[24px] w-[100%] bg-neutral-50"
                   >
                     <span class="text-sm flex justify-between items-center text-left w-[100%]">
                       {item.name}
@@ -197,35 +197,35 @@ function Menu({ items }: Props) {
           ))}
         </ul>
 
-        <ul class="flex flex-col pt-[16px] gap-[2px] bg-[#F3F3F3]">
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-[#FFF]">
+        <ul class="flex flex-col pt-[16px] gap-[2px] bg-brand-secondary-50">
+          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="/wishlist"
             >
-              <Icon id="helpCentral" size={24} strokeWidth={2} />
+              <Icon id="HelpCentral" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Central de Atendimento
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-[#FFF]">
+          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="https://www.deco.cx"
             >
-              <Icon id="creditCard" size={24} strokeWidth={2} />
+              <Icon id="CreditCard" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Cartão Casa&Vídeo
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-[#FFF]">
+          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="https://www.deco.cx"
             >
-              <Icon id="ourStores" size={24} strokeWidth={2} />
+              <Icon id="OurStores" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Nossas Lojas
               </span>
@@ -238,10 +238,10 @@ function Menu({ items }: Props) {
         <span class="text-center">Baixe o nosso novo app Casa&Vídeo</span>
         <div class="flex justify-between items-center gap-[8px]">
           <a href="/">
-            <Icon id="appleStoreImg" width={133} height={44} strokeWidth={0} />
+            <Icon id="AppleStoreImg" width={133} height={44} strokeWidth={0} />
           </a>
           <a href="/">
-            <Icon id="googlePlayImg" width={133} height={44} strokeWidth={0} />
+            <Icon id="GooglePlayImg" width={133} height={44} strokeWidth={0} />
           </a>
         </div>
       </div>
