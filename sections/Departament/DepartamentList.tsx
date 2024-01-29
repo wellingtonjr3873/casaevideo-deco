@@ -26,7 +26,7 @@ function ButtonsDepartamentSlider() {
           <Icon
             class="text-base-100"
             size={33}
-            id="sliderArrowLeft"
+            id="SliderArrowLeft"
             strokeWidth={3}
           />
         </Slider.PrevButton>
@@ -36,7 +36,7 @@ function ButtonsDepartamentSlider() {
           <Icon
             class="text-base-100"
             size={33}
-            id="sliderArrowRight"
+            id="SliderArrowRight"
             strokeWidth={3}
           />
         </Slider.NextButton>
