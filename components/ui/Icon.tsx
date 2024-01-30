@@ -6,8 +6,8 @@ export type AvailableIcons =
   | "Bars3"
   | "ChevronLeft"
   | "ChevronRight"
-  | "sliderArrowLeft"
-  | "sliderArrowRight"
+  | "SliderArrowLeft"
+  | "SliderArrowRight"
   | "ChevronUp"
   | "ChevronTop"
   | "ChevronDown"
@@ -75,7 +75,9 @@ export type AvailableIcons =
   | "AmericanExpress"
   | "Padlock"
   | "Cart"
-  | "Hamburguer";
+  | "Hamburguer"
+  | "Frete"
+  | "ArrowDown";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
