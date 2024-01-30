@@ -7,6 +7,17 @@
   /* Allow changing font family via CMS */
   html {
     font-family: var(--font-family);
+    font-size: 16px;
+  }
+
+  @media (max-width: 768px) {
+    html {
+      font-size: 12px;
+    }
+  }
+
+  body {
+    background-color: #f4f3f4;
   }
 
   mark {
@@ -184,9 +195,12 @@
   .text-nowrap{
     text-wrap: nowrap;
   }
-  
+}
 
-
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1280px;
+  }
 }
 
 .group:disabled .group-disabled\:animate-progress {
@@ -197,14 +211,6 @@
   height: 0.75rem;
   box-shadow: 1px 1px;
 }
-
-
-
-
-
-
-
-
 
 @keyframes progress-frame {
   0% {
