@@ -6,8 +6,8 @@ export type AvailableIcons =
   | "Bars3"
   | "ChevronLeft"
   | "ChevronRight"
-  | "sliderArrowLeft"
-  | "sliderArrowRight"
+  | "SliderArrowLeft"
+  | "SliderArrowRight"
   | "ChevronUp"
   | "ChevronTop"
   | "ChevronDown"
@@ -76,6 +76,8 @@ export type AvailableIcons =
   | "Padlock"
   | "Cart"
   | "Hamburguer"
+  | "Frete"
+  | "ArrowDown"
   | "Wishlist"
   | "MyOrders";
 

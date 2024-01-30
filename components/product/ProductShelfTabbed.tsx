@@ -51,7 +51,7 @@ function TabbedProductShelf({
   }
 
   return (
-    <div class="w-full container  py-8 flex flex-col gap-8 lg:gap-12 lg:py-10">
+    <div class="w-full container  py-8 pl-4 sm:pl-0 flex flex-col gap-2 lg:py-10">
       <Header
         title={title || ""}
         description={description || ""}
@@ -74,13 +74,13 @@ function TabbedProductShelf({
 
       <div
         id={id}
-        class="container grid grid-cols-[48px_1fr_48px] px-0 sm:px-5"
+        class="container grid grid-cols-[48px_1fr_48px] px-0"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-center sm:carousel-end gap-4 col-span-full row-start-2 row-end-5">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              class="carousel-item md:w-60 w-56 last:pr-6 sm:last:pr-0"
             >
               <ProductCard
                 product={product}
@@ -95,12 +95,12 @@ function TabbedProductShelf({
 
         <>
           <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-            <Slider.PrevButton class="btn btn-circle btn-outline absolute right-1/2 bg-base-100">
+            <Slider.PrevButton class="btn-circle absolute right-1/2 bg-neutral-50 text-brand-primary-500 border-none flex justify-center items-center shadow-far cursor-pointer">
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
           </div>
           <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-            <Slider.NextButton class="btn btn-circle btn-outline absolute left-1/2 bg-base-100">
+            <Slider.NextButton class="btn-circle absolute left-1/2 bg-neutral-50 text-brand-primary-500 border-none flex justify-center items-center shadow-far cursor-pointer">
               <Icon size={24} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>
           </div>
