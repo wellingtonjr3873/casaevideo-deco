@@ -20,5 +20,14 @@ export default {
       },
       black: "black",
     },
+    extend: {
+      colors: {
+        neutral: {
+          900: "oklch(var(--neutral-900))",
+          50: "oklch(var(--neutral-50))",
+        },
+        success: "oklch(var(--success))",
+      },
+    },
   },
 };
