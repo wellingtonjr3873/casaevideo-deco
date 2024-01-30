@@ -7,6 +7,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
+import type { SiteNavigationElement } from "apps/commerce/types.ts";
+
 
 interface Categories {
   items: {
