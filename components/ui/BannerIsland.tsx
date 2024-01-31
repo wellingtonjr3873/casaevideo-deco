@@ -119,7 +119,7 @@ const DEFAULT_PROPS: Props = {
   },
 };
 
-export default function BannnerGrid(props: Props) {
+export default function BannnerIsland(props: Props) {
   const {
     title,
     itemsPerLine,
