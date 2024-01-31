@@ -60,15 +60,15 @@ function Header({
 
   return (
     <>
-      <header className="bg-brand-terciary-1 h-[168px]">
-        <div className="h-[48px] flex items-center justify-center bg-complementary-2">
+      <header class="bg-brand-terciary-1 h-[168px]">
+        <div class="h-12 flex items-center justify-center bg-complementary-2">
           <p>Destaque</p>
         </div>
 
         {/* desktop version */}
 
-        <div class="hidden lg:flex flex-col max-w-[1280px] mx-auto pt-[20px] gap-[20px]">
-          <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-[16px]">
+        <div class="hidden lg:flex flex-col max-w-[1280px] mx-auto pt-5 gap-5">
+          <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-4">
             <figure>
               {logo && (
                 <Picture>
@@ -92,17 +92,17 @@ function Header({
             <div class="w-full">
               <Searchbar {...searchbar} platform={platform} />
             </div>
-            <div class="flex items-center gap-[8px]">
+            <div class="flex items-center gap-2">
               {/* user */}
               <a
-                class="flex items-center justify-center gap-[4px]"
+                class="flex items-center justify-center gap-1"
                 href="/login"
                 aria-label="Log in"
               >
                 <Icon
                   id="User"
                   size={32}
-                  className="text-neutral-900 "
+                  class="text-neutral-900 "
                 />
                 <div class="flex flex-col">
                   <span class="small-regular">Bem vindo!</span>
@@ -124,14 +124,14 @@ function Header({
                   <Icon
                     id="Cart"
                     size={32}
-                    className="fill-brand-secondary-900"
+                    class="fill-brand-secondary-900"
                   />
                 </CartButtonVTEX>
               )}
             </div>
           </div>
 
-          <div class="flex w-full pb-[8px]">
+          <div class="flex w-full pb-2">
             <nav class="w-full flex">
               <ul class="w-full flex items-center justify-between">
                 <li class="flex items-center">
@@ -161,9 +161,9 @@ function Header({
 
         {/* mobile version */}
 
-        <div class="flex flex-col bg-brand-terciary-1 p-[16px] gap-[24px] lg:hidden">
+        <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
           <div className="flex justify-between">
-            <div class="flex gap-[8px] items-center content-start">
+            <div class="flex gap-2 items-center content-start">
               <span>
                 <MenuButton />
                 <Drawers
@@ -202,14 +202,14 @@ function Header({
                   id="User"
                   strokeWidth={0.4}
                   size={24}
-                  className="text-neutral-900 fill-transparent"
+                  class="text-neutral-900 fill-transparent"
                 />
               </a>
               {platform === "vtex" && (
                 <CartButtonVTEX>
                   <Icon
                     id="Cart"
-                    className="fill-brand-secondary-900 h-[24px] w-[24px]"
+                    className="fill-brand-secondary-900 h-6 w-6"
                   />
                 </CartButtonVTEX>
               )}

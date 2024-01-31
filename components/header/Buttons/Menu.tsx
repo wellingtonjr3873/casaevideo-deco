@@ -7,7 +7,7 @@ export default function MenuButton() {
 
   return (
     <Button
-      class="btn btn-circle btn-sm btn-ghost w-[24px] h-[24px]"
+      class="btn btn-circle btn-sm btn-ghost w-6 h-6"
       aria-label="open menu"
       onClick={() => {
         displayMenu.value = true;

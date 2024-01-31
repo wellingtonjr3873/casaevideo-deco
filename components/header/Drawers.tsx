@@ -31,7 +31,7 @@ const Aside = (
   <div class="grid grid-rows-[auto_1fr] h-full divide-y bg-brand-secondary-50 max-w-[368px] w-[100%]">
     <div class="flex justify-between items-center bg-brand-terciary-1 max-w-[368px] w-[100%]">
       <h1 class="px-4 py-3">
-        <span class="small-regular items-center flex gap-[8px]">
+        <span class="small-regular items-center flex gap-2">
           {iconTitle && iconTitle}
           {title}
         </span>

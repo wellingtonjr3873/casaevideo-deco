@@ -3,14 +3,14 @@ import Icon from "$store/components/ui/Icon.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
-import { FunctionComponent, h } from "preact";
+import { FunctionComponent, h as types } from "preact";
 
 interface Props {
   loading: boolean;
   currency: string;
   total: number;
   items: AnalyticsItem[];
-  children?: h.JSX.Element | h.JSX.Element[] | string | string[];
+  children?: types.JSX.Element | types.JSX.Element[] | string | string[];
 }
 
 function CartButton({ loading, currency, total, items, children }: Props) {
