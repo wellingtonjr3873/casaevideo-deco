@@ -9,7 +9,6 @@ import Drawers from "$store/islands/Header/Drawers.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
 import type { SiteNavigationElement } from "apps/commerce/types.ts";
 
-
 interface Categories {
   items: {
     label: string;
