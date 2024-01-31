@@ -14,16 +14,15 @@ import { Picture, Source } from "apps/website/components/Picture.tsx";
  * @titleBy alt
  */
 export interface Banner {
-
   /**
    * @title Data inicial do banner
    * @format datetime
-  */
+   */
   dateStartAt: string;
   /**
    * @title Data final do banner
    * @format datetime
-  */
+   */
   dateEndAt: string;
 
   /** @description Imagem Desktop */
@@ -200,21 +199,23 @@ function Dots({ bannerImages, interval = 0 }: Props) {
       />
       <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4 h-[11px] absolute bottom-[-18px] left-1/2 max-[768px]:transform -translate-x-1/2">
         {bannerImages?.map((image, index) => {
-          const dateEndtAt = getCurrentDateTime() >= image.dateStartAt && getCurrentDateTime() <= image.dateEndAt;
+          const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
+            getCurrentDateTime() <= image.dateEndAt;
           return (
             <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
               {dateEndtAt &&
-                <Slider.Dot index={index}>
-                  <div class="">
-                    <div
-                      class="h-[11px] w-[11px] max-[768px]:w-[6px] max-[768px]:h-[6px] border border-[2px] max-[768px]:border-[1px] border-[#ED1B2F] rounded-full group-disabled:bg-[#ED1B2F]"
-                      style={{ animationDuration: `${interval}s` }}
-                    />
-                  </div>
-                </Slider.Dot>
-              }
+                (
+                  <Slider.Dot index={index}>
+                    <div class="">
+                      <div
+                        class="h-[11px] w-[11px] max-[768px]:w-[6px] max-[768px]:h-[6px] border border-[2px] max-[768px]:border-[1px] border-[#ED1B2F] rounded-full group-disabled:bg-[#ED1B2F]"
+                        style={{ animationDuration: `${interval}s` }}
+                      />
+                    </div>
+                  </Slider.Dot>
+                )}
             </li>
-          )
+          );
         })}
       </ul>
     </>
@@ -260,26 +261,29 @@ function BannerCarousel(props: Props) {
       <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6 max-[768px]:px-4">
         {bannerImages?.map((image, index) => {
           const params = { promotion_name: image.alt };
-          const dateEndtAt = getCurrentDateTime() >= image.dateStartAt && getCurrentDateTime() <= image.dateEndAt;
+          const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
+            getCurrentDateTime() <= image.dateEndAt;
 
           return (
             dateEndtAt &&
-            <Slider.Item index={index} class="carousel-item w-full">
-              <BannerItem
-                image={image}
-                lcp={index === 0 && preload}
-                id={`${id}::${index}`}
-              />
-              <SendEventOnClick
-                id={`${id}::${index}`}
-                event={{ name: "select_promotion", params }}
-              />
-              <SendEventOnView
-                id={`${id}::${index}`}
-                event={{ name: "view_promotion", params }}
-              />
-            </Slider.Item>
-          )
+            (
+              <Slider.Item index={index} class="carousel-item w-full">
+                <BannerItem
+                  image={image}
+                  lcp={index === 0 && preload}
+                  id={`${id}::${index}`}
+                />
+                <SendEventOnClick
+                  id={`${id}::${index}`}
+                  event={{ name: "select_promotion", params }}
+                />
+                <SendEventOnView
+                  id={`${id}::${index}`}
+                  event={{ name: "view_promotion", params }}
+                />
+              </Slider.Item>
+            )
+          );
         })}
       </Slider>
 

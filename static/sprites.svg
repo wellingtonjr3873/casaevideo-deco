@@ -3,6 +3,13 @@
 	<symbol id="Hamburguer" xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none">
 		<path d="M8.16667 7H13.5833H19M8.16667 12H19M8.16667 17H19M4 7H4.00833M4 17H4.00833M4 12H4.00833" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 	</symbol>
+	<symbol width="25" height="25" fill="none" viewBox="0 0 25 25" id="Frete" xmlns="http://www.w3.org/2000/svg">
+		<path d="M15.4406 14.601H20.5315V10.9647L18.3497 8.78285H15.4406V14.601ZM15.4406 14.601V5.14648H4.53149V14.601L15.4406 14.601ZM19.077 16.419C19.077 17.4232 18.263 18.2372 17.2588 18.2372C16.2547 18.2372 15.4406 17.4232 15.4406 16.419C15.4406 15.4149 16.2547 14.6009 17.2588 14.6009C18.263 14.6009 19.077 15.4149 19.077 16.419ZM9.62245 16.419C9.62245 17.4232 8.80842 18.2372 7.80427 18.2372C6.80011 18.2372 5.98608 17.4232 5.98608 16.419C5.98608 15.4149 6.80011 14.6009 7.80427 14.6009C8.80842 14.6009 9.62245 15.4149 9.62245 16.419Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+	</symbol>
+
+	<svg id="ArrowDown" width="19" height="19" viewBox="0 0 19 19" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M15.5315 9.44299L9.53149 15.443M9.53149 15.443L3.53149 9.44299M9.53149 15.443V3.44299" stroke="currentColor" stroke-width="1.125" stroke-linecap="round" stroke-linejoin="round"/>
+	</svg>
 	<symbol id="ChevronLeft" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
 		stroke="currentColor">
 		<path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
@@ -268,7 +275,6 @@
 	<symbol id="MyOrders" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" fill="none">
 		<path d="M6.94671 10.6013L16 15.967L25.0534 10.6013M20.6667 13.1939L11.3334 7.67938M16 26.6667V15.9565M25.3334 20.2064V11.7063C25.333 11.3336 25.237 10.9676 25.055 10.645C24.8729 10.3224 24.6113 10.0544 24.2963 9.86811L17.0371 5.61803C16.7218 5.43152 16.3641 5.33333 16 5.33333C15.6359 5.33333 15.2783 5.43152 14.963 5.61803L7.70372 9.86811C7.38874 10.0544 7.12711 10.3224 6.94509 10.645C6.76307 10.9676 6.66706 11.3336 6.66669 11.7063V20.2064C6.66706 20.5791 6.76307 20.9451 6.94509 21.2677C7.12711 21.5903 7.38874 21.8583 7.70372 22.0446L14.963 26.2947C15.2783 26.4812 15.6359 26.5794 16 26.5794C16.3641 26.5794 16.7218 26.4812 17.0371 26.2947L24.2963 22.0446C24.6113 21.8583 24.8729 21.5903 25.055 21.2677C25.237 20.9451 25.333 20.5791 25.3334 20.2064Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
 	</symbol>
-
 	<symbol id="ChevronTop" xmlns="http://www.w3.org/2000/svg" width="16" height="17"
 		viewBox="0 0 16 17" fill="none">
 		<g id="Icons">

@@ -76,6 +76,8 @@ export type AvailableIcons =
   | "Padlock"
   | "Cart"
   | "Hamburguer"
+  | "Frete"
+  | "ArrowDown"
   | "Wishlist"
   | "MyOrders";
 
