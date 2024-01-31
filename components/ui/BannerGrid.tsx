@@ -19,7 +19,6 @@ export interface Banner {
    * @description When you click you go to
    */
   href: string;
-  
 }
 
 export type BorderRadius =
@@ -120,8 +119,6 @@ const DEFAULT_PROPS: Props = {
   },
 };
 
-
-
 export default function BannnerGrid(props: Props) {
   const {
     title,
@@ -131,9 +128,6 @@ export default function BannnerGrid(props: Props) {
   } = { ...DEFAULT_PROPS, ...props };
 
   const id = useId();
-
-
-  
 
   return (
     <section class="container w-full px-4 md:px-0 mx-auto">
@@ -152,91 +146,90 @@ export default function BannnerGrid(props: Props) {
           MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
         } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 4]}`}
       >
-          <div className="block md:hidden">
-
-            <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-2">
-                {banners.map(({ href, srcMobile, srcDesktop, alt}, index) => (
-                  <Slider.Item index={index} class="carousel-item w-1/2" style={{ maxWidth: '150px' }}>
-
-                    <a
-                      href={href}
-                      class={`overflow-hidden ${
-                        RADIUS_MOBILE[borderRadius.mobile ?? "none"]
-                      } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
-                    >
-                      <Picture>
-                        <Source
-                          media="(max-width: 767px)"
-                          src={srcMobile}
-                          width={150}
-                          height={180}
-                        />
-                        <Source
-                          media="(min-width: 768px)"
-                          src={srcDesktop ? srcDesktop : srcMobile}
-                          width={272}
-                          height={327}
-                        />
-                        <img
-                          class="w-full"
-                          sizes="(max-width: 640px) 150px, 100vw"
-                          src={srcMobile}
-                          alt={alt}
-                          decoding="async"
-                          loading="lazy"
-                          
-                        />
-                      </Picture>
-                    </a>
-                  </Slider.Item>
-          ))}
-            </Slider>
-            <SliderJS rootId={id} infinite />
-          </div> 
-
-        
-          <div className="hidden md:block">
-          <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
-                  {banners.map(({ href, srcMobile, srcDesktop, alt}, index) => (
-                    <Slider.Item index={index} class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0">
-
-                      <a
-                        href={href}
-                        class={`overflow-hidden ${
-                          RADIUS_MOBILE[borderRadius.mobile ?? "none"]
-                        } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
-                      >
-                        <Picture>
-                          <Source
-                            media="(max-width: 767px)"
-                            src={srcMobile}
-                            width={150}
-                            height={180}
-                          />
-                          <Source
-                            media="(min-width: 768px)"
-                            src={srcDesktop ? srcDesktop : srcMobile}
-                            width={272}
-                            height={327}
-                          />
-                          <img
-                            class="w-full"
-                            sizes="(max-width: 640px) 150px, 100vw"
-                            src={srcMobile}
-                            alt={alt}
-                            decoding="async"
-                            loading="lazy"
-                            
-                          />
-                        </Picture>
-                      </a>
-                    </Slider.Item>
+        <div className="block md:hidden">
+          <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-2">
+            {banners.map(({ href, srcMobile, srcDesktop, alt }, index) => (
+              <Slider.Item
+                index={index}
+                class="carousel-item w-1/2"
+                style={{ maxWidth: "150px" }}
+              >
+                <a
+                  href={href}
+                  class={`overflow-hidden ${
+                    RADIUS_MOBILE[borderRadius.mobile ?? "none"]
+                  } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
+                >
+                  <Picture>
+                    <Source
+                      media="(max-width: 767px)"
+                      src={srcMobile}
+                      width={150}
+                      height={180}
+                    />
+                    <Source
+                      media="(min-width: 768px)"
+                      src={srcDesktop ? srcDesktop : srcMobile}
+                      width={272}
+                      height={327}
+                    />
+                    <img
+                      class="w-full"
+                      sizes="(max-width: 640px) 150px, 100vw"
+                      src={srcMobile}
+                      alt={alt}
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </Picture>
+                </a>
+              </Slider.Item>
             ))}
-              </Slider>
-              <SliderJS rootId={id} infinite />
-                    
-          </div>
-        
+          </Slider>
+          <SliderJS rootId={id} infinite />
+        </div>
+
+        <div className="hidden md:block">
+          <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+            {banners.map(({ href, srcMobile, srcDesktop, alt }, index) => (
+              <Slider.Item
+                index={index}
+                class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
+              >
+                <a
+                  href={href}
+                  class={`overflow-hidden ${
+                    RADIUS_MOBILE[borderRadius.mobile ?? "none"]
+                  } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
+                >
+                  <Picture>
+                    <Source
+                      media="(max-width: 767px)"
+                      src={srcMobile}
+                      width={150}
+                      height={180}
+                    />
+                    <Source
+                      media="(min-width: 768px)"
+                      src={srcDesktop ? srcDesktop : srcMobile}
+                      width={272}
+                      height={327}
+                    />
+                    <img
+                      class="w-full"
+                      sizes="(max-width: 640px) 150px, 100vw"
+                      src={srcMobile}
+                      alt={alt}
+                      decoding="async"
+                      loading="lazy"
+                    />
+                  </Picture>
+                </a>
+              </Slider.Item>
+            ))}
+          </Slider>
+          <SliderJS rootId={id} infinite />
+        </div>
       </div>
     </section>
   );

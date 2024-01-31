@@ -49,7 +49,7 @@ export interface Props {
    */
   loader: Resolved<Suggestion | null>;
 
-  platform?: Platform;
+  platform: Platform;
 }
 
 function Searchbar({
