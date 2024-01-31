@@ -3,15 +3,17 @@ import Icon from "$store/components/ui/Icon.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
+import { FunctionComponent, h as types } from "preact";
 
 interface Props {
   loading: boolean;
   currency: string;
   total: number;
   items: AnalyticsItem[];
+  children?: types.JSX.Element | types.JSX.Element[] | string | string[];
 }
 
-function CartButton({ loading, currency, total, items }: Props) {
+function CartButton({ loading, currency, total, items, children }: Props) {
   const { displayCart } = useUI();
   const totalItems = items.length;
 
@@ -34,18 +36,13 @@ function CartButton({ loading, currency, total, items }: Props) {
       </span>
 
       <Button
-        class="btn-circle btn-sm btn-ghost pl-[4px] py-[3px] pr-[0] h-auto w-auto min-h-fit"
+        class="btn-circle btn-sm btn-ghost h-auto w-auto min-h-fit"
         aria-label="open cart"
         data-deco={displayCart.value && "open-cart"}
         loading={loading}
         onClick={onClick}
       >
-        <Icon
-          id="Cart"
-          size={16}
-          strokeWidth={2}
-          className="fill-brand-secondary-900"
-        />
+        {children}
       </Button>
     </div>
   );
