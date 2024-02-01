@@ -1,4 +1,4 @@
-import { SendEventOnView } from "$store/components/Analytics.tsx";
+import { SendEventOnView } from "../../islands/Analytics.tsx";
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";

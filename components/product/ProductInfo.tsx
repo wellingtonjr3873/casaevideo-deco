@@ -1,4 +1,4 @@
-import { SendEventOnView } from "$store/components/Analytics.tsx";
+import { SendEventOnView } from "../../islands/Analytics.tsx";
 import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import AddToCartButtonLinx from "$store/islands/AddToCartButton/linx.tsx";
 import AddToCartButtonShopify from "$store/islands/AddToCartButton/shopify.tsx";

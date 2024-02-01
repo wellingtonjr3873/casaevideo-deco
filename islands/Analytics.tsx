@@ -11,6 +11,7 @@ export const SendEventOnClick = <E extends AnalyticsEvent>({ event, id }: {
 }) => {
 
   useEffect(() => {
+    console.log('oi');
     scriptAsDataURI(
       (id: string, event: AnalyticsEvent) => {
         const elem = document.getElementById(id);
