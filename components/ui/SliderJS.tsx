@@ -63,7 +63,8 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     return;
   }
 
-  const minSlideStep = items.item(0).getBoundingClientRect().width;
+  const sliderItemWidth = items.item(0).getBoundingClientRect().width;
+  const minSlideStep = items.item(0).getBoundingClientRect().width * THRESHOLD;
 
   const getElementsInsideContainer = () => {
     const indices: number[] = [];
@@ -105,7 +106,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     })
 
     const slideStep = isDotClick 
-      ? (minSlideStep * Math.abs((index) - currentItemActiveIndex))
+      ? (sliderItemWidth * Math.abs((index) - currentItemActiveIndex))
       : minSlideStep;
 
     const left = diff < 0
