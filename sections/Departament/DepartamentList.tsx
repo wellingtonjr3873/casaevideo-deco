@@ -21,7 +21,7 @@ export interface Props {
 function ButtonsDepartamentSlider() {
   return (
     <div class="absolute w-full h-full flex items-center justify-between max-[768px]:hidden max-h-[100px]">
-      <div class="flex items-center justify-center z-10 col-start-1 row-start-2">
+      <div class="flex items-center justify-center z-10 col-start-1 row-start-2 relative right-[1.5rem]">
         <Slider.PrevButton class="btn btn-circle glass right-1/2">
           <Icon
             class="text-base-100"
@@ -31,7 +31,7 @@ function ButtonsDepartamentSlider() {
           />
         </Slider.PrevButton>
       </div>
-      <div class="flex items-center justify-center z-10 col-start-3 row-start-2">
+      <div class="flex items-center justify-center z-10 col-start-3 row-start-2 relative left-[1.5rem]">
         <Slider.NextButton class="btn btn-circle glass left-1/2">
           <Icon
             class="text-base-100"
