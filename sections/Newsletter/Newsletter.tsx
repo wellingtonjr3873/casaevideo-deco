@@ -1,4 +1,4 @@
-import Header from "$store/components/ui/SectionHeader.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Form {
   placeholder?: string;
@@ -12,116 +12,44 @@ export interface Props {
   /** @format textarea */
   description?: string;
   form?: Form;
-  layout?: {
-    headerFontSize?: "Large" | "Normal";
-    content?: {
-      border?: boolean;
-      alignment?: "Center" | "Left" | "Side to side";
-      bgColor?: "Normal" | "Reverse";
-    };
-  };
+  icon?: ImageWidget;
 }
 
 const DEFAULT_PROPS: Props = {
-  title: "",
-  description: "",
+  title: "Newsletter C&V",
+  description: "Receba todas as novidades e vantagens exclusivas da nossa loja. Deixe seu e-mail com a gente.",
   form: {
     placeholder: "Digite seu email",
     buttonText: "Inscrever",
     helpText:
       'Ao se inscrever, você concorda com nossa <a class="link" href="/politica-de-privacidade">Política de privacidade</a>.',
   },
-  layout: {
-    headerFontSize: "Large",
-    content: {
-      border: false,
-      alignment: "Center",
-    },
-  },
+
 };
 
 export default function Newsletter(props: Props) {
-  const { title, description, form, layout } = { ...DEFAULT_PROPS, ...props };
-  const isReverse = layout?.content?.bgColor === "Reverse";
-  const bordered = Boolean(layout?.content?.border);
+  const { title, description, form, icon } = { ...DEFAULT_PROPS, ...props };
 
-  const headerLayout = (
-    <Header
-      title={title}
-      description={description}
-      alignment={layout?.content?.alignment === "Left" ? "left" : "center"}
-      colorReverse={isReverse}
-      fontSize={layout?.headerFontSize}
-    />
-  );
+  return (<div class="flex flex-col lg:flex-row max-w-[1280px] mx-auto w-full items-center  gap-4 lg:gap-28 bg-neutral-50 lg:bg-none pt-3 px-6 pb-5 my-6 lg:my-12">
 
-  const formLayout = form && (
-    <form action="/" class="flex flex-col gap-4">
-      <div class="flex flex-col lg:flex-row gap-3">
-        <input
-          class="input input-bordered lg:w-80"
-          type="text"
-          placeholder={form.placeholder}
-        />
-        <button
-          class={`btn ${isReverse ? "btn-accent" : ""}`}
-          type="submit"
-        >
-          {form.buttonText}
-        </button>
+    <div class="flex gap-4 items-center">
+      <figure class="hidden lg:block">
+        <img src={icon}/>
+      </figure>
+
+      <div class="flex flex-col gap-2 items-center lg:items-start">
+        <h2 class="h4-bold text-[24px]">
+          {title}
+        </h2>
+        <p class="small-regular lg:body-regular text-center lg:text-left text-[14px] lg:text-[16px]">{description}</p>
       </div>
-      {form.helpText && (
-        <div
-          class="text-sm"
-          dangerouslySetInnerHTML={{ __html: form.helpText }}
-        />
-      )}
-    </form>
-  );
-
-  const bgLayout = isReverse
-    ? "bg-secondary text-secondary-content"
-    : "bg-transparent";
-
-  return (
-    <div
-      class={`${
-        bordered
-          ? isReverse ? "bg-secondary-content" : "bg-secondary"
-          : bgLayout
-      } ${bordered ? "p-4 lg:p-16" : "p-0"}`}
-    >
-      {(!layout?.content?.alignment ||
-        layout?.content?.alignment === "Center") && (
-        <div
-          class={`container flex flex-col rounded p-4 gap-6 lg:p-16 lg:gap-12 ${bgLayout}`}
-        >
-          {headerLayout}
-          <div class="flex justify-center">
-            {formLayout}
-          </div>
-        </div>
-      )}
-      {layout?.content?.alignment === "Left" && (
-        <div
-          class={`container flex flex-col rounded p-4 gap-6 lg:p-16 lg:gap-12 ${bgLayout}`}
-        >
-          {headerLayout}
-          <div class="flex justify-start">
-            {formLayout}
-          </div>
-        </div>
-      )}
-      {layout?.content?.alignment === "Side to side" && (
-        <div
-          class={`container flex flex-col rounded justify-between lg:flex-row p-4 gap-6 lg:p-16 lg:gap-12 ${bgLayout}`}
-        >
-          {headerLayout}
-          <div class="flex justify-center">
-            {formLayout}
-          </div>
-        </div>
-      )}
     </div>
+
+    <form class="h-[48px] flex gap-2 items-center w-full max-w-[593px] justify-center">
+      <input type="text" class="h-full rounded-lg w-full  max-w-[172px] lg:max-w-[485px] pl-4 border border-neutral-100 body-regular text-neultral-900 outline-none" placeholder={form?.placeholder}/>
+      <button class="bg-brand-primary-1 px-4 py-[13px] body-regular rounded-md text-neutral-50">{form?.buttonText}</button>
+    </form>
+    
+  </div>
   );
 }

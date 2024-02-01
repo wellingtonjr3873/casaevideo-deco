@@ -1,12 +1,11 @@
 import { useSignal } from "@preact/signals";
 import { invoke } from "$store/runtime.ts";
 import type { JSX } from "preact";
+import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Form {
   placeholder?: string;
   buttonText?: string;
-  /** @format html */
-  helpText?: string;
 }
 
 export interface Props {
@@ -15,20 +14,17 @@ export interface Props {
     /** @format textarea */
     description?: string;
     form?: Form;
-  };
-  layout?: {
-    tiled?: boolean;
+    icon: ImageWidget;
   };
 }
 
 function Newsletter(
-  { content, layout = {} }: Props,
+  { content }: Props,
 ) {
-  const { tiled = false } = layout;
   const loading = useSignal(false);
 
   const handleSubmit: JSX.GenericEventHandler<HTMLFormElement> = async (e) => {
-    e.preventDefault();
+    e.preventDefault(); 
 
     try {
       loading.value = true;
@@ -44,15 +40,11 @@ function Newsletter(
 
   return (
     <div
-      class={`flex ${
-        tiled
-          ? "flex-col gap-4 lg:flex-row lg:w-full lg:justify-between"
-          : "flex-col gap-4"
-      }`}
+      class={`flex `}
     >
       <div class="flex flex-col gap-4">
         {content?.title && (
-          <h3 class={tiled ? "text-2xl lg:text-3xl" : "text-lg"}>
+          <h3 class={"text-lg"}>
             {content?.title}
           </h3>
         )}
@@ -78,12 +70,6 @@ function Newsletter(
             </button>
           </div>
         </form>
-        {content?.form?.helpText && (
-          <div
-            class="text-sm"
-            dangerouslySetInnerHTML={{ __html: content?.form?.helpText }}
-          />
-        )}
       </div>
     </div>
   );
