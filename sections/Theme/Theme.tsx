@@ -83,7 +83,7 @@ function Section({
   brandColorsPrimary,
   brandColorsSecondary,
   brandColorsTerciary,
-  colorScheme = "light",
+  colorScheme,
 }: Props) {
   const theme = {
     ...defaultColors,
