@@ -63,7 +63,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     return;
   }
 
-  const minSlideStep = items.item(0).getBoundingClientRect().width * THRESHOLD;
+  const minSlideStep = items.item(0).getBoundingClientRect().width;
 
   const getElementsInsideContainer = () => {
     const indices: number[] = [];
@@ -86,7 +86,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     return indices;
   };
 
-  const goToItem = (index: number) => {
+  const goToItem = (index: number, isDotClick = false) => {
     const item = items.item(index);
 
     if (!isHTMLElement(item)) {
@@ -98,10 +98,19 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     }
 
     const diff = (item.offsetLeft - root.offsetLeft) - slider.scrollLeft;
+    let currentItemActiveIndex = 0;
+
+    dots?.forEach((dot, index) => {
+      if (dot.getAttribute('disabled') !== null) currentItemActiveIndex  = index;
+    })
+
+    const slideStep = isDotClick 
+      ? (minSlideStep * Math.abs((index) - currentItemActiveIndex))
+      : minSlideStep;
 
     const left = diff < 0
-      ? slider.scrollLeft - minSlideStep
-      : slider.scrollLeft + minSlideStep;
+      ? slider.scrollLeft - slideStep
+      : slider.scrollLeft + slideStep;
 
     slider.scrollTo({
       top: 0,
@@ -169,7 +178,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   items.forEach((item) => observer.observe(item));
 
   for (let it = 0; it < (dots?.length ?? 0); it++) {
-    dots?.item(it).addEventListener("click", () => goToItem(it));
+    dots?.item(it).addEventListener("click", () => goToItem(it, true));
   }
 
   prev?.addEventListener("click", onClickPrev);
