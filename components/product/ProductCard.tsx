@@ -1,5 +1,5 @@
 import type { Platform } from "$store/apps/site.ts";
-import { SendEventOnClick } from "../../islands/Analytics.tsx";
+import { SendEventOnClick } from "deco-sites/casaevideo/islands/Analytics.tsx";
 import Avatar from "$store/components/ui/Avatar.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
