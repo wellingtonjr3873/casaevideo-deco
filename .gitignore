@@ -72,7 +72,3 @@ import_map.local.json
 _fresh/
 
 deno.lock
-
-manifest.gen.ts
-
-static/tailwind.css
