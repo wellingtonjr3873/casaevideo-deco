@@ -1,7 +1,7 @@
 import {
   SendEventOnClick,
   SendEventOnView,
-} from "$store/components/Analytics.tsx";
+} from "deco-sites/casaevideo/islands/Analytics.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
