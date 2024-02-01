@@ -1,5 +1,6 @@
 import type { AnalyticsEvent } from "apps/commerce/types.ts";
 import { scriptAsDataURI } from "apps/utils/dataURI.ts";
+import { useEffect } from "preact/hooks";
 
 /**
  * This function is usefull for sending events on click. Works with both Server and Islands components
@@ -7,10 +8,10 @@ import { scriptAsDataURI } from "apps/utils/dataURI.ts";
 export const SendEventOnClick = <E extends AnalyticsEvent>({ event, id }: {
   event: E;
   id: string;
-}) => (
-  <script
-    defer
-    src={scriptAsDataURI(
+}) => {
+
+  useEffect(() => {
+    scriptAsDataURI(
       (id: string, event: AnalyticsEvent) => {
         const elem = document.getElementById(id);
 
@@ -26,16 +27,18 @@ export const SendEventOnClick = <E extends AnalyticsEvent>({ event, id }: {
       },
       id,
       event,
-    )}
-  />
-);
+    );
+  }, []);
+
+  return <></>;
+}
 
 export const SendEventOnView = <E extends AnalyticsEvent>(
   { event, id }: { event: E; id: string },
-) => (
-  <script
-    defer
-    src={scriptAsDataURI(
+) => {
+
+  useEffect(() => {
+    scriptAsDataURI(
       (id: string, event: E) => {
         const elem = document.getElementById(id);
 
@@ -58,6 +61,8 @@ export const SendEventOnView = <E extends AnalyticsEvent>(
       },
       id,
       event,
-    )}
-  />
-);
+    );
+  }, []);
+
+  return <></>;
+}
