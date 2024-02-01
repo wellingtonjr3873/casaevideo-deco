@@ -3,6 +3,7 @@ import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import Breadcrumb from "deco-sites/casaevideo/components/ui/Breadcrumb.tsx";
 import ProductBasicInfo from "deco-sites/casaevideo/components/product/MountedPDP/ProductBasicInfo/index.tsx";
+import GallerySlider from "deco-sites/casaevideo/components/product/Gallery/ImageSlider.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -38,7 +39,9 @@ function MountedPDP({ page }: Props) {
       <div class="flex gap-3" id={id}>
         <div class="bg-neutral-50 w-2/3 flex gap-4 rounded-lg h-[520px] py-4">
           {/* Product Image */}
-          <div class="w-1/2">Imagem</div>
+          <div class="w-1/2">
+            <GallerySlider page={page} layout={{ width: 400, height: 400 }} />
+          </div>
           <div class="w-1/2">
             <ProductBasicInfo product={product} />
           </div>
