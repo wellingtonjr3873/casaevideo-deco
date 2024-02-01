@@ -63,6 +63,8 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
     return;
   }
 
+  const minSlideStep = items.item(0).getBoundingClientRect().width * THRESHOLD;
+
   const getElementsInsideContainer = () => {
     const indices: number[] = [];
     const sliderRect = slider.getBoundingClientRect();
@@ -95,10 +97,16 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
       return;
     }
 
+    const diff = (item.offsetLeft - root.offsetLeft) - slider.scrollLeft;
+
+    const left = diff < 0
+      ? slider.scrollLeft - minSlideStep
+      : slider.scrollLeft + minSlideStep;
+
     slider.scrollTo({
       top: 0,
+      left,
       behavior: scroll,
-      left: item.offsetLeft - root.offsetLeft,
     });
   };
 
