@@ -33,10 +33,9 @@ function Dots({
   images, 
   aspectRatio
 }: DotsProps) {
-  const id = useId();
 
   return (
-    <div id={id} class="relative">
+    <div class="relative">
       <div class="w-full px-10">
         <Slider
           class="carousel carousel-center sm:carousel-end col-span-full row-start-2 row-end-5 gap-4 w-full flex justify-start align-center"
@@ -62,21 +61,19 @@ function Dots({
       </div>
 
       <Slider.PrevButton
-        class="no-animation absolute left-2 top-1/2 disabled:text-neutral-600 text-brand-primary-700"
+        class="no-animation absolute left-2 top-1/2 disabled:text-neutral-600 text-brand-primary-700 -translate-y-1/2"
         disabled
       >
         <Icon size={24} id="ChevronLeft" strokeWidth={3} />
       </Slider.PrevButton>
 
       <Slider.NextButton
-        class="no-animation absolute right-2 top-1/2 disabled:text-neutral-600 text-brand-primary-700"
+        class="no-animation absolute right-2 top-1/2 disabled:text-neutral-600 text-brand-primary-700 -translate-y-1/2"
         disabled={images.length < 2}
       >
         <Icon size={24} id="ChevronRight" strokeWidth={3} />
       </Slider.NextButton>
 
-
-      <SliderJS rootId={id} />
     </div>
   )
 }
@@ -120,7 +117,7 @@ export default function GallerySlider(props: Props) {
           ))}
         </Slider>
 
-        <Slider.PrevButton
+        {/* <Slider.PrevButton
           class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
           disabled
         >
@@ -132,7 +129,7 @@ export default function GallerySlider(props: Props) {
           disabled={images.length < 2}
         >
           <Icon size={24} id="ChevronRight" strokeWidth={3} />
-        </Slider.NextButton>
+        </Slider.NextButton> */}
 
         <div class="absolute top-2 right-2 bg-base-100 rounded-full">
           <ProductImageZoom

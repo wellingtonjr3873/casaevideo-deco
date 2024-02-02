@@ -78,8 +78,8 @@ function ProductCard(
   const description = product.description || isVariantOf?.description;
   const [front, back] = images ?? [];
   const { listPrice, price, installments } = useOffer(offers);
-  const possibilities = useVariantPossibilities(hasVariant, product);
-  const variants = Object.entries(Object.values(possibilities)[0] ?? {});
+  // const possibilities = useVariantPossibilities(hasVariant, product);
+  // const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
   const l = layout;
   const align =
@@ -87,14 +87,15 @@ function ProductCard(
       ? "left"
       : "center";
 
-  const skuSelector = variants.map(([value, link]) => (
-    <li>
-      <Avatar
-        variant={link === url ? "active" : link ? "default" : "disabled"}
-        content={value}
-      />
-    </li>
-  ));
+  // const skuSelector = variants.map(([value, link]) => (
+  //   <li>
+  //     <Avatar
+  //       variant={link === url ? "active" : link ? "default" : "disabled"}
+  //       content={value}
+  //     />
+  //   </li>
+  // ));
+
   const cta = (
     <a
       href={url && relative(url)}
@@ -110,7 +111,7 @@ function ProductCard(
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col gap-3 lg:gap-4">
         {/* SKU Selector */}
-        {(!l?.elementsPositions?.skuSelector ||
+        {/* {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
           <>
             {l?.hide?.skuSelector ? "" : (
@@ -123,7 +124,7 @@ function ProductCard(
               </ul>
             )}
           </>
-        )}
+        )} */}
 
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
@@ -178,7 +179,7 @@ function ProductCard(
         )}
 
         {/* SKU Selector */}
-        {l?.elementsPositions?.skuSelector === "Bottom" && (
+        {/* {l?.elementsPositions?.skuSelector === "Bottom" && (
           <>
             {l?.hide?.skuSelector ? "" : (
               <ul
@@ -190,7 +191,7 @@ function ProductCard(
               </ul>
             )}
           </>
-        )}
+        )} */}
       </div>
     </>
   );

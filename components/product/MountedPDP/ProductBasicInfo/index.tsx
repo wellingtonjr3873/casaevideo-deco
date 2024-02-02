@@ -8,7 +8,6 @@ interface Props {
 
 function ProductBasicInfo({ product }: Props) {
   const {
-    name = "",
     gtin,
     isVariantOf,
   } = product;
@@ -25,7 +24,7 @@ function ProductBasicInfo({ product }: Props) {
       </div>
 
       <h1 class="h5-bold">
-        {`${name}`}
+        {`${isVariantOf?.name}`}
       </h1>
 
       <div>

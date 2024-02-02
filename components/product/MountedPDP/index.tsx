@@ -4,6 +4,7 @@ import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
 import Breadcrumb from "deco-sites/casaevideo/components/ui/Breadcrumb.tsx";
 import ProductBasicInfo from "deco-sites/casaevideo/components/product/MountedPDP/ProductBasicInfo/index.tsx";
 import GallerySlider from "deco-sites/casaevideo/components/product/Gallery/ImageSlider.tsx";
+import ProductSelector from "deco-sites/casaevideo/components/product/ProductVariantSelector.tsx";
 
 interface Props {
   page: ProductDetailsPage | null;
@@ -28,8 +29,6 @@ function MountedPDP({ page }: Props) {
     numberOfItems: breadcrumbList.numberOfItems - 1,
   };
 
-  // console.log(product);
-
   return (
     <div class="container flex flex-col">
       <div class="py-4">
@@ -44,6 +43,7 @@ function MountedPDP({ page }: Props) {
           </div>
           <div class="w-1/2">
             <ProductBasicInfo product={product} />
+            <ProductSelector product={product} />
           </div>
         </div>
 
