@@ -30,7 +30,7 @@ const DEFAULT_PROPS: Props = {
 export default function Newsletter(props: Props) {
   const { title, description, form, icon } = { ...DEFAULT_PROPS, ...props };
 
-  return (<div class="flex flex-col lg:flex-row max-w-[1280px] mx-auto w-full items-center  gap-4 lg:gap-28 bg-neutral-50 lg:bg-none pt-3 px-6 pb-5 my-6 lg:my-12">
+  return (<div class="flex flex-col lg:flex-row max-w-[1280px] mx-auto w-full items-center  gap-4 lg:gap-28 bg-neutral-50 lg:bg-transparent pt-3 px-6 lg:px-0 pb-5 my-6 lg:my-12">
 
     <div class="flex gap-4 items-center">
       <figure class="hidden lg:block">
@@ -49,7 +49,7 @@ export default function Newsletter(props: Props) {
       <input type="text" class="h-full rounded-lg w-full  max-w-[172px] lg:max-w-[485px] pl-4 border border-neutral-100 body-regular text-neultral-900 outline-none" placeholder={form?.placeholder}/>
       <button class="bg-brand-primary-1 px-4 py-[13px] body-regular rounded-md text-neutral-50">{form?.buttonText}</button>
     </form>
-    
+
   </div>
   );
 }
