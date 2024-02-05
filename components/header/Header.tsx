@@ -140,9 +140,6 @@ function Header({
                     menu={{ items: [] }}
                     platform={platform}
                   />
-                  <span class="small-bold hover:underline-offset-1">
-                    Categorias
-                  </span>
                 </li>
                 {categories?.items?.map((item) => {
                   return (
