@@ -123,8 +123,8 @@ function Menu({ items }: Props) {
               class="flex items-center gap-[8px]"
               href="/wishlist"
             >
-              <Icon id="MyOrders" size={24} strokeWidth={2} />
-              <span class="text-sm flex justify-between items-center text-left w-[100%]">
+              <Icon id="MyOrders" size={24} strokeWidth={2} class="text-neutral-900" />
+              <span class="text-sm flex justify-between items-center text-left w-full">
                 Meus Pedidos
               </span>
             </a>
