@@ -132,7 +132,7 @@ function ProductCard(
             <div class="flex flex-col gap-0">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate body-normal text-base-content line-clamp-2 whitespace-break-spaces"
+                  class="truncate body-regular text-base-content line-clamp-2 whitespace-break-spaces"
                   dangerouslySetInnerHTML={{ __html: name ?? "" }}
                 />
               )}

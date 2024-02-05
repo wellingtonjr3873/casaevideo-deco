@@ -3,6 +3,7 @@ import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { AddToCartParams } from "apps/commerce/types.ts";
 import { useState } from "preact/hooks";
+import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 
 export interface Props {
   /** @description: sku name */
@@ -41,8 +42,8 @@ export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
 
   return (
-    <Button {...btnProps} class="btn-primary">
-      Adicionar à Sacola
+    <Button {...btnProps} class="btn-primary text-neutral-50 border-0 bg-brand-primary-1 hover:bg-brand-primary-1">
+      <Icon id="Cart" class="text-neutral-50" width={24} height={24} /> Comprar
     </Button>
   );
 }

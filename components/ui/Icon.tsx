@@ -80,7 +80,10 @@ export type AvailableIcons =
   | "Frete"
   | "ArrowDown"
   | "Wishlist"
-  | "MyOrders";
+  | "MyOrders"
+  | "CVCreditCard"
+  | "DecreaseButton"
+  | "IncreaseButton";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
@@ -105,7 +108,11 @@ function Icon(
       height={height ?? size}
       strokeWidth={strokeWidth}
     >
-      <use href={asset(`/sprites.svg#${id}`)} />
+      <use 
+        width={width ?? size}
+        height={height ?? size}
+        href={asset(`/sprites.svg#${id}`)}
+      />
     </svg>
   );
 }

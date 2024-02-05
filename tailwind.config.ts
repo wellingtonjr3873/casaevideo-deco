@@ -25,6 +25,14 @@ export default {
       colors: {
         neutral: {
           900: "oklch(var(--neutral-900))",
+          800: "oklch(var(--neutral-800))",
+          700: "oklch(var(--neutral-700))",
+          600: "oklch(var(--neutral-600))",
+          500: "oklch(var(--neutral-500))",
+          400: "oklch(var(--neutral-400))",
+          300: "oklch(var(--neutral-300))",
+          200: "oklch(var(--neutral-200))",
+          100: "oklch(var(--neutral-100))",
           50: "oklch(var(--neutral-50))",
         },
         success: "oklch(var(--success))",
