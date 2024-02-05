@@ -199,7 +199,7 @@ function ProductCard(
     <a
       id={id}
       href={url && relative(url)}
-      class={`card card-compact shadow-normal group w-full bg-neutral-50 px-2 py-4 card-bordered border-brand-secondary-100 ${
+      class={`card card-compact group w-full bg-neutral-50 px-2 py-4 card-bordered border-brand-secondary-100 ${
         align === "center" ? "text-center" : "text-start"
       } 
         ${

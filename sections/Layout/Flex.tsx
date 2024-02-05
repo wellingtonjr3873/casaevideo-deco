@@ -59,7 +59,7 @@ function Flex({ layout, children }: Props) {
 const ItemPreview = () => (
   <div class="card w-48 h-48 bg-base-100 shadow">
     <div class="card-body items-center justify-center text-base-300 text-sm">
-      flex
+      flexa
     </div>
   </div>
 );

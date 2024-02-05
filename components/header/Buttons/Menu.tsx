@@ -19,6 +19,9 @@ export default function MenuButton() {
         strokeWidth={0.01}
         class="text-neutral-900"
       />
+      <span class="small-bold hover:underline-offset-1">
+        Categorias
+      </span>
     </Button>
   );
 }
