@@ -1,4 +1,4 @@
-import { SendEventOnView } from "$store/components/Analytics.tsx";
+import { SendEventOnView } from "deco-sites/casaevideo/islands/Analytics.tsx";
 import ProductCard, {
   Layout as cardLayout,
 } from "$store/components/product/ProductCard.tsx";

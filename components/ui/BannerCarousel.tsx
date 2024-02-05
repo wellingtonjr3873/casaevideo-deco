@@ -1,7 +1,7 @@
 import {
   SendEventOnClick,
   SendEventOnView,
-} from "$store/components/Analytics.tsx";
+} from "deco-sites/casaevideo/islands/Analytics.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
@@ -208,7 +208,7 @@ function Dots({ bannerImages, interval = 0 }: Props) {
                   <Slider.Dot index={index}>
                     <div class="">
                       <div
-                        class="h-[11px] w-[11px] max-[768px]:w-[6px] max-[768px]:h-[6px] border border-[2px] max-[768px]:border-[1px] border-[#ED1B2F] rounded-full group-disabled:bg-[#ED1B2F]"
+                        class="h-[11px] w-[11px] max-[768px]:w-[6px] max-[768px]:h-[6px] border-[2px] max-[768px]:border-[1px] border-[#ED1B2F] rounded-full group-disabled:bg-[#ED1B2F]"
                         style={{ animationDuration: `${interval}s` }}
                       />
                     </div>
@@ -267,7 +267,7 @@ function BannerCarousel(props: Props) {
           return (
             dateEndtAt &&
             (
-              <Slider.Item index={index} class="carousel-item w-full">
+              <Slider.Item index={index} class="carousel-item w-full rounded-lg overflow-hidden">
                 <BannerItem
                   image={image}
                   lcp={index === 0 && preload}
