@@ -28,32 +28,28 @@ interface DotsProps {
   aspectRatio: string;
 }
 
-
 function Dots({
-  images, 
+  images,
   aspectRatio,
 }: DotsProps) {
-
   return (
     <div class="relative">
       <div class="w-full px-10">
-        <Slider.Dots
-          class="carousel carousel-center sm:carousel-end col-span-full row-start-2 row-end-5 gap-4 w-full flex justify-start align-center"
-        >
+        <Slider.Dots class="carousel carousel-center sm:carousel-end col-span-full row-start-2 row-end-5 gap-4 w-full flex justify-start align-center">
           {images.map((img, index) => (
-              <Slider.Dot 
-                index={index}
-                class="carousel-item relative w-14 flex justify-center align-center"
-                >
-                <Image
-                  style={{ aspectRatio }}
-                  class="group-disabled:border-brand-primary-700 group-disabled:border-2 border rounded border-neutral-400"
-                  width={57}
-                  height={57}
-                  src={img.url!}
-                  alt={img.alternateName}
-                />
-              </Slider.Dot>
+            <Slider.Dot
+              index={index}
+              class="carousel-item relative w-14 flex justify-center align-center"
+            >
+              <Image
+                style={{ aspectRatio }}
+                class="group-disabled:border-brand-primary-700 group-disabled:border-2 border rounded border-neutral-400"
+                width={57}
+                height={57}
+                src={img.url!}
+                alt={img.alternateName}
+              />
+            </Slider.Dot>
           ))}
         </Slider.Dots>
       </div>
@@ -72,7 +68,7 @@ function Dots({
         <Icon size={24} id="ChevronRight" strokeWidth={3} />
       </Slider.NextButton>
     </div>
-  )
+  );
 }
 
 export default function GallerySlider(props: Props) {

@@ -56,7 +56,9 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   const prev = root?.querySelector(`[${ATTRIBUTES['data-slide="prev"']}]`);
   const next = root?.querySelector(`[${ATTRIBUTES['data-slide="next"']}]`);
   const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
-  const dotContainer = root?.querySelector(`[${ATTRIBUTES["data-dots-slider"]}]`);
+  const dotContainer = root?.querySelector(
+    `[${ATTRIBUTES["data-dots-slider"]}]`,
+  );
 
   if (!root || !slider || !items || items.length === 0) {
     console.warn(
@@ -80,7 +82,8 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
       return;
     }
 
-    const left = (item.offsetLeft - dotContainer.offsetLeft) - item.getBoundingClientRect().width;
+    const left = (item.offsetLeft - dotContainer.offsetLeft) -
+      item.getBoundingClientRect().width;
 
     clearTimeout(dotsDebounceTimer);
     dotsDebounceTimer = setTimeout(() => {
@@ -90,7 +93,7 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
         behavior: scroll,
       });
     }, 300);
-  }
+  };
 
   const getElementsInsideContainer = () => {
     const indices: number[] = [];

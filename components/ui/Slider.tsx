@@ -1,7 +1,7 @@
 import type { ComponentChildren, JSX } from "preact";
 
 function Dots(props: JSX.IntrinsicElements["div"]) {
-  return <div data-dots-slider {...props}/>
+  return <div data-dots-slider {...props} />;
 }
 
 function Dot({ index, children, class: className }: {
