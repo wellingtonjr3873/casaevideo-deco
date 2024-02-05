@@ -1,14 +1,19 @@
 import type { ComponentChildren, JSX } from "preact";
 
-function Dot({ index, children }: {
+function Dots(props: JSX.IntrinsicElements["div"]) {
+  return <div data-dots-slider {...props}/>
+}
+
+function Dot({ index, children, class: className }: {
   index: number;
   children: ComponentChildren;
+  class?: string;
 }) {
   return (
     <button
       data-dot={index}
       aria-label={`go to slider item ${index}`}
-      class="focus:outline-none group"
+      class={`focus:outline-none group ${className}`}
     >
       {children}
     </button>
@@ -34,6 +39,7 @@ function PrevButton(props: JSX.IntrinsicElements["button"]) {
   return <button data-slide="prev" aria-label="Previous item" {...props} />;
 }
 
+Slider.Dots = Dots;
 Slider.Dot = Dot;
 Slider.Item = Item;
 Slider.NextButton = NextButton;
