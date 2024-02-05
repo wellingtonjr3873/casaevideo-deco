@@ -161,7 +161,7 @@ function Header({
         <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
           <div className="flex justify-between">
             <div class="flex gap-2 items-center content-start">
-              <span>
+              <span class="flex">
                 <MenuButton />
                 <Drawers
                   menu={{ items: [] }}
@@ -206,7 +206,8 @@ function Header({
                 <CartButtonVTEX>
                   <Icon
                     id="Cart"
-                    className="fill-brand-secondary-900 h-6 w-6"
+                    size={24}
+                    className="fill-brand-secondary-900"
                   />
                 </CartButtonVTEX>
               )}
