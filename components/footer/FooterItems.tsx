@@ -64,7 +64,7 @@ export default function FooterItems(
           {/* Mobile view */}
           <ul class="flex flex-col md:hidden">
             {sectionsAndCategories.map((section) => (
-              <li>
+              <li class="border-b border-brand-secondary-50 last:border-b">
                 <div class="collapse collapse-arrow !rounded-none border-b border-neutral-50">
                   <input type="checkbox" class="min-h-[0" />
                   <div class="collapse-title min-h-[0] !p-0 flex gap-2">
@@ -74,13 +74,13 @@ export default function FooterItems(
                   </div>
                   <div class="!p-0 collapse-content">
                     <ul
-                      class={`flex flex-col gap-1 pt-2 bg-brand-secondary-50`}
+                      class="flex flex-col pt-2 bg-brand-secondary-50"
                     >
                       {section.items?.map((item) => (
-                        <li>
+                        <li class="border-b border-neutral-50 last:border-b-0">
                           <a
                             href={item.href}
-                            class="block py-1 link link-hover small-regular text-brand-secondary-900 pl-[24px] border-b-[1px] border-[white]"
+                            class="block py-[10px] link link-hover small-regular text-brand-secondary-900 pl-[24px]"
                           >
                             {item.label}
                           </a>
