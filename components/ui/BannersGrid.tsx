@@ -89,7 +89,7 @@ export default function BannersGrid(props: Props) {
         {banners.map(({ href, srcMobile, srcDesktop, alt, bannerWidthDesk, bannerHeightDesk, bannerWidthMob, bannerHeightMob }) => (
           <a
             href={href}
-            class={`overflow-hidden`}
+            class={`overflow-hidden rounded-lg`}
           >
             <Picture>
               <Source
