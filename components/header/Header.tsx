@@ -135,11 +135,18 @@ function Header({
             <nav class="w-full flex">
               <ul class="w-full flex items-center justify-between">
                 <li class="flex items-center">
+                
+                  <span class="flex">
+
                   <MenuButton />
                   <Drawers
                     menu={{ items: [] }}
                     platform={platform}
                   />
+                  </span>
+                  <span class="small-bold hover:underline-offset-1">
+              Categorias
+            </span> 
                 </li>
                 {categories?.items?.map((item) => {
                   return (
