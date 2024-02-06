@@ -26,7 +26,7 @@ export const DEFAULT_THEME = {
   "--brand-terciary-1": "#FFF100",
 
   "--complementary-1": "#D4FF00",
-  "--complementary-2": "white",
+  "--complementary-2": "#A310F2",
   "--complementary-3": "white",
   "--complementary-4": "white",
 
@@ -41,6 +41,7 @@ export const DEFAULT_THEME = {
   "--neutral-200": "#C6C6C6",
   "--neutral-100": "#DDDDDD",
   "--neutral-50": "#FFFFFF",
+  "--neutral-dark": "#444",
 
   "--success-light": "#A7D0B8",
   "--success": "#007552",

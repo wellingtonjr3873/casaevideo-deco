@@ -131,7 +131,7 @@ function ProductCard(
             <div class="flex flex-col gap-0">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate body-normal text-base-content line-clamp-2 whitespace-break-spaces"
+                  class="truncate body-bold text-base-content line-clamp-2 whitespace-break-spaces"
                   dangerouslySetInnerHTML={{ __html: name ?? "" }}
                 />
               )}
@@ -163,14 +163,14 @@ function ProductCard(
                     </div>
                   )}
               </div>
-              <div class="text-xl body-bold">
+              <div class="h5-bold text-neutral-dark">
                 {formatPrice(price, offers?.priceCurrency)} no PIX
               </div>
             </div>
             {l?.hide?.installments
               ? ""
               : (
-                <div class="text-brand-secondary-900 text-xs truncate">
+                <div class="mall-regular text-neutral-900 truncate">
                   ou em até {installments}
                 </div>
               )}

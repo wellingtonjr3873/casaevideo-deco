@@ -179,6 +179,8 @@ interface NeutralColors {
   "neutral-50"?: string;
   /** @format color */
   "neutral-1"?: string;
+  /** @format color */
+  "neutral-dark"?: string;
 }
 
 export type Theme =
