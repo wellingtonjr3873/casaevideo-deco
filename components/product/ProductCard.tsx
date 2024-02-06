@@ -108,9 +108,9 @@ function ProductCard(
   const productCardPrice = (
     <>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col gap-3 lg:gap-4">
+      <div class="flex-auto flex flex-col gap-3 lg:gap-4 justify-end">
         {/* SKU Selector */}
-        {(!l?.elementsPositions?.skuSelector ||
+        {/* {(!l?.elementsPositions?.skuSelector ||
           l?.elementsPositions?.skuSelector === "Top") && (
           <>
             {l?.hide?.skuSelector ? "" : (
@@ -123,7 +123,7 @@ function ProductCard(
               </ul>
             )}
           </>
-        )}
+        )} */}
 
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
