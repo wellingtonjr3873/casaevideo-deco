@@ -62,7 +62,7 @@ function Header({
     <>
       <header class="bg-brand-terciary-1 h-[168px]">
         <div class="h-12 flex items-center justify-center bg-complementary-2">
-          <p>Destaque</p>
+          <p class="body-bold text-neutral-50">Destaque</p>
         </div>
 
         {/* desktop version */}
@@ -140,9 +140,6 @@ function Header({
                     menu={{ items: [] }}
                     platform={platform}
                   />
-                  <span class="small-bold hover:underline-offset-1">
-                    Categorias
-                  </span>
                 </li>
                 {categories?.items?.map((item) => {
                   return (
@@ -164,7 +161,7 @@ function Header({
         <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
           <div className="flex justify-between">
             <div class="flex gap-2 items-center content-start">
-              <span>
+              <span class="flex">
                 <MenuButton />
                 <Drawers
                   menu={{ items: [] }}
@@ -209,7 +206,8 @@ function Header({
                 <CartButtonVTEX>
                   <Icon
                     id="Cart"
-                    className="fill-brand-secondary-900 h-6 w-6"
+                    size={24}
+                    className="fill-brand-secondary-900"
                   />
                 </CartButtonVTEX>
               )}

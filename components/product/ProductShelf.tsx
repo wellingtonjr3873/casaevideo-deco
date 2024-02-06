@@ -39,12 +39,14 @@ function ProductShelf({
 
   return (
     <div class="w-full container pl-4 sm:pl-0 py-8 flex flex-col gap-2 lg:py-10">
-      <Header
+      {/* <Header
         title={title || ""}
         description={description || ""}
         fontSize={layout?.headerfontSize || "Large"}
         alignment={layout?.headerAlignment || "center"}
-      />
+      /> */}
+
+      <h5 class="h5-bold w-full">{title}</h5>
 
       <div
         id={id}
