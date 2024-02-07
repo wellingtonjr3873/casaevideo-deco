@@ -2,6 +2,12 @@ import MobileApps from "$store/components/footer/MobileApps.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import FooterItems from "$store/components/footer/FooterItems.tsx";
+
+
+
+
+
+
 export type Item = {
   label: string;
   href: string;
@@ -148,6 +154,7 @@ function Footer({
     `2022 . Casa e Video Brasil S/A © Todos os direitos reservados`,
   developedBy,
 }: Props) {
+
   return (
     <footer class="w-full flex flex-col">
       <div class="w-full max-w-[1355px] my-0 mx-auto mb-[32px] lg:px-[16px] min-[1371px]:px-0">

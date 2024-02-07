@@ -27,21 +27,21 @@ export default function ModalVideo( props: ModalVideoProps ) {
       </button>
       {isOpen.value && (
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
-          <div className="relative w-[795px] h-[525px] top-20 mx-auto p-4 border shadow-lg rounded-md bg-neutral-50">
+          <div className="relative w-full h-[525px] md:w-[795px] top-20 mx-auto p-4 border-0 md:border shadow-lg rounded-md bg-neutral-50">
             <div className="text-center flex flex-col items-center">
-              <h2 className="mb-8">Nome do Produto</h2>  
-              <video className="rounded-lg" width="599" controls>
+              <h2 className="mb-4 md:mb-8 h6-bold">Nome do Produto</h2>  
+              <video className="rounded-lg w-[296px] md:w-[599px] h-[351px] md:h-[337px]" controls>
                 <source src={props.srcDesktop} type="video/mp4" />
                 
               </video>
-              <div className="mt-8 flex gap-2.5">
+              <div className="mt-8 flex-col-reverse md:flex-row flex gap-2.5">
                 <button
-                  className="w-[180px] h-[48px] border-[1px] rounded-md border-neutral-400"
+                  className="w-[296px] md:w-[180px] h-[44px] md:h-[48px] border-[1px] rounded-md border-neutral-400"
                   onClick={closeModal}
                 >
                   Voltar
                 </button>
-                <button className="flex w-[180px] h-[48px] border-[1px] rounded-md items-center justify-center bg-brand-primary-1 text-[white]">
+                <button className="flex  w-[296px] md:w-[180px] h-[44px] md:h-[48px] border-[1px] rounded-md items-center justify-center bg-brand-primary-1 text-[white]">
                     <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <g clip-path="url(#clip0_11896_15940)">
                             <path d="M10.4999 18.6666C10.8681 18.6666 11.1666 18.3682 11.1666 18C11.1666 17.6318 10.8681 17.3333 10.4999 17.3333C10.1317 17.3333 9.83325 17.6318 9.83325 18C9.83325 18.3682 10.1317 18.6666 10.4999 18.6666Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
