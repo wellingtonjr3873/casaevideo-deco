@@ -1,6 +1,4 @@
 import { Product } from "apps/commerce/types.ts";
-import { FreeShippingIcon } from "deco-sites/casaevideo/components/icons/FreeShippingIcon.tsx";
-import { PickingExpressIcon } from "deco-sites/casaevideo/components/icons/PickingExpressIcon.tsx";
 import { useOffer } from "deco-sites/casaevideo/sdk/useOffer.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { formatPrice } from "deco-sites/casaevideo/sdk/format.ts";
@@ -21,6 +19,8 @@ function ProductPrice({ product }: Props) {
     installments,
     availability,
   } = useOffer(offers);
+
+  console.log('seller', seller);
 
   const priceHtml = (
     <div
@@ -51,17 +51,21 @@ function ProductPrice({ product }: Props) {
   return (
     <div class="flex flex-col gap-6 w-full">
       <div class="flex flex-col gap-4">
-        {priceHtml}
-        
-        <a href="#PaymentOptions" class="small-regular text-neutral-600 underline">
-          Ver mais formas de pagamento
-        </a>
+        {availability === "https://schema.org/InStock" && priceHtml}
 
-        <div class="body-regular text-neutral-900 flex gap-1 items-center">
-          <Icon id="CVCreditCard" width="21" height="16" />
-          <span>Parcele em até</span>
-          <strong class="body-bold text-brand-primary-1 ">10x no cartão Casa&Video</strong>
-        </div>
+        {availability === "https://schema.org/InStock" && (
+          <>
+            <a href="#PaymentOptions" class="small-regular text-neutral-600 underline">
+              Ver mais formas de pagamento
+            </a>
+
+            <div class="body-regular text-neutral-900 flex gap-1 items-center">
+              <Icon id="CVCreditCard" width="21" height="16" />
+              <span>Parcele em até</span>
+              <strong class="body-bold text-brand-primary-1 ">10x no cartão Casa&Video</strong>
+            </div>
+          </>
+        )}
       </div>
   
       

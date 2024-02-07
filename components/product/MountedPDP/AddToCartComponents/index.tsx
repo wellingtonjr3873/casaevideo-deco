@@ -50,7 +50,7 @@ function AddToCartComponents({ page }: Props) {
     <>
       {availability === "https://schema.org/InStock" ? (
         <>
-          <div class="flex gap-6">
+          <div class="flex gap-6 order-1">
             <span class="small-regular text-neutral-600 w-[136px] flex">
               Selecione ou digite a quantidade desejada
             </span>
@@ -61,7 +61,7 @@ function AddToCartComponents({ page }: Props) {
             />
           </div>
 
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col gap-2 order-3">
             <AddToCartButtonVTEX
               eventParams={{ items: [eventItem] }}
               productID={productID}
@@ -69,6 +69,11 @@ function AddToCartComponents({ page }: Props) {
               quantity={quantity.value}
             />
           </div>
+
+          <span class="small-regular text-neutral-900 flex gap-2 order-4">
+            Vendido e entregue por:
+            <strong class="text-brand-primary-700">{seller === "1" ? "Casa e Video" : seller}</strong>
+          </span>
         </>
       ): <OutOfStock productID={productID} />}
     </>

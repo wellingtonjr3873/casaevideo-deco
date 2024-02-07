@@ -46,7 +46,7 @@ function MountedPDP({ page }: Props) {
       </div>
 
       <div class="flex gap-3" id={id}>
-        <div class="bg-neutral-50 w-2/3 flex gap-4 rounded-lg h-[520px] py-4">
+        <div class="bg-neutral-50 w-2/3 flex gap-4 rounded-lg min-h-[520px] h-min py-4">
           {/* Product Image */}
           <div class="w-1/2">
             <GallerySlider page={page} layout={{ width: 400, height: 400 }} />
@@ -58,18 +58,20 @@ function MountedPDP({ page }: Props) {
           </div>
         </div>
 
-        <div class="bg-neutral-50 w-1/3 h-[520px] p-4 flex flex-col gap-6">
+        <div class="bg-neutral-50 w-1/3 rounded-lg min-h-[520px] h-min p-4 flex flex-col gap-6 overflow-y-scroll">
           <ProductPrice product={product} />
           <AddToCartComponents page={page} />
-          {platform === "vtex" && (
-            <ShippingSimulation
-              items={[{
-                id: Number(product.sku),
-                quantity: 1,
-                seller: seller || '1',
-              }]}
-            />
-          )}
+          <div class="w-full order-2">
+            {platform === "vtex" && (
+              <ShippingSimulation
+                items={[{
+                  id: Number(product.sku),
+                  quantity: 1,
+                  seller: seller || '1',
+                }]}
+              />
+            )}
+          </div>
         </div>
       </div>
     </div>
