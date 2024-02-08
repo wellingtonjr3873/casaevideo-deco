@@ -28,7 +28,7 @@ const Aside = (
     children: ComponentChildren;
   },
 ) => (
-  <div class="grid grid-rows-[auto_1fr] h-full divide-y bg-brand-secondary-50 max-w-[368px] w-[100%]">
+  <div class="grid grid-rows-[48px_max-content] h-full divide-y max-w-[368px] w-[100%]">
     <div class="flex justify-between items-center bg-brand-terciary-1 max-w-[368px] w-[100%]">
       <h1 class="px-4 py-3">
         <span class="small-regular items-center flex gap-2">
@@ -57,6 +57,9 @@ const Aside = (
 function Drawers({ menu, children, platform }: Props) {
   const { displayCart, displayMenu, displaySearchDrawer } = useUI();
 
+
+
+
   return (
     <Drawer // left drawer
       open={displayMenu.value || displaySearchDrawer.value}
@@ -76,24 +79,7 @@ function Drawers({ menu, children, platform }: Props) {
           {displayMenu.value && <Menu {...menu} />}
         </Aside>
       }
-    >
-      <Drawer // right drawer
-        class="drawer-end"
-        open={displayCart.value !== false}
-        onClose={() => displayCart.value = false}
-        aside={
-          <Aside
-            title="Minha sacola"
-            onClose={() => displayCart.value = false}
-            iconTitle={null}
-          >
-            <Cart platform={platform} />
-          </Aside>
-        }
-      >
-        {children}
-      </Drawer>
-    </Drawer>
+    />
   );
 }
 
