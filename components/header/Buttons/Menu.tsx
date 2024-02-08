@@ -20,5 +20,5 @@ export default function MenuButton() {
         class="text-neutral-900"
       />
     </Button>
-  );
+  );  
 }

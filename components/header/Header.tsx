@@ -7,7 +7,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
+
+import Menu from "$store/components/header/Menu.tsx";
 
 interface Categories {
   items: {
@@ -19,7 +20,7 @@ interface Categories {
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
-  navItems: SiteNavigationElement[] | null;
+  navItems: any;
   alerts: string[];
   /**
    * @title Navigation items
@@ -38,6 +39,7 @@ export interface Props {
     };
   };
   categories?: Categories;
+  isMobile: boolean
 }
 
 function Header({
@@ -54,10 +56,10 @@ function Header({
       { href: "/", isSazonal: false, label: "Categoria 6" },
     ],
   },
-  // navItems,
+  navItems,
+  isMobile
 }: Props) {
   const platform = usePlatform();
-
   return (
     <>
       <header class="bg-brand-terciary-1 h-[168px]">
@@ -139,10 +141,11 @@ function Header({
                   <span class="flex">
 
                   <MenuButton />
-                  <Drawers
-                    menu={{ items: [] }}
+                 {!isMobile && <Drawers
+                    menu={{ items: navItems }}
                     platform={platform}
-                  />
+                  />}
+
                   </span>
                   <span class="small-bold hover:underline-offset-1">
               Categorias
@@ -170,10 +173,10 @@ function Header({
             <div class="flex gap-2 items-center content-start">
               <span class="flex">
                 <MenuButton />
-                <Drawers
-                  menu={{ items: [] }}
-                  platform={platform}
-                />
+                {isMobile && <Drawers
+                    menu={{ items: navItems }}
+                    platform={platform}
+                  />}
               </span>
               {logo && (
                 <Picture>
