@@ -23,7 +23,7 @@ function ProductBasicInfo({ product }: Props) {
         <PickingExpressIcon />
       </div>
 
-      <h1 class="h5-bold">
+      <h1 class="body-bold md:h5-bold">
         {`${isVariantOf?.name}`}
       </h1>
 
@@ -41,23 +41,21 @@ function ProductBasicInfo({ product }: Props) {
         )}
       </div>
 
-      <div>
-        <span class="text-sm">
-          {description && (
-            <div
-              class="h-14 overflow-hidden"
-              dangerouslySetInnerHTML={{ __html: description }}
-            />
-          )}
+      <span class="small-regular hidden md:block">
+        {description && (
+          <div
+            class="h-14 overflow-hidden"
+            dangerouslySetInnerHTML={{ __html: description }}
+          />
+        )}
 
-          <a
-            href="#description"
-            class="text-brand-primary-600 x-small-regular underline"
-          >
-            Ler descrição completa
-          </a>
-        </span>
-      </div>
+        <a
+          href="#description"
+          class="text-brand-primary-600 x-small-regular underline"
+        >
+          Ler descrição completa
+        </a>
+      </span>
     </div>
   );
 }

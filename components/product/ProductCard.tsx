@@ -9,6 +9,7 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
+import { FreeShippingIcon } from "deco-sites/casaevideo/components/icons/FreeShippingIcon.tsx";
 
 export interface Layout {
   basics?: {
@@ -231,10 +232,8 @@ function ProductCard(
       >
         {/* Wishlist button */}
         <div class="flex justify-between items-center w-full h-6">
-          <div class="h-6 bg-neutral-700 rounded-md flex text-neutral-50 justify-between px-2 items-center">
-            <Icon id="Frete" width={24} height={24} />
-            Frete grátis
-          </div>
+          <FreeShippingIcon color="black" />
+
           {platform === "vtex" && (
             <WishlistButton
               productGroupID={productGroupID}

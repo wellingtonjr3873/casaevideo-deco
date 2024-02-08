@@ -26,7 +26,7 @@ function VariantSelector({ product }: Props) {
     <ul class="flex flex-col gap-4">
       {Object.keys(possibilities).map((name) => (
         <li class="flex flex-col gap-2">
-          <span class="small-bold text-neutral-900">
+          <span class="x-small-bold md:small-bold text-neutral-900">
             {name}:
             <strong class="pl-1 text-brand-primary-1">
               {Object.entries(possibilities[name]).find(([_value, link]) => link === url)?.[0]}

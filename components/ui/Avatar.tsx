@@ -40,9 +40,9 @@ function Avatar({ content, variant = "default" }: Props) {
   const imageContent = parsedContent[0];
 
   return (
-    <div class="avatar placeholder text-xs">
+    <div class="avatar placeholder md:small-regular body-regular">
       <div
-        class={`rounded-md ${isColor ? 'w-10': 'w-20'} h-10 ${colors[content] ?? colors[variant]} ${
+        class={`rounded-md ${isColor ? 'w-[40px]': 'w-[90px]'} h-[40px] ${colors[content] ?? colors[variant]} ${
           variants[variant]
         }`}
       >

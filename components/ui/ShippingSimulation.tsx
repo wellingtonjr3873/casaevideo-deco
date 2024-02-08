@@ -44,15 +44,18 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px]">
+    <ul class="flex flex-col gap-4 bg-base-200 rounded-[4px]">
       {methods.map((method) => (
-        <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
-          <span class="text-button text-center">
-            Entrega {method.name}
-          </span>
-          <span class="text-button">
-            até {formatShippingEstimate(method.shippingEstimate)}
-          </span>
+        <li class="flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1">
+          <div class="flex flex-col">
+            <span class="text-button text-left">
+              Entrega {method.name}
+            </span>
+            <span class="text-button">
+              até {formatShippingEstimate(method.shippingEstimate)}
+            </span>
+          </div>
+
           <span class="text-base font-semibold text-right">
             {method.price === 0 ? "Grátis" : (
               formatPrice(method.price / 100, currencyCode, locale)
@@ -94,7 +97,7 @@ function ShippingSimulation({ items }: Props) {
 
   return (
     <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-scroll">
-      <div class="flex gap-2">
+      <div class="flex gap-2 body-regular text-neutral-900">
         <Icon id="Frete" class="text-brand-secondary-900" width={24} height={24} />
         <span>Calcule o prazo de entrega</span>
       </div>
