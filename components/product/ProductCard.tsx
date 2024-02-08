@@ -74,28 +74,15 @@ function ProductCard(
     isVariantOf,
   } = product;
   const id = `product-card-${productID}`;
-  const hasVariant = isVariantOf?.hasVariant ?? [];
   const productGroupID = isVariantOf?.productGroupID;
-  const description = product.description || isVariantOf?.description;
   const [front, back] = images ?? [];
   const { listPrice, price, installments } = useOffer(offers);
-  // const possibilities = useVariantPossibilities(hasVariant, product);
-  // const variants = Object.entries(Object.values(possibilities)[0] ?? {});
 
   const l = layout;
   const align =
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
-
-  // const skuSelector = variants.map(([value, link]) => (
-  //   <li>
-  //     <Avatar
-  //       variant={link === url ? "active" : link ? "default" : "disabled"}
-  //       content={value}
-  //     />
-  //   </li>
-  // ));
 
   const cta = (
     <a
@@ -111,31 +98,13 @@ function ProductCard(
     <>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col gap-3 lg:gap-4">
-        {/* SKU Selector */}
-        {
-          /* {(!l?.elementsPositions?.skuSelector ||
-          l?.elementsPositions?.skuSelector === "Top") && (
-          <>
-            {l?.hide?.skuSelector ? "" : (
-              <ul
-                class={`flex items-center gap-2 w-full overflow-auto p-3 ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
-          </>
-        )} */
-        }
-
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
-            <div class="flex flex-col gap-0">
+            <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate body-regular text-base-content line-clamp-2 whitespace-break-spaces"
+                  class="truncate x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
                   dangerouslySetInnerHTML={{ __html: name ?? "" }}
                 />
               )}
@@ -151,30 +120,30 @@ function ProductCard(
               } ${align === "center" ? "justify-center" : "justify-start"}`}
             >
               <div
-                class={`text-base-300 text-sm flex align-center gap-2 ${
+                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2 ${
                   l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
                 }`}
               >
                 <span class="line-through">
-                  de {formatPrice(listPrice, offers?.priceCurrency)}
+                  {formatPrice(listPrice, offers?.priceCurrency)}
                 </span>
 
                 {(price && listPrice && price !== listPrice) &&
                   (
-                    <div class="bg-success gap-1 sm:h-5 h-6 flex px-1 justify-center items-center text-neutral-50 rounded">
+                    <div class="bg-success gap-1 h-4 sm:h-5 md:h-6 flex px-1 justify-center items-center text-neutral-50 rounded">
                       <Icon id="ArrowDown" width={16} height={16} />
                       {((1 - (price / listPrice)) * 100).toFixed(0)}%
                     </div>
                   )}
               </div>
-              <div class="text-xl body-bold">
+              <div class="body-bold md:h6-bold">
                 {formatPrice(price, offers?.priceCurrency)} no PIX
               </div>
             </div>
             {l?.hide?.installments
               ? ""
               : (
-                <div class="text-brand-secondary-900 text-xs truncate">
+                <div class="text-brand-secondary-900 x-small-regular truncate">
                   ou em até {installments}
                 </div>
               )}
@@ -205,7 +174,7 @@ function ProductCard(
     <a
       id={id}
       href={url && relative(url)}
-      class={`card card-compact shadow-normal group w-full bg-neutral-50 px-2 py-4 card-bordered border-brand-secondary-100 ${
+      class={`card card-compact shadow-normal group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 ${
         align === "center" ? "text-center" : "text-start"
       } 
         ${
@@ -236,7 +205,7 @@ function ProductCard(
       >
         {/* Wishlist button */}
         <div class="flex justify-between items-center w-full h-6">
-          <FreeShippingIcon color="black" />
+          <FreeShippingIcon color="black" small={true} />
 
           {platform === "vtex" && (
             <WishlistButton

@@ -62,7 +62,7 @@ function ProductPrice({ product }: Props) {
             <div class="small-regular md:body-regular text-neutral-900 flex gap-1 items-center">
               <Icon id="CVCreditCard" width="21" height="16" />
               <span>Parcele em até</span>
-              <strong class="small-bold md:body-bold text-brand-primary-1 ">10x no cartão Casa&Video</strong>
+              <strong class="text-brand-primary-1 small-bold md:body-bold">10x no cartão Casa&Video</strong>
             </div>
           </>
         )}

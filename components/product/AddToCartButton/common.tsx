@@ -42,7 +42,7 @@ export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
 
   return (
-    <Button {...btnProps} class="btn-primary text-neutral-50 border-0 bg-brand-primary-1 hover:bg-brand-primary-1">
+    <Button {...btnProps} class="btn-primary text-neutral-50 border-0 bg-brand-primary-1 hover:bg-brand-primary-1 body-regular">
       <Icon id="Cart" class="text-neutral-50" width={24} height={24} /> Comprar
     </Button>
   );

@@ -30,10 +30,10 @@ function ProductVisualization({ product }: Props) {
   console.log('open', open);
 
   return (
-    <div class="flex border border-neutral-100 rounded-lg p-0.5 w-full">
+    <div class="flex border border-neutral-100 rounded-lg p-0.5 w-full bg-neutral-50">
       {options.map((option) => (
         <Button 
-          class={`flex border-0 shadow-none justify-center items-center py-2 w-full rounded-lg gap-1 small-bold text-neutral-900 shrink ${open.value === option.modal ? 'bg-brand-secondary-50 border border-neutral-900' : ''}`}
+          class={`flex shadow-none justify-center items-center py-2 w-full rounded-lg gap-1 small-bold text-neutral-900 shrink ${option.modal === 'ProductImage' ? 'bg-brand-secondary-50 border border-neutral-900' : 'border-0'}`}
           onClick={() => open.value = option.modal}
         >
           <Icon id={option.icon} width={24} height={24} /> {option.name}
