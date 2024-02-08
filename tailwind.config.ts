@@ -22,7 +22,7 @@ export default {
         neutral: {
           900: "oklch(var(--neutral-900))",
           50: "oklch(var(--neutral-50))",
-          100: "oklch(var(--neutral-100))"
+          100: "oklch(var(--neutral-100))",
         },
         success: "oklch(var(--success))",
       },

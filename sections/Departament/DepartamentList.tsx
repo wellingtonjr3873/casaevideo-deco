@@ -22,7 +22,7 @@ function ButtonsDepartamentSlider() {
   return (
     <div class="absolute w-full h-full flex items-center justify-between max-[768px]:hidden max-h-[100px]">
       <div class="flex items-center justify-center z-10 col-start-1 row-start-2 relative right-[1.5rem]">
-        <Slider.PrevButton class="btn btn-circle glass right-1/2">
+        <Slider.PrevButton class="btn btn-circle border-none shadow-none right-1/2">
           <Icon
             class="text-base-100"
             size={33}
@@ -32,7 +32,7 @@ function ButtonsDepartamentSlider() {
         </Slider.PrevButton>
       </div>
       <div class="flex items-center justify-center z-10 col-start-3 row-start-2 relative left-[1.5rem]">
-        <Slider.NextButton class="btn btn-circle glass left-1/2">
+        <Slider.NextButton class="btn btn-circle border-none shadow-none left-1/2">
           <Icon
             class="text-base-100"
             size={33}
@@ -84,7 +84,7 @@ function DepartamentList(props: Props) {
                 )}
               {description &&
                 (
-                  <span class="text-base-content text-center">
+                  <span class="text-base-content text-center small-regular">
                     {description}
                   </span>
                 )}

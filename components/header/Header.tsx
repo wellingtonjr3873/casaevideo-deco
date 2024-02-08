@@ -64,7 +64,7 @@ function Header({
     <>
       <header class="bg-brand-terciary-1 h-[168px]">
         <div class="h-12 flex items-center justify-center bg-complementary-2">
-          <p>Destaque</p>
+          <p class="body-bold text-neutral-50">Destaque</p>
         </div>
 
         {/* desktop version */}
