@@ -55,10 +55,12 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
   const items = root?.querySelectorAll(`[${ATTRIBUTES["data-slider-item"]}]`);
   const prev = root?.querySelector(`[${ATTRIBUTES['data-slide="prev"']}]`);
   const next = root?.querySelector(`[${ATTRIBUTES['data-slide="next"']}]`);
-  const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
   const dotContainer = root?.querySelector(
     `[${ATTRIBUTES["data-dots-slider"]}]`,
   );
+  
+  const dots = root?.querySelectorAll(`[${ATTRIBUTES["data-dot"]}]`);
+
 
   if (!root || !slider || !items || items.length === 0) {
     console.warn(
@@ -127,8 +129,10 @@ const setup = ({ rootId, scroll, interval, infinite }: Props) => {
       return;
     }
 
-    const diff = (item.offsetLeft - root.offsetLeft) - slider.scrollLeft;
+    const diff = (item.offsetLeft - root.scrollLeft) - slider.scrollLeft;
+
     const diffAbs = Math.abs(diff);
+
 
     const left = diff < 0
       ? slider.scrollLeft - diffAbs
