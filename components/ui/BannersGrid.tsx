@@ -6,21 +6,21 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
  */
 export interface Banner {
   /**
- * @description Largura da imagem Desktop
- */
+   * @description Largura da imagem Desktop
+   */
   bannerWidthDesk: number;
   /**
-* @description Largura da imagem Desktop
-*/
+   * @description Largura da imagem Desktop
+   */
   bannerHeightDesk: number;
   srcDesktop?: ImageWidget;
   /**
-* @description Largura da imagem Mobile
-*/
+   * @description Largura da imagem Mobile
+   */
   bannerWidthMob: number;
   /**
-* @description Largura da imagem Mobile
-*/
+   * @description Largura da imagem Mobile
+   */
   bannerHeightMob: number;
   srcMobile: ImageWidget;
   /**
@@ -83,10 +83,22 @@ export default function BannersGrid(props: Props) {
           </div>
         )}
       <div
-        class={`grid gap-2 md:gap-2 mt-2 ${MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
-          } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 2]}`}
+        class={`grid gap-2 md:gap-2 mt-2 ${
+          MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
+        } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 2]}`}
       >
-        {banners.map(({ href, srcMobile, srcDesktop, alt, bannerWidthDesk, bannerHeightDesk, bannerWidthMob, bannerHeightMob }) => (
+        {banners.map((
+          {
+            href,
+            srcMobile,
+            srcDesktop,
+            alt,
+            bannerWidthDesk,
+            bannerHeightDesk,
+            bannerWidthMob,
+            bannerHeightMob,
+          },
+        ) => (
           <a
             href={href}
             class={`overflow-hidden`}

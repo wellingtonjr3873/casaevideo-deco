@@ -25,39 +25,33 @@ export interface Props {
 
 interface DotsProps {
   images: ImageObject[];
-  aspectRatio: string
+  aspectRatio: string;
 }
 
-
 function Dots({
-  images, 
-  aspectRatio
+  images,
+  aspectRatio,
 }: DotsProps) {
-
   return (
     <div class="relative">
       <div class="w-full px-10">
-        <Slider
-          class="carousel carousel-center sm:carousel-end col-span-full row-start-2 row-end-5 gap-4 w-full flex justify-start align-center"
-        >
+        <Slider.Dots class="carousel carousel-center sm:carousel-end col-span-full row-start-2 row-end-5 gap-4 w-full flex justify-start align-center">
           {images.map((img, index) => (
-            <Slider.Item
-              index={index} 
-              class="carousel-item w-14 flex justify-center align-center"
+            <Slider.Dot
+              index={index}
+              class="carousel-item relative w-14 flex justify-center align-center"
             >
-              <Slider.Dot index={index}>
-                <Image
-                  style={{ aspectRatio }}
-                  class="group-disabled:border-brand-primary-700 group-disabled:border-2 border rounded border-neutral-400"
-                  width={57}
-                  height={57}
-                  src={img.url!}
-                  alt={img.alternateName}
-                />
-              </Slider.Dot>
-            </Slider.Item>
+              <Image
+                style={{ aspectRatio }}
+                class="group-disabled:border-brand-primary-700 group-disabled:border-2 border rounded border-neutral-400"
+                width={57}
+                height={57}
+                src={img.url!}
+                alt={img.alternateName}
+              />
+            </Slider.Dot>
           ))}
-        </Slider>
+        </Slider.Dots>
       </div>
 
       <Slider.PrevButton
@@ -73,9 +67,8 @@ function Dots({
       >
         <Icon size={24} id="ChevronRight" strokeWidth={3} />
       </Slider.NextButton>
-
     </div>
-  )
+  );
 }
 
 export default function GallerySlider(props: Props) {
@@ -116,20 +109,6 @@ export default function GallerySlider(props: Props) {
             </Slider.Item>
           ))}
         </Slider>
-
-        {/* <Slider.PrevButton
-          class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
-          disabled
-        >
-          <Icon size={24} id="ChevronLeft" strokeWidth={3} />
-        </Slider.PrevButton>
-
-        <Slider.NextButton
-          class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
-          disabled={images.length < 2}
-        >
-          <Icon size={24} id="ChevronRight" strokeWidth={3} />
-        </Slider.NextButton> */}
 
         {/* <div class="absolute top-2 right-2 bg-base-100 rounded-full">
           <ProductImageZoom
