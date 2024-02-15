@@ -10,6 +10,9 @@ import  Drawer from "$store/components/ui/Drawer.tsx";
 import { useState } from "preact/hooks";
 
 
+
+
+
 type CategoryChildren = {
   Title: string,
   name: string,
@@ -155,8 +158,6 @@ const FooterMenu = () => {
 </div>
 }
 function Menu({ items }: Props) {
-
-  console.log(items, 'see')
   const departaments = visibleAllDepartaments.value ? items : items.slice(0, 9);
 
   const handleVisibleAllDepartaments = () => {

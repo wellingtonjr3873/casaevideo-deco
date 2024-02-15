@@ -130,7 +130,7 @@ export default function BannnerIsland(props: Props) {
   const id = useId();
 
   return (
-    <section class="container w-full px-4 md:px-0 mx-auto">
+    <section class="container w-full px-4 mx-auto max-w-[1280px] md:px-6 xl-b:px-0">
       {title &&
         (
           <div class="py-6 md:py-0 md:pb-[40px] flex items-center mt-6">
@@ -142,7 +142,10 @@ export default function BannnerIsland(props: Props) {
       <div
         class={`grid gap-4 md:gap-6 ${
           MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
-        } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 4]}`}
+        } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 4]}
+        md:flex
+        `}
+        
       >
         <div className="block md:hidden">
           <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-2">
@@ -187,16 +190,11 @@ export default function BannnerIsland(props: Props) {
           <SliderJS rootId={id} infinite />
         </div>
 
-        <div className="hidden md:block">
-          <Slider class="carousel carousel-center sm:carousel-end gap-6 col-span-full row-start-2 row-end-5">
+        <div className="hidden md:flex gap-4 justify-between md:w-full">
             {banners.map(({ href, srcMobile, srcDesktop, alt }, index) => (
-              <Slider.Item
-                index={index}
-                class="carousel-item w-[270px] sm:w-[292px] first:pl-6 sm:first:pl-0 last:pr-6 sm:last:pr-0"
-              >
                 <a
                   href={href}
-                  class={`overflow-hidden ${
+                  class={`overflow-hidden banner-island-item ${
                     RADIUS_MOBILE[borderRadius.mobile ?? "none"]
                   } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
                 >
@@ -223,10 +221,7 @@ export default function BannnerIsland(props: Props) {
                     />
                   </Picture>
                 </a>
-              </Slider.Item>
             ))}
-          </Slider>
-          <SliderJS rootId={id} infinite />
         </div>
       </div>
     </section>
