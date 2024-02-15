@@ -4,6 +4,7 @@ import Button from "deco-sites/casaevideo/components/ui/Button.tsx";
 import { OpenModalType, ProductImageZoomModal } from "deco-sites/casaevideo/components/product/ProductImageZoom.tsx";
 import { useSignal } from "@preact/signals";
 import ModalVideo from "deco-sites/casaevideo/components/product/ModalVideo/ModalVideo.tsx";
+import Modal3D from "deco-sites/casaevideo/components/product/Modal3D/Modal3D.tsx";
 
 export interface Props {
   product: Product;
@@ -49,6 +50,11 @@ function ProductVisualization({ product }: Props) {
       <ModalVideo 
         open={open}
         srcDesktop=""
+      />
+
+      <Modal3D
+        open={open}
+        imageSource=""
       />
 
     </div>

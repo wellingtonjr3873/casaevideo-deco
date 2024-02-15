@@ -3,11 +3,6 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import FooterItems from "$store/components/footer/FooterItems.tsx";
 
-
-
-
-
-
 export type Item = {
   label: string;
   href: string;
