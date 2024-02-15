@@ -146,13 +146,13 @@ function Footer({
   Os preços, promoções e condições de pagamento são válidos durante o dia de hoje, para o site e Televendas, não valendo necessariamente para nossa rede de lojas físicas.
   O frete não está incluído no preço do produto. Ofertas válidas enquanto durarem nossos estoques. As fotos de produtos são meramente ilustrativas.`,
   footerRodapeText =
-    `2022 . Casa e Video Brasil S/A © Todos os direitos reservados`,
+    `2024 . Casa e Video Brasil S/A © Todos os direitos reservados`,
   developedBy,
 }: Props) {
 
   return (
-    <footer class="w-full flex flex-col">
-      <div class="w-full max-w-[1355px] my-0 mx-auto mb-[32px] lg:px-[16px] min-[1371px]:px-0">
+    <footer class="w-full flex flex-col bg-neutral-50">
+      <div class="w-full max-w-[1355px] my-0 mx-auto pb-8 lg:py-8 lg:px-4 min-[1371px]:px-0">
         {/* {top-content-desktop} */}
         <div class="flex flex-col-reverse lg:flex-row lg:justify-between">
           <FooterItems
@@ -161,7 +161,7 @@ function Footer({
             justify={false}
           />
           {/* {mobile-apps} */}
-          <div class="flex flex-col bg-neutral-50 lg:bg-[white] items-center py-[16px] lg:py-0">
+          <div class="flex flex-col bg-brand-secondary-50 lg:bg-neutral-50 items-center py-[16px] lg:py-0">
             <h2 class="small-bold text-left mb-[8px]">Baixe o app</h2>
             <MobileApps content={mobileApps} />
             <h2 class="small-bold text-left mb-[8px]">
@@ -190,7 +190,7 @@ function Footer({
             {categories.map((item) => {
               return (
                 <li>
-                  <a class="small-regular text-neutral-900" href={item.link}>
+                  <a class="small-regular text-neutral-900 hover:underline" href={item.link}>
                     {item.label}
                   </a>
                 </li>
@@ -236,12 +236,12 @@ function Footer({
             <Icon id="ChevronTop" size={16} fill="white" />
           </a>
         </div>
-        <div class="flex flex-col gap-[16px] items-center mb-[32px ]">
-          <p class="text-center x-small-regular text-brand-secondary-900 px-[24px]">
+        <div class="flex flex-col gap-4 items-center mt-8">
+          <p class="text-center x-small-regular text-brand-secondary-900 px-6">
             {aboutEnterprise}
           </p>
-          <div class="flex gap-[16px]">
-            <p class="flex gap-[8px] small-underline text-brand-secondary-900">
+          <div class="gap-4 hidden lg:flex">
+            <p class="flex gap-2 small-underline text-brand-secondary-900">
               <Icon id="Padlock" size={25} />
               <a href="">Politica de privacide</a>
             </p>

@@ -7,7 +7,7 @@ export default function MenuButton() {
 
   return (
     <Button
-      class="btn btn-circle btn-sm btn-ghost w-6 h-6"
+      class="btn btn-circle btn-sm btn-ghost"
       aria-label="open menu"
       onClick={() => {
         displayMenu.value = true;
@@ -20,5 +20,5 @@ export default function MenuButton() {
         class="text-neutral-900"
       />
     </Button>
-  );
+  );  
 }

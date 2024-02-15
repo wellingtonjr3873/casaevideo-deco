@@ -8,8 +8,8 @@ interface Props {
   open?: boolean;
   class?: string;
   loading?: "eager" | "lazy";
-  children: ComponentChildren;
-  aside: ComponentChildren;
+  children?: ComponentChildren;
+  aside?: ComponentChildren;
 }
 
 function Drawer(props: Props) {

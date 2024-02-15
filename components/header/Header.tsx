@@ -7,7 +7,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
-import type { SiteNavigationElement } from "apps/commerce/types.ts";
+
+import Menu from "$store/components/header/Menu.tsx";
 
 interface Categories {
   items: {
@@ -19,7 +20,7 @@ interface Categories {
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
-  navItems: SiteNavigationElement[] | null;
+  navItems: any;
   alerts: string[];
   /**
    * @title Navigation items
@@ -38,6 +39,7 @@ export interface Props {
     };
   };
   categories?: Categories;
+  isMobile: boolean
 }
 
 function Header({
@@ -54,15 +56,15 @@ function Header({
       { href: "/", isSazonal: false, label: "Categoria 6" },
     ],
   },
-  // navItems,
+  navItems,
+  isMobile
 }: Props) {
   const platform = usePlatform();
-
   return (
     <>
       <header class="bg-brand-terciary-1 h-[168px]">
         <div class="h-12 flex items-center justify-center bg-complementary-2">
-          <p>Destaque</p>
+          <p class="body-bold text-neutral-50">Destaque</p>
         </div>
 
         {/* desktop version */}
@@ -135,14 +137,19 @@ function Header({
             <nav class="w-full flex">
               <ul class="w-full flex items-center justify-between">
                 <li class="flex items-center">
+                
+                  <span class="flex">
+
                   <MenuButton />
-                  <Drawers
-                    menu={{ items: [] }}
+                 {!isMobile && <Drawers
+                    menu={{ items: navItems }}
                     platform={platform}
-                  />
-                  <span class="small-bold hover:underline-offset-1">
-                    Categorias
+                  />}
+
                   </span>
+                  <span class="small-bold hover:underline-offset-1">
+              Categorias
+            </span> 
                 </li>
                 {categories?.items?.map((item) => {
                   return (
@@ -164,12 +171,12 @@ function Header({
         <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
           <div className="flex justify-between">
             <div class="flex gap-2 items-center content-start">
-              <span>
+              <span class="flex">
                 <MenuButton />
-                <Drawers
-                  menu={{ items: [] }}
-                  platform={platform}
-                />
+                {isMobile && <Drawers
+                    menu={{ items: navItems }}
+                    platform={platform}
+                  />}
               </span>
               {logo && (
                 <Picture>
@@ -209,7 +216,8 @@ function Header({
                 <CartButtonVTEX>
                   <Icon
                     id="Cart"
-                    className="fill-brand-secondary-900 h-6 w-6"
+                    size={24}
+                    className="fill-brand-secondary-900"
                   />
                 </CartButtonVTEX>
               )}
