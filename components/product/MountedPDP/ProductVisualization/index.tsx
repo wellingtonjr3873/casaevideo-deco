@@ -3,6 +3,7 @@ import Icon, { AvailableIcons } from "deco-sites/casaevideo/components/ui/Icon.t
 import Button from "deco-sites/casaevideo/components/ui/Button.tsx";
 import { OpenModalType, ProductImageZoomModal } from "deco-sites/casaevideo/components/product/ProductImageZoom.tsx";
 import { useSignal } from "@preact/signals";
+import ModalVideo from "deco-sites/casaevideo/components/product/ModalVideo/ModalVideo.tsx";
 
 export interface Props {
   product: Product;
@@ -27,8 +28,6 @@ function ProductVisualization({ product }: Props) {
     { icon: "3D", name: "3D", modal: 'Product3D' },
   ];
 
-  console.log('open', open);
-
   return (
     <div class="flex border border-neutral-100 rounded-lg p-0.5 w-full bg-neutral-50">
       {options.map((option) => (
@@ -46,6 +45,12 @@ function ProductVisualization({ product }: Props) {
         width={700}
         open={open}
       />
+
+      <ModalVideo 
+        open={open}
+        srcDesktop=""
+      />
+
     </div>
   )
 }

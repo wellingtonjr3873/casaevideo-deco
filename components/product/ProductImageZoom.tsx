@@ -69,7 +69,6 @@ export function ProductImageZoomModal({
 function ProductImageZoom({ images, width, height }: Props) {
   const open = useSignal<OpenModalType>('None');
 
-  console.log('width, height ', width, height )
   return (
     <>
       <Button
