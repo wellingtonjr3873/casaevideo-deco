@@ -20,8 +20,6 @@ function ProductPrice({ product }: Props) {
     availability,
   } = useOffer(offers);
 
-  console.log('seller', seller);
-
   const priceHtml = (
     <div
       class={`flex flex-col gap-2`}
