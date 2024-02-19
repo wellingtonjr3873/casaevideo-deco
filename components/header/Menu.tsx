@@ -156,7 +156,6 @@ const FooterMenu = () => {
 }
 function Menu({ items }: Props) {
 
-  console.log(items, 'see')
   const departaments = visibleAllDepartaments.value ? items : items.slice(0, 9);
 
   const handleVisibleAllDepartaments = () => {
