@@ -52,7 +52,7 @@ export default function Modal3D(props: Modal3DProps ) {
                 </svg>
 
 
-                <p className="text-left x-small-regular md:small-regular self-center ml-4 max-w-[191px] md:ml-0">
+                <p className="text-left x-small-regular md:small-regular self-center ml-4 max-w-[191px] md:max-w-[430px] md:ml-0">
                   Você está vendo uma versão 3D do produto, você pode rotaciona-lo para ver em outros angulos!
                 </p>
 
