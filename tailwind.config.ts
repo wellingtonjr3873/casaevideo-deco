@@ -34,6 +34,9 @@ export default {
         },
         success: "oklch(var(--success))",
       },
+      screens: {
+        'xl-b': '1366px',
+      },
     },
   },
 };

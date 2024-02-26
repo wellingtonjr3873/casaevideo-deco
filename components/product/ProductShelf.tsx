@@ -38,25 +38,18 @@ function ProductShelf({
   }
 
   return (
-    <div class="w-full container pl-4 sm:pl-0 py-8 flex flex-col gap-2 lg:py-10">
-      {/* <Header
-        title={title || ""}
-        description={description || ""}
-        fontSize={layout?.headerfontSize || "Large"}
-        alignment={layout?.headerAlignment || "center"}
-      /> */}
-
+    <div class="w-full container pl-4 sm:pl-0 py-8 flex flex-col gap-2 lg:py-10 max-w-[1280px] md:px-6 xl-b:px-0">
       <h5 class="h5-bold w-full">{title}</h5>
 
       <div
         id={id}
-        class="container grid grid-cols-[48px_1fr_48px] px-0"
+        class="container grid grid-cols-[42px_1fr_42px] px-0"
       >
-        <Slider class="carousel carousel-center sm:carousel-end gap-4 col-span-full row-start-2 row-end-5">
+        <Slider class="carousel carousel-center sm:carousel-end gap-4 col-span-full row-start-2 row-end-5  max-w-none">
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item md:w-60 w-40 last:pr-6 sm:last:pr-0"
+              class="carousel-item w-full max-w-[160px] last:pr-6 sm:last:pr-0 md:w-[calc(25%-16px)] xl:md:w-[calc(20%-16px)] md:max-w-none md:first:w-[25%] xl:first:w-[20%]"
             >
               <ProductCard
                 product={product}
@@ -71,12 +64,12 @@ function ProductShelf({
 
         <>
           <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-            <Slider.PrevButton class="btn-circle absolute right-1/2 bg-neutral-50 text-brand-primary-500 border-none flex justify-center items-center shadow-far cursor-pointer">
+            <Slider.PrevButton class="btn-circle absolute right-1/2 bg-neutral-50 text-brand-primary-500 border-none flex justify-center items-center shadow-far cursor-pointer w-[42px] h-[42px]">
               <Icon size={24} id="ChevronLeft" strokeWidth={3} />
             </Slider.PrevButton>
           </div>
           <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-            <Slider.NextButton class="btn-circle absolute left-1/2 bg-neutral-50 text-brand-primary-500 border-none flex justify-center items-center shadow-far cursor-pointer">
+            <Slider.NextButton class="btn-circle absolute left-1/2 bg-neutral-50 text-brand-primary-500 border-none flex justify-center items-center shadow-far cursor-pointer w-[42px] h-[42px]">
               <Icon size={24} id="ChevronRight" strokeWidth={3} />
             </Slider.NextButton>
           </div>
