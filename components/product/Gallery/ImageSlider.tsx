@@ -3,7 +3,7 @@ import Slider from "$store/components/ui/Slider.tsx";
 import ProductImageZoom from "$store/islands/ProductImageZoom.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
-import { ProductDetailsPage } from "apps/commerce/types.ts";
+import { ImageObject, ProductDetailsPage } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 
 export interface Props {
@@ -22,6 +22,55 @@ export interface Props {
  * On mobile, there's one single column with 3 rows. Note that the orders are different from desktop to mobile, that's why
  * we rearrange each cell with col-start- directives
  */
+
+interface DotsProps {
+  images: ImageObject[];
+  aspectRatio: string;
+}
+
+function Dots({
+  images,
+  aspectRatio,
+}: DotsProps) {
+  return (
+    <div class="relative">
+      <div class="w-full px-10">
+        <Slider.Dots class="carousel carousel-center sm:carousel-end col-span-full row-start-2 row-end-5 gap-4 w-full flex justify-start align-center">
+          {images.map((img, index) => (
+            <Slider.Dot
+              index={index}
+              class="carousel-item relative w-14 flex justify-center align-center"
+            >
+              <Image
+                style={{ aspectRatio }}
+                class="group-disabled:border-brand-primary-700 group-disabled:border-2 border rounded border-neutral-400"
+                width={57}
+                height={57}
+                src={img.url!}
+                alt={img.alternateName}
+              />
+            </Slider.Dot>
+          ))}
+        </Slider.Dots>
+      </div>
+
+      <Slider.PrevButton
+        class="no-animation absolute left-2 top-1/2 disabled:text-neutral-600 text-brand-primary-700 -translate-y-1/2"
+        disabled
+      >
+        <Icon size={24} id="ChevronLeft" strokeWidth={3} />
+      </Slider.PrevButton>
+
+      <Slider.NextButton
+        class="no-animation absolute right-2 top-1/2 disabled:text-neutral-600 text-brand-primary-700 -translate-y-1/2"
+        disabled={images.length < 2}
+      >
+        <Icon size={24} id="ChevronRight" strokeWidth={3} />
+      </Slider.NextButton>
+    </div>
+  );
+}
+
 export default function GallerySlider(props: Props) {
   const id = useId();
 
@@ -36,10 +85,10 @@ export default function GallerySlider(props: Props) {
   const aspectRatio = `${width} / ${height}`;
 
   return (
-    <div id={id} class="grid grid-flow-row sm:grid-flow-col">
+    <div id={id} class="flex flex-col">
       {/* Image Slider */}
-      <div class="relative order-1 sm:order-2">
-        <Slider class="carousel carousel-center gap-6 w-screen sm:w-[40vw]">
+      <div class="relative">
+        <Slider class="carousel carousel-center gap-6 w-full">
           {images.map((img, index) => (
             <Slider.Item
               index={index}
@@ -61,46 +110,16 @@ export default function GallerySlider(props: Props) {
           ))}
         </Slider>
 
-        <Slider.PrevButton
-          class="no-animation absolute left-2 top-1/2 btn btn-circle btn-outline"
-          disabled
-        >
-          <Icon size={24} id="ChevronLeft" strokeWidth={3} />
-        </Slider.PrevButton>
-
-        <Slider.NextButton
-          class="no-animation absolute right-2 top-1/2 btn btn-circle btn-outline"
-          disabled={images.length < 2}
-        >
-          <Icon size={24} id="ChevronRight" strokeWidth={3} />
-        </Slider.NextButton>
-
-        <div class="absolute top-2 right-2 bg-base-100 rounded-full">
+        {/* <div class="absolute top-2 right-2 bg-base-100 rounded-full">
           <ProductImageZoom
             images={images}
             width={700}
             height={Math.trunc(700 * height / width)}
           />
-        </div>
+        </div> */}
       </div>
 
-      {/* Dots */}
-      <ul class="carousel carousel-center gap-1 px-4 sm:px-0 sm:flex-col order-2 sm:order-1">
-        {images.map((img, index) => (
-          <li class="carousel-item min-w-[63px] sm:min-w-[100px]">
-            <Slider.Dot index={index}>
-              <Image
-                style={{ aspectRatio }}
-                class="group-disabled:border-base-300 border rounded "
-                width={63}
-                height={87.5}
-                src={img.url!}
-                alt={img.alternateName}
-              />
-            </Slider.Dot>
-          </li>
-        ))}
-      </ul>
+      <Dots images={images} aspectRatio={aspectRatio} />
 
       <SliderJS rootId={id} />
     </div>

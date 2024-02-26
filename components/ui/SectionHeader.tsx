@@ -19,11 +19,11 @@ function Header(props: Props) {
             {props.title &&
               (
                 <h1
-                  class={`h5-regular text-left
+                  class={`small-bold md:h5-bold text-left
                   ${
                     props.colorReverse
-                      ? "text-primary-content"
-                      : "text-base-content"
+                      ? "text-neutral-50"
+                      : "text-neutral-900"
                   }
                   ${props.fontSize === "Normal" ? "lg:text-3xl" : "lg:text-4xl"}
                 `}

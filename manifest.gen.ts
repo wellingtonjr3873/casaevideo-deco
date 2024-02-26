@@ -2,6 +2,8 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
+import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
+import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
 import * as $$$$$$0 from "./sections/UtilLinks/UtilLinks.tsx";
@@ -77,8 +79,7 @@ const manifest = {
     "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$7,
     "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$8,
     "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$6,
-    "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
-      $$$$$$21,
+    "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":$$$$$$21,
     "deco-sites/casaevideo/sections/Product/ImageGallerySlider.tsx": $$$$$$22,
     "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$20,
     "deco-sites/casaevideo/sections/Product/NotFoundChallenge.tsx": $$$$$$19,

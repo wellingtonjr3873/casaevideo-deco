@@ -1,6 +1,6 @@
 import { itemToAnalyticsItem, useCart } from "apps/vtex/hooks/useCart.ts";
 import Button from "./common.tsx";
-import {  h as types } from "preact";
+import { h as types } from "preact";
 
 export interface Props {
   children?: types.JSX.Element;

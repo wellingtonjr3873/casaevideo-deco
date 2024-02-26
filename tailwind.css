@@ -10,12 +10,6 @@
     font-size: 16px;
   }
 
-  @media (max-width: 768px) {
-    html {
-      font-size: 12px;
-    }
-  }
-
   body {
     background-color: #f4f3f4;
   }
@@ -120,24 +114,24 @@
   /* ----------------------*/
 
   .body-bold{
-    @apply text-black text-base font-bold  leading-[140%]
+    @apply text-base font-bold  leading-[140%]
   }
 
   .body-regular{
-    @apply text-black text-base font-normal  leading-[140%]
+    @apply text-base font-normal  leading-[140%]
   }
 
   
   .body-underline{
-    @apply text-black text-base font-normal  leading-[140%] underline
+    @apply text-base font-normal  leading-[140%] underline
   }
 
   .small-bold{
-    @apply text-black text-sm font-bold leading-[140%]
+    @apply text-sm font-bold leading-[140%]
   }
 
   .small-regular{
-    @apply text-black text-sm font-normal leading-[140%]
+    @apply text-sm font-normal leading-[140%]
   }
 
   .small-regular-placeholder::placeholder{
@@ -210,6 +204,13 @@
   width: 0.75rem;
   height: 0.75rem;
   box-shadow: 1px 1px;
+}
+
+
+@media (min-width: 1536px) {
+  .container {
+    max-width: 1280px;
+  }
 }
 
 @keyframes progress-frame {
