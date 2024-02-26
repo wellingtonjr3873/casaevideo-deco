@@ -45,8 +45,8 @@ export const DEFAULT_THEME = {
 
   "--success-light": "#A7D0B8",
   "--success": "#007552",
-  "--information-light": "#006CA1",
-  "--information": "#E5EEFF",
+  "--information": "#006CA1",
+  "--information-light": "#E5EEFF",
   "--warning-light": "#FFF6E0",
   "--warning": "#F8D13A",
   "--warning-dark": "#BF9800",

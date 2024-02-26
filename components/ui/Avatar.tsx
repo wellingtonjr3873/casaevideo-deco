@@ -16,9 +16,9 @@ const colors: Record<string, string> = {
   "vermelha": "bg-[#FF0000] ring-[#FF0000]",
 
   // Color variants - only applied when no color as content is passed
-  "active": "bg-neutral-focus text-neutral-content ring-neutral-focus ",
-  "disabled": "bg-neutral-content text-neutral",
-  "default": "bg-base-100 text-primary",
+  "active": "bg-neutral-50 text-brand-primary-700",
+  "disabled": "bg-neutral-50 text-neutral",
+  "default": "bg-neutral-50 text-brand-secondary-500 hover:text-brand-primary-700",
 };
 
 interface Props {
@@ -27,23 +27,32 @@ interface Props {
 }
 
 const variants = {
-  active: "ring ring-1 ring-offset-base-100 ring-offset-2",
+  active: "text-brand-primary-700 border-brand-primary-700 border-2",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
-  default: "border border-base-200 hover:border-primary",
+  default: "border border-brand-secondary-500 hover:border-brand-primary-700",
 };
 
 function Avatar({ content, variant = "default" }: Props) {
+  const isColor = content.includes("Cor:") ;
+  const parsedContent = content.split(';Image: ');
+  const imageUrl = parsedContent?.[1];
+  const imageContent = parsedContent[0];
+
   return (
-    <div class="avatar placeholder text-xs">
+    <div class="avatar placeholder md:small-regular body-regular">
       <div
-        class={`rounded-full w-8 h-8 ${colors[content] ?? colors[variant]} ${
+        class={`rounded-md ${isColor ? 'w-[40px]': 'w-[90px]'} h-[40px] ${colors[content] ?? colors[variant]} ${
           variants[variant]
         }`}
       >
-        <span class="uppercase">
-          {colors[content] ? "" : content.substring(0, 2)}
-        </span>
+        {isColor ? (
+          <img src={imageUrl} alt={imageContent.replace("Cor: ", "")} />
+        ) : (
+          <span class={`uppercase`}>
+            {colors[content] ? "" : content}
+          </span>
+        )} 
       </div>
     </div>
   );

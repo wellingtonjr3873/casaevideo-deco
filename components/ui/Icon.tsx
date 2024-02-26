@@ -2,6 +2,7 @@ import { asset } from "$fresh/runtime.ts";
 import type { JSX } from "preact";
 
 export type AvailableIcons =
+  |  "Home"
   | "ArrowsPointingOut"
   | "Bars3"
   | "ChevronLeft"
@@ -76,10 +77,17 @@ export type AvailableIcons =
   | "Padlock"
   | "Cart"
   | "Hamburguer"
+  | "ExpressPicking"
   | "Frete"
   | "ArrowDown"
   | "Wishlist"
-  | "MyOrders";
+  | "MyOrders"
+  | "CVCreditCard"
+  | "DecreaseButton"
+  | "IncreaseButton"
+  | "Image"
+  | "Video"
+  | "3D";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
@@ -104,7 +112,11 @@ function Icon(
       height={height ?? size}
       strokeWidth={strokeWidth}
     >
-      <use href={asset(`/sprites.svg#${id}`)} />
+      <use 
+        width={width ?? size}
+        height={height ?? size}
+        href={asset(`/sprites.svg#${id}`)}
+      />
     </svg>
   );
 }

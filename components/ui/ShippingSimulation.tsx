@@ -3,6 +3,7 @@ import { useCallback } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
+import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
 
 export interface Props {
@@ -43,15 +44,18 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 p-4 bg-base-200 rounded-[4px]">
+    <ul class="flex flex-col gap-4 bg-base-200 rounded-[4px]">
       {methods.map((method) => (
-        <li class="flex justify-between items-center border-base-200 not-first-child:border-t">
-          <span class="text-button text-center">
-            Entrega {method.name}
-          </span>
-          <span class="text-button">
-            até {formatShippingEstimate(method.shippingEstimate)}
-          </span>
+        <li class="flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1">
+          <div class="flex flex-col">
+            <span class="text-button text-left">
+              Entrega {method.name}
+            </span>
+            <span class="text-button">
+              até {formatShippingEstimate(method.shippingEstimate)}
+            </span>
+          </div>
+
           <span class="text-base font-semibold text-right">
             {method.price === 0 ? "Grátis" : (
               formatPrice(method.price / 100, currencyCode, locale)
@@ -92,26 +96,24 @@ function ShippingSimulation({ items }: Props) {
   }, []);
 
   return (
-    <div class="flex flex-col gap-2">
-      <div class="flex flex-col">
-        <span>Calcular frete</span>
-        <span>
-          Informe seu CEP para consultar os prazos de entrega
-        </span>
+    <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-scroll">
+      <div class="flex gap-2 body-regular text-neutral-900">
+        <Icon id="Frete" class="text-brand-secondary-900" width={24} height={24} />
+        <span>Calcule o prazo de entrega</span>
       </div>
 
       <form
-        class="join"
         onSubmit={(e) => {
           e.preventDefault();
           handleSimulation();
         }}
+        class="flex gap-2"
       >
         <input
           as="input"
           type="text"
-          class="input input-bordered join-item"
-          placeholder="Seu cep aqui"
+          class="input input-bordered w-full"
+          placeholder="CEP"
           value={postalCode.value}
           maxLength={8}
           size={8}
@@ -119,7 +121,7 @@ function ShippingSimulation({ items }: Props) {
             postalCode.value = e.currentTarget.value;
           }}
         />
-        <Button type="submit" loading={loading.value} class="join-item">
+        <Button type="submit" loading={loading.value}>
           Calcular
         </Button>
       </form>
