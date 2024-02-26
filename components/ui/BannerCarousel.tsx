@@ -225,7 +225,7 @@ function Dots({ bannerImages, interval = 0 }: Props) {
 function Buttons() {
   return (
     <>
-      <div class="absolute left-[-20px] top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden">
+      <div class="absolute left-0 top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden xl-b:left-[-20px]">
         <Slider.PrevButton class="">
           <Icon
             class="text-base-100"
@@ -235,7 +235,7 @@ function Buttons() {
           />
         </Slider.PrevButton>
       </div>
-      <div class="absolute right-[-20px] top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden">
+      <div class="absolute right-0 top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden xl-b:right-[-20px]">
         <Slider.NextButton class="">
           <Icon
             class="text-base-100"
@@ -256,7 +256,7 @@ function BannerCarousel(props: Props) {
   return (
     <div
       id={id}
-      class="grid grid-cols-[48px_1fr_48px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto]"
+      class="grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0"
     >
       <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6 max-[768px]:px-4">
         {bannerImages?.map((image, index) => {
