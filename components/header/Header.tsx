@@ -1,12 +1,14 @@
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import Searchbar from "$store/components/search/Searchbar.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
+import Searchbar from "$store/islands/Header/Searchbar.tsx";
+
+
 
 interface Categories {
   items: {
@@ -90,7 +92,7 @@ function Header({
               )}
             </figure>
             <div class="w-full">
-              <Searchbar {...searchbar} platform={platform} />
+            {!isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
             </div>
             <div class="flex items-center gap-2">
               {/* user */}
@@ -222,7 +224,7 @@ function Header({
             </div>
           </div>
           <div>
-            <Searchbar {...searchbar} platform={platform} />
+          {isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
           </div>
         </div>
       </header>
