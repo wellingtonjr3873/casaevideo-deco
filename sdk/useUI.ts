@@ -11,6 +11,7 @@ const displaySubMenu = signal(false);
 const displaySubMenuIndex = signal(-1);
 const displaySearchPopup = signal(false);
 const displaySearchDrawer = signal(false);
+const displayGeoLocationPointPopup = signal(false);
 
 const state = {
   displayCart,
@@ -19,6 +20,7 @@ const state = {
   displaySubMenuIndex,
   displaySearchPopup,
   displaySearchDrawer,
+  displayGeoLocationPointPopup,
 };
 
 // Keyboard event listeners

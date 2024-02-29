@@ -6,6 +6,7 @@ import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
+import GeoLocationPointBar from "../../islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
 
 interface Categories {
@@ -135,19 +136,19 @@ function Header({
             <nav class="w-full flex">
               <ul class="w-full flex items-center justify-between">
                 <li class="flex items-center">
-                
+
                   <span class="flex">
 
-                  <MenuButton />
-                 {!isMobile && <Drawers
-                    menu={{ items: navItems }}
-                    platform={platform}
-                  />}
+                    <MenuButton />
+                    {!isMobile && <Drawers
+                      menu={{ items: navItems }}
+                      platform={platform}
+                    />}
 
                   </span>
                   <span class="small-bold hover:underline-offset-1">
-              Categorias
-            </span> 
+                    Categorias
+                  </span>
                 </li>
                 {categories?.items?.map((item) => {
                   return (
@@ -163,6 +164,9 @@ function Header({
             </nav>
           </div>
         </div>
+        <div className="hidden lg:flex">
+          <GeoLocationPointBar />
+        </div>
 
         {/* mobile version */}
 
@@ -172,9 +176,9 @@ function Header({
               <span class="flex">
                 <MenuButton />
                 {isMobile && <Drawers
-                    menu={{ items: navItems }}
-                    platform={platform}
-                  />}
+                  menu={{ items: navItems }}
+                  platform={platform}
+                />}
               </span>
               {logo && (
                 <Picture>
@@ -224,6 +228,9 @@ function Header({
           <div>
             <Searchbar {...searchbar} platform={platform} />
           </div>
+        </div>
+        <div className="lg:hidden">
+          <GeoLocationPointBar />
         </div>
       </header>
     </>
