@@ -28,7 +28,6 @@ function MostSearchedProducts({
             {product.alt}
           </a>
         ))}
-
       </div>
     </section>
   );
