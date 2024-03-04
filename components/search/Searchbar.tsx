@@ -69,7 +69,6 @@ function Searchbar({
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
 
-
   return (
     <div class="w-full grid gap-8 overflow-y-hidden h-[40px]">
       <form
@@ -116,7 +115,7 @@ function Searchbar({
           displaySearchPopup.value = false
         }}/>
       }
-      <div
+     { true && <div
         class={`overflow ${!hasProducts && !hasTerms ? "hidden" : ""}  ${displaySearchPopup.value ? "block" : "hidden"} absolute mt-10 z-[99] bg-neutral-50 left-[16px] right-[16px] lg:left-[10%] lg:right-[unset] xl-b:left-[unset]`}
             
       >
@@ -197,11 +196,11 @@ function Searchbar({
               )})}
               </div>
 
-              <a href={`/s?q=${searches[0].term}`} class="x-small-regular">veja todos os {searches[0].count} produtos</a>
+         { searches[0]?.term && <a href={`/s?q=${searches[0].term}`} class="x-small-regular">veja todos os {searches[0].count} produtos</a> }
             </div>
           </div>
         </div>
-      </div>
+      </div> }
     </div>
   );
 }
