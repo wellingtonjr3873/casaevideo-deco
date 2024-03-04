@@ -48,8 +48,8 @@ function GeoLocationPoint() {
             })
             .catch((err) => {
                 console.error('ocorreu um erro', err)
-                localStorage.setItem("USER_CEP", '')
-                setUserCurrentCep(() => ({ value: '', loading: false }))
+                localStorage.setItem("USER_CEP", value)
+                setUserCurrentCep(() => ({ value: value, loading: false }))
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false
                 }, timeout);
