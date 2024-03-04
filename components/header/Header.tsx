@@ -60,14 +60,14 @@ function Header({
   const platform = usePlatform();
   return (
     <>
-      <header class="bg-brand-terciary-1 h-[168px]">
+      <header id="header" class="bg-brand-terciary-1 h-[168px]">
         <div class="h-12 flex items-center justify-center bg-complementary-2">
           <p class="body-bold text-neutral-50">Destaque</p>
         </div>
 
         {/* desktop version */}
 
-        <div class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
+        <div  class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
           <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-4">
             <figure>
               {logo && (
