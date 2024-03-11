@@ -80,11 +80,9 @@ const manifest = {
     "deco-sites/casaevideo/sections/Links/Shortcuts.tsx": $$$$$$21,
     "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$22,
     "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$23,
-    "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx":
-      $$$$$$24,
+    "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx": $$$$$$24,
     "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$25,
-    "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
-      $$$$$$26,
+    "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx": $$$$$$26,
     "deco-sites/casaevideo/sections/Product/ImageGallerySlider.tsx": $$$$$$27,
     "deco-sites/casaevideo/sections/Product/MountedPDP.tsx": $$$$$$28,
     "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$29,
