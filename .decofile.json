@@ -3507,6 +3507,9 @@
                 "type": "scroll",
                 "payload": 500
               },
+              "__resolveType": "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx",
+              "titleComponent": "Produtos mais buscados",
+
               "searchedProducts": [
                 {
                   "alt": "Airfryer",
@@ -3584,9 +3587,594 @@
                   "alt": "Fogão",
                   "link": "/s?q=Fogão"
                 }
+              ]
+            },
+            {
+              "__resolveType": "Newsletter - default"
+            },
+            {
+              "__resolveType": "Footer - 01"
+            },
+            {
+              "__resolveType": "theme-default"
+            }
+          ]
+        },
+        {
+          "rule": {
+            "__resolveType": "website/matchers/always.ts"
+          },
+          "value": [
+            {
+              "noIndexing": false,
+              "__resolveType": "website/sections/Seo/Seo.tsx"
+            },
+            {
+              "__resolveType": "Header - 01"
+            },
+            {
+              "images": [
+                {
+                  "alt": "/feminino",
+                  "action": {
+                    "href": "https://www.deco.cx/",
+                    "label": "deco.cx",
+                    "title": "VTEX Store",
+                    "subTitle": "Visit our site and start building now:"
+                  },
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/24278f9e-412d-4a8a-b2d3-57353bb1b368",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/2291/96e58473-71aa-4419-af42-7d1a3d66b1ae"
+                },
+                {
+                  "alt": "/feminino",
+                  "action": {
+                    "href": "https://www.deco.cx/",
+                    "label": "deco.cx",
+                    "title": "VTEX Store",
+                    "subTitle": "Visit our site and start building now:"
+                  },
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/eeaa624c-a3e1-45e8-a6fe-034233cfbcd0",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7949d031-9a79-4639-b85e-62fd90af85a9"
+                },
+                {
+                  "alt": "/feminino",
+                  "action": {
+                    "href": "https://www.deco.cx/",
+                    "label": "deco.cx",
+                    "title": "VTEX Store",
+                    "subTitle": "Visit our site and start building now:"
+                  },
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/ae89571c-4a7c-44bf-9aeb-a341fd049d19",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/239/7ec121e4-5cfe-4b7b-b942-d1ed4493803d"
+                }
+              ],
+              "preload": true,
+              "bannerImages": [
+                {
+                  "alt": "VERÃO CASA E VIDEO",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/fea18a10-6ce8-4ef9-b80e-4093317188dd",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/0cccdfe3-3930-402b-9963-7f1e8fc021a2",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "VOLTA AS AULAS",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/c64adc48-8860-4749-b98a-d213bb249bfa",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/b53e3aad-2aee-49da-9053-8c16c31bcb53",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "CARNAVAL DE PREÇOS BAIXOS",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/f606f57a-a95b-4ada-adc9-6875a10b2970",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/fd5cdd00-3d79-452d-b075-a2c5303ffd82",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "AR E VENTILAÇÃO",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/87df16b3-01e4-4b98-b734-e9ea0973265a",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/6ce53574-dc2c-4862-a6af-c1f9836d31fe",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "NÓS AMAMOS AIR FRYER",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/50dfd6c8-3774-4990-8b9b-df9d8a93c6c6",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/5d1e64e9-ec0a-4849-8156-7a695d1c5f1a",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "RENOVE SUA COZINHA ELETRO",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/9d425bfd-3bbb-45fb-be84-3edd9b189cac",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/012fef44-a4e0-4e06-8d1b-fcc14273de7c",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "TV SMART TV",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/1734daa5-50df-4865-b3bf-0405f29cb2a0",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/60eb27fb-6225-4770-b473-acb5ed3ba618",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "MUNDO CASA EM ATE 10X SEM JUROS",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/a5194b2e-d3d7-4ba1-ad8a-bc976198cfe7",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/634c0005-c5c9-4bc9-9881-06822a2b9cf9",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "LIMPEZA E ORGANIZAÇÃO",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/fe395019-24f1-4b20-9b27-4d6d259c4432",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/ace109d7-3ffe-4d69-8f4e-3272be930757",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "RENOVE SEU ENXOVAL",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/39abcfd3-a506-4992-bde6-3f5509e80ee1",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/2773ef96-f7c3-4e79-921c-a0e212bcf855",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                },
+                {
+                  "alt": "VERÃO CASA E VIDEO",
+                  "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/fd475b2a-7a02-4bae-9a10-688b2944c64a",
+                  "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/0104ecdb-4556-4c19-960c-e5df7e2a31e4",
+                  "dateEndAt": "2024-03-30T20:14:00.000Z",
+                  "dateStartAt": "2024-01-31T20:14:00.000Z"
+                }
+              ],
+              "__resolveType": "deco-sites/casaevideo/sections/Images/Carousel.tsx"
+            },
+            {
+              "__resolveType": "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx"
+            },
+            {
+              "title": "Tudo para sua casa!",
+              "layout": {
+                "headerfontSize": "Normal",
+                "headerAlignment": "center"
+              },
+              "products": {
+                "props": {
+                  "sort": "price:desc",
+                  "count": 12,
+                  "collection": "870"
+                },
+                "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+              },
+              "cardLayout": {
+                "hide": {},
+                "basics": {
+                  "oldPriceSize": "Small",
+                  "contentAlignment": "Left"
+                },
+                "onMouseOver": {
+                  "card": "None",
+                  "image": "Change image"
+                },
+                "elementsPositions": {
+                  "skuSelector": "Top",
+                  "favoriteIcon": "Top right"
+                }
+              },
+              "description": "Tudo para sua casa!",
+              "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
+            },
+            {
+              "display": true,
+              "behavior": {
+                "type": "scroll",
+                "payload": 500
+              },
+              "sections": [
+                {
+                  "shelfProps": {
+                    "title": "Ofertas que você vai gostar",
+                    "products": {
+                      "props": {
+                        "sort": "price:desc",
+                        "count": 35,
+                        "collection": "1954"
+                      },
+                      "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+                    }
+                  },
+                  "bluredImage": {
+                    "mobile": {
+                      "alt": "Produtos para usuário logado.",
+                      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/692268e2-924e-4303-908c-200366d07258"
+                    },
+                    "desktop": {
+                      "alt": "Produtos para usuário logado.",
+                      "src": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/6a934d5d-55fc-4c7f-acd3-f29a7645ac28"
+                    }
+                  },
+                  "__resolveType": "deco-sites/casaevideo/sections/HiddenContentLogin/HiddenContentLogin.tsx",
+                  "titleComponent": "Ofertas que você vai gostar!"
+                },
+                {
+                  "title": "Tudo para sua casa!",
+                  "layout": {
+                    "headerfontSize": "Normal",
+                    "headerAlignment": "center"
+                  },
+                  "products": {
+                    "props": {
+                      "sort": "price:desc",
+                      "count": 12,
+                      "collection": "2247"
+                    },
+                    "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+                  },
+                  "cardLayout": {
+                    "hide": {},
+                    "basics": {
+                      "oldPriceSize": "Small",
+                      "contentAlignment": "Left"
+                    },
+                    "onMouseOver": {
+                      "card": "None",
+                      "image": "Change image"
+                    },
+                    "elementsPositions": {
+                      "skuSelector": "Top",
+                      "favoriteIcon": "Top right"
+                    }
+                  },
+                  "description": "Tudo para sua casa!",
+                  "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
+                },
+                {
+                  "list": [
+                    {
+                      "href": "https://www.casaevideo.com.br/cupom-de-desconto",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df068b04-fda8-4414-9979-006abf5822b5",
+                      "label": "Pegue seu Cupom",
+                      "description": "Pegue seu Cupom"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/telefones-e-celulares/celular-e-smartphone?PS=20&O=OrderByTopSaleDESC",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/790fe8f8-1d07-4553-98f3-1140fd27ba67",
+                      "label": "Smartphones",
+                      "description": "Smartphones"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/tv-e-video/smart-tv-e-tv",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/64f58dc9-9696-4b15-a21b-86c7bd1b3910",
+                      "label": "TVs e Smart TVs",
+                      "description": "TVs e Smart TVs"
+                    },
+                    {
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/ad22dd94-b97a-4299-88a7-62d3b685fbd6",
+                      "label": "Informática",
+                      "description": "Informática"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/eletroportateis?PS=20&O=OrderByTopSaleDESC",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/8d2b007a-b6b7-4224-9f87-ba94452e91d4",
+                      "label": "Eletroportáteis",
+                      "description": "Eletroportáteis"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/ar-e-ventilacao",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/98a782f1-94b0-42d7-982c-c5cd12cf7706",
+                      "label": "Ventiladores",
+                      "description": "Ventiladores"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/esporte-e-lazer/praia-e-piscina",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/e8aef4ea-c71a-4da0-8b89-f9691ff19f5d",
+                      "label": "Praia e Piscina",
+                      "description": "Praia e Piscina"
+                    },
+                    {
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/21c4713f-f551-4031-9818-e78af4ba9eca",
+                      "label": "Panelas e Frigideiras",
+                      "description": "Panelas e Frigideiras"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/utilidades-domesticas?PS=20&O=OrderByTopSaleDESC",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/bc3656bc-56b9-4571-b38b-7c8d30dcf814",
+                      "label": "Utilidades domésticas",
+                      "description": "Utilidades domésticas"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/automotivo/pneus-e-camaras/pneus",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/932378e6-f534-4578-987a-8b853c86b075",
+                      "label": "Pneus",
+                      "description": "Pneus"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/ferramentas-e-construcao",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/d26e24e3-f2ae-4d1f-9676-f94f410e9ac2",
+                      "label": "Ferramentas",
+                      "description": "Ferramentas"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/moveis",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/303b5b7e-a58a-4ec5-a89d-4ff0c27d164a",
+                      "label": "Móveis",
+                      "description": "Móveis"
+                    },
+                    {
+                      "href": "https://casaevideonewio.myvtex.com/gamer",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/221b86a8-56a7-4480-8f7d-bdb8bbdfe8ff",
+                      "label": "Gamer",
+                      "description": "Gamer"
+                    },
+                    {
+                      "href": "https://www.casaevideo.com.br/eletrodomesticos",
+                      "image": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/3ac4a7c8-a234-47e8-9a57-f9512fa0eb9e",
+                      "label": "Eletrodomésticos",
+                      "description": "Eletrodomésticos"
+                    }
+                  ],
+                  "__resolveType": "deco-sites/casaevideo/sections/Departament/DepartamentList.tsx"
+                },
+                {
+                  "title": "Ofertas imperdíveis",
+                  "banners": [
+                    {
+                      "alt": "SMARTPHONES",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/c0603775-609e-4e26-ac24-b4b3b6525cbc",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/89801581-86e5-4d70-ac19-0115413508a7"
+                    },
+                    {
+                      "alt": "AR CONDICIONADO",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/c874be8f-7235-4a11-863f-05dc9c2d31f6",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/b74ffac1-0cc0-48e6-9fd8-8a6b941fcddc"
+                    },
+                    {
+                      "alt": "PANELA ELETRICA DE ARROZ",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/15b8fe54-cfe7-4218-8514-9e69adb7a454",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/63c65e64-5e4a-4c93-8869-a45efa73973d"
+                    },
+                    {
+                      "alt": "FESTIVAL DE MOVEIS",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7f39ac90-0aa0-40f1-aa2b-a6dbc7eafe66",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/b5c387eb-ac4d-4fe2-a0c9-30af828abacf"
+                    }
+                  ],
+                  "borderRadius": {
+                    "mobile": "xl",
+                    "desktop": "xl"
+                  },
+                  "itemsPerLine": {
+                    "mobile": 1,
+                    "desktop": 2
+                  },
+                  "__resolveType": "deco-sites/casaevideo/sections/Images/BannerIsland.tsx"
+                },
+                {
+                  "title": "Tudo para sua casa!",
+                  "layout": {
+                    "headerfontSize": "Normal",
+                    "headerAlignment": "center"
+                  },
+                  "products": {
+                    "props": {
+                      "sort": "price:desc",
+                      "count": 12,
+                      "collection": "662"
+                    },
+                    "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+                  },
+                  "cardLayout": {
+                    "hide": {},
+                    "basics": {
+                      "oldPriceSize": "Small",
+                      "contentAlignment": "Left"
+                    },
+                    "onMouseOver": {
+                      "card": "None",
+                      "image": "Change image"
+                    },
+                    "elementsPositions": {
+                      "skuSelector": "Top",
+                      "favoriteIcon": "Top right"
+                    }
+                  },
+                  "description": "Tudo para sua casa!",
+                  "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
+                },
+                {
+                  "title": "Tudo para sua casa!",
+                  "layout": {
+                    "headerfontSize": "Normal",
+                    "headerAlignment": "center"
+                  },
+                  "products": {
+                    "props": {
+                      "sort": "price:desc",
+                      "count": 12,
+                      "collection": "1730"
+                    },
+                    "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+                  },
+                  "cardLayout": {
+                    "hide": {},
+                    "basics": {
+                      "oldPriceSize": "Small",
+                      "contentAlignment": "Left"
+                    },
+                    "onMouseOver": {
+                      "card": "None",
+                      "image": "Change image"
+                    },
+                    "elementsPositions": {
+                      "skuSelector": "Top",
+                      "favoriteIcon": "Top right"
+                    }
+                  },
+                  "description": "Tudo para sua casa!",
+                  "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
+                },
+                {
+                  "banners": [
+                    {
+                      "alt": "A PARTIR DE 294,40",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/d924c76d-846e-4465-8063-87253e587126",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/cae3af56-00c1-4ac2-bdaf-58b317b5be2a",
+                      "bannerWidthMob": 160,
+                      "bannerHeightMob": 120,
+                      "bannerWidthDesk": 632,
+                      "bannerHeightDesk": 168
+                    },
+                    {
+                      "alt": "OS PREÇOS MAIS BAIXOS VOCE ENCONTRA NO NOSSO APP!",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/0a001808-3345-4a4e-bdd8-ed3abfe2f51c",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/32dcd4ee-d491-4a81-8a1c-6df81c66a033",
+                      "bannerWidthMob": 160,
+                      "bannerHeightMob": 120,
+                      "bannerWidthDesk": 632,
+                      "bannerHeightDesk": 168
+                    }
+                  ],
+                  "itemsPerLine": {
+                    "mobile": 2,
+                    "desktop": 2
+                  },
+                  "__resolveType": "deco-sites/casaevideo/sections/Images/BannersGrid.tsx"
+                },
+                {
+                  "banners": [
+                    {
+                      "alt": "COMPRE E RETIRE EM LOJA",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/eea266d1-5928-4199-863b-8784b875e1ec",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/8d1527e9-4dc5-41b7-8ad0-14db876e9c41",
+                      "bannerWidthMob": 328,
+                      "bannerHeightMob": 120,
+                      "bannerWidthDesk": 1280,
+                      "bannerHeightDesk": 168
+                    }
+                  ],
+                  "itemsPerLine": {
+                    "mobile": 1,
+                    "desktop": 1
+                  },
+                  "__resolveType": "deco-sites/casaevideo/sections/Images/BannersGrid.tsx"
+                },
+                {
+                  "title": "Tudo para sua casa!",
+                  "layout": {
+                    "headerfontSize": "Normal",
+                    "headerAlignment": "center"
+                  },
+                  "products": {
+                    "props": {
+                      "sort": "price:desc",
+                      "count": 12,
+                      "collection": "914"
+                    },
+                    "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+                  },
+                  "cardLayout": {
+                    "hide": {},
+                    "basics": {
+                      "oldPriceSize": "Small",
+                      "contentAlignment": "Left"
+                    },
+                    "onMouseOver": {
+                      "card": "None",
+                      "image": "Change image"
+                    },
+                    "elementsPositions": {
+                      "skuSelector": "Top",
+                      "favoriteIcon": "Top right"
+                    }
+                  },
+                  "description": "Tudo para sua casa!",
+                  "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
+                },
+                {
+                  "title": "Tudo para sua casa!",
+                  "layout": {
+                    "headerfontSize": "Normal",
+                    "headerAlignment": "center"
+                  },
+                  "products": {
+                    "props": {
+                      "sort": "price:desc",
+                      "count": 12,
+                      "collection": "867"
+                    },
+                    "__resolveType": "vtex/loaders/intelligentSearch/productList.ts"
+                  },
+                  "cardLayout": {
+                    "hide": {},
+                    "basics": {
+                      "oldPriceSize": "Small",
+                      "contentAlignment": "Left"
+                    },
+                    "onMouseOver": {
+                      "card": "None",
+                      "image": "Change image"
+                    },
+                    "elementsPositions": {
+                      "skuSelector": "Top",
+                      "favoriteIcon": "Top right"
+                    }
+                  },
+                  "description": "Tudo para sua casa!",
+                  "__resolveType": "deco-sites/casaevideo/sections/Product/ProductShelf.tsx"
+                },
+                {
+                  "title": "Ofertas imperdíveis",
+                  "banners": [
+                    {
+                      "alt": "SMARTPHONES",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/c0603775-609e-4e26-ac24-b4b3b6525cbc",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/89801581-86e5-4d70-ac19-0115413508a7"
+                    },
+                    {
+                      "alt": "AR CONDICIONADO",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/c874be8f-7235-4a11-863f-05dc9c2d31f6",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/b74ffac1-0cc0-48e6-9fd8-8a6b941fcddc"
+                    },
+                    {
+                      "alt": "PANELA ELETRICA DE ARROZ",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/15b8fe54-cfe7-4218-8514-9e69adb7a454",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/63c65e64-5e4a-4c93-8869-a45efa73973d"
+                    },
+                    {
+                      "alt": "FESTIVAL DE MOVEIS",
+                      "href": "/",
+                      "srcMobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7f39ac90-0aa0-40f1-aa2b-a6dbc7eafe66",
+                      "srcDesktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/b5c387eb-ac4d-4fe2-a0c9-30af828abacf"
+                    }
+                  ],
+                  "borderRadius": {
+                    "mobile": "xl",
+                    "desktop": "xl"
+                  },
+                  "itemsPerLine": {
+                    "mobile": 1,
+                    "desktop": 2
+                  },
+                  "__resolveType": "deco-sites/casaevideo/sections/Images/BannerIsland.tsx"
+                }
+              ],
+              "__resolveType": "website/sections/Rendering/Deferred.tsx"
+
               ],
               "__resolveType": "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx",
               "titleComponent": "Produtos mais buscados"
+
             },
             {
               "__resolveType": "Newsletter - default"

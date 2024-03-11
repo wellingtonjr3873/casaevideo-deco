@@ -72,26 +72,28 @@ function Header({
 
         <div  class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
           <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-4">
-            <figure>
-              {logo && (
-                <Picture>
-                  <Source
-                    media="(max-width: 768px)"
-                    src={logo.mobile.src}
-                    width={140}
-                    height={24}
-                  />
-                  <Source
-                    media="(min-width: 768px)"
-                    src={logo.desktop.src}
-                    width={240}
-                    height={40}
-                  />
+            <a href="/" title="Link de retorno para página inicial">
+              <figure>
+                {logo && (
+                  <Picture>
+                    <Source
+                      media="(max-width: 768px)"
+                      src={logo.mobile.src}
+                      width={140}
+                      height={24}
+                    />
+                    <Source
+                      media="(min-width: 768px)"
+                      src={logo.desktop.src}
+                      width={240}
+                      height={40}
+                    />
 
-                  <img src={logo?.desktop.src} />
-                </Picture>
-              )}
-            </figure>
+                    <img src={logo?.desktop.src} />
+                  </Picture>
+                )}
+              </figure>
+            </a>
             <div class="w-full">
             {!isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
             </div>
@@ -183,22 +185,25 @@ function Header({
                 />}
               </span>
               {logo && (
-                <Picture>
-                  <Source
-                    media="(max-width: 768px)"
-                    src={logo.mobile.src}
-                    width={140}
-                    height={24}
-                  />
-                  <Source
-                    media="(min-width: 768px)"
-                    src={logo.desktop.src}
-                    width={240}
-                    height={40}
-                  />
+                <a href="/" title="Link de retorno para página inicial">
 
-                  <img src={logo?.desktop.src} />
-                </Picture>
+                  <Picture>
+                    <Source
+                      media="(max-width: 768px)"
+                      src={logo.mobile.src}
+                      width={140}
+                      height={24}
+                    />
+                    <Source
+                      media="(min-width: 768px)"
+                      src={logo.desktop.src}
+                      width={240}
+                      height={40}
+                    />
+
+                    <img src={logo?.desktop.src} />
+                  </Picture>
+                </a>
               )}
               {/* <Image src={logo?.src} alt={logo?.alt} width={100} height={50} /> */}
             </div>
