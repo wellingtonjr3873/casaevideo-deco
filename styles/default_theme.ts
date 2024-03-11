@@ -29,6 +29,7 @@ export const DEFAULT_THEME = {
   "--complementary-2": "#A310F2",
   "--complementary-3": "white",
   "--complementary-4": "white",
+  "--complementary-5": "#babcbe",
 
   "--neutral-1": "#000000",
   "--neutral-900": "#393939",
