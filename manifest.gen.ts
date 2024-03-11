@@ -6,6 +6,7 @@ import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
+import * as $$$2 from "./loaders/search/intelligenseSearch.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
@@ -30,7 +31,7 @@ import * as $$$$$$20 from "./sections/Links/LinkTree.tsx";
 import * as $$$$$$21 from "./sections/Links/Shortcuts.tsx";
 import * as $$$$$$22 from "./sections/Miscellaneous/CampaignTimer.tsx";
 import * as $$$$$$23 from "./sections/Miscellaneous/CookieConsent.tsx";
-import * as $$$$$$24 from "./sections/Miscellaneous/YourviewsScript.tsx";
+import * as $$$$$$24 from "./sections/MostSearchedProducts/MostSearchedProducts.tsx";
 import * as $$$$$$25 from "./sections/Newsletter/Newsletter.tsx";
 import * as $$$$$$26 from "./sections/Product/ImageGalleryFrontBack.tsx";
 import * as $$$$$$27 from "./sections/Product/ImageGallerySlider.tsx";
@@ -51,6 +52,7 @@ const manifest = {
   "loaders": {
     "deco-sites/casaevideo/loaders/Layouts/ProductCard.tsx": $$$0,
     "deco-sites/casaevideo/loaders/List/Sections.tsx": $$$1,
+    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$2,
   },
   "sections": {
     "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
@@ -78,11 +80,9 @@ const manifest = {
     "deco-sites/casaevideo/sections/Links/Shortcuts.tsx": $$$$$$21,
     "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$22,
     "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$23,
-    "deco-sites/casaevideo/sections/Miscellaneous/YourviewsScript.tsx":
-      $$$$$$24,
+    "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx": $$$$$$24,
     "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$25,
-    "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
-      $$$$$$26,
+    "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx": $$$$$$26,
     "deco-sites/casaevideo/sections/Product/ImageGallerySlider.tsx": $$$$$$27,
     "deco-sites/casaevideo/sections/Product/MountedPDP.tsx": $$$$$$28,
     "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$29,

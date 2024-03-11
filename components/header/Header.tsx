@@ -1,12 +1,15 @@
 import CartButtonVTEX from "$store/islands/Header/Cart/vtex.tsx";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import Searchbar from "$store/components/search/Searchbar.tsx";
 import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
+import GeoLocationPointBar from "../../islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
+import Searchbar from "$store/islands/Header/Searchbar.tsx";
+
+
 
 interface Categories {
   items: {
@@ -60,37 +63,39 @@ function Header({
   const platform = usePlatform();
   return (
     <>
-      <header class="bg-brand-terciary-1 h-[168px]">
+      <header id="header" class="bg-brand-terciary-1 h-[168px]">
         <div class="h-12 flex items-center justify-center bg-complementary-2">
           <p class="body-bold text-neutral-50">Destaque</p>
         </div>
 
         {/* desktop version */}
 
-        <div class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
+        <div  class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
           <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-4">
-            <figure>
-              {logo && (
-                <Picture>
-                  <Source
-                    media="(max-width: 768px)"
-                    src={logo.mobile.src}
-                    width={140}
-                    height={24}
-                  />
-                  <Source
-                    media="(min-width: 768px)"
-                    src={logo.desktop.src}
-                    width={240}
-                    height={40}
-                  />
+            <a href="/" title="Link de retorno para página inicial">
+              <figure>
+                {logo && (
+                  <Picture>
+                    <Source
+                      media="(max-width: 768px)"
+                      src={logo.mobile.src}
+                      width={140}
+                      height={24}
+                    />
+                    <Source
+                      media="(min-width: 768px)"
+                      src={logo.desktop.src}
+                      width={240}
+                      height={40}
+                    />
 
-                  <img src={logo?.desktop.src} />
-                </Picture>
-              )}
-            </figure>
+                    <img src={logo?.desktop.src} />
+                  </Picture>
+                )}
+              </figure>
+            </a>
             <div class="w-full">
-              <Searchbar {...searchbar} platform={platform} />
+            {!isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
             </div>
             <div class="flex items-center gap-2">
               {/* user */}
@@ -135,19 +140,19 @@ function Header({
             <nav class="w-full flex">
               <ul class="w-full flex items-center justify-between">
                 <li class="flex items-center">
-                
+
                   <span class="flex">
 
-                  <MenuButton />
-                 {!isMobile && <Drawers
-                    menu={{ items: navItems }}
-                    platform={platform}
-                  />}
+                    <MenuButton />
+                    {!isMobile && <Drawers
+                      menu={{ items: navItems }}
+                      platform={platform}
+                    />}
 
                   </span>
                   <span class="small-bold hover:underline-offset-1">
-              Categorias
-            </span> 
+                    Categorias
+                  </span>
                 </li>
                 {categories?.items?.map((item) => {
                   return (
@@ -163,6 +168,9 @@ function Header({
             </nav>
           </div>
         </div>
+        <div className="hidden lg:flex">
+          <GeoLocationPointBar />
+        </div>
 
         {/* mobile version */}
 
@@ -172,27 +180,30 @@ function Header({
               <span class="flex">
                 <MenuButton />
                 {isMobile && <Drawers
-                    menu={{ items: navItems }}
-                    platform={platform}
-                  />}
+                  menu={{ items: navItems }}
+                  platform={platform}
+                />}
               </span>
               {logo && (
-                <Picture>
-                  <Source
-                    media="(max-width: 768px)"
-                    src={logo.mobile.src}
-                    width={140}
-                    height={24}
-                  />
-                  <Source
-                    media="(min-width: 768px)"
-                    src={logo.desktop.src}
-                    width={240}
-                    height={40}
-                  />
+                <a href="/" title="Link de retorno para página inicial">
 
-                  <img src={logo?.desktop.src} />
-                </Picture>
+                  <Picture>
+                    <Source
+                      media="(max-width: 768px)"
+                      src={logo.mobile.src}
+                      width={140}
+                      height={24}
+                    />
+                    <Source
+                      media="(min-width: 768px)"
+                      src={logo.desktop.src}
+                      width={240}
+                      height={40}
+                    />
+
+                    <img src={logo?.desktop.src} />
+                  </Picture>
+                </a>
               )}
               {/* <Image src={logo?.src} alt={logo?.alt} width={100} height={50} /> */}
             </div>
@@ -222,8 +233,11 @@ function Header({
             </div>
           </div>
           <div>
-            <Searchbar {...searchbar} platform={platform} />
+          {isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
           </div>
+        </div>
+        <div className="lg:hidden">
+          <GeoLocationPointBar />
         </div>
       </header>
     </>
