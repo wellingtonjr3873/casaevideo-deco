@@ -229,7 +229,7 @@ function Footer({
           </div>
           {/* voltar ao topo 8*/}
           <a
-            href="#1654193389"
+            href="#header"
             class="w-[136px] hidden lg:flex py-[8px] px-[12px] small-regular text-[white] items-center justify-center rounded-[6px] bg-brand-primary-1 gap-[8px] text-nowrap"
           >
             Voltar ao topo

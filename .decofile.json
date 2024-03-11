@@ -2932,8 +2932,7 @@
       "variants": [
         {
           "rule": {
-            "includes": "j97kh0fcwv3s",
-            "__resolveType": "website/matchers/host.ts"
+            "__resolveType": "website/matchers/always.ts"
           },
           "value": [
             {
@@ -3510,6 +3509,7 @@
               },
               "__resolveType": "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx",
               "titleComponent": "Produtos mais buscados",
+
               "searchedProducts": [
                 {
                   "alt": "Airfryer",
@@ -4170,6 +4170,11 @@
                 }
               ],
               "__resolveType": "website/sections/Rendering/Deferred.tsx"
+
+              ],
+              "__resolveType": "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx",
+              "titleComponent": "Produtos mais buscados"
+
             },
             {
               "__resolveType": "Newsletter - default"

@@ -1,10 +1,9 @@
 import { signal } from "@preact/signals";
-import type { Suggestion } from "apps/commerce/types.ts";
 import type { Resolved } from "deco/engine/core/resolver.ts";
 import { useCallback } from "preact/compat";
 import { invoke } from "../runtime.ts";
-
-const payload = signal<Suggestion | null>(null);
+import { IntelligenseSearch } from "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts";
+const payload = signal<IntelligenseSearch | null>(null);
 const loading = signal<boolean>(false);
 
 let queue = Promise.resolve();
@@ -17,7 +16,8 @@ const NULLABLE: Resolved<null> = {
 
 const doFetch = async (
   query: string,
-  { __resolveType, ...extraProps }: Resolved<Suggestion | null> = NULLABLE,
+  { __resolveType, ...extraProps }: Resolved<IntelligenseSearch | null> =
+    NULLABLE,
 ) => {
   // Debounce query to API speed
   if (latestQuery !== query) return;
@@ -29,10 +29,10 @@ const doFetch = async (
       key: __resolveType,
       props: { query, ...extraProps },
     };
-    payload.value = await invoke(invokePayload) as Suggestion | null;
+    payload.value = await invoke(invokePayload) as IntelligenseSearch | null;
   } catch (error) {
     console.error(
-      "Something went wrong while fetching suggestions \n",
+      "Something went wrong while fetching IntelligenseSearchs \n",
       error,
     );
   } finally {
@@ -41,7 +41,7 @@ const doFetch = async (
 };
 
 export const useSuggestions = (
-  loader: Resolved<Suggestion | null>,
+  loader: Resolved<IntelligenseSearch | null>,
 ) => {
   const setQuery = useCallback((query: string) => {
     loading.value = true;
