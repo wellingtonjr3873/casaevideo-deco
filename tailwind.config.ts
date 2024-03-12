@@ -30,7 +30,6 @@ export default {
           200: "oklch(var(--neutral-200))",
           100: "oklch(var(--neutral-100))",
           50: "oklch(var(--neutral-50))",
-          100: "oklch(var(--neutral-100))",
         },
         success: "oklch(var(--success))",
       },
