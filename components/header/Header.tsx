@@ -7,6 +7,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
+import { AppContext } from "$store/apps/site.ts";
+import type { SectionProps } from "deco/types.ts";
 
 interface Categories {
   items: {
@@ -18,6 +20,7 @@ interface Categories {
 export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
+  // deno-lint-ignore no-explicit-any
   navItems: any;
   alerts: string[];
   /**
@@ -37,7 +40,8 @@ export interface Props {
     };
   };
   categories?: Categories;
-  isMobile: boolean
+  isMobile: boolean,
+  device: "mobile" | "desktop" | "tablet";
 }
 
 function Header({
@@ -55,9 +59,79 @@ function Header({
     ],
   },
   navItems,
-  isMobile
+  isMobile,
+  device
 }: Props) {
   const platform = usePlatform();
+console.log(device)
+  if(device === "mobile"){
+    return(
+      <>
+        <header class="bg-brand-terciary-1 h-[169px]">
+          <div class="h-12 flex items-center justify-center bg-complementary-2">
+            <p class="body-bold text-neutral-50">Destaque</p>
+          </div>
+          <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
+            <div className="flex justify-between">
+              <div class="flex gap-2 items-center content-start">
+                <span class="flex">
+                  <MenuButton />
+                  {isMobile && <Drawers
+                      menu={{ items: navItems }}
+                      platform={platform}
+                    />}
+                </span>
+                {logo && (
+                  <Picture>
+                    <Source
+                      media="(max-width: 768px)"
+                      src={logo.mobile.src}
+                      width={140}
+                      height={24}
+                    />
+                    <Source
+                      media="(min-width: 768px)"
+                      src={logo.desktop.src}
+                      width={240}
+                      height={40}
+                    />
+
+                    <img src={logo?.desktop.src} />
+                  </Picture>
+                )}
+              </div>
+              <div className="flex items-center justify-end">
+                <a
+                  class="flex items-center justify-center"
+                  href="/login"
+                  aria-label="Log in"
+                >
+                  <Icon
+                    id="User"
+                    strokeWidth={0.4}
+                    size={24}
+                    class="text-neutral-900 fill-transparent"
+                  />
+                </a>
+                {platform === "vtex" && (
+                  <CartButtonVTEX>
+                    <Icon
+                      id="Cart"
+                      size={24}
+                      className="fill-brand-secondary-900"
+                    />
+                  </CartButtonVTEX>
+                )}
+              </div>
+            </div>
+            <div>
+              <Searchbar {...searchbar} platform={platform} />
+            </div>
+          </div>
+        </header>
+      </>
+    )
+  }
   return (
     <>
       <header class="bg-brand-terciary-1 h-[168px]">
@@ -163,69 +237,8 @@ function Header({
             </nav>
           </div>
         </div>
-
-        {/* mobile version */}
-
-        <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
-          <div className="flex justify-between">
-            <div class="flex gap-2 items-center content-start">
-              <span class="flex">
-                <MenuButton />
-                {isMobile && <Drawers
-                    menu={{ items: navItems }}
-                    platform={platform}
-                  />}
-              </span>
-              {logo && (
-                <Picture>
-                  <Source
-                    media="(max-width: 768px)"
-                    src={logo.mobile.src}
-                    width={140}
-                    height={24}
-                  />
-                  <Source
-                    media="(min-width: 768px)"
-                    src={logo.desktop.src}
-                    width={240}
-                    height={40}
-                  />
-
-                  <img src={logo?.desktop.src} />
-                </Picture>
-              )}
-              {/* <Image src={logo?.src} alt={logo?.alt} width={100} height={50} /> */}
-            </div>
-
-            <div className="flex items-center justify-end">
-              <a
-                class="flex items-center justify-center"
-                href="/login"
-                aria-label="Log in"
-              >
-                <Icon
-                  id="User"
-                  strokeWidth={0.4}
-                  size={24}
-                  class="text-neutral-900 fill-transparent"
-                />
-              </a>
-              {platform === "vtex" && (
-                <CartButtonVTEX>
-                  <Icon
-                    id="Cart"
-                    size={24}
-                    className="fill-brand-secondary-900"
-                  />
-                </CartButtonVTEX>
-              )}
-            </div>
-          </div>
-          <div>
-            <Searchbar {...searchbar} platform={platform} />
-          </div>
-        </div>
       </header>
+    
     </>
   );
 }
