@@ -52,6 +52,7 @@ interface Props {
 
   layout?: Layout;
   platform?: Platform;
+  device?: "mobile" | "desktop" | "tablet";
 }
 
 const relative = (url: string) => {
@@ -63,7 +64,7 @@ const WIDTH = 210;
 const HEIGHT = 210;
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform, index }: Props,
+  { product, preload, itemListName, layout, platform, index, device }: Props,
 ) {
   const {
     url,
@@ -235,7 +236,7 @@ function ProductCard(
             decoding="async"
           />
           {(!l?.onMouseOver?.image ||
-            l?.onMouseOver?.image == "Change image") && (
+            l?.onMouseOver?.image == "Change image") && device == "desktop" && (
             <Image
               src={back?.url ?? front.url!}
               alt={back?.alternateName ?? front.alternateName}

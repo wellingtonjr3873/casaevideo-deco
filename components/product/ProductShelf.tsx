@@ -11,25 +11,23 @@ import { useOffer } from "$store/sdk/useOffer.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
+import { AppContext } from "$store/apps/site.ts";
+import type { SectionProps } from "deco/types.ts";
 
 export interface Props {
   products: Product[] | null;
   title?: string;
-  description?: string;
-  layout?: {
-    headerAlignment?: "center" | "left";
-    headerfontSize?: "Normal" | "Large";
-  };
   cardLayout?: cardLayout;
+  /** *@hide */
+  device: "mobile" | "desktop" | "tablet";
 }
 
 function ProductShelf({
   products,
   title,
-  description,
-  layout,
   cardLayout,
-}: Props) {
+  device,
+}: SectionProps<typeof loader>) {
   const id = useId();
   const platform = usePlatform();
 
@@ -37,6 +35,49 @@ function ProductShelf({
     return null;
   }
 
+  if(device === "mobile"){
+    return(
+      <>
+        <div class="w-full container pl-4 sm:pl-0 py-8 flex flex-col gap-2 lg:py-10 max-w-[1280px] md:px-6 xl-b:px-0">
+          <h5 class="h5-bold w-full">{title}</h5>
+
+            <ul class="flex overflow-x-scroll gap-4 col-span-full row-start-2 row-end-5  max-w-none">
+              {products?.map((product, index) => (
+                <li
+                  class="carousel-item w-full max-w-[160px] last:pr-6 sm:last:pr-0 md:w-[calc(25%-16px)] xl:md:w-[calc(20%-16px)] md:max-w-none md:first:w-[25%] xl:first:w-[20%]"
+                >
+                  <ProductCard
+                    product={product}
+                    itemListName={title}
+                    layout={cardLayout}
+                    platform={platform}
+                    index={index}
+                    device={device}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <SendEventOnView
+              id={id}
+              event={{
+                name: "view_item_list",
+                params: {
+                  item_list_name: title,
+                  items: products.map((product, index) =>
+                    mapProductToAnalyticsItem({
+                      index,
+                      product,
+                      ...(useOffer(product.offers)),
+                    })
+                  ),
+                },
+              }}
+            />
+        </div>
+      </>
+    )
+  }
   return (
     <div class="w-full container pl-4 sm:pl-0 py-8 flex flex-col gap-2 lg:py-10 max-w-[1280px] md:px-6 xl-b:px-0">
       <h5 class="h5-bold w-full">{title}</h5>
@@ -57,6 +98,7 @@ function ProductShelf({
                 layout={cardLayout}
                 platform={platform}
                 index={index}
+                device={device}
               />
             </Slider.Item>
           ))}
@@ -95,5 +137,9 @@ function ProductShelf({
     </div>
   );
 }
+
+export const loader = (props: Props, _req: Request, ctx: AppContext) => {
+  return { ...props, device: ctx.device };
+};
 
 export default ProductShelf;
