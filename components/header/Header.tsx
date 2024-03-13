@@ -41,6 +41,7 @@ export interface Props {
   };
   categories?: Categories;
   isMobile: boolean,
+  /** *@hide */
   device: "mobile" | "desktop" | "tablet";
 }
 
@@ -63,7 +64,7 @@ function Header({
   device
 }: Props) {
   const platform = usePlatform();
-console.log(device)
+  
   if(device === "mobile"){
     return(
       <>
