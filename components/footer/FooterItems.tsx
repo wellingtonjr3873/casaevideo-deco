@@ -94,7 +94,7 @@ export default function FooterItems(
 
             <li class="relative">
               <a
-                href="#1654193389"
+                href="#header"
                 class="flex  h-[24px] w-[24px] text-[white] items-center justify-center rounded-[6px] bg-brand-primary-1 gap-[8px] absolute right-[12px] top-[32px]"
               >
                 <Icon id="ChevronTop" size={16} fill="white" />

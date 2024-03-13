@@ -12,16 +12,16 @@
 import ProductCard from "$store/components/product/ProductCard.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-import Slider from "$store/components/ui/Slider.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { useSuggestions } from "$store/sdk/useSuggestions.ts";
 import { useUI } from "$store/sdk/useUI.ts";
-import { Suggestion } from "apps/commerce/types.ts";
 import { Resolved } from "deco/engine/core/resolver.ts";
-import { useEffect, useRef } from "preact/compat";
+import {  useRef } from "preact/compat";
 import type { Platform } from "$store/apps/site.ts";
-
+import { formatPrice } from "$store/sdk/format.ts";
+import { useOffer } from "$store/sdk/useOffer.ts";
+import { IntelligenseSearch } from "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts";
 // Editable props
 export interface Props {
   /**
@@ -47,9 +47,10 @@ export interface Props {
    * @title Suggestions Integration
    * @todo: improve this typings ({query: string, count: number}) => Suggestions
    */
-  loader: Resolved<Suggestion | null>;
+  loader: Resolved<IntelligenseSearch | null>;
 
   platform: Platform;
+  isMobile?: boolean
 }
 
 function Searchbar({
@@ -58,6 +59,7 @@ function Searchbar({
   name = "q",
   loader,
   platform,
+  isMobile
 }: Props) {
   const id = useId();
   const { displaySearchPopup } = useUI();
@@ -66,12 +68,6 @@ function Searchbar({
   const { products = [], searches = [] } = payload.value ?? {};
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
-
-  useEffect(() => {
-    if (displaySearchPopup.value === true) {
-      searchInputRef.current?.focus();
-    }
-  }, [displaySearchPopup.value]);
 
   return (
     <div class="w-full grid gap-8 overflow-y-hidden h-[40px]">
@@ -89,6 +85,7 @@ function Searchbar({
             const value = e.currentTarget.value;
 
             if (value) {
+              displaySearchPopup.value = true
               sendEvent({
                 name: "search",
                 params: { search_term: value },
@@ -114,62 +111,96 @@ function Searchbar({
             : <Icon id="MagnifyingGlass" size={16} strokeWidth={0.01} />}
         </Button>
       </form>
-
-      <div
-        class={`overflow-y-scroll ${!hasProducts && !hasTerms ? "hidden" : ""}`}
+       {displaySearchPopup.value && <div class="absolute z-[98] inset-[0_0_0_0]" onClick={() => {
+          displaySearchPopup.value = false
+        }}/>
+      }
+     { true && <div
+        class={`overflow ${!hasProducts && !hasTerms ? "hidden" : ""}  ${displaySearchPopup.value ? "block" : "hidden"} absolute mt-10 z-[99] bg-neutral-50 left-[16px] right-[16px] lg:left-[10%] lg:right-[unset] xl-b:left-[unset]`}
+            
       >
-        <div class="gap-4 grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[150px_1fr]">
-          <div class="flex flex-col gap-6">
+        <div class="gap-4 flex flex-col lg:grid grid-cols-1 sm:grid-rows-1 sm:grid-cols-[150px_1fr] p-2 lg:p-4 shadow-[-3px_2px_7px_rgba(0,0,0,.2)]">
+          <div class="flex flex-col gap-6"> 
             <span
-              class="font-medium text-xl"
+              class="body-bold"
               role="heading"
               aria-level={3}
             >
-              Sugestões
+              SUGESTÕES
             </span>
             <ul id="search-suggestion" class="flex flex-col gap-6">
-              {searches.map(({ term }) => (
+              {searches.map(({term, attributes }) => (
                 <li>
                   <a href={`/s?q=${term}`} class="flex gap-4 items-center">
-                    <span>
-                      <Icon
-                        id="MagnifyingGlass"
-                        size={24}
-                        strokeWidth={0.01}
-                      />
-                    </span>
-                    <span dangerouslySetInnerHTML={{ __html: term }} />
+                    <span dangerouslySetInnerHTML={{ __html: term }} class="body-regular" />
                   </a>
+                  <ul class="ml-2">
+                      {attributes?.map(item => {
+                        return <li>
+                              <a href={`/${item.key}`} class="x-small-regular" >
+                                {item.labelValue}
+                              </a>
+                          </li>
+                      })}
+                  </ul>
                 </li>
               ))}
             </ul>
           </div>
           <div class="flex flex-col pt-6 md:pt-0 gap-6 overflow-x-hidden">
             <span
-              class="font-medium text-xl"
+              class="body-bold"
               role="heading"
               aria-level={3}
             >
-              Produtos sugeridos
+              PRODUTOS SUGERIDOS
             </span>
-            <Slider class="carousel">
-              {products.map((product, index) => (
-                <Slider.Item
-                  index={index}
-                  class="carousel-item first:ml-4 last:mr-4 min-w-[200px] max-w-[200px]"
+            <div class="flex flex-col gap-4 items-center">
+              <div class="flex flex-col lg:flex-row gap-1 lg:gap-2">
+
+              {products.map((product, index) => {
+                const { listPrice, price } = useOffer(product.offers);
+                const [ productFrontImage ] = product.image!
+                return (
+                <li
+                  key={index}
+                  class="list-none gap-2 lg:gap-4"
                 >
-                  <ProductCard
-                    product={product}
-                    platform={platform}
-                    index={index}
-                    itemListName="Suggeestions"
-                  />
-                </Slider.Item>
-              ))}
-            </Slider>
+
+                  {!isMobile ?
+                   <div class="carousel-item lg:first:ml-4 last:mr-4 min-w-[155px] lg:min-w-[200px] max-w-[200px]">
+                    <ProductCard
+                      product={product}
+                      platform={platform}
+                      index={index}
+                      itemListName="Suggeestions"
+                      /> 
+                    </div>
+                    :
+                  <a href={product.url} class="flex gap-2">
+                      <picture>
+                        <img src={productFrontImage.url} alt="" class="h-16 w-16 max-w-none"/>
+                      </picture>
+                      <div class="flex flex-col">
+                        <span class="small-regular line-clamp-1 truncate whitespace-break-spaces">{product.name}</span>
+                        <span class="line-through x-small-regular">
+                          {formatPrice(listPrice, product.offers?.priceCurrency)}
+                        </span>
+                        <span class="x-small-bold">
+                          {formatPrice(price, product.offers?.priceCurrency)}
+                        </span>
+                      </div>
+                  </a>
+                  }
+                </li>
+              )})}
+              </div>
+
+         { searches[0]?.term && <a href={`/s?q=${searches[0].term}`} class="x-small-regular">veja todos os {searches[0].count} produtos</a> }
+            </div>
           </div>
         </div>
-      </div>
+      </div> }
     </div>
   );
 }
