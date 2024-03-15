@@ -9,7 +9,8 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-
+import {Props as BannerStopWatchProps} from "$store/islands/BannerStopWatch.tsx";
+import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
 /**
  * @titleBy alt
  */
@@ -24,7 +25,12 @@ export interface Banner {
    * @format datetime
    */
   dateEndAt: string;
-
+  /**
+   * @title É um banner tipo cronometro?
+   * @format boolean
+   * @default false
+   */
+  isStopwatch?: BannerStopWatchProps;
   /** @description Imagem Desktop */
   desktop: ImageWidget;
   /** @description Imagem Mobile */
@@ -63,6 +69,7 @@ const IMAGES_PROPS = {
       dateStartAt: "2024-01-27T00:19:00.000Z",
       dateEndAt: "2024-02-20T00:19:00.000Z",
       alt: "/feminino",
+      isStopwatch: false,
       // action: {
       //   href: "https://www.deco.cx/",
       //   label: "deco.cx",
@@ -88,6 +95,7 @@ const IMAGES_PROPS = {
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
       desktop:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
+      isStopwatch: false
     },
     {
       dateStartAt: "2024-01-27T00:19:00.000Z",
@@ -103,6 +111,7 @@ const IMAGES_PROPS = {
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
       desktop:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
+      isStopwatch: false
     },
     {
       dateStartAt: "2024-02-20T00:19:00.000Z",
@@ -118,6 +127,7 @@ const IMAGES_PROPS = {
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
       desktop:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
+      isStopwatch: false
     },
   ],
   preload: true,
@@ -137,7 +147,10 @@ function BannerItem(
     mobile,
     desktop,
     action,
+    isStopwatch,
+    dateEndAt,  
   } = image;
+
 
   return (
     <a
@@ -146,6 +159,7 @@ function BannerItem(
       aria-label={action?.label}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
+     { isStopwatch && <BannerStopWatch {...isStopwatch} endDateAt={dateEndAt}/> }
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
@@ -201,7 +215,9 @@ function Dots({ bannerImages, interval = 0 }: Props) {
         {bannerImages?.map((image, index) => {
           const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
             getCurrentDateTime() <= image.dateEndAt;
-          return (
+            
+              console.log(dateEndtAt, new Date(image.dateStartAt), new Date(image.dateEndAt), getCurrentDateTime())
+            return (
             <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
               {dateEndtAt &&
                 (
@@ -251,7 +267,7 @@ function Buttons() {
 
 function BannerCarousel(props: Props) {
   const id = useId();
-  const { bannerImages, preload, interval } = { ...IMAGES_PROPS, ...props };
+  const { bannerImages, preload, interval } = { ...props };
 
   return (
     <div
