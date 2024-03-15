@@ -80,6 +80,8 @@ function DepartamentList(props: Props) {
                         width={100}
                         height={100}
                         loading="lazy"
+                        decoding="auto"
+                        preload={false}
                       />
                     </figure>
                   )}

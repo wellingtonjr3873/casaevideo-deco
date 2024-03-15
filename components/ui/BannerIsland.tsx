@@ -125,12 +125,14 @@ export default function BannnerIsland(props: Props) {
                       src={srcMobile}
                       width={150}
                       height={180}
+                      fetchPriority="low"
                     />
                     <Source
                       media="(min-width: 768px)"
                       src={srcDesktop ? srcDesktop : srcMobile}
                       width={272}
                       height={327}
+                      fetchPriority="low"
                     />
                     <img
                       class={`w-full min-w-[150px] h-[calc(40vw*(180/150))] md:h-[calc(22.6vw*(327/272))] md:max-h-[370px] ${

@@ -106,8 +106,7 @@ function ProductCard(
               {l?.hide?.productName ? "" : (
                 <h2
                   class="truncate x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
-                  dangerouslySetInnerHTML={{ __html: name ?? "" }}
-                />
+                >{name ?? "" }</h2>
               )}
             </div>
           )}

@@ -149,14 +149,16 @@ function BannerItem(
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
-          fetchPriority={lcp ? "high" : "auto"}
+          fetchPriority={lcp ? "high" : "low"}
           src={mobile}
           width={320}
           height={280}
+          loading={lcp ? "eager" : "lazy"}
+          decoding={lcp ? "sync":"async"}
         />
         <Source
           media="(min-width: 768px)"
-          fetchPriority={lcp ? "high" : "auto"}
+          fetchPriority={lcp ? "high" : "low"}
           src={desktop}
           width={1280}
           height={280}
@@ -164,6 +166,7 @@ function BannerItem(
         <img
           class="object-cover w-full h-full"
           loading={lcp ? "eager" : "lazy"}
+          decoding={lcp ? "sync":"async"}
           src={desktop}
           alt={alt}
         />
