@@ -28,6 +28,20 @@ function ShippingContent({ simulation }: {
     [] as Sla[],
   ) ?? [];
 
+  let pickupInPointCount = 0;
+  let deliveryCount = 0;
+
+  const filteredDelivery = methods.filter((item) => {
+    if (item.deliveryChannel === "pickup-in-point" && pickupInPointCount < 1) {
+      pickupInPointCount++;
+      return true;
+    } else if (item.deliveryChannel === "delivery" && deliveryCount < 2) {
+      deliveryCount++;
+      return true;
+    }
+    return false;
+  });
+
   const locale = cart.value?.clientPreferencesData.locale || "pt-BR";
   const currencyCode = cart.value?.storePreferencesData.currencyCode || "BRL";
 
@@ -44,12 +58,16 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 bg-base-200 rounded-[4px]">
-      {methods.map((method) => (
-        <li class="flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1">
+    <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 rounded-lg w-full ">
+      {filteredDelivery.map((method) => (
+        <li class="flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2">
           <div class="flex flex-col">
             <span class="text-button text-left">
-              Entrega {method.name}
+              {method.deliveryChannel === "pickup-in-point" ?
+                `Retirada ${method?.pickupStoreInfo?.friendlyName?.split("-")?.[1]?.trim()}`
+              :
+                `Entrega ${method.name}`
+              }
             </span>
             <span class="text-button">
               até {formatShippingEstimate(method.shippingEstimate)}
@@ -63,7 +81,7 @@ function ShippingContent({ simulation }: {
           </span>
         </li>
       ))}
-      <span class="text-base-300">
+      <span class="text-base-300 p-2">
         Os prazos de entrega começam a contar a partir da confirmação do
         pagamento e podem variar de acordo com a quantidade de produtos na
         sacola.
@@ -96,7 +114,7 @@ function ShippingSimulation({ items }: Props) {
   }, []);
 
   return (
-    <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-scroll">
+    <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-auto">
       <div class="flex gap-2 body-regular text-neutral-900">
         <Icon id="Frete" class="text-brand-secondary-900" width={24} height={24} />
         <span>Calcule o prazo de entrega</span>
@@ -112,7 +130,7 @@ function ShippingSimulation({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="input input-bordered w-full"
+          class="input input-bordered w-full focus:outline-none"
           placeholder="CEP"
           value={postalCode.value}
           maxLength={8}
@@ -125,6 +143,10 @@ function ShippingSimulation({ items }: Props) {
           Calcular
         </Button>
       </form>
+
+      <div class="flex gap-2 items-center">
+        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php?t" target="_blank" class="small-underline text-brand-primary-1 flex gap-2 items-center">Não sei meu CEP <Icon id="CepOpen" size={24} /></a> 
+      </div>
 
       <div>
         <div>
