@@ -96,7 +96,7 @@ function ShippingSimulation({ items }: Props) {
   }, []);
 
   return (
-    <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-scroll">
+    <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-auto">
       <div class="flex gap-2 body-regular text-neutral-900">
         <Icon id="Frete" class="text-brand-secondary-900" width={24} height={24} />
         <span>Calcule o prazo de entrega</span>
