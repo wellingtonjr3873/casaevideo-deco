@@ -1,5 +1,6 @@
 import type { ImageWidget } from "apps/admin/widgets.ts";
-import { Picture, Source } from "apps/website/components/Picture.tsx";
+// import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { Picture, Source } from "$store/components/ui/Picture.tsx"
 import ProductShelf, {
   Props as ProductShelfProps,
 } from "$store/components/product/ProductShelf.tsx";
@@ -52,6 +53,9 @@ function HiddenContentLogin({
                       src={bluredImage.mobile.src}
                       width={328}
                       height={312}
+                      decoding="async"
+                      fetchPriority="low"
+                      loading="lazy"
                     />
                     <Source
                       media="(min-width: 768px)"

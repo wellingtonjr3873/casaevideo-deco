@@ -52,6 +52,7 @@ interface Props {
 
   layout?: Layout;
   platform?: Platform;
+  device?: "mobile" | "desktop" | "tablet";
 }
 
 const relative = (url: string) => {
@@ -63,7 +64,7 @@ const WIDTH = 210;
 const HEIGHT = 210;
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform, index }: Props,
+  { product, preload, itemListName, layout, platform, index, device }: Props,
 ) {
   const {
     url,
@@ -105,8 +106,7 @@ function ProductCard(
               {l?.hide?.productName ? "" : (
                 <h2
                   class="truncate x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
-                  dangerouslySetInnerHTML={{ __html: name ?? "" }}
-                />
+                >{name ?? "" }</h2>
               )}
             </div>
           )}
@@ -235,7 +235,7 @@ function ProductCard(
             decoding="async"
           />
           {(!l?.onMouseOver?.image ||
-            l?.onMouseOver?.image == "Change image") && (
+            l?.onMouseOver?.image == "Change image") && device == "desktop" && (
             <Image
               src={back?.url ?? front.url!}
               alt={back?.alternateName ?? front.alternateName}

@@ -2,7 +2,7 @@ import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import { useId } from "$store/sdk/useId.ts";
-import Image from "apps/website/components/Image.tsx";
+import Image from "$store/components/ui/Image.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 
 export interface Category {
@@ -80,6 +80,8 @@ function DepartamentList(props: Props) {
                         width={100}
                         height={100}
                         loading="lazy"
+                        decoding="auto"
+                        fetchPriority="low"
                       />
                     </figure>
                   )}
