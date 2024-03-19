@@ -62,14 +62,14 @@ function ShippingContent({ simulation }: {
       {filteredDelivery.map((method) => (
         <li class="flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2">
           <div class="flex flex-col">
-            <span class="text-button text-left">
+            <span class="text-button text-left small-regular">
               {method.deliveryChannel === "pickup-in-point" ?
                 `Retirada ${method?.pickupStoreInfo?.friendlyName?.split("-")?.[1]?.trim()}`
               :
                 `Entrega ${method.name}`
               }
             </span>
-            <span class="text-button">
+            <span class="text-button small-regular">
               até {formatShippingEstimate(method.shippingEstimate)}
             </span>
           </div>
