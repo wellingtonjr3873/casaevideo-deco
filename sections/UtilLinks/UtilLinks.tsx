@@ -46,8 +46,8 @@ function UtilLinks(props: Props) {
           "https://casaevideonewio.vteximg.com.br/arquivos/icon-entrega.png",
       },
       {
-        "label": "Parcele em até 10x",
-        "title": "Parcele em até 10x",
+        "label": "Chat Online",
+        "title": "Chat Online",
         "buttonText": "Como podemos ajudar?",
         "href": "#",
         "image":
