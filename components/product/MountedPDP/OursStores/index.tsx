@@ -65,8 +65,8 @@ const OursStoresModal = ({handleCloseModal, product} : OursStoresModalProps) => 
         handleGetStores()
     }, [])
 
-    return createPortal(<div class="fixed inset-0 flex items-center justify-center z-30 bg-[rgba(255,255,255,0.75)]">
-        <div class="fixed inset-0 flex flex-col bg-brand-secondary-50 z-20 w-full md:max-w-[496px] p-4 md:rounded-lg md:relative min-h-[500px]" onClick={handleCloseModal}>
+    return createPortal(<div class="fixed inset-0 flex items-center justify-center z-30 bg-[rgba(255,255,255,0.75)]" onClick={handleCloseModal}>
+        <div class="fixed inset-0 flex flex-col bg-brand-secondary-50 z-20 w-full md:max-w-[496px] p-4 md:rounded-lg md:relative min-h-[500px]">
             <h2 class="h5-bold mb-4">Disponibilidade em lojas fisicas</h2>
             <span class="x-small-regular text-neutral-700 p-1 bg-neutral-50 rounded-sm w-fit mb-3">Estoque sujeito a disponibilidade ao longo do dia</span>
             <span class="x-small-regular text-neutral-700 p-1 bg-neutral-50 rounded-sm w-fit mb-4">Preço do site pode ser diferente da loja fisica</span>
