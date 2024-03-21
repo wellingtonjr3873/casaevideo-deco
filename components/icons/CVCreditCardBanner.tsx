@@ -7,7 +7,10 @@ export function CVCreditCardBanner() {
     >
       <Icon class="absolute top-1/2 -translate-y-1/2 left-0 rotate-[-17deg] w-[51px] h-[43px]" id="CVCreditCard" width="51" height="43" />
 
-      <span class="body-regular">Faça o seu cartão Casa&Video</span>
+      <a href="https://www.casaevideo.com.br/cartaocasaevideo">
+
+        <span class="body-regular">Faça o seu cartão Casa&Video</span>
+      </a>
     </div>
   )
 }
