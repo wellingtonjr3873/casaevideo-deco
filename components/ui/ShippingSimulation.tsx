@@ -133,8 +133,8 @@ function ShippingSimulation({ items }: Props) {
           class="input input-bordered w-full focus:outline-none"
           placeholder="CEP"
           value={postalCode.value}
-          maxLength={8}
-          size={8}
+          maxLength={9}
+          size={9}
           onChange={(e: { currentTarget: { value: string } }) => {
             postalCode.value = e.currentTarget.value;
           }}
