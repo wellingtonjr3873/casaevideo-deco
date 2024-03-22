@@ -1,5 +1,5 @@
 import { Signal, useSignal } from "@preact/signals";
-import { useCallback } from "preact/hooks";
+import { useCallback, useState } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
@@ -96,8 +96,16 @@ function ShippingSimulation({ items }: Props) {
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
   const { simulate, cart } = useCart();
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let newCep = (e.target as HTMLInputElement).value;
+    newCep = newCep.replace(/\D/g, '');
+    newCep = newCep.replace(/^(\d{5})(\d)/, '$1-$2');
+    postalCode.value = newCep;
+};  
+
   const handleSimulation = useCallback(async () => {
-    if (postalCode.value.length !== 8) {
+    const cepNumbers = postalCode.value.replace(/-/g, '')
+    if (cepNumbers.length !== 8) {
       return;
     }
 
@@ -105,7 +113,7 @@ function ShippingSimulation({ items }: Props) {
       loading.value = true;
       simulateResult.value = await simulate({
         items: items,
-        postalCode: postalCode.value,
+        postalCode: cepNumbers,
         country: cart.value?.storePreferencesData.countryCode || "BRA",
       });
     } finally {
@@ -132,12 +140,10 @@ function ShippingSimulation({ items }: Props) {
           type="text"
           class="input input-bordered w-full focus:outline-none"
           placeholder="CEP"
-          value={postalCode.value}
           maxLength={9}
-          size={9}
-          onChange={(e: { currentTarget: { value: string } }) => {
-            postalCode.value = e.currentTarget.value;
-          }}
+          size={9}          
+          value={postalCode.value}
+          onChange={handleChange}
         />
         <Button type="submit" loading={loading.value}>
           Calcular
