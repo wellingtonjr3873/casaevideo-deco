@@ -21,7 +21,7 @@ interface Categories {
 export interface Props {
   /** @title Configuração Tip Bar */
   banner?: {
-    bannerBgColor: string;
+    tipBgColor: string;
     mobile: {
       src: ImageWidget;
       alt: string;
@@ -62,7 +62,7 @@ export interface Props {
 
 function Header({
   banner = {
-    bannerBgColor: "#b301d2",
+    tipBgColor: "#b301d2",
     mobile: {
       src: "https://casaevideonewio.vteximg.com.br/arquivos/tip-mob.png",
       alt: "Banner Tip",
@@ -97,7 +97,7 @@ function Header({
     <>
       <header id="header" class="bg-brand-terciary-1 h-[168px]">
         {banner &&
-          <div class={`h-12 flex items-center justify-center`} style={{background: banner?.bannerBgColor}}>
+          <div class={`h-12 flex items-center justify-center`} style={{background: banner?.tipBgColor}}>
             <Picture>
               <Source
                 media="(max-width: 768px)"
