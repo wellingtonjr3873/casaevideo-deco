@@ -19,6 +19,23 @@ interface Categories {
   }[];
 }
 export interface Props {
+  /** @title Configuração Tip Bar */
+  banner?: {
+    bannerBgColor: string;
+    mobile: {
+      src: ImageWidget;
+      alt: string;
+      altura: number;
+      largura: number;
+    };
+
+    desktop: {
+      src: ImageWidget;
+      alt: string;
+      altura: number;
+      largura: number;
+    };
+  };
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
   navItems: any;
@@ -44,6 +61,21 @@ export interface Props {
 }
 
 function Header({
+  banner = {
+    bannerBgColor: "#b301d2",
+    mobile: {
+      src: "https://casaevideonewio.vteximg.com.br/arquivos/tip-mob.png",
+      alt: "Banner Tip",
+      altura: 78,
+      largura: 564,
+    },
+    desktop: {
+      src: "https://casaevideonewio.vteximg.com.br/arquivos/tip.gif",
+      alt: "Banner Tip",
+      altura: 46,
+      largura: 1260,
+    }
+  },
   searchbar,
   logo,
   categories = {
@@ -64,13 +96,30 @@ function Header({
   return (
     <>
       <header id="header" class="bg-brand-terciary-1 h-[168px]">
-        <div class="h-12 flex items-center justify-center bg-complementary-2">
-          <p class="body-bold text-neutral-50">Destaque</p>
-        </div>
+        {banner &&
+          <div class={`h-12 flex items-center justify-center`} style={{background: banner?.bannerBgColor}}>
+            <Picture>
+              <Source
+                media="(max-width: 768px)"
+                src={banner.mobile.src}
+                width={banner.mobile.largura}
+                height={banner.mobile.altura}
+              />
+              <Source
+                media="(min-width: 768px)"
+                src={banner.desktop.src}
+                width={banner.desktop.largura}
+                height={banner.desktop.altura}
+              />
+
+              <img src={banner?.desktop.src} />
+            </Picture>
+          </div>
+        }
 
         {/* desktop version */}
 
-        <div  class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
+        <div class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
           <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-4">
             <a href="/" title="Link de retorno para página inicial">
               <figure>
@@ -95,7 +144,7 @@ function Header({
               </figure>
             </a>
             <div class="w-full">
-            {!isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
+              {!isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile }} />}
             </div>
             <div class="flex items-center gap-2">
               {/* user */}
@@ -233,7 +282,7 @@ function Header({
             </div>
           </div>
           <div>
-          {isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
+            {isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile }} />}
           </div>
         </div>
         <div className="lg:hidden">
