@@ -1,8 +1,28 @@
 import { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { useEffect, useState } from "preact/hooks";
-import {Props} from '$store/islands/BannerStopWatch.tsx'
 
+export interface Props  {
+    /**
+    * @hide
+     */
+    endDateAt?: string
+    /** @tittle Imagem do logo Desktop */
+    desktop: ImageWidget;
+    /** @title Imagem do logo Mobile */
+    mobile: ImageWidget;
+    position: "base-left" | "top-left" | "top-right" | "base-center" | "base-right",
+    /** 
+     * @format color 
+     * @title Cor do texto
+     * */
+    textColor?: string;
+    /** 
+     * @format color 
+     * @title Cor de fundo do cronometro
+     * */
+    backgroundColor?: string;
+}
 
 const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor, textColor}: Props) => {
     const endAt = new Date(endDateAt!)
@@ -57,7 +77,7 @@ const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor,
         </div>
         <div>
         <p class={`xx-small-regular lg:small-regular text-[${textColor || "white"}]`}>Aproveite, é por tempo limitado!</p>
-          <div class={`rounded-lg flex items-center justify-center ${ backgroundColor || "bg-brand-terciary-1"} text-center w-[128px] lg:w-[198px] h-8 lg:h-[44px] ${!finalDate ? "animate-pulse" : ""}`}>
+          <div class={`rounded-lg flex items-center justify-center ${ backgroundColor  ? `bg-[$${backgroundColor}]` : "bg-brand-terciary-1"} text-center w-[128px] lg:w-[198px] h-8 lg:h-[44px] ${!finalDate ? "animate-pulse" : ""}`}>
           {finalDate && <span class="h6-bold lg:h3-bold">{hours}:{minutes}:{seconds}</span>}</div>
         </div>
     </div>

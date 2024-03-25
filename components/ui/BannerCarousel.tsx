@@ -9,7 +9,7 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import {Props as BannerStopWatchProps} from "$store/islands/BannerStopWatch.tsx";
+import {Props as BannerStopWatchProps} from "$store/components/ui/BannerStopwatch.tsx";
 import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
 /**
  * @titleBy alt
@@ -21,13 +21,13 @@ export interface Banner {
    */
   dateStartAt: string;
   /**
-   * @title Data final do banner
    * @format datetime
+   * @title Data final do banner
    */
   dateEndAt: string;
   /**
-   * @title É um banner tipo cronometro?
    * @format boolean
+   * @title É um banner tipo cronometro?
    * @default false
    */
   isStopwatch?: BannerStopWatchProps;
