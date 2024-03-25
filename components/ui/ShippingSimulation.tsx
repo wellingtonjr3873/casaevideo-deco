@@ -1,5 +1,5 @@
 import { Signal, useSignal } from "@preact/signals";
-import { useCallback } from "preact/hooks";
+import { useCallback, useState } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
@@ -28,6 +28,20 @@ function ShippingContent({ simulation }: {
     [] as Sla[],
   ) ?? [];
 
+  let pickupInPointCount = 0;
+  let deliveryCount = 0;
+
+  const filteredDelivery = methods.filter((item) => {
+    if (item.deliveryChannel === "pickup-in-point" && pickupInPointCount < 1) {
+      pickupInPointCount++;
+      return true;
+    } else if (item.deliveryChannel === "delivery" && deliveryCount < 2) {
+      deliveryCount++;
+      return true;
+    }
+    return false;
+  });
+
   const locale = cart.value?.clientPreferencesData.locale || "pt-BR";
   const currencyCode = cart.value?.storePreferencesData.currencyCode || "BRL";
 
@@ -44,14 +58,18 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col gap-4 bg-base-200 rounded-[4px]">
-      {methods.map((method) => (
-        <li class="flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1">
+    <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 rounded-lg w-full ">
+      {filteredDelivery.map((method) => (
+        <li class="flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2">
           <div class="flex flex-col">
-            <span class="text-button text-left">
-              Entrega {method.name}
+            <span class="text-button text-left small-regular">
+              {method.deliveryChannel === "pickup-in-point" ?
+                `Retirada ${method?.pickupStoreInfo?.friendlyName?.split("-")?.[1]?.trim()}`
+              :
+                `Entrega ${method.name}`
+              }
             </span>
-            <span class="text-button">
+            <span class="text-button small-regular">
               até {formatShippingEstimate(method.shippingEstimate)}
             </span>
           </div>
@@ -63,7 +81,7 @@ function ShippingContent({ simulation }: {
           </span>
         </li>
       ))}
-      <span class="text-base-300">
+      <span class="text-base-300 p-2">
         Os prazos de entrega começam a contar a partir da confirmação do
         pagamento e podem variar de acordo com a quantidade de produtos na
         sacola.
@@ -78,8 +96,16 @@ function ShippingSimulation({ items }: Props) {
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
   const { simulate, cart } = useCart();
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let newCep = (e.target as HTMLInputElement).value;
+    newCep = newCep.replace(/\D/g, '');
+    newCep = newCep.replace(/^(\d{5})(\d)/, '$1-$2');
+    postalCode.value = newCep;
+};  
+
   const handleSimulation = useCallback(async () => {
-    if (postalCode.value.length !== 8) {
+    const cepNumbers = postalCode.value.replace(/-/g, '')
+    if (cepNumbers.length !== 8) {
       return;
     }
 
@@ -87,7 +113,7 @@ function ShippingSimulation({ items }: Props) {
       loading.value = true;
       simulateResult.value = await simulate({
         items: items,
-        postalCode: postalCode.value,
+        postalCode: cepNumbers,
         country: cart.value?.storePreferencesData.countryCode || "BRA",
       });
     } finally {
@@ -96,7 +122,7 @@ function ShippingSimulation({ items }: Props) {
   }, []);
 
   return (
-    <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-scroll">
+    <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-auto">
       <div class="flex gap-2 body-regular text-neutral-900">
         <Icon id="Frete" class="text-brand-secondary-900" width={24} height={24} />
         <span>Calcule o prazo de entrega</span>
@@ -112,19 +138,21 @@ function ShippingSimulation({ items }: Props) {
         <input
           as="input"
           type="text"
-          class="input input-bordered w-full"
+          class="input input-bordered w-full focus:outline-none"
           placeholder="CEP"
+          maxLength={9}
+          size={9}          
           value={postalCode.value}
-          maxLength={8}
-          size={8}
-          onChange={(e: { currentTarget: { value: string } }) => {
-            postalCode.value = e.currentTarget.value;
-          }}
+          onChange={handleChange}
         />
         <Button type="submit" loading={loading.value}>
           Calcular
         </Button>
       </form>
+
+      <div class="flex gap-2 items-center">
+        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php?t" target="_blank" class="small-underline text-brand-primary-1 flex gap-2 items-center">Não sei meu CEP <Icon id="CepOpen" size={24} /></a> 
+      </div>
 
       <div>
         <div>
