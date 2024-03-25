@@ -73,7 +73,7 @@ function MountedPDP({ page }: Props) {
         </div>
 
         <div class="px-4 md:px-0 w-full md:w-1/3">
-          <div class="bg-neutral-50 w-full rounded-lg min-h-[520px] h-min flex flex-col gap-6 overflow-y-scroll p-4">
+          <div class="bg-neutral-50 w-full rounded-lg min-h-[520px] h-min flex flex-col gap-6 overflow-y-auto p-4">
             <ProductPrice product={product} />
             <AddToCartComponents page={page} />
             <div class="w-full order-2">
