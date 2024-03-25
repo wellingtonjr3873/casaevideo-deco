@@ -13,7 +13,6 @@ import { useOffer } from "deco-sites/casaevideo/sdk/useOffer.ts";
 import WishlistButton from "deco-sites/casaevideo/islands/WishlistButton.tsx";
 import ProductVisualization from "deco-sites/casaevideo/islands/ProductVisualization.tsx";
 
-
 interface Props {
   page: ProductDetailsPage | null;
 }
@@ -42,7 +41,6 @@ function MountedPDP({ page }: Props) {
     itemListElement: breadcrumbList?.itemListElement.slice(0, -1),
     numberOfItems: breadcrumbList.numberOfItems - 1,
   };
-
 
   return (
     <div class="container flex flex-col">

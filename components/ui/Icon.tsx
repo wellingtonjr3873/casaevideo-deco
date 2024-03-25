@@ -91,7 +91,9 @@ export type AvailableIcons =
   | "IncreaseButton"
   | "Image"
   | "Video"
-  | "3D";
+  | "3D"
+  | "EmptyStar"
+  | "FullStar";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**

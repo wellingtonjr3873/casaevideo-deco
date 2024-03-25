@@ -6,7 +6,8 @@ import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
-import * as $$$2 from "./loaders/search/intelligenseSearch.ts";
+import * as $$$2 from "./loaders/reviews/productReviews.ts";
+import * as $$$3 from "./loaders/search/intelligenseSearch.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
@@ -39,20 +40,22 @@ import * as $$$$$$28 from "./sections/Product/MountedPDP.tsx";
 import * as $$$$$$29 from "./sections/Product/NotFound.tsx";
 import * as $$$$$$30 from "./sections/Product/NotFoundChallenge.tsx";
 import * as $$$$$$31 from "./sections/Product/ProductInfo.tsx";
-import * as $$$$$$32 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$33 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$34 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$35 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$36 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$37 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$38 from "./sections/Theme/Theme.tsx";
-import * as $$$$$$39 from "./sections/UtilLinks/UtilLinks.tsx";
+import * as $$$$$$32 from "./sections/Product/ProductReviews.tsx";
+import * as $$$$$$33 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$34 from "./sections/Product/ProductShelfTabbed.tsx";
+import * as $$$$$$35 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$36 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$37 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$38 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$39 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$40 from "./sections/UtilLinks/UtilLinks.tsx";
 
 const manifest = {
   "loaders": {
     "deco-sites/casaevideo/loaders/Layouts/ProductCard.tsx": $$$0,
     "deco-sites/casaevideo/loaders/List/Sections.tsx": $$$1,
-    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$2,
+    "deco-sites/casaevideo/loaders/reviews/productReviews.ts": $$$2,
+    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$3,
   },
   "sections": {
     "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
@@ -90,14 +93,15 @@ const manifest = {
     "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$29,
     "deco-sites/casaevideo/sections/Product/NotFoundChallenge.tsx": $$$$$$30,
     "deco-sites/casaevideo/sections/Product/ProductInfo.tsx": $$$$$$31,
-    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$32,
-    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$33,
-    "deco-sites/casaevideo/sections/Product/SearchResult.tsx": $$$$$$34,
-    "deco-sites/casaevideo/sections/Product/Wishlist.tsx": $$$$$$35,
-    "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$36,
-    "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$37,
-    "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$38,
-    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$39,
+    "deco-sites/casaevideo/sections/Product/ProductReviews.tsx": $$$$$$32,
+    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$33,
+    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$34,
+    "deco-sites/casaevideo/sections/Product/SearchResult.tsx": $$$$$$35,
+    "deco-sites/casaevideo/sections/Product/Wishlist.tsx": $$$$$$36,
+    "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$37,
+    "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$38,
+    "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$39,
+    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$40,
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,
