@@ -44,6 +44,10 @@ function AddToCartComponents({ page }: Props) {
     listPrice,
   });
 
+  function verifySeller(seller: string) {
+    return /^CV\d+$/.test(seller);
+  }
+
   const quantity = useSignal(1);
 
   return (
@@ -72,10 +76,10 @@ function AddToCartComponents({ page }: Props) {
 
           <span class="small-regular text-neutral-900 flex gap-2 order-4">
             Vendido e entregue por:
-            <strong class="text-brand-primary-700">{seller === "1" ? "Casa e Video" : seller}</strong>
+            <strong class="text-brand-primary-700">{seller === "1" || verifySeller(seller) ? "Casa & Video" : seller}</strong>
           </span>
         </>
-      ): <OutOfStock productID={productID} />}
+      ) : <OutOfStock productID={productID} />}
     </>
   );
 }
