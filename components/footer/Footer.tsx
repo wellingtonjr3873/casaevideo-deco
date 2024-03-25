@@ -221,7 +221,12 @@ function Footer({
               {security?.images?.map((item) => {
                 return (
                   <li>
-                    <img src={item} />
+                    <img 
+                      src={item} 
+                      loading="lazy" 
+                      decoding="async" 
+                      preload="false"
+                    />
                   </li>
                 );
               })}
@@ -266,7 +271,7 @@ function Footer({
           <div class="gap-[8px] mr-[50%]  hidden lg:flex">
             <p class="x-small-regular">Desenvolvido por</p>{" "}
             <div class="flex">
-              {developedBy?.images?.map((item) => <img src={item} />)}
+              {developedBy?.images?.map((item) => <img src={item} loading="lazy" preload="false" decoding="async"/>)}
             </div>
           </div>
         </div>

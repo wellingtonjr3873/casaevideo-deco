@@ -18,13 +18,13 @@ function MostSearchedProducts({
         <h5 className="text-[1rem] brand-primary-1 body-bold max-[768px]:text-[0.75rem]">
           {titleComponent}
         </h5>
-        {searchedProducts?.map((product: { alt: string; link: string }) => (
-          <a className="body-regular text-brand-primary-500 max-[768px]:text-[0.75rem] hidden lg:block" href={product.link} key={product.link} title={product.alt}>
+        {searchedProducts?.map((product: { alt: string; link: string }, index:number) => (
+          <a className="body-regular text-brand-primary-500 max-[768px]:text-[0.75rem] hidden lg:block" href={product.link} key={product.link+index} title={product.alt}>
             {product.alt}
           </a>
         ))}
-        {searchedProducts?.slice(0, 12).map((product: { alt: string; link: string }) => (
-          <a className="body-regular text-brand-primary-500 max-[768px]:text-[0.75rem] lg:hidden" href={product.link} key={product.link} title={product.alt}>
+        {searchedProducts?.slice(0, 12).map((product: { alt: string; link: string }, index:number) => (
+          <a className="body-regular text-brand-primary-500 max-[768px]:text-[0.75rem] lg:hidden" href={product.link} key={product.link+index+"filtered"} title={product.alt}>
             {product.alt}
           </a>
         ))}
