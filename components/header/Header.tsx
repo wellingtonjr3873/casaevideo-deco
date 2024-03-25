@@ -69,7 +69,7 @@ function Header({
   if(device === "mobile"){
     return(
       <>
-        <header class="bg-brand-terciary-1 h-[169px]">
+        <header class="bg-brand-terciary-1">
           <div class="h-12 flex items-center justify-center bg-complementary-2">
             <p class="body-bold text-neutral-50">Destaque</p>
           </div>
@@ -139,7 +139,7 @@ function Header({
   }
   return (
     <>
-      <header id="header" class="bg-brand-terciary-1 h-[168px]">
+      <header id="header" class="bg-brand-terciary-1">
         <div class="h-12 flex items-center justify-center bg-complementary-2">
           <p class="body-bold text-neutral-50">Destaque</p>
         </div>
