@@ -46,8 +46,8 @@ function UtilLinks(props: Props) {
           "https://casaevideonewio.vteximg.com.br/arquivos/icon-entrega.png",
       },
       {
-        "label": "Parcele em até 10x",
-        "title": "Parcele em até 10x",
+        "label": "Chat Online",
+        "title": "Chat Online",
         "buttonText": "Como podemos ajudar?",
         "href": "#",
         "image":
@@ -57,6 +57,7 @@ function UtilLinks(props: Props) {
   } = props;
 
   return (
+    
     <div
       id={id}
       class="lg:flex lg:justify-center p-[24px] lg:py-10 lg:gap-[117px] max-[768px]:gap-[22px] max-[768px]:grid max-[768px]:grid-cols-2"
