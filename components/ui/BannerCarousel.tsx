@@ -216,7 +216,6 @@ function Dots({ bannerImages, interval = 0 }: Props) {
           const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
             getCurrentDateTime() <= image.dateEndAt;
             
-              console.log(dateEndtAt, new Date(image.dateStartAt), new Date(image.dateEndAt), getCurrentDateTime())
             return (
             <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
               {dateEndtAt &&
