@@ -107,6 +107,7 @@ export default function BannersGrid(props: Props) {
                 src={srcMobile}
                 width={bannerWidthMob}
                 height={bannerHeightMob}
+                fetchPriority="low"
               />
               <Source
                 media="(min-width: 768px)"
