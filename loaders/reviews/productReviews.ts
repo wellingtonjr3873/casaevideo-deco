@@ -90,7 +90,6 @@ export default function productDetailsPage(
       productId: string,
       ordernationCode = "1",
     ) => {
-      console.log("productId", productId);
       const response = await reviewsApi
         ["GET /core/v1/produtos/api/review/product/:productId/all"]({
           productId,
@@ -130,8 +129,6 @@ export default function productDetailsPage(
     };
 
     const reviews = await getProductReview(productId || productID);
-
-    console.log("reviews >>>", reviews, productId);
 
     return {
       ...productDetailsPage,

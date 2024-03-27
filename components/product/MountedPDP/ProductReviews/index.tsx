@@ -1,10 +1,7 @@
-import { useId } from "$store/sdk/useId.ts";
-import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
-import { useOffer } from "deco-sites/casaevideo/sdk/useOffer.ts";
 import { ProductReviewsLoader } from "deco-sites/casaevideo/loaders/reviews/productReviews.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
-import { Review } from "deco-sites/casaevideo/types/reviews.ts";
+import ReviewsList from "deco-sites/casaevideo/islands/ReviewsList.tsx";
 
 type PageProps = ProductDetailsPage & ProductReviewsLoader;
 
@@ -12,27 +9,15 @@ interface Props {
   page: ProductDetailsPage | null;
 }
 
-function getDateDiff(date1: Date, date2: Date) {
-  let months = (date2.getFullYear() - date1.getFullYear()) * 12;
-  months += date2.getMonth();
-  months -= date1.getMonth();
+export function handleGetStars(rating: number) {
+  const stars = new Array(5).fill('star');
+  const filledStars = Math.round(rating);
 
-  const yearsDiff = Math.floor(months / 12);
-  const monthsDiff = months % 12;
-  const monthMessage = monthsDiff > 1 ? `${monthsDiff} meses atrás` : `${monthsDiff} mês atrás`;
-
-  return yearsDiff > 0 ? 
-    `${yearsDiff} ano e ${monthMessage}` :
-      monthsDiff > 0 ?
-      monthMessage :
-      `esse mês`;
-    ;
-}
-
-function getRecommendationValue(review: Review) {
-  const recommendation = review.CustomFields.find((field) => field.Name === "Você recomendaria esse produto a um amigo?");
-
-  return recommendation?.Values?.[0] === "Sim" ? true : false;
+  return stars.map((_, idx) => {
+    return idx < filledStars ? 
+      <Icon width={26.7} height={19.7} id="FullStar" key={`star-${idx}`}/> : 
+      <Icon width={26.7} height={19.7} id="EmptyStar"  key={`star-${idx}`} />;
+  })
 }
 
 function ProductReviews(props: Props) {
@@ -48,17 +33,6 @@ function ProductReviews(props: Props) {
   } = correctPage;
 
   if (reviews.Element === null) return <></>;
-
-  const handleGetStars = (rating: number) => {
-    const stars = new Array(5).fill('star');
-    const filledStars = Math.round(rating);
-
-    return stars.map((_, idx) => {
-      return idx < filledStars ? 
-        <Icon width={26.7} height={19.7} id="FullStar" key={`star-${idx}`}/> : 
-        <Icon width={26.7} height={19.7} id="EmptyStar"  key={`star-${idx}`} />;
-    })
-  }
 
   const ratingStatistics = (
     <div 
@@ -86,8 +60,7 @@ function ProductReviews(props: Props) {
               <div class={`bg-neutral-100 h-1`} style={{ width: `${(100 - review?.PercentRating).toFixed(0)}%`}}/>
             </div>
 
-            <span class="small-regular text-neutral-500 min-w-[42px
-            ]">
+            <span class="small-regular text-neutral-500 min-w-[42px]">
               {review.PercentRating.toFixed(1)}%
             </span>
           </div>
@@ -96,55 +69,17 @@ function ProductReviews(props: Props) {
     </div>
   );
 
-  const ratings = (
-    <div 
-      class="container gap-2 rounded-lg flex flex-col bg-neutral-50 items-start justify-centergap-1 w-full md:w-2/3"
-    >
-      {reviews.Element.Reviews.map((review) => (
-        <div class="flex flex-col w-full border-t-[2px] first:border-0 border-neutral-100 pt-2 first:pt-0">
-          <div class="flex flex-col w-full rounded-lg md:border-0 border border-neutral-100 p-4">
-            <div class="flex justify-between">
-              <strong class="small-bold md:body-bold">{review.User.Name}</strong>
-
-              <span class="x-small-regular text-neutral-500">{getDateDiff(new Date(review.Date), new Date())}</span>
-            </div>
-
-            <div class="flex justify-between mt-1">
-              <div class="flex ml-[-4px]">
-                {handleGetStars(review.Rating)}
-              </div>
-
-              {getRecommendationValue(review) ? (
-                <span class="x-small-regular md:small-regular text-success text-right">
-                  Recomendo esse produto!
-                </span>
-              ) : (
-                <span class="x-small-regular md:small-regular text-brand-primary-1 text-right">
-                  Não recomendo esse produto!
-                </span>
-              )}
-            </div>
-
-            <span class="small-regular mt-4">{review.Review}</span>
-          </div>
-        </div>
-      ))}
-    </div>
-  )
-
-  console.log('reviews',reviews)
-
   return (
     <div class="container flex p-4 md:px-0">
-      <div class="flex flex-col border border-brand-secondary-100 bg-neutral-50 rounded-2xl w-full px-2 md:px-6 py-4">
-        <strong class="text-neutral-900 body-bold mb-2 md:mb-5">
+      <div class="collapse collapse-arrow collapse-open flex flex-col border border-brand-secondary-100 bg-neutral-50 rounded-2xl w-full px-2 md:px-6 py-4">
+        <strong class="collapse-title text-neutral-900 body-bold mb-2 md:mb-5">
           Avaliações dos clientes
         </strong>
 
-        <div class="container flex gap-8 flex-col md:flex-row">
+        <div class="collapse-content container flex gap-8 flex-col md:flex-row">
           {ratingStatistics}
 
-          {ratings}
+          <ReviewsList reviews={reviews.Element.Reviews} />
         </div>
       </div>
     </div>
