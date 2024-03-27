@@ -1,4 +1,8 @@
 <svg style="display:none">
+	<symbol id="Plus" width="24" height="25" viewBox="0 0 24 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+		<path d="M12 4.24023V20.2402M4 12.2402H20" stroke="#393939" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+	</symbol>
+
 	<symbol id="CVCreditCard" fill="none" viewBox="0 0 22 16" xmlns="http://www.w3.org/2000/svg">
 		<path
 			d="M20.2734 0H1.72671C0.953374 0 0.333374 0.62 0.333374 1.39333V14.38C0.333374 15.1467 0.953374 15.7733 1.72671 15.7733H20.2734C21.04 15.7733 21.6667 15.1533 21.6667 14.38V1.39333C21.6667 0.626667 21.0467 0 20.2734 0Z"
