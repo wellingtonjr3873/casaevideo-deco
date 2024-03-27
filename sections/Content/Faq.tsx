@@ -113,7 +113,7 @@ export default function FAQ(props: Props) {
       )}
 
       {layout?.variation === "Full" && (
-        <div class="w-full container flex flex-col">
+        <div class="w-full container flex flex-col px-4 py-8 lg:py-0 lg:px-0">
           <div class="flex flex-col gap-8 lg:gap-10">
             <div
               class="flex flex-col gap-8 lg:gap-10"
