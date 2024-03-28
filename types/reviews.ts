@@ -168,3 +168,4 @@ export interface ReviewLikedResponse {
   Total: number;
   CurrentPage: number;
 }
+
