@@ -78,7 +78,6 @@ export default function productDetailsPage(
     const getWhoBoughtAlsoBought = async (
       productId: string,
     ) => {
-      console.log("productId", productId);
       const response = await buyTogetherApi
         ["GET /core/v1/produtos/api/showcase/who-bought-also-bought/:productId"](
           {
