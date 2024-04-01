@@ -1,5 +1,4 @@
 import Button from "$store/components/ui/Button.tsx";
-import Icon from "$store/components/ui/Icon.tsx";
 import { sendEvent } from "$store/sdk/analytics.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
@@ -16,7 +15,6 @@ interface Props {
 function CartButton({ loading, currency, total, items, children }: Props) {
   const { displayCart } = useUI();
   const totalItems = items.length;
-
   const onClick = () => {
     sendEvent({
       name: "view_cart",
@@ -24,7 +22,6 @@ function CartButton({ loading, currency, total, items, children }: Props) {
     });
     displayCart.value = true;
   };
-
   return (
     <div class="indicator">
       <span

@@ -191,11 +191,11 @@ function Header({
                   <span class="x-small-underline">Entre ou cadastre-se</span>
                 </div>
                 {/* meus pedidos */}
-                <a>
+                <a href="/account/#/orders"  aria-label="Meus pedidos">
                   <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui"/>
                 </a>
                 {/* wishlist */}
-                <a>
+                <a href="/wishlist"  aria-label="Meus favoritos">
                   <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos"/>
                 </a>
               </a>
