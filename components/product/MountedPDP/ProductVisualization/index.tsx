@@ -19,9 +19,16 @@ type Option = {
 function ProductVisualization({ product }: Props) {
   const open = useSignal<OpenModalType>('None');
 
-  const {
-    image
+ const {
+    image, isVariantOf,name
   } = product;
+  const total = product;
+
+  
+
+  const product3D = isVariantOf?.additionalProperty[0]?.value
+
+  
 
   const options: Option[] = [
     { icon: "Image", name: "Fotos", modal: 'ProductImage' },
@@ -56,7 +63,8 @@ function ProductVisualization({ product }: Props) {
 
       <Modal3D
         open={open}
-        imageSource=""
+        produto3D={product3D}
+        productName={name}
       />
 
     </div>
