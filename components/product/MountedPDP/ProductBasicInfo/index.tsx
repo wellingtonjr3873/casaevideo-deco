@@ -71,7 +71,6 @@ function ProductBasicInfo({ product, tags }: Props) {
             dangerouslySetInnerHTML={{ __html: description }}
           />
         )}
-
         <a
           href="#description"
           class="text-brand-primary-600 x-small-regular underline"
