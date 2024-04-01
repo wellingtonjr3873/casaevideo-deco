@@ -21,8 +21,6 @@ function AddToCartMultipleItemsButton({ items, eventParams }: Props) {
         quantity: item.quantity || 1,
       })));
 
-    console.log('orderItems', orderItems, addToCartState);
-
     if (orderItems.length === 0) return;
 
     await addItems({
