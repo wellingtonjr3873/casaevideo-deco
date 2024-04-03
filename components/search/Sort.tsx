@@ -36,8 +36,8 @@ function Sort({ sortOptions }: Props) {
   const sort = useSort();
 
   return (
-    <div>
-      <span class="h6-regular text-neutral-900 hidden md:block">Ordernar por:</span>
+    <div class="md:flex items-center">
+      <span class="h6-regular text-neutral-900 hidden md:flex">Ordernar por:</span>
       <select
       id="sort"
       name="sort"

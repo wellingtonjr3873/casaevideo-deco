@@ -117,13 +117,13 @@ ${l?.onMouseOver?.card === "Move up" &&
           : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
               {layoutSelected?.value === "list" &&
-                <div class="max-w-[100px] mt-0 md:mt-4 hidden md:block">
+                <div class="max-w-[100px] mt-0 md:mt-4 hidden md:block md:mb-3">
                   <FreeShippingIcon color="black" small={true} />
                 </div>
               }
               {l?.hide?.productName ? "" : (
                 <h2
-                  class={`truncate md:x-small-bold md:body-bold small-regular max-h-40 md:max-h-full line-clamp-2 whitespace-break-spaces ${layoutSelected?.value === "list" && "max-w-[160px] md:max-w-[378px]"}`}
+                  class={`truncate  md:body-bold max-h-40 md:max-h-full line-clamp-2 md:min-h-[33px] whitespace-break-spaces ${layoutSelected?.value === "list" ? "max-w-[160px] md:max-w-[378px] h6-bold" : "small-regular md:x-small-bold"}`}
                 >{name ?? ""}</h2>
               )}
             </div>
@@ -134,11 +134,10 @@ ${l?.onMouseOver?.card === "Move up" &&
               class={`flex flex-col gap-0 ${l?.basics?.oldPriceSize === "Normal"
                 ? "lg:flex-row lg:gap-2"
                 : ""
-                } ${align === "center" ? "justify-center" : "justify-start"} text-end`}
+                } ${align === "center" ? "justify-center" : "justify-start"} text-end md:text-start`}
             >
               <div
-                class={`text-base-300 xx-small-regular md:small-regular text-end gap-2 ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                  }`}
+                class={`flex text-base-300 xx-small-regular md:small-regular md:text-start gap-2 ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""} ${layoutSelected?.value === "list" ? "justify-end" : ""}`}
               >
                 <span class="line-through">
                   {formatPrice(listPrice, offers?.priceCurrency)}
@@ -152,14 +151,14 @@ ${l?.onMouseOver?.card === "Move up" &&
                     </div>
                   )}
               </div>
-              <div class="body-bold md:h6-bold">
+              <div class={`body-bold md:h6-bold ${layoutSelected?.value === "list" ? "md:text-end" : ""}`}>
                 {formatPrice(price, offers?.priceCurrency)} no PIX
               </div>
             </div>
             {l?.hide?.installments
               ? ""
               : (
-                <div class={`text-brand-secondary-900 x-small-regular text-end truncate ${layoutSelected?.value === "list" && "pb-3"}`}>
+                <div class={`text-brand-secondary-900 x-small-regular text-end md:text-start truncate ${layoutSelected?.value === "list" && "pb-3"}`}>
                   ou em até {installments}
                 </div>
               )}
@@ -219,7 +218,7 @@ ${l?.onMouseOver?.card === "Move up" &&
           },
         }}
       />
-      <figure class={`flex flex-col items-center ${layoutSelected?.value === "list" && "gap-2"}`} // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
+      <figure class={`flex flex-col ${layoutSelected?.value === "list" ? "gap-2 items-center" : "items-left"}`} // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
         {layoutSelected?.value === "grid" &&
@@ -234,14 +233,14 @@ ${l?.onMouseOver?.card === "Move up" &&
         {/* Product Images */}
         <div
           aria-label="view product"
-          class={`grid grid-cols-1 grid-rows-1 w-full max-h-[88px] md:max-h-[auto] md:w-2/3 justify-center items-center ${layoutSelected?.value === "list" ? "p-0" : "p-2"}`}
+          class={`grid grid-cols-1 grid-rows-1 w-full md:w-full justify-center items-center ${layoutSelected?.value === "list" ? "p-0 md:max-h-full" : "p-2 md:min-h-[210px] md:max-h-full"}`}
         >
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`${layoutSelected?.value === "list" && "max-h-52"} max-h-[88px] md:max-h-[auto] bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
+            class={`${layoutSelected?.value === "list" ? "max-h-52" : "md:max-h-full md:min-h-[210px]"} bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
               ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
               : ""
               }`}
