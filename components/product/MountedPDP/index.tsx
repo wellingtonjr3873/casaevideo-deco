@@ -43,12 +43,13 @@ function MountedPDP({ page }: Props) {
     numberOfItems: breadcrumbList.numberOfItems - 1,
   };
 
-
   return (
     <div class="container flex flex-col">
       <div class="p-4 md:px-0">
         <Breadcrumb itemListElement={breadcrumb.itemListElement} homeName="Casa&Video" />
       </div>
+
+
 
       <div class="flex flex-col md:flex-row gap-3" id={id}>
         <div class="md:bg-neutral-50 w-full md:w-2/3 flex flex-col md:flex-row gap-4 rounded-lg min-h-[520px] h-min md:py-4">
