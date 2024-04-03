@@ -24,6 +24,8 @@ import * as $Header_GeoLocationPointBar_GeoLocationPointBar from "./islands/Head
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
+import * as $ProductCardIsland from "./islands/ProductCardIsland.tsx";
+import * as $ProductGalleryIsland from "./islands/ProductGalleryIsland.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
 import * as $ProductVisualization from "./islands/ProductVisualization.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
@@ -60,6 +62,8 @@ const manifest = {
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OutOfStock.tsx": $OutOfStock,
+    "./islands/ProductCardIsland.tsx": $ProductCardIsland,
+    "./islands/ProductGalleryIsland.tsx": $ProductGalleryIsland,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
     "./islands/ProductVisualization.tsx": $ProductVisualization,
     "./islands/SearchControls.tsx": $SearchControls,

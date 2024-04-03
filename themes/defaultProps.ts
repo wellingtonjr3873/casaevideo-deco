@@ -22,6 +22,7 @@ export const DEFAULT_PROPS = {
   "brand-secondary-100": "#FFF",
   "brand-secondary-50": "#FFF",
   "brand-terciary-1": "#FFF",
+  "brand-terciary-base": "#FFF200",
   "neutral-900": "#393939",
   "neutral-800": "white",
   "neutral-700": "white",

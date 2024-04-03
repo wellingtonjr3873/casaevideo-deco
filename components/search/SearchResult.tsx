@@ -7,8 +7,8 @@ import { useId } from "$store/sdk/useId.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-import ProductGallery, { Columns } from "../product/ProductGallery.tsx";
-
+import ProductGalleryIsland, { Columns } from "$store/islands/ProductGalleryIsland.tsx";
+import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 export interface Layout {
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
@@ -55,21 +55,23 @@ function Result({
   return (
     <>
       <div class="container px-4 sm:py-10">
-        <SearchControls
-          sortOptions={sortOptions}
-          filters={filters}
-          breadcrumb={breadcrumb}
-          displayFilter={layout?.variant === "drawer"}
-        />
-
+        <div class="flex flex-row items-center sm:p-0 mb-2">
+          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
+        </div>
         <div class="flex flex-row">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[250px]">
               <Filters filters={filters} />
             </aside>
           )}
-          <div class="flex-grow" id={id}>
-            <ProductGallery
+          <div class="flex-grow w-full" id={id}>
+            <SearchControls
+              sortOptions={sortOptions}
+              filters={filters}
+              productQnt={pageInfo?.records}
+              displayFilter={layout?.variant === "drawer"}
+            />
+            <ProductGalleryIsland
               products={products}
               offset={offset}
               layout={{ card: cardLayout, columns: layout?.columns }}

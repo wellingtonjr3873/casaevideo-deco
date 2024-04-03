@@ -64,7 +64,8 @@
 			fill="#fff" />
 	</symbol>
 
-	<symbol fill="none" viewBox="0 0 16 16" id="ArrowDirectionRight" xmlns="http://www.w3.org/2000/svg">
+	<symbol fill="none" viewBox="0 0 16 16" id="ArrowDirectionRight"
+		xmlns="http://www.w3.org/2000/svg">
 		<path d="M5.333 13.333 10.667 8 5.333 2.667" stroke="#F3F3F3" stroke-width="1.5"
 			stroke-linecap="round" stroke-linejoin="round" />
 	</symbol>
@@ -302,8 +303,10 @@
 		</g>
 	</symbol>
 	<symbol fill="none" viewBox="0 0 25 24" id="CepOpen" xmlns="http://www.w3.org/2000/svg">
-		<path d="M18.581 12.889v5.333A1.778 1.778 0 0 1 16.804 20H7.026a1.778 1.778 0 0 1-1.778-1.778V8.444a1.778 1.778 0 0 1 1.778-1.777h5.333m-.889 7.11L21.248 4m0 0h-5.333m5.333 0v5.333" stroke="#B10200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-		</symbol>
+		<path
+			d="M18.581 12.889v5.333A1.778 1.778 0 0 1 16.804 20H7.026a1.778 1.778 0 0 1-1.778-1.778V8.444a1.778 1.778 0 0 1 1.778-1.777h5.333m-.889 7.11L21.248 4m0 0h-5.333m5.333 0v5.333"
+			stroke="#B10200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+	</symbol>
 	<symbol id="Truck" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
 		<path fill-rule="evenodd" clip-rule="evenodd"
 			d="M1.09998 4.99998C1.09998 4.50292 1.50292 4.09998 1.99998 4.09998H13C13.497 4.09998 13.9 4.50292 13.9 4.99998V5.09998H18C18.3161 5.09998 18.6091 5.26584 18.7717 5.53693L21.7717 10.5369C21.8556 10.6768 21.9 10.8369 21.9 11V17C21.9 17.497 21.497 17.9 21 17.9H19.7576C19.3789 19.061 18.2874 19.9 17 19.9C15.7125 19.9 14.621 19.061 14.2423 17.9H9.75761C9.37893 19.061 8.28743 19.9 6.99998 19.9C5.71252 19.9 4.62102 19.061 4.24234 17.9H2.99998C2.50292 17.9 2.09998 17.497 2.09998 17V13C2.09998 12.5029 2.50292 12.1 2.99998 12.1C3.49703 12.1 3.89998 12.5029 3.89998 13V16.1H4.24234C4.62102 14.9389 5.71252 14.1 6.99998 14.1C8.28743 14.1 9.37893 14.9389 9.75761 16.1H12.1V5.89998H1.99998C1.50292 5.89998 1.09998 5.49703 1.09998 4.99998ZM13.9 6.89998V10.1H19.4104L17.4904 6.89998H13.9ZM20.1 11.9H13.9V16.1H14.2423C14.621 14.9389 15.7125 14.1 17 14.1C18.2874 14.1 19.3789 14.9389 19.7576 16.1H20.1V11.9ZM2.09998 8.99997C2.09998 8.50292 2.50292 8.09997 2.99998 8.09997H6.99998C7.49703 8.09997 7.89998 8.50292 7.89998 8.99997C7.89998 9.49703 7.49703 9.89997 6.99998 9.89997H2.99998C2.50292 9.89997 2.09998 9.49703 2.09998 8.99997ZM6.99998 15.9C6.39246 15.9 5.89998 16.3925 5.89998 17C5.89998 17.6075 6.39246 18.1 6.99998 18.1C7.60749 18.1 8.09998 17.6075 8.09998 17C8.09998 16.3925 7.60749 15.9 6.99998 15.9ZM17 15.9C16.3925 15.9 15.9 16.3925 15.9 17C15.9 17.6075 16.3925 18.1 17 18.1C17.6075 18.1 18.1 17.6075 18.1 17C18.1 16.3925 17.6075 15.9 17 15.9Z" />
@@ -359,6 +362,43 @@
 		<path
 			d="M6.66667 12H9.33333V10.6667H6.66667V12ZM2 4V5.33333H14V4H2ZM4 8.66667H12V7.33333H4V8.66667Z"
 			fill="currentColor" />
+	</symbol>
+	<symbol fill="none" viewBox="0 0 25 24" id="FilterButtonMob" xmlns="http://www.w3.org/2000/svg">
+		<path d="M18.318 19v-3.889m-2.182 0H20.5M18.318 12V5M12.5 8.889V5m0 3.889h-2.182m2.182 0h2.182M12.5 19v-7m-8 1.556h2.182m0 0h2.182m-2.182 0V19m0-8.556V5" stroke="#393939" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+		</symbol>
+	<symbol fill="none" viewBox="0 0 24 25" id="ViewGrid" xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M10.222 4.146H4v6.223h6.222V4.146ZM10.222 13.924H4v6.223h6.222v-6.223ZM20 13.924h-6.222v6.223H20v-6.223ZM20 4.146h-6.222v6.223H20V4.146Z"
+			fill="#393939" />
+		<path
+			d="M10.222 4.146H4v6.223h6.222V4.146ZM10.222 13.924H4v6.223h6.222v-6.223ZM20 13.924h-6.222v6.223H20v-6.223ZM20 4.146h-6.222v6.223H20V4.146Z"
+			stroke="#393939" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+	</symbol>
+	<symbol fill="none" viewBox="0 0 24 25" id="ViewList" xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M10.222 4.147H4v6.222h6.222V4.147ZM10.222 13.925H4v6.222h6.222v-6.222ZM20 4.146h-6.222v2H20v-2ZM17.228 8.369h-3.45v2h3.45v-2ZM20 13.925h-6.222v2H20v-2ZM17.228 18.147h-3.45v2h3.45v-2Z"
+			fill="#393939" />
+		<path
+			d="M10.222 4.147H4v6.222h6.222V4.147ZM10.222 13.925H4v6.222h6.222v-6.222ZM20 4.146h-6.222v2H20v-2ZM17.228 8.369h-3.45v2h3.45v-2ZM20 13.925h-6.222v2H20v-2ZM17.228 18.147h-3.45v2h3.45v-2Z"
+			stroke="#393939" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+	</symbol>
+	<symbol fill="none" viewBox="0 0 24 25" id="ViewListSelected"
+		xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M10.222 4.147H4v6.222h6.222V4.147ZM10.222 13.925H4v6.222h6.222v-6.222ZM20 4.146h-6.222v2H20v-2ZM17.228 8.369h-3.45v2h3.45v-2ZM20 13.925h-6.222v2H20v-2ZM17.228 18.147h-3.45v2h3.45v-2Z"
+			fill="#FFF200" />
+		<path
+			d="M10.222 4.147H4v6.222h6.222V4.147ZM10.222 13.925H4v6.222h6.222v-6.222ZM20 4.146h-6.222v2H20v-2ZM17.228 8.369h-3.45v2h3.45v-2ZM20 13.925h-6.222v2H20v-2ZM17.228 18.147h-3.45v2h3.45v-2Z"
+			stroke="#FFF200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+	</symbol>
+	<symbol fill="none" viewBox="0 0 24 25" id="ViewGridSelected"
+		xmlns="http://www.w3.org/2000/svg">
+		<path
+			d="M10.222 4.146H4v6.223h6.222V4.146ZM10.222 13.924H4v6.223h6.222v-6.223ZM20 13.924h-6.222v6.223H20v-6.223ZM20 4.146h-6.222v6.223H20V4.146Z"
+			fill="#FFF200" />
+		<path
+			d="M10.222 4.146H4v6.223h6.222V4.146ZM10.222 13.924H4v6.223h6.222v-6.223ZM20 13.924h-6.222v6.223H20v-6.223ZM20 4.146h-6.222v6.223H20V4.146Z"
+			stroke="#FFF200" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
 	</symbol>
 	<symbol id="Trash" xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20"
 		fill="none">

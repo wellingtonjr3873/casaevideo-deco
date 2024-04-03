@@ -24,6 +24,7 @@ export const DEFAULT_THEME = {
   "--brand-secondary-50": "#F3F3F3",
 
   "--brand-terciary-1": "#FFF100",
+  "--brand-terciary-base": "#FFF200",
 
   "--complementary-1": "#D4FF00",
   "--complementary-2": "#A310F2",
