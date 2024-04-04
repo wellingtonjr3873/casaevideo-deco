@@ -26,15 +26,24 @@ function ProductVisualization({ product }: Props) {
 
   
 
-  const product3D = isVariantOf?.additionalProperty[0]?.value
+  const product3D = isVariantOf?.additionalProperty.find(property => property.name === "produto3D")?.value
+  console.log(product3D, 'product3D')
 
   
-
-  const options: Option[] = [
+   let options: Option[]
+  if(product3D !== undefined) {
+   options = [
     { icon: "Image", name: "Fotos", modal: 'ProductImage' },
     { icon: "Video", name: "Vídeo", modal: 'ProductVideo' },
     { icon: "3D", name: "3D", modal: 'Product3D' },
   ];
+} else {
+  options = [
+    { icon: "Image", name: "Fotos", modal: 'ProductImage' },
+    { icon: "Video", name: "Vídeo", modal: 'ProductVideo' },
+    
+  ];
+}
 
   return (
     <div class="flex border border-neutral-100 rounded-lg p-0.5 w-full bg-neutral-50">
