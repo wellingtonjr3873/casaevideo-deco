@@ -126,7 +126,7 @@ const OursStoresModal = ({handleCloseModal, product} : OursStoresModalProps) => 
                {userCep.value && <span class="small-underline text-brand-primary-1 cursor-pointer" onClick={handleResetUserCep}>Alterar</span>}
             </div>
 
-            {userCep.value ? <p class="small-bold m-0 text-center mt-4"><strong>{userCep.value!.logradouro} - {userCep.value!.city} - {userCep.value!.state} - {userCep.value?.cep}</strong></p>: <form class="flex gap-2 mt-2" onSubmit={getPostalCode}>
+            {userCep.value ? <p class="small-bold m-0 text-center mt-4"><strong>{userCep.value!.logradouro} - {userCep.value!.city} - {userCep.value!.state} - {userCep.value?.cep}</strong></p>: <form class="flex gap-2 mt-2" onSubmit={(e) => { e.preventDefault(); getPostalCode()}}>
                 <input ref={cepRef} placeholder="CEP"  class="h-10 rounded-md border border-neutral-200 py-2 px-4 w-full"/> 
                 <button class="h-10 rounded-md text-neutral-50 flex items-center justify-center bg-brand-primary-1 text-neultra-50 py-[10px] px-3">Calcular</button>
             </form>}
