@@ -6,7 +6,8 @@ import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
-import * as $$$2 from "./loaders/search/intelligenseSearch.ts";
+import * as $$$2 from "./loaders/newslettter.ts";
+import * as $$$3 from "./loaders/search/intelligenseSearch.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
@@ -52,7 +53,8 @@ const manifest = {
   "loaders": {
     "deco-sites/casaevideo/loaders/Layouts/ProductCard.tsx": $$$0,
     "deco-sites/casaevideo/loaders/List/Sections.tsx": $$$1,
-    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$2,
+    "deco-sites/casaevideo/loaders/newslettter.ts": $$$2,
+    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$3,
   },
   "sections": {
     "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
