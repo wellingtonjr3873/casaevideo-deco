@@ -1,2 +1,2 @@
 export const newslettterMutation = (email: string) =>
-  `mutation { subscribeNewsletter(email: "${email}")}`;
+  `mutation @context(provider: "vtex.store-graphql") { subscribeNewsletter(email: "${email}")}`;

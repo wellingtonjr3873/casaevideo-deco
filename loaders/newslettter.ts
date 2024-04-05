@@ -17,13 +17,13 @@ const loader = async (props: Props): Promise<true | null> => {
   });
 
   try {
-    await client.query({
+    const { subscribeNewsletter } = await client.query({
       query: newslettterMutation(props.email),
     });
-    return true;
+    return subscribeNewsletter;
   } catch (err) {
     console.error(err);
-    return null;
+    return false;
   }
 };
 
