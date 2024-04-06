@@ -1,7 +1,5 @@
 import { SendEventOnView } from "deco-sites/casaevideo/islands/Analytics.tsx";
-import ProductCard, {
-  Layout as cardLayout,
-} from "$store/components/product/ProductCard.tsx";
+import ProductCard, {Layout as cardLayout} from "$store/components/product/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
