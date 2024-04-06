@@ -18,6 +18,7 @@ export type AvailableIcons =
   | "Discord"
   | "Discount"
   | "Elo"
+  | "Lightning"
   | "Facebook"
   | "FilterList"
   | "Heart"

@@ -42,6 +42,7 @@ export const DEFAULT_THEME = {
   "--neutral-200": "#C6C6C6",
   "--neutral-100": "#DDDDDD",
   "--neutral-50": "#FFFFFF",
+  "--neutral-0": "#FFF",
   "--neutral-dark": "#444",
 
   "--success-light": "#A7D0B8",
