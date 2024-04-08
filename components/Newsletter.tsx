@@ -2,6 +2,7 @@
 import Island from "$store/islands/Newsletter.tsx"
 import { ImageWidget } from "apps/admin/widgets.ts";
 
+
 export interface Form {
   placeholder?: string;
   buttonText?: string;
