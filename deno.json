@@ -36,9 +36,6 @@
     "_fresh",
     "**/_fresh/*"
   ],
-  "githooks": {
-    "pre-commit": "check"
-  },
   "lint": {
     "rules": {
       "tags": [
