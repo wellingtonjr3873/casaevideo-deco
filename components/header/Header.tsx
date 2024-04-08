@@ -7,9 +7,9 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import GeoLocationPointBar from "../../islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
+import { AppContext } from "$store/apps/site.ts";
+import type { SectionProps } from "deco/types.ts";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
-
-
 
 interface Categories {
   items: {
@@ -19,8 +19,26 @@ interface Categories {
   }[];
 }
 export interface Props {
+  /** @title Configuração Tip Bar */
+  banner?: {
+    tipBgColor: string;
+    mobile: {
+      src: ImageWidget;
+      alt: string;
+      altura: number;
+      largura: number;
+    };
+
+    desktop: {
+      src: ImageWidget;
+      alt: string;
+      altura: number;
+      largura: number;
+    };
+  };
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
+  // deno-lint-ignore no-explicit-any
   navItems: any;
   alerts: string[];
   /**
@@ -40,10 +58,27 @@ export interface Props {
     };
   };
   categories?: Categories;
-  isMobile: boolean
+  isMobile: boolean,
+  /** *@hide */
+  device: "mobile" | "desktop" | "tablet";
 }
 
 function Header({
+  banner = {
+    tipBgColor: "#b301d2",
+    mobile: {
+      src: "https://casaevideonewio.vteximg.com.br/arquivos/tip-mob.png",
+      alt: "Banner Tip",
+      altura: 78,
+      largura: 564,
+    },
+    desktop: {
+      src: "https://casaevideonewio.vteximg.com.br/arquivos/tip.gif",
+      alt: "Banner Tip",
+      altura: 46,
+      largura: 1260,
+    }
+  },
   searchbar,
   logo,
   categories = {
@@ -58,19 +93,109 @@ function Header({
     ],
   },
   navItems,
-  isMobile
+  isMobile,
+  device
 }: Props) {
   const platform = usePlatform();
+  
+  if(device === "mobile"){
+    return(
+      <>
+        <header class="bg-brand-terciary-1">
+          <div class="h-12 flex items-center justify-center bg-complementary-2">
+            <p class="body-bold text-neutral-50">Destaque</p>
+          </div>
+          <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
+            <div className="flex justify-between">
+              <div class="flex gap-2 items-center content-start">
+                <span class="flex">
+                  <MenuButton />
+                  {isMobile && <Drawers
+                      menu={{ items: navItems }}
+                      platform={platform}
+                    />}
+                </span>
+                {logo && (
+                  <Picture>
+                    <Source
+                      media="(max-width: 768px)"
+                      src={logo.mobile.src}
+                      width={140}
+                      height={24}
+                    />
+                    <Source
+                      media="(min-width: 768px)"
+                      src={logo.desktop.src}
+                      width={240}
+                      height={40}
+                    />
+
+                    <img src={logo?.desktop.src} />
+                  </Picture>
+                )}
+              </div>
+              <div className="flex items-center justify-end">
+                <a
+                  class="flex items-center justify-center"
+                  href="/login"
+                  aria-label="Log in"
+                >
+                  <Icon
+                    id="User"
+                    strokeWidth={0.4}
+                    size={24}
+                    class="text-neutral-900 fill-transparent"
+                  />
+                </a>
+                {platform === "vtex" && (
+                  <CartButtonVTEX>
+                    <Icon
+                      id="Cart"
+                      size={24}
+                      className="fill-brand-secondary-900"
+                    />
+                  </CartButtonVTEX>
+                )}
+              </div>
+            </div>
+            <div>
+              {isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
+            </div>
+          </div>
+          <div className="lg:hidden">
+            <GeoLocationPointBar />
+          </div>
+        </header>
+      </>
+    )
+  }
   return (
     <>
-      <header id="header" class="bg-brand-terciary-1 h-[168px]">
-        <div class="h-12 flex items-center justify-center bg-complementary-2">
-          <p class="body-bold text-neutral-50">Destaque</p>
-        </div>
+      <header id="header" class="bg-brand-terciary-1">
+        {banner &&
+          <div class={`h-12 flex items-center justify-center`} style={{background: banner?.tipBgColor}}>
+            <Picture>
+              <Source
+                media="(max-width: 768px)"
+                src={banner.mobile.src}
+                width={banner.mobile.largura}
+                height={banner.mobile.altura}
+              />
+              <Source
+                media="(min-width: 768px)"
+                src={banner.desktop.src}
+                width={banner.desktop.largura}
+                height={banner.desktop.altura}
+              />
+
+              <img src={banner?.desktop.src} />
+            </Picture>
+          </div>
+        }
 
         {/* desktop version */}
 
-        <div  class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
+        <div class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
           <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-4">
             <a href="/" title="Link de retorno para página inicial">
               <figure>
@@ -95,7 +220,7 @@ function Header({
               </figure>
             </a>
             <div class="w-full">
-            {!isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
+              {!isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
             </div>
             <div class="flex items-center gap-2">
               {/* user */}
@@ -108,18 +233,19 @@ function Header({
                   id="User"
                   size={32}
                   class="text-neutral-900 "
+                  alt="Acesse sua conta agora"
                 />
                 <div class="flex flex-col">
                   <span class="small-regular">Bem vindo!</span>
                   <span class="x-small-underline">Entre ou cadastre-se</span>
                 </div>
                 {/* meus pedidos */}
-                <a>
-                  <Icon id="MyOrders" size={32} class="text-neutral-900" />
+                <a href="/account/#/orders"  aria-label="Meus pedidos">
+                  <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui"/>
                 </a>
                 {/* wishlist */}
-                <a>
-                  <Icon id="Wishlist" size={32} class="text-neutral-900" />
+                <a href="/wishlist"  aria-label="Meus favoritos">
+                  <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos"/>
                 </a>
               </a>
 
@@ -130,6 +256,7 @@ function Header({
                     id="Cart"
                     size={32}
                     class="fill-brand-secondary-900"
+                    alt="veja os produtos que estão no seu carrinho de compras"
                   />
                 </CartButtonVTEX>
               )}
@@ -171,75 +298,8 @@ function Header({
         <div className="hidden lg:flex">
           <GeoLocationPointBar />
         </div>
-
-        {/* mobile version */}
-
-        <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
-          <div className="flex justify-between">
-            <div class="flex gap-2 items-center content-start">
-              <span class="flex">
-                <MenuButton />
-                {isMobile && <Drawers
-                  menu={{ items: navItems }}
-                  platform={platform}
-                />}
-              </span>
-              {logo && (
-                <a href="/" title="Link de retorno para página inicial">
-
-                  <Picture>
-                    <Source
-                      media="(max-width: 768px)"
-                      src={logo.mobile.src}
-                      width={140}
-                      height={24}
-                    />
-                    <Source
-                      media="(min-width: 768px)"
-                      src={logo.desktop.src}
-                      width={240}
-                      height={40}
-                    />
-
-                    <img src={logo?.desktop.src} />
-                  </Picture>
-                </a>
-              )}
-              {/* <Image src={logo?.src} alt={logo?.alt} width={100} height={50} /> */}
-            </div>
-
-            <div className="flex items-center justify-end">
-              <a
-                class="flex items-center justify-center"
-                href="/login"
-                aria-label="Log in"
-              >
-                <Icon
-                  id="User"
-                  strokeWidth={0.4}
-                  size={24}
-                  class="text-neutral-900 fill-transparent"
-                />
-              </a>
-              {platform === "vtex" && (
-                <CartButtonVTEX>
-                  <Icon
-                    id="Cart"
-                    size={24}
-                    className="fill-brand-secondary-900"
-                  />
-                </CartButtonVTEX>
-              )}
-            </div>
-          </div>
-          <div>
-          {isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
-          </div>
-        </div>
-        <div className="lg:hidden">
-          <GeoLocationPointBar />
-        </div>
       </header>
+    
     </>
   );
 }

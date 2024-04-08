@@ -1,17 +1,48 @@
-/**
- * Rendered when a not found is returned by any of the loaders run on this page
- */
-function NotFound() {
-  return (
-    <div class="w-full flex justify-center items-center py-28">
-      <div class="flex flex-col items-center justify-center gap-6">
-        <span class="font-medium text-2xl">Página não encontrada</span>
-        <a href="/" class="btn no-animation">
-          Voltar à página inicial
-        </a>
-      </div>
-    </div>
-  );
+import { Section } from "deco/blocks/section.ts";
+import { HTMLWidget, ImageWidget } from "apps/admin/widgets.ts";
+import Image from "apps/website/components/Image.tsx";
+
+interface Sections{
+  section: Section;
+}
+export interface Props {
+    image: ImageWidget;
+    alt?: string;
+    text: HTMLWidget;
+    ctaText?: string;
+    sections: Sections[];
 }
 
-export default NotFound;
+export default function NotFoundPage({ image, alt, text, sections, ctaText }: Props) {
+
+    return (
+        <div class={`flex flex-col gap-4 justify-center items-center mt-10`}>
+            <div class={`flex flex-col items-center justify-center px-4 gap-5 lg:flex-row`}>
+                <Image
+                    class=""
+                    src={image}
+                    alt={alt || "Página de busca não encontrada"}
+                    width={270}
+                    height={306}
+                    loading="eager"
+                />
+                <div class={`flex flex-col items-center justify-center gap-4`}>
+                  <div
+                  class="flex flex-col text-center gap-3 notFoundText leading-none lg:text-left"
+                  dangerouslySetInnerHTML={{ __html: text }}
+                  />
+                  <a href="/" class={`px-4 py-2.5 flex items-center justify-center max-w-[320px] mx-auto bg-neutral-1 text-neutral-50 rounded-md w-full`}>
+                    <button>{ctaText || "Voltar para a home do site"}</button>
+                  </a>
+                </div>
+            </div>
+            {sections &&
+              <div class={`w-full`}>
+                  {sections.map((sections) => (
+                    <sections.section.Component {...sections.section.props} />
+                  ))}
+              </div>
+            }
+        </div>
+    )
+}

@@ -1,9 +1,6 @@
-import { Picture, Source } from "apps/website/components/Picture.tsx";
+import { Picture, Source } from "./Picture.tsx";
 import type { ImageWidget } from "apps/admin/widgets.ts";
 import { useId } from "$store/sdk/useId.ts";
-
-import Slider from "$store/components/ui/Slider.tsx";
-import SliderJS from "$store/islands/SliderJS.tsx";
 
 /**
  * @titleBy alt
@@ -34,15 +31,6 @@ export type BorderRadius =
 export interface Props {
   title?: string;
   /**
-   * @description Default is 2 for mobile and all for desktop
-   */
-  itemsPerLine: {
-    /** @default 2 */
-    mobile?: 1 | 2;
-    /** @default 4 */
-    desktop?: 1 | 2 | 4 | 6 | 8;
-  };
-  /**
    * @description Item's border radius in px
    */
   borderRadius: {
@@ -53,19 +41,6 @@ export interface Props {
   };
   banners: Banner[];
 }
-
-const MOBILE_COLUMNS = {
-  1: "grid-cols-1",
-  2: "grid-cols-2",
-};
-
-const DESKTOP_COLUMNS = {
-  1: "sm:grid-cols-1",
-  2: "sm:grid-cols-2",
-  4: "sm:grid-cols-4",
-  6: "sm:grid-cols-6",
-  8: "sm:grid-cols-8",
-};
 
 const RADIUS_MOBILE = {
   "none": "rounded-none",
@@ -113,16 +88,11 @@ const DEFAULT_PROPS: Props = {
     mobile: "3xl",
     desktop: "3xl",
   },
-  itemsPerLine: {
-    mobile: 2,
-    desktop: 2,
-  },
 };
 
 export default function BannnerIsland(props: Props) {
   const {
     title,
-    itemsPerLine,
     borderRadius,
     banners = [],
   } = { ...DEFAULT_PROPS, ...props };
@@ -130,7 +100,7 @@ export default function BannnerIsland(props: Props) {
   const id = useId();
 
   return (
-    <section class="container w-full px-4 mx-auto max-w-[1280px] md:px-6 xl-b:px-0">
+    <div class="container w-full px-4 mx-auto max-w-[1280px] md:px-6 xl-b:px-0">
       {title &&
         (
           <div class="py-6 md:py-0 md:pb-[40px] flex items-center mt-6">
@@ -139,27 +109,15 @@ export default function BannnerIsland(props: Props) {
             </h2>
           </div>
         )}
-      <div
-        class={`grid gap-4 md:gap-6 ${
-          MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
-        } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 4]}
-        md:flex
-        `}
-        
-      >
-        <div className="block md:hidden">
-          <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-2">
-            {banners.map(({ href, srcMobile, srcDesktop, alt }, index) => (
-              <Slider.Item
-                index={index}
-                class="carousel-item w-1/2"
-                style={{ maxWidth: "150px" }}
+        <div className="flex overflow-x-scroll md:overflow-x-hidden">
+          <ul class="flex w-full gap-2 md:gap-4 md:justify-between md:w-full ">
+            {banners.map(({ href, srcMobile, srcDesktop, alt }) => (
+              <li
+                class="w-1/2"
               >
                 <a
                   href={href}
-                  class={`overflow-hidden ${
-                    RADIUS_MOBILE[borderRadius.mobile ?? "none"]
-                  } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
+                  class={`overflow-hidden`}
                 >
                   <Picture>
                     <Source
@@ -167,15 +125,19 @@ export default function BannnerIsland(props: Props) {
                       src={srcMobile}
                       width={150}
                       height={180}
+                      fetchPriority="low"
                     />
                     <Source
                       media="(min-width: 768px)"
                       src={srcDesktop ? srcDesktop : srcMobile}
                       width={272}
                       height={327}
+                      fetchPriority="low"
                     />
                     <img
-                      class="w-full"
+                      class={`w-full min-w-[150px] h-[calc(40vw*(180/150))] md:h-[calc(22.6vw*(327/272))] md:max-h-[370px] ${
+                        RADIUS_MOBILE[borderRadius.mobile ?? "none"]
+                      } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]}`}
                       sizes="(max-width: 640px) 150px, 100vw"
                       src={srcMobile}
                       alt={alt}
@@ -184,46 +146,10 @@ export default function BannnerIsland(props: Props) {
                     />
                   </Picture>
                 </a>
-              </Slider.Item>
+              </li>
             ))}
-          </Slider>
-          <SliderJS rootId={id} infinite />
+          </ul>
         </div>
-
-        <div className="hidden md:flex gap-4 justify-between md:w-full">
-            {banners.map(({ href, srcMobile, srcDesktop, alt }, index) => (
-                <a
-                  href={href}
-                  class={`overflow-hidden banner-island-item ${
-                    RADIUS_MOBILE[borderRadius.mobile ?? "none"]
-                  } ${RADIUS_DESKTOP[borderRadius.desktop ?? "none"]} `}
-                >
-                  <Picture>
-                    <Source
-                      media="(max-width: 767px)"
-                      src={srcMobile}
-                      width={150}
-                      height={180}
-                    />
-                    <Source
-                      media="(min-width: 768px)"
-                      src={srcDesktop ? srcDesktop : srcMobile}
-                      width={272}
-                      height={327}
-                    />
-                    <img
-                      class="w-full"
-                      sizes="(max-width: 640px) 150px, 100vw"
-                      src={srcMobile}
-                      alt={alt}
-                      decoding="async"
-                      loading="lazy"
-                    />
-                  </Picture>
-                </a>
-            ))}
-        </div>
-      </div>
-    </section>
+    </div>
   );
 }
