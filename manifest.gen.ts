@@ -6,12 +6,14 @@ import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
-import * as $$$2 from "./loaders/search/intelligenseSearch.ts";
+import * as $$$2 from "./loaders/product/buyTogether.ts";
+import * as $$$3 from "./loaders/search/intelligenseSearch.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
 import * as $$$$$$3 from "./sections/Content/Faq.tsx";
 import * as $$$$$$4 from "./sections/Content/Logos.tsx";
+
 import * as $$$$$$5 from "./sections/Content/SimpleText.tsx";
 import * as $$$$$$6 from "./sections/Content/Testimonials.tsx";
 import * as $$$$$$7 from "./sections/Departament/DepartamentList.tsx";
@@ -53,7 +55,8 @@ const manifest = {
   "loaders": {
     "deco-sites/casaevideo/loaders/Layouts/ProductCard.tsx": $$$0,
     "deco-sites/casaevideo/loaders/List/Sections.tsx": $$$1,
-    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$2,
+    "deco-sites/casaevideo/loaders/product/buyTogether.ts": $$$2,
+    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$3,
   },
   "sections": {
     "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
@@ -83,8 +86,10 @@ const manifest = {
     "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$23,
     "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$24,
     "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx":
+
       $$$$$$25,
     "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$26,
+
     "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
       $$$$$$27,
     "deco-sites/casaevideo/sections/Product/ImageGallerySlider.tsx": $$$$$$28,
