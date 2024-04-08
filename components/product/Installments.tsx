@@ -85,7 +85,6 @@ const Installments = ({installments}: Props) => {
             <nav class="flex border-b border-neutral-100 justify-between">
                 {tratedKeys.map(item => 
                     <li onClick={() => handleSetInstallmentBar(item)} class={`list-none grayscale ${selectedOptionIndex.value.toLowerCase() === item.toLowerCase() ? "border-b-[3px] border-brand-secondary-1 grayscale-0" : ""}`}>
-                    {console.log(item.toLowerCase())}
                     <Icon id={availableOffersIconDictionary[item.toLowerCase()]} size={64}/>
                     </li>)}
             </nav>
