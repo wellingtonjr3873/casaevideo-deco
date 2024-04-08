@@ -9,6 +9,7 @@ export interface Props {
   /** @description: sku name */
   eventParams: AddToCartParams;
   onAddItem: () => Promise<void>;
+  className?: string;
 }
 
 const useAddToCart = ({ eventParams, onAddItem }: Props) => {
@@ -40,9 +41,10 @@ const useAddToCart = ({ eventParams, onAddItem }: Props) => {
 
 export default function AddToCartButton(props: Props) {
   const btnProps = useAddToCart(props);
+  const className = props.className;
 
   return (
-    <Button {...btnProps} class="btn-primary text-neutral-50 border-0 bg-brand-primary-1 hover:bg-brand-primary-1 body-regular">
+    <Button class={`btn-primary text-neutral-50 border-0 bg-brand-primary-1 hover:bg-brand-primary-1 body-regular ${className}`} {...btnProps}>
       <Icon id="Cart" class="text-neutral-50" width={24} height={24} /> Comprar
     </Button>
   );

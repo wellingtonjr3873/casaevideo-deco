@@ -7,7 +7,7 @@ function GeoLocationPoint() {
     const [cep, setCep] = useState('')
     const [cepForm, setCepForm] = useState({ value: '', open: false })
     const [userCurrentCep, setUserCurrentCep] = useState({ value: '', loading: false })
-    const timeout = 2000;
+    const timeout = 1000;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let newCep = (e.target as HTMLInputElement).value;
