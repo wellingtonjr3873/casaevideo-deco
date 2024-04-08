@@ -1,4 +1,4 @@
-import { useId } from "$store/sdk/useId.ts";
+import { useId } from "../../sdk/useId.ts";
 import { useSignal } from "@preact/signals";
 import { ComponentChildren } from "preact";
 import { useEffect } from "preact/hooks";
@@ -47,13 +47,14 @@ function Drawer(props: Props) {
         type="checkbox"
         class="drawer-toggle"
         onChange={(e) => e.currentTarget.checked === false && onClose?.()}
+        aria-label={open ? "open drawer" : "closed drawer"}
       />
 
       <div class="drawer-content">
         {children}
       </div>
 
-      <aside class="drawer-side h-full z-50">
+      <aside class="drawer-side h-full z-50 overflow-hidden">
         <label for={id} class="drawer-overlay" />
         {!lazy.value && aside}
       </aside>
