@@ -12,6 +12,8 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Head } from "$fresh/runtime.ts";
 import {Props as BannerStopWatchProps} from "$store/components/ui/BannerStopwatch.tsx";
 import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
+import { Picture } from "deco-sites/casaevideo/components/ui/Picture.tsx";
+import { Source } from "deco-sites/casaevideo/components/ui/Picture.tsx";
 /**
  * @titleBy alt
  */
@@ -169,7 +171,7 @@ function BannerItem(
     >
      { isStopwatch && <BannerStopWatch {...isStopwatch} endDateAt={dateEndAt}/> }
       <Picture preload={lcp}>
-        <Source
+        <source
           media="(max-width: 767px)"
           srcset={mobile}
           width={320}
@@ -188,7 +190,7 @@ function BannerItem(
           src={mobile}
           alt={alt}
         />
-      </picture>
+      </Picture>
       {action && (
         <div class="absolute h-min top-0 bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min max-w-[400px] flex flex-col gap-4 p-4 rounded glass">
           <span class="text-6xl font-medium text-base-100">
