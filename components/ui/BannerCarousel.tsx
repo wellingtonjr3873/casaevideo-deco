@@ -130,6 +130,7 @@ const IMAGES_PROPS = {
   ],
 };
 
+
 function getCurrentDateTime() {
   const now = new Date();
 
@@ -190,6 +191,11 @@ function BannerItem(
 }
 
 function Dots({ bannerImages, interval = 0 }: Props) {
+
+  const filteredImages = bannerImages?.filter(image => {
+    const now = getCurrentDateTime();
+    return now >= image.dateStartAt && now <= image.dateEndAt;
+  });
   return (
     <>
       <style
@@ -204,9 +210,10 @@ function Dots({ bannerImages, interval = 0 }: Props) {
         }}
       />
       <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4 h-[11px] absolute bottom-[-18px] left-1/2 max-[768px]:transform -translate-x-1/2">
-        {bannerImages?.map((image, index) => {
-          const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
-            getCurrentDateTime() <= image.dateEndAt;
+        {filteredImages?.map((image, index) => {
+        const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
+        getCurrentDateTime() <= image.dateEndAt;
+            
 
           return (
             <>
@@ -262,6 +269,14 @@ function BannerCarousel(props: Props) {
   const id = useId();
   const { bannerImages, interval } = { ...IMAGES_PROPS, ...props };
 
+  const currentDateTime = getCurrentDateTime();
+  const filteredImages = bannerImages.filter(image =>
+    currentDateTime >= image.dateStartAt && currentDateTime <= image.dateEndAt
+  );
+
+
+  
+
   return (
     <>
       <div
@@ -269,14 +284,13 @@ function BannerCarousel(props: Props) {
         class="grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0"
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6 max-[768px]:px-4">
-          {bannerImages?.map((image, index) => {
+          {filteredImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
-            const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
-              getCurrentDateTime() <= image.dateEndAt;
+            
 
             return (
-              dateEndtAt &&
-              (
+              
+              
                 <>
                   {
                     image.preload && (
@@ -303,19 +317,20 @@ function BannerCarousel(props: Props) {
                     />
                   </Slider.Item>
                 </>
-              )
+              
             );
           })}
         </Slider>
 
         <Buttons />
 
-        <Dots bannerImages={bannerImages} interval={interval} />
+        <Dots bannerImages={filteredImages} interval={interval} />
 
         <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
       </div>
     </>
   );
 }
+
 
 export default BannerCarousel;

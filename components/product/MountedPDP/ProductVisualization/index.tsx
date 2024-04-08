@@ -22,12 +22,11 @@ function ProductVisualization({ product }: Props) {
  const {
     image, isVariantOf,name
   } = product;
-  const total = product;
+
 
   
 
   const product3D = isVariantOf?.additionalProperty.find(property => property.name === "produto3D")?.value
-  console.log(product3D, 'product3D')
 
   
    let options: Option[]
