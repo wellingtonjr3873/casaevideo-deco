@@ -60,7 +60,6 @@ export interface Banner {
 
 export interface Props {
   bannerImages?: Banner[];
-
   /**
    * @title Intervalo AutoPlay
    * @description Tempo (em segundos) para iniciar a reprodução automática do carrossel.
