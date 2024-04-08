@@ -45,7 +45,7 @@ function SubMenuItem(
               key={idx}
               class="border-none py-[14px] px-[24px] w-[100%] bg-brand-secondary-50"
             >
-                  <a href={node.url} class="text-left w-[100%] block">
+                  <a href={node.url.replace("https://portal.vtexcommercestable.com.br","").replace("https://casaevideonewio.vtexcommercestable.com.br","")} class="text-left w-[100%] block">
                     {node.name}
                   </a>
             </li>
@@ -126,7 +126,7 @@ function MenuItem(
                       : (
                         <div class="py-[14px] px-6 w-full bg-neutral-50">
                           <span class="small-regular flex justify-between items-center text-left w-full text-neutral-900">
-                            <a href={node.url}>{node.name}</a>
+                            <a class={`w-full`} href={node.url.replace("https://portal.vtexcommercestable.com.br","").replace("https://casaevideonewio.vtexcommercestable.com.br","")}>{node.name}</a>
                           </span>
                         </div>
                       )}
@@ -226,7 +226,7 @@ function Menu({ items }: Props) {
                 )
                 : (
                   <a
-                    href={item.url}
+                    href={item.url.replace("https://portal.vtexcommercestable.com.br","").replace("https://casaevideonewio.vtexcommercestable.com.br","")}
                     class="block py-[14px] px-[24px] w-[100%] bg-neutral-50"
                   >
                     <span class="text-sm flex justify-between items-center text-left w-[100%]">
