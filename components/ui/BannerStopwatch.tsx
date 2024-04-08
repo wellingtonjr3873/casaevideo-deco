@@ -51,7 +51,6 @@ const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor,
 
     return <div class={`absolute flex ${positionDictionary[position || "base-right"]}`}>
         <div class="flex">
-
             <Picture preload={false}>
                 <Source
                 media="(max-width: 767px)"
