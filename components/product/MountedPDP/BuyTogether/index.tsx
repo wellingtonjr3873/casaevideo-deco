@@ -77,15 +77,17 @@ function BuyTogether(props: Props) {
             </div>
           ))}
 
-          <div class="order-1 md:flex items-center justify-center hidden">
+          <div class="order-2 md:flex items-center justify-center hidden">
             <Icon width={16} height={16} id="Plus" />
           </div>
 
-          <div class="flex flex-col items-center justify-center order-last w-full md:w-1/3 gap-1">
-            <AddToCart
-              items={buyTogether}
-              eventParams={{ items: [eventItem] }}
-            />
+          <div class="flex flex-col items-center justify-center w-full md:w-1/3 gap-1 order-last">
+            <div class="order-1 md:order-3 w-full">
+              <AddToCart
+                items={buyTogether}
+                eventParams={{ items: [eventItem] }}
+              />
+            </div>
 
             <div class="flex md:flex-col items-center justify-center order-1">
               <span class="h5-bold  pr-1 md:pr-0">R$ {total.toFixed(2).replace(".", ",")}</span>

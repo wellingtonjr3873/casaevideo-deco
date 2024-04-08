@@ -189,6 +189,38 @@
   .text-nowrap{
     text-wrap: nowrap;
   }
+
+  .buytogether-checkbox input:checked:before {
+    content: "";
+    width: 13px;
+    height: 13px;
+    display: block;
+    cursor: pointer;
+    background: black;
+    filter: brightness(0) saturate(100%) invert(13%) sepia(57%) saturate(4381%) hue-rotate(345deg) brightness(125%) contrast(122%);
+    z-index: 1;
+    position: absolute;
+    border-radius: 1px;
+  }
+  
+  .buytogether-checkbox input:checked:after {
+    content: "✔";
+    width: 13px;
+    height: 13px;
+    cursor: pointer;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    z-index: 2;
+    transform: rotate(5deg);
+    color: #fff;
+    font-weight: lighter;
+    color: white;
+    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(243deg) brightness(102%) contrast(104%);
+  }
 }
 
 @media (min-width: 1536px) {
