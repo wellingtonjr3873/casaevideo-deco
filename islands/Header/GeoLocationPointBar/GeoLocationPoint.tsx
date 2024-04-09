@@ -7,7 +7,7 @@ function GeoLocationPoint() {
     const [cep, setCep] = useState('')
     const [cepForm, setCepForm] = useState({ value: '', open: false })
     const [userCurrentCep, setUserCurrentCep] = useState({ value: '', loading: false })
-    const timeout = 2000;
+    const timeout = 1000;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let newCep = (e.target as HTMLInputElement).value;
@@ -21,8 +21,8 @@ function GeoLocationPoint() {
         if (value.length != 9) return
         const validCep = value.replace('-', '')
         setUserCurrentCep((prev) => ({ ...prev, loading: true }))
-        fetch('https://casaevideonewio.vtexcommercestable.com.br/api/sessions', {
-            method: 'POST',
+        fetch('/api/sessions', {
+            method: 'PATCH',
             body: JSON.stringify({
                 public: {
                     country: {
@@ -66,9 +66,7 @@ function GeoLocationPoint() {
         const currentCepIsExist = localStorage.getItem("USER_CEP")
         if (currentCepIsExist) {
             setUserCurrentCep((prev) => ({ ...prev, value: currentCepIsExist }))
-            submitCep(currentCepIsExist)
         }
-        setUserCurrentCep((prev) => ({ ...prev, loading: false }))
     }, [])
 
     return (

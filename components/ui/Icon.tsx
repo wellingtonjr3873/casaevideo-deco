@@ -39,6 +39,7 @@ export type AvailableIcons =
   | "Tiktok"
   | "Trash"
   | "Truck"
+  | "CepOpen"
   | "Twitter"
   | "User"
   | "Visa"
@@ -91,7 +92,11 @@ export type AvailableIcons =
   | "IncreaseButton"
   | "Image"
   | "Video"
-  | "3D";
+  | "3D"
+  | "PickupPoint"
+  | "Checked"
+  | "Close"
+  | "Plus";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
   /**
