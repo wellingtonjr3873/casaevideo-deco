@@ -39,7 +39,7 @@ function GeoLocationPoint() {
         })
             .then((res) => res.json())
             .then(() => {
-                localStorage.setItem("USER_CEP", value)
+                localStorage?.setItem("USER_CEP", value)
                 setUserCurrentCep(() => ({ value: value, loading: false }))
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false
@@ -48,7 +48,7 @@ function GeoLocationPoint() {
             })
             .catch((err) => {
                 console.error('ocorreu um erro', err)
-                localStorage.setItem("USER_CEP", value)
+                localStorage?.setItem("USER_CEP", value)
                 setUserCurrentCep(() => ({ value: value, loading: false }))
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false

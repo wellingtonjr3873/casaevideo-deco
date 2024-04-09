@@ -90,7 +90,7 @@ function ShippingSimulation({ items }: Props) {
   const loading = useSignal(false);
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
   const { simulate, cart } = useCart();
-  const currentCepIsExist = localStorage.getItem("USER_CEP")
+  const currentCepIsExist = localStorage?.getItem("USER_CEP")
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newCep = (e.target as HTMLInputElement).value;
