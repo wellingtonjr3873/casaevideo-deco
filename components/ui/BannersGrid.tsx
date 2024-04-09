@@ -34,6 +34,7 @@ export interface Banner {
 }
 
 export interface Props {
+  /** @format html */
   title?: string;
   /**
    * @description O padrão é 2
@@ -75,15 +76,15 @@ export default function BannersGrid(props: Props) {
       {title &&
         (
           <div class="py-6 md:py-0 md:pb-[40px] flex items-center mt-6">
-            <h2 class="h5-bold w-full">
-              {title}
-            </h2>
+            <div
+              class="w-full"
+              dangerouslySetInnerHTML={{ __html: title }}
+            />
           </div>
         )}
       <div
-        class={`grid gap-2 md:gap-2 mt-2 ${
-          MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
-        } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 2]}`}
+        class={`grid gap-2 md:gap-2 mt-2 ${MOBILE_COLUMNS[itemsPerLine?.mobile ?? 2]
+          } ${DESKTOP_COLUMNS[itemsPerLine?.desktop ?? 2]}`}
       >
         {banners.map((
           {
