@@ -192,8 +192,6 @@ function BannerItem(
 
 function Dots({ bannerImages, interval = 0 }: Props) {
 
-  console.log(bannerImages, interval, "dots")
-
   const filteredImages = bannerImages?.filter(image => {
     const now = getCurrentDateTime();
     return now >= image.dateStartAt && now <= image.dateEndAt;
@@ -270,7 +268,6 @@ function Buttons() {
 function BannerCarousel(props: Props) {
   const id = useId();
   const { bannerImages, interval } = { ...IMAGES_PROPS, ...props };
-  console.log(bannerImages, interval, "banner props")
 
   const currentDateTime = getCurrentDateTime();
   const filteredImages = bannerImages.filter(image =>

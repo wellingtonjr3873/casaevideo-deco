@@ -1,6 +1,5 @@
 import type { Props as MenuProps } from "$store/components/header/Menu.tsx";
 import Cart from "$store/components/minicart/Cart.tsx";
-import type { Props as SearchbarProps } from "$store/components/search/Searchbar.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
@@ -28,8 +27,8 @@ const Aside = (
     children: ComponentChildren;
   },
 ) => (
-  <div class="grid grid-rows-[48px_max-content] h-full divide-y max-w-[368px] w-[100%]">
-    <div class="flex justify-between items-center bg-brand-terciary-1 max-w-[368px] w-[100%]">
+  <div class="grid grid-rows-[48px_max-content] h-full divide-y max-w-sm w-full bg-brand-secondary-50">
+    <div class="flex justify-between items-center bg-brand-terciary-1 max-w-sm w-full">
       <h1 class="px-4 py-3">
         <span class="small-regular items-center flex gap-2">
           {iconTitle && iconTitle}
@@ -61,6 +60,7 @@ function Drawers({ menu, children, platform }: Props) {
 
 
   return (
+    <>
     <Drawer // left drawer
       open={displayMenu.value || displaySearchDrawer.value}
       onClose={() => {
@@ -80,6 +80,24 @@ function Drawers({ menu, children, platform }: Props) {
         </Aside>
       }
     />
+    
+    <Drawer // right drawer
+        class="drawer-end"
+        open={displayCart.value !== false}
+        onClose={() => displayCart.value = false}
+        aside={
+          <Aside
+            iconTitle={<Icon id="Cart" size={24} strokeWidth={2} />}
+            title="Minha sacola"
+            onClose={() => displayCart.value = false}
+          >
+            <Cart platform={platform} />
+          </Aside>
+        }
+      >
+        {children}
+      </Drawer>
+    </>
   );
 }
 
