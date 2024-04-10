@@ -1,6 +1,7 @@
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { useEffect, useState } from "preact/hooks";
+import { IS_BROWSER } from "$fresh/runtime.ts";
 
 function GeoLocationPoint() {
     const { displayGeoLocationPointPopup } = useUI();
@@ -39,7 +40,9 @@ function GeoLocationPoint() {
         })
             .then((res) => res.json())
             .then(() => {
-                localStorage?.setItem("USER_CEP", value)
+                if (IS_BROWSER) {
+                    localStorage?.setItem("USER_CEP", value)
+                }
                 setUserCurrentCep(() => ({ value: value, loading: false }))
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false
@@ -48,7 +51,9 @@ function GeoLocationPoint() {
             })
             .catch((err) => {
                 console.error('ocorreu um erro', err)
-                localStorage?.setItem("USER_CEP", value)
+                if (IS_BROWSER) {
+                    localStorage?.setItem("USER_CEP", value)
+                }
                 setUserCurrentCep(() => ({ value: value, loading: false }))
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false
