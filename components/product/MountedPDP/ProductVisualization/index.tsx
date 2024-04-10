@@ -31,7 +31,7 @@ function ProductVisualization({ product }: Props) {
   
 
   const options: Option[] = [
-    { icon: "Zoom", name: "Zoom", modal: 'ProductImage' },
+    { icon: "Image", name: "Imagem", modal: 'ProductImage' },
     { icon: "Video", name: "Vídeo", modal: 'ProductVideo' },
     { icon: "3D", name: "3D", modal: 'Product3D' },
   ];

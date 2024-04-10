@@ -59,7 +59,7 @@
       "exclude": [
         "static/*"
       ]
-    }
+    },
     "rules": {
       "tags": [
         "fresh",
