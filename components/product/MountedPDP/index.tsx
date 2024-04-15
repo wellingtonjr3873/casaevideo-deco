@@ -70,10 +70,13 @@ function MountedPDP({ page }: Props) {
             </div>
             <GallerySlider page={page} layout={{ width: 400, height: 400 }} />
           </div>
-          <div class="w-full md:w-1/2 flex flex-col gap-4 pr-4 px-4">
-            <ProductBasicInfo product={product} />
-            <ProductSelector product={product} />
-            <CVCreditCardBanner />
+
+          <div class="w-full md:w-1/2 px-4">
+            <div class="w-full flex flex-col gap-4 md:pr-0 pr-4">
+              <ProductBasicInfo product={product} />
+              <ProductSelector product={product} />
+              <CVCreditCardBanner />
+            </div>
           </div>
         </div>
 

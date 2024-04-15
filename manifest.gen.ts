@@ -4,6 +4,7 @@
 
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
+import * as $$$$0 from "./handlers/vtexAbTest.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
 import * as $$$2 from "./loaders/newslettter.ts";
@@ -59,6 +60,9 @@ const manifest = {
     "deco-sites/casaevideo/loaders/newslettter.ts": $$$2,
     "deco-sites/casaevideo/loaders/product/buyTogether.ts": $$$3,
     "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$4,
+  },
+  "handlers": {
+    "deco-sites/casaevideo/handlers/vtexAbTest.ts": $$$$0,
   },
   "sections": {
     "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
