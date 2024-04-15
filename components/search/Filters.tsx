@@ -7,6 +7,8 @@ import type {
   ProductListingPage,
 } from "apps/commerce/types.ts";
 import { parseRange } from "apps/commerce/utils/filters.ts";
+import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
+
 
 interface Props {
   filters: ProductListingPage["filters"];
@@ -19,11 +21,12 @@ function ValueItem(
   { url, selected, label, quantity }: FilterToggleValue,
 ) {
   return (
-    <a href={url} rel="nofollow" class="flex items-center gap-2">
-      <div aria-checked={selected} class="checkbox" />
-      <span class="text-sm">{label}</span>
-      {quantity > 0 && <span class="text-sm text-base-300">({quantity})</span>}
-    </a>
+    <li>
+      <a href={url} rel="nofollow" class="flex items-center gap-2">
+        <div aria-checked={selected} class="checkbox w-4 h-4 rounded-sm border-brand-secondary-200" />
+        <span class="text-sm text-neutral-900">{label}</span>
+      </a>
+    </li>
   );
 }
 
@@ -39,12 +42,14 @@ function FilterValues({ key, values }: FilterToggle) {
 
         if (key === "cor" || key === "tamanho") {
           return (
-            <a href={url} rel="nofollow">
-              <Avatar
-                content={value}
-                variant={selected ? "active" : "default"}
-              />
-            </a>
+            <li>
+              <a href={url} rel="nofollow">
+                <Avatar
+                  content={value}
+                  variant={selected ? "active" : "default"}
+                />
+              </a>
+            </li>
           );
         }
 
@@ -67,13 +72,22 @@ function FilterValues({ key, values }: FilterToggle) {
 
 function Filters({ filters }: Props) {
   return (
-    <ul class="flex flex-col gap-6 p-4">
+    <ul class="flex flex-col gap-4">
       {filters
         .filter(isToggle)
-        .map((filter) => (
-          <li class="flex flex-col gap-4">
-            <span>{filter.label}</span>
-            <FilterValues {...filter} />
+        .map((filter, index) => (
+          <li tabIndex={index} class="dropdown bg-neutral-50 py-3 px-5">
+            <details class="group">
+              <summary class="m-1 flex justify-between items-center cursor-pointer font-bold text-base">
+                {filter.label}
+                  <span class="w-4 h-4 text-center flex justify-center items-center">
+                    <span class="group-open:-rotate-90 transition-all duration-200 ease-in">
+                      <Icon id="ArrowAccordion" size={24} strokeWidth={2} fill={`text-neutral-900`}/>
+                    </span>
+                  </span>
+              </summary>
+              <FilterValues {...filter} />
+            </details>
           </li>
         ))}
     </ul>
