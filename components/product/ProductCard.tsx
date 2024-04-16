@@ -241,7 +241,7 @@ function ProductCard(
           <>
             {filteredCluesters && clusterActiveTag && filteredCluesters?.map((clusterId) => (
               clusterId == clusterIdtag && 
-              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-2 items-center" style={{backgroundColor: clusterTagBgColor}}>              
+              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-1 md:px-2 items-center text-xs whitespace-nowrap" style={{backgroundColor: clusterTagBgColor}}>              
               <img src={iconPathTag} />
               {textTag}
             </div>              
