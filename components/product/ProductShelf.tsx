@@ -26,7 +26,6 @@ function ProductShelf({
 }: SectionProps<typeof loader>) {
   const id = useId();
   const platform = "vtex"
-
   if (!products || products.length === 0) {
     return null;
   }
