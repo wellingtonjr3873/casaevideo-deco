@@ -10,13 +10,14 @@ function Cart() {
   const locale = cart.value?.clientPreferencesData.locale ?? "pt-BR";
   const currency = cart.value?.storePreferencesData.currencyCode ?? "BRL";
   const coupon = cart.value?.marketingData?.coupon ?? undefined;
-
+  console.log(items)
   return (
     <BaseCart
       items={items.map((item) => ({
         image: { src: item.imageUrl, alt: item.skuName },
         quantity: item.quantity,
         name: item.name,
+        brand: item.additionalInfo.brandName || "",
         price: {
           sale: item.sellingPrice / 100,
           list: item.listPrice / 100,

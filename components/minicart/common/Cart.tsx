@@ -44,7 +44,6 @@ function Cart({
   return (
     <div
       class="flex flex-col justify-center items-center overflow-hidden"
-      style={{ minWidth: "calc(min(100vw, 425px))", maxWidth: "425px" }}
     >
       {isEmtpy
         ? (
@@ -63,19 +62,19 @@ function Cart({
         : (
           <>
             {/* Free Shipping Bar */}
-            <div class="px-2 py-4 w-full">
+            {/* <div class="px-2 py-4 w-full">
               <FreeShippingProgressBar
                 total={total}
                 locale={locale}
                 currency={currency}
                 target={freeShippingTarget}
               />
-            </div>
+            </div> */}
 
             {/* Cart Items */}
             <ul
               role="list"
-              class="mt-6 px-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
+              class="mt-4 px-2 flex-grow overflow-y-scroll h-[267px] lg:h-[50vh] flex flex-col gap-2 w-full"
             >
               {items.map((item, index) => (
                 <li key={index}>
@@ -92,46 +91,27 @@ function Cart({
             </ul>
 
             {/* Cart Footer */}
-            <footer class="w-full">
+            <div class="w-full">
               {/* Subtotal */}
-              <div class="border-t border-base-200 py-2 flex flex-col">
-                {discounts > 0 && (
-                  <div class="flex justify-between items-center px-4">
-                    <span class="text-sm">Descontos</span>
-                    <span class="text-sm">
-                      {formatPrice(discounts, currency, locale)}
+              <div class={`flex justify-between items-center px-4`}>
+                <div class="py-2 flex flex-col">
+                    <span class={`text-lg text-neutral-dark font-bold`}>Subtotal</span>
+                    <span class={`text-sm text-neutral-400 font-normal`}>Frete a calcular</span>
+                </div>
+                <div class="py-2 flex flex-col">
+                    <span class="text-base text-neutral-dark font-bold text-right">
+                      {formatPrice(subtotal, currency, locale)} no Pix
                     </span>
-                  </div>
-                )}
-                <div class="w-full flex justify-between px-4 text-sm">
-                  <span>Subtotal</span>
-                  <span class="px-4">
-                    {formatPrice(subtotal, currency, locale)}
-                  </span>
+                    <span class="text-base text-neutral-dark font-normal text-right">
+                      {formatPrice(subtotal, currency, locale)} no cartão
+                    </span>
                 </div>
-                {onAddCoupon && (
-                  <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
-                )}
               </div>
-
-              {/* Total */}
-              <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
-                <div class="flex justify-between items-center w-full">
-                  <span>Total</span>
-                  <span class="font-medium text-xl">
-                    {formatPrice(total, currency, locale)}
-                  </span>
-                </div>
-                <span class="text-sm text-base-300">
-                  Taxas e fretes serão calculados no checkout
-                </span>
-              </div>
-
               <div class="p-4">
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="btn-primary btn-block"
+                    class="btn-primary btn-block bg-brand-primary-1 text-base text-neutral-50 font-normal"
                     disabled={loading || isEmtpy}
                     onClick={() => {
                       sendEvent({
@@ -147,11 +127,11 @@ function Cart({
                       });
                     }}
                   >
-                    Fechar pedido
+                    Ir para o carrinho
                   </Button>
                 </a>
               </div>
-            </footer>
+            </div>
           </>
         )}
     </div>

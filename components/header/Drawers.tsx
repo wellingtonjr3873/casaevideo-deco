@@ -20,14 +20,15 @@ export interface Props {
 }
 
 const Aside = (
-  { title, iconTitle, onClose, children }: {
+  { title, iconTitle, onClose, children, style }: {
     title: string;
     iconTitle: ComponentChildren;
     onClose?: () => void;
     children: ComponentChildren;
+    style?: string;
   },
 ) => (
-  <div class="grid grid-rows-[48px_max-content] h-full divide-y max-w-sm w-full bg-brand-secondary-50">
+  <div class={`${style} grid grid-rows-[48px_max-content] h-full divide-y max-w-sm bg-brand-secondary-50`}>
     <div class="flex justify-between items-center bg-brand-terciary-1 max-w-sm w-full">
       <h1 class="px-4 py-3">
         <span class="small-regular items-center flex gap-2">
@@ -75,6 +76,7 @@ function Drawers({ menu, children, platform }: Props) {
           }}
           iconTitle={<Icon id="User" size={24} strokeWidth={2} />}
           title={"Olá Usuário"}
+          style="w-full"
         >
           {displayMenu.value && <Menu {...menu} />}
         </Aside>
@@ -88,8 +90,9 @@ function Drawers({ menu, children, platform }: Props) {
         aside={
           <Aside
             iconTitle={<Icon id="Cart" size={24} strokeWidth={2} />}
-            title="Minha sacola"
+            title="Produtos Adicionados"
             onClose={() => displayCart.value = false}
+            style="w-[85%]"
           >
             <Cart platform={platform} />
           </Aside>
