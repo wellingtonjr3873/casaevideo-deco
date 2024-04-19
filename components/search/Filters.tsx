@@ -21,14 +21,15 @@ function ValueItem(
   { url, selected, label, quantity }: FilterToggleValue,
 ) {
   return (
-    <li>
+    <li class="py-2">
       <a href={url} rel="nofollow" class="flex items-center gap-2">
-        <div aria-checked={selected} class="checkbox w-4 h-4 rounded-sm border-brand-secondary-200" />
+        <div aria-checked={selected} class="checkbox checkbox-warning w-4 h-4 rounded-sm border-brand-secondary-200" />
         <span class="text-sm text-neutral-900">{label}</span>
       </a>
     </li>
   );
 }
+
 
 function FilterValues({ key, values }: FilterToggle) {
   const flexDirection = key === "tamanho" || key === "cor"
@@ -36,37 +37,75 @@ function FilterValues({ key, values }: FilterToggle) {
     : "flex-col";
 
   return (
-    <ul class={`flex flex-wrap gap-2 ${flexDirection}`}>
-      {values.map((item) => {
-        const { url, selected, value, quantity } = item;
+    <>
+      <ul class={`flex flex-wrap gap-2 ${flexDirection}`}>
+       
+        {values.map((item, index) => {
+          const { url, selected, value } = item;
 
-        if (key === "cor" || key === "tamanho") {
-          return (
-            <li>
-              <a href={url} rel="nofollow">
-                <Avatar
-                  content={value}
-                  variant={selected ? "active" : "default"}
+          if (index <= 5) {
+
+            if (key === "cor" || key === "tamanho") {
+              return (
+                <li>
+                  <a href={url} rel="nofollow">
+                    <Avatar
+                      content={value}
+                      variant={selected ? "active" : "default"}
+                    />
+                  </a>
+                </li>
+              );
+            }
+
+            if (key === "price") {
+              const range = parseRange(item.value);
+
+              return range && (
+                <ValueItem
+                  {...item}
+                  label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
                 />
-              </a>
-            </li>
-          );
-        }
+              );
+            }
 
-        if (key === "price") {
-          const range = parseRange(item.value);
+            return <ValueItem {...item} />;
+          }
+        })}
 
-          return range && (
-            <ValueItem
-              {...item}
-              label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
-            />
-          );
-        }
+        
+        {values.length > 5 && (
+          <details class="collapse">
+            <summary class="collapse-title text-xl font-medium">Click to open/close</summary>
+            {
+              values.map((item, index) => {
 
-        return <ValueItem {...item} />;
-      })}
-    </ul>
+                const { url, selected, value } = item;
+
+                if (key === "cor" || key === "tamanho") {
+                  return (
+                    <li>
+                      <a href={url} rel="nofollow">
+                        <Avatar
+                          content={value}
+                          variant={selected ? "active" : "default"}
+                        />
+                      </a>
+                    </li>
+                  );
+                }
+
+                if (index > 5) {
+                  return <ValueItem {...item} />;
+                }
+              })
+            }
+          </details>)
+          }
+      </ul>
+
+    </>
+
   );
 }
 
@@ -80,11 +119,11 @@ function Filters({ filters }: Props) {
             <details class="group">
               <summary class="m-1 flex justify-between items-center cursor-pointer font-bold text-base">
                 {filter.label}
-                  <span class="w-4 h-4 text-center flex justify-center items-center">
-                    <span class="group-open:-rotate-90 transition-all duration-200 ease-in">
-                      <Icon id="ArrowAccordion" size={24} strokeWidth={2} fill={`text-neutral-900`}/>
-                    </span>
+                <span class="w-4 h-4 text-center flex justify-center items-center">
+                  <span class="group-open:-rotate-90 transition-all duration-200 ease-in">
+                    <Icon id="ArrowAccordion" size={24} strokeWidth={2} fill={`text-neutral-900`} />
                   </span>
+                </span>
               </summary>
               <FilterValues {...filter} />
             </details>
