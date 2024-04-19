@@ -43,7 +43,7 @@ function FilterValues({ key, values }: FilterToggle) {
         {values.map((item, index) => {
           const { url, selected, value } = item;
 
-          if (index <= 5) {
+          if (index <= 4) {
 
             if (key === "cor" || key === "tamanho") {
               return (
@@ -73,8 +73,8 @@ function FilterValues({ key, values }: FilterToggle) {
           }
         })}
 
-        
-        {values.length > 5 && (
+
+        {values.length > 4 && (
           <details class="collapse">
             <summary class="collapse-title text-xl font-medium">Click to open/close</summary>
             {
@@ -95,7 +95,7 @@ function FilterValues({ key, values }: FilterToggle) {
                   );
                 }
 
-                if (index > 5) {
+                if (index > 4) {
                   return <ValueItem {...item} />;
                 }
               })
