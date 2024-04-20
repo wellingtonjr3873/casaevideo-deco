@@ -6,7 +6,10 @@ import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
-
+import ProductShelfMinicart from "$store/components/minicart/ProductShelfMinicart.tsx"
+import { invoke } from "$store/runtime.ts";
+import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
+import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 interface Props {
   items: Item[];
   loading: boolean;
@@ -21,6 +24,7 @@ interface Props {
   onAddCoupon?: CouponProps["onAddCoupon"];
   onUpdateQuantity: ItemProps["onUpdateQuantity"];
   itemToAnalyticsItem: ItemProps["itemToAnalyticsItem"];
+  minicartProps?: MinicartProps;
 }
 
 function Cart({
@@ -37,27 +41,43 @@ function Cart({
   itemToAnalyticsItem,
   onUpdateQuantity,
   onAddCoupon,
+  minicartProps,
 }: Props) {
-  const { displayCart } = useUI();
-  const isEmtpy = items.length === 0;
+  const { displayCart, productMinicartShelf } = useUI();
+  const isEmpty = items.length === 0;
+  async function handleShelf(){
+    let shelfProducts;
+    try {
+      const result = await invoke.vtex.loaders.intelligentSearch.productList({
+        "props": { "collection": minicartProps?.collectionId || "", "count": minicartProps?.count || 0 }
+      });
+      shelfProducts = result;
+    }catch{
+      console.error("Erro ao exibir vitrine de produtos.")
+    }
+    if(shelfProducts){
+      productMinicartShelf.value = shelfProducts;
+    }
 
+    return shelfProducts;
+    }
+  
+    handleShelf()
   return (
+    <>
     <div
-      class="flex flex-col justify-center items-center overflow-hidden"
+      class={`flex flex-col ${isEmpty ? "justify-end" : "justify-center"} items-center overflow-hidden`}
     >
-      {isEmtpy
+      {isEmpty
         ? (
-          <div class="flex flex-col gap-6">
-            <span class="font-medium text-2xl">Sua sacola está vazia</span>
-            <Button
-              class="btn-outline"
-              onClick={() => {
-                displayCart.value = false;
-              }}
-            >
-              Escolher produtos
-            </Button>
-          </div>
+          <>
+            <div class="flex flex-col gap-4 px-4 items-center justify-center">
+              <Icon id="Cart" width={48} height={45} strokeWidth={2} />
+              <span class="text-base font-bold text-neutral-dark">Seu carrinho está vazio</span>
+              <p class={`text-base font-normal text-neutral-dark text-center`}>Navegue por nossa loja e
+adicione produtos ao carrinho.</p>
+            </div>
+          </>
         )
         : (
           <>
@@ -74,7 +94,7 @@ function Cart({
             {/* Cart Items */}
             <ul
               role="list"
-              class="mt-4 px-2 flex-grow overflow-y-scroll h-[267px] lg:h-[50vh] flex flex-col gap-2 w-full"
+              class="mt-4 px-2 flex-grow overflow-y-scroll h-[267px] lg:px-4 lg:h-[50vh] flex flex-col gap-2 w-full"
             >
               {items.map((item, index) => (
                 <li key={index}>
@@ -89,7 +109,9 @@ function Cart({
                 </li>
               ))}
             </ul>
-
+            {minicartProps &&
+              <ProductShelfMinicart {...minicartProps}/>
+            }
             {/* Cart Footer */}
             <div class="w-full">
               {/* Subtotal */}
@@ -112,7 +134,7 @@ function Cart({
                   <Button
                     data-deco="buy-button"
                     class="btn-primary btn-block bg-brand-primary-1 text-base text-neutral-50 font-normal"
-                    disabled={loading || isEmtpy}
+                    disabled={loading || isEmpty}
                     onClick={() => {
                       sendEvent({
                         name: "begin_checkout",
@@ -135,6 +157,12 @@ function Cart({
           </>
         )}
     </div>
+    {isEmpty && minicartProps &&
+      <div class={`flex flex-col w-full max-w-[85vw] lg:max-w-[410px] justify-end mb-10`}>
+        <ProductShelfMinicart {...minicartProps}/>
+      </div>
+  	}
+    </>
   );
 }
 

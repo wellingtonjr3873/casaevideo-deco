@@ -249,6 +249,28 @@
   }
 }
 
+.btnMinicartAddToCart{
+  height: auto;
+  min-height: auto;
+  background: transparent;
+  color: #D5351D;
+  box-shadow: unset;
+  font-size: 12px;
+  display: flex;
+  justify-content: flex-end;
+  padding: 0;
+  text-decoration: underline;
+  font-weight: 400;
+}
+
+#containerInfoMinicart .btnMinicartAddToCart:hover{
+  background-color: transparent;
+}
+
+.btnMinicartAddToCart svg{
+  display: none;
+}
+
 .textTruncate{
   overflow: hidden; 
   text-overflow: ellipsis;

@@ -114,10 +114,12 @@ function CartItem(
             }
           })}
         />
-        <div class="flex flex-col items-end gap-2">
-          <span class="line-through text-neutral-dark font-normal text-xs">
-            {formatPrice(list, currency, locale)}
-          </span>
+        <div class="flex flex-col items-end gap-2 justify-end">
+          {list > sale &&
+            <span class="line-through text-neutral-dark font-normal text-xs">
+              {formatPrice(list, currency, locale)}
+            </span>
+          }
           <span class="text-base text-neutral-dark font-bold leading-none">
             {isGift ? "Grátis" : formatPrice(sale, currency, locale)}
           </span>
