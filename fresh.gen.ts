@@ -7,10 +7,12 @@ import * as $AddToCartButton_linx from "./islands/AddToCartButton/linx.tsx";
 import * as $AddToCartButton_nuvemshop from "./islands/AddToCartButton/nuvemshop.tsx";
 import * as $AddToCartButton_shopify from "./islands/AddToCartButton/shopify.tsx";
 import * as $AddToCartButton_vnda from "./islands/AddToCartButton/vnda.tsx";
+import * as $AddToCartButton_vtex_multiple from "./islands/AddToCartButton/vtex-multiple.tsx";
 import * as $AddToCartButton_vtex from "./islands/AddToCartButton/vtex.tsx";
 import * as $AddToCartButton_wake from "./islands/AddToCartButton/wake.tsx";
 import * as $AddToCartComponents from "./islands/AddToCartComponents.tsx";
 import * as $Analytics from "./islands/Analytics.tsx";
+import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
 import * as $Header_Cart_nuvemshop from "./islands/Header/Cart/nuvemshop.tsx";
@@ -23,11 +25,13 @@ import * as $Header_GeoLocationPointBar_GeoLocationPoint from "./islands/Header/
 import * as $Header_GeoLocationPointBar_GeoLocationPointBar from "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
+import * as $OursStores from "./islands/OursStores.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
 import * as $ProductCardIsland from "./islands/ProductCardIsland.tsx";
 import * as $ProductGalleryIsland from "./islands/ProductGalleryIsland.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
 import * as $ProductVisualization from "./islands/ProductVisualization.tsx";
+import * as $ReviewsList from "./islands/ReviewsList.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
 import * as $SliderJS from "./islands/SliderJS.tsx";
@@ -43,10 +47,13 @@ const manifest = {
     "./islands/AddToCartButton/nuvemshop.tsx": $AddToCartButton_nuvemshop,
     "./islands/AddToCartButton/shopify.tsx": $AddToCartButton_shopify,
     "./islands/AddToCartButton/vnda.tsx": $AddToCartButton_vnda,
+    "./islands/AddToCartButton/vtex-multiple.tsx":
+      $AddToCartButton_vtex_multiple,
     "./islands/AddToCartButton/vtex.tsx": $AddToCartButton_vtex,
     "./islands/AddToCartButton/wake.tsx": $AddToCartButton_wake,
     "./islands/AddToCartComponents.tsx": $AddToCartComponents,
     "./islands/Analytics.tsx": $Analytics,
+    "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
     "./islands/Header/Cart/nuvemshop.tsx": $Header_Cart_nuvemshop,
@@ -61,11 +68,13 @@ const manifest = {
       $Header_GeoLocationPointBar_GeoLocationPointBar,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Newsletter.tsx": $Newsletter,
+    "./islands/OursStores.tsx": $OursStores,
     "./islands/OutOfStock.tsx": $OutOfStock,
     "./islands/ProductCardIsland.tsx": $ProductCardIsland,
     "./islands/ProductGalleryIsland.tsx": $ProductGalleryIsland,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
     "./islands/ProductVisualization.tsx": $ProductVisualization,
+    "./islands/ReviewsList.tsx": $ReviewsList,
     "./islands/SearchControls.tsx": $SearchControls,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
     "./islands/SliderJS.tsx": $SliderJS,

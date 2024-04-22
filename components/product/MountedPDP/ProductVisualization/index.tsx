@@ -19,15 +19,30 @@ type Option = {
 function ProductVisualization({ product }: Props) {
   const open = useSignal<OpenModalType>('None');
 
-  const {
-    image
+ const {
+    image, isVariantOf,name
   } = product;
 
-  const options: Option[] = [
+
+  
+
+  const product3D = isVariantOf?.additionalProperty.find(property => property.name === "produto3D")?.value
+
+  
+   let options: Option[]
+  if(product3D !== undefined) {
+   options = [
     { icon: "Image", name: "Fotos", modal: 'ProductImage' },
     { icon: "Video", name: "Vídeo", modal: 'ProductVideo' },
     { icon: "3D", name: "3D", modal: 'Product3D' },
   ];
+} else {
+  options = [
+    { icon: "Image", name: "Fotos", modal: 'ProductImage' },
+    { icon: "Video", name: "Vídeo", modal: 'ProductVideo' },
+    
+  ];
+}
 
   return (
     <div class="flex border border-neutral-100 rounded-lg p-0.5 w-full bg-neutral-50">
@@ -56,7 +71,8 @@ function ProductVisualization({ product }: Props) {
 
       <Modal3D
         open={open}
-        imageSource=""
+        produto3D={product3D}
+        productName={name}
       />
 
     </div>

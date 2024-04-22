@@ -55,6 +55,7 @@ export interface SingleBanner {
 }
 
 export interface Props {
+  notFoundPage: NotFoundProps;
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
@@ -65,14 +66,6 @@ export interface Props {
   miniBannerCarousel?: MiniBanner[];
   /** @description 0 for ?page=0 as your first page */
   startingPage?: 0 | 1;
-}
-
-function NotFound() {
-  return (
-    <div class="w-full flex justify-center items-center py-10">
-      <span>Not Found!</span>
-    </div>
-  );
 }
 
 function Result({
@@ -355,7 +348,7 @@ function Result({
 
 function SearchResult({ page, ...props }: Props) {
   if (!page) {
-    return <NotFound />;
+    return <NotFoundPage {...props.notFoundPage} />;
   }
 
   return <Result {...props} page={page} />;
