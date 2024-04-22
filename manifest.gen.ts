@@ -59,6 +59,7 @@ const manifest = {
     "deco-sites/casaevideo/loaders/newslettter.ts": $$$2,
     "deco-sites/casaevideo/loaders/product/buyTogether.ts": $$$3,
     "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$4,
+
   },
   "sections": {
     "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
