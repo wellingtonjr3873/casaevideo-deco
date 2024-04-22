@@ -281,7 +281,7 @@ function Result({
 
             {miniBannerCarousel &&
               <div class="flex flex-col my-[16px]">
-                <span class="small-regular">Compre por marcas:</span>
+                <span class="small-regular md:h6-regular">Compre por marcas:</span>
                 <MiniBannerCarousel miniBannerImages={miniBannerCarousel} arrows={true} />
               </div>
             }
