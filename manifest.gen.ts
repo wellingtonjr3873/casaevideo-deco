@@ -7,6 +7,7 @@ import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
 import * as $$$2 from "./loaders/reviews/productReviews.ts";
+import * as $$$3 from "./loaders/newslettter.ts";
 import * as $$$3 from "./loaders/search/intelligenseSearch.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
@@ -54,6 +55,7 @@ const manifest = {
   "loaders": {
     "deco-sites/casaevideo/loaders/Layouts/ProductCard.tsx": $$$0,
     "deco-sites/casaevideo/loaders/List/Sections.tsx": $$$1,
+    "deco-sites/casaevideo/loaders/newslettter.ts": $$$2,
     "deco-sites/casaevideo/loaders/reviews/productReviews.ts": $$$2,
     "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$3,
   },
@@ -63,29 +65,32 @@ const manifest = {
     "deco-sites/casaevideo/sections/Content/Benefits.tsx": $$$$$$2,
     "deco-sites/casaevideo/sections/Content/Faq.tsx": $$$$$$3,
     "deco-sites/casaevideo/sections/Content/Logos.tsx": $$$$$$4,
-    "deco-sites/casaevideo/sections/Content/Testimonials.tsx": $$$$$$5,
-    "deco-sites/casaevideo/sections/Departament/DepartamentList.tsx": $$$$$$6,
-    "deco-sites/casaevideo/sections/Footer/Footer.tsx": $$$$$$7,
-    "deco-sites/casaevideo/sections/Gallery.tsx": $$$$$$8,
-    "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$9,
+    "deco-sites/casaevideo/sections/Content/SimpleText.tsx": $$$$$$5,
+    "deco-sites/casaevideo/sections/Content/Testimonials.tsx": $$$$$$6,
+    "deco-sites/casaevideo/sections/Departament/DepartamentList.tsx": $$$$$$7,
+    "deco-sites/casaevideo/sections/Footer/Footer.tsx": $$$$$$8,
+    "deco-sites/casaevideo/sections/Gallery.tsx": $$$$$$9,
+    "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$10,
     "deco-sites/casaevideo/sections/HiddenContentLogin/HiddenContentLogin.tsx":
-      $$$$$$10,
-    "deco-sites/casaevideo/sections/Images/BannerIsland.tsx": $$$$$$11,
-    "deco-sites/casaevideo/sections/Images/BannersGrid.tsx": $$$$$$12,
-    "deco-sites/casaevideo/sections/Images/Carousel.tsx": $$$$$$13,
-    "deco-sites/casaevideo/sections/Images/ImageGallery.tsx": $$$$$$14,
-    "deco-sites/casaevideo/sections/Images/ShoppableBanner.tsx": $$$$$$15,
-    "deco-sites/casaevideo/sections/Layout/Container.tsx": $$$$$$16,
-    "deco-sites/casaevideo/sections/Layout/Flex.tsx": $$$$$$17,
-    "deco-sites/casaevideo/sections/Layout/Grid.tsx": $$$$$$18,
-    "deco-sites/casaevideo/sections/Layout/GridItem.tsx": $$$$$$19,
-    "deco-sites/casaevideo/sections/Links/LinkTree.tsx": $$$$$$20,
-    "deco-sites/casaevideo/sections/Links/Shortcuts.tsx": $$$$$$21,
-    "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$22,
-    "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$23,
+      $$$$$$11,
+    "deco-sites/casaevideo/sections/Images/BannerIsland.tsx": $$$$$$12,
+    "deco-sites/casaevideo/sections/Images/BannersGrid.tsx": $$$$$$13,
+    "deco-sites/casaevideo/sections/Images/Carousel.tsx": $$$$$$14,
+    "deco-sites/casaevideo/sections/Images/ImageGallery.tsx": $$$$$$15,
+    "deco-sites/casaevideo/sections/Images/ShoppableBanner.tsx": $$$$$$16,
+    "deco-sites/casaevideo/sections/Layout/Container.tsx": $$$$$$17,
+    "deco-sites/casaevideo/sections/Layout/Flex.tsx": $$$$$$18,
+    "deco-sites/casaevideo/sections/Layout/Grid.tsx": $$$$$$19,
+    "deco-sites/casaevideo/sections/Layout/GridItem.tsx": $$$$$$20,
+    "deco-sites/casaevideo/sections/Links/LinkTree.tsx": $$$$$$21,
+    "deco-sites/casaevideo/sections/Links/Shortcuts.tsx": $$$$$$22,
+    "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$23,
+    "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$24,
     "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx":
-      $$$$$$24,
-    "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$25,
+
+      $$$$$$25,
+    "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$26,
+
     "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
       $$$$$$26,
     "deco-sites/casaevideo/sections/Product/ImageGallerySlider.tsx": $$$$$$27,

@@ -17,6 +17,7 @@ export interface Contact {
 }
 
 export interface Props {
+  /** @format html */
   title?: string;
   description?: string;
   questions?: Question[];
@@ -54,8 +55,8 @@ const DEFAULT_PROPS = {
 
 function Question({ question, answer }: Question) {
   return (
-    <details class="collapse collapse-arrow join-item border-t border-base-200">
-      <summary class="collapse-title text-lg font-medium">
+    <details class="collapse collapse-arrow join-item bg-complementary-3 outline-0 rounded-none border-none">
+      <summary class="collapse-title text-lg font-medium bg-complementary-3 outline-0 rounded-none border-none">
         {question}
       </summary>
       <div
@@ -98,12 +99,11 @@ export default function FAQ(props: Props) {
       {(!layout?.variation || layout?.variation === "Compact") && (
         <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40">
           <div class="flex flex-col gap-8 lg:gap-10">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
+            <div
+              class="flex flex-col gap-8 lg:gap-10"
+              dangerouslySetInnerHTML={{ __html: title }}
             />
-            <div class="join join-vertical w-full">
+            <div class="join join-vertical w-full rounded-none gap-3">
               {questions.map((question) => <Question {...question} />)}
             </div>
           </div>
@@ -113,14 +113,13 @@ export default function FAQ(props: Props) {
       )}
 
       {layout?.variation === "Full" && (
-        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-0">
+        <div class="w-full container flex flex-col px-4 py-8 lg:py-0 lg:px-0">
           <div class="flex flex-col gap-8 lg:gap-10">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
+            <div
+              class="flex flex-col gap-8 lg:gap-10"
+              dangerouslySetInnerHTML={{ __html: title }}
             />
-            <div class="join join-vertical w-full">
+            <div class="join join-vertical w-full  rounded-none gap-3">
               {questions.map((question) => <Question {...question} />)}
             </div>
           </div>
@@ -132,14 +131,13 @@ export default function FAQ(props: Props) {
       {layout?.variation === "Side to side" && (
         <div class="w-full container px-4 py-8 grid gap-8 grid-flow-row grid-cols-1 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-2 lg:py-10 lg:px-0">
           <div class="order-1 lg:order-1">
-            <Header
-              title={title || ""}
-              description={description || ""}
-              alignment={layout?.headerAlignment || "center"}
+            <div
+              class="flex flex-col gap-8 lg:gap-10"
+              dangerouslySetInnerHTML={{ __html: title }}
             />
           </div>
           <div class="order-2 lg:order-3 lg:row-span-2">
-            <div class="join join-vertical">
+            <div class="join join-vertical rounded-none gap-3">
               {questions.map((question) => <Question {...question} />)}
             </div>
           </div>
