@@ -94,7 +94,7 @@ export type AvailableIcons =
   | "Video"
   | "3D"
   | "EmptyStar"
-  | "FullStar";
+  | "FullStar"
   | "PickupPoint"
   | "Checked"
   | "Close"
