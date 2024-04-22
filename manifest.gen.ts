@@ -9,7 +9,9 @@ import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
 import * as $$$2 from "./loaders/newslettter.ts";
 import * as $$$3 from "./loaders/product/buyTogether.ts";
-import * as $$$4 from "./loaders/search/intelligenseSearch.ts";
+import * as $$$4 from "./loaders/product/buyTogether.ts";
+import * as $$$4 from "./loaders/reviews/productReviews.ts";
+import * as $$$5 from "./loaders/search/intelligenseSearch.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
@@ -94,6 +96,7 @@ const manifest = {
     "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx":
       $$$$$$25,
     "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$26,
+    "deco-sites/casaevideo/sections/Product/BuyTogether.tsx": $$$$$$27,
     "deco-sites/casaevideo/sections/Product/BuyTogether.tsx": $$$$$$27,
     "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
       $$$$$$28,

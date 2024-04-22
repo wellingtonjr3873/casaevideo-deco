@@ -15,7 +15,6 @@ import ProductVisualization from "deco-sites/casaevideo/islands/ProductVisualiza
 import { useSignal } from "@preact/signals";
 import OursStores from "deco-sites/casaevideo/islands/OursStores.tsx";
 
-
 interface Props {
   page: ProductDetailsPage | null;
 }
@@ -44,10 +43,6 @@ function MountedPDP({ page }: Props) {
     itemListElement: breadcrumbList?.itemListElement.slice(0, -1),
     numberOfItems: breadcrumbList.numberOfItems - 1,
   };
-
-
-
-
 
   return (
     <div class="container flex flex-col">
