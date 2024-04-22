@@ -56,9 +56,6 @@ const Aside = (
 function Drawers({ menu, children, platform }: Props) {
   const { displayCart, displayMenu, displaySearchDrawer } = useUI();
 
-
-  console.log('teste', displayMenu, displaySearchDrawer )
-
   return (
     <>
     <Drawer // left drawer
