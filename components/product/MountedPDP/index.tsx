@@ -107,20 +107,10 @@ function MountedPDP({
             </div>
             <GallerySlider page={page} layout={{ width: 400, height: 400 }} />
           </div>
-<<<<<<< HEAD
-
-          <div class="w-full md:w-1/2 px-4">
-            <div class="w-full flex flex-col gap-4 md:pr-0 pr-4">
-              <ProductBasicInfo product={product} />
-              <ProductSelector product={product} />
-              <CVCreditCardBanner />
-            </div>
-=======
           <div class="w-full md:w-1/2 flex flex-col gap-4 pr-4 px-4">
             <ProductBasicInfo product={product} tags={tags?.slice(0, 2)} />
             <ProductSelector product={product} />
             <CVCreditCardBanner />
->>>>>>> 7ec326118e7a49901446b6caa6fdc51a6bfabd9c
           </div>
         </div>
 
