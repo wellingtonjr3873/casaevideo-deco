@@ -12,13 +12,54 @@ import ShippingSimulation from "deco-sites/casaevideo/islands/ShippingSimulation
 import { useOffer } from "deco-sites/casaevideo/sdk/useOffer.ts";
 import WishlistButton from "deco-sites/casaevideo/islands/WishlistButton.tsx";
 import ProductVisualization from "deco-sites/casaevideo/islands/ProductVisualization.tsx";
+import { ImageWidget } from "apps/admin/widgets.ts";
 import OursStores from "deco-sites/casaevideo/islands/OursStores.tsx";
 
-interface Props {
-  page: ProductDetailsPage | null;
+export interface tagsProps {
+  active?: boolean;
+  id?: string;
+  icon?: ImageWidget[];
+  text?: string;
+  bgColor: string;
 }
 
-function MountedPDP({ page }: Props) {
+export interface Props {
+  page: ProductDetailsPage | null;
+  tags?: tagsProps[];
+}
+
+function MountedPDP({ 
+  page, 
+  tags = [
+    {
+      "icon": [
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/85015157-8b37-47e2-8136-50d107593f90"
+      ],
+      "active": true,
+      "id": "2223",
+      "text": "Frete Grátis",
+      "bgColor": "purple"
+    },
+    {
+      "icon": [
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/85015157-8b37-47e2-8136-50d107593f90"
+      ],
+      "active": true,
+      "id": "2223",
+      "text": "Frete Grátis 2",
+      "bgColor": "purple"
+    },
+    {
+      "icon": [
+        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/85015157-8b37-47e2-8136-50d107593f90"
+      ],
+      "active": true,
+      "id": "2223",
+      "text": "Frete Grátis 3",
+      "bgColor": "purple"
+    }
+  ]
+}: Props) {
   const platform = usePlatform();
   const id = useId();
 
@@ -67,7 +108,7 @@ function MountedPDP({ page }: Props) {
             <GallerySlider page={page} layout={{ width: 400, height: 400 }} />
           </div>
           <div class="w-full md:w-1/2 flex flex-col gap-4 pr-4 px-4">
-            <ProductBasicInfo product={product} />
+            <ProductBasicInfo product={product} tags={tags?.slice(0, 2)} />
             <ProductSelector product={product} />
             <CVCreditCardBanner />
           </div>
