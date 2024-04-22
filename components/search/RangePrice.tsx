@@ -1,4 +1,5 @@
 
+import { JSX } from 'preact';
 import { useSignal } from "@preact/signals";
 import { useRef ,useState, useEffect } from 'preact/hooks';
 
