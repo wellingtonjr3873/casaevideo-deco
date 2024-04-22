@@ -1,6 +1,6 @@
 import { useId } from "$store/sdk/useId.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import { Product, ProductDetailsPage } from "apps/commerce/types.ts";
+import { ProductDetailsPage } from "apps/commerce/types.ts";
 import Breadcrumb from "deco-sites/casaevideo/components/ui/Breadcrumb.tsx";
 import ProductBasicInfo from "deco-sites/casaevideo/components/product/MountedPDP/ProductBasicInfo/index.tsx";
 import GallerySlider from "deco-sites/casaevideo/components/product/Gallery/ImageSlider.tsx";
@@ -12,7 +12,6 @@ import ShippingSimulation from "deco-sites/casaevideo/islands/ShippingSimulation
 import { useOffer } from "deco-sites/casaevideo/sdk/useOffer.ts";
 import WishlistButton from "deco-sites/casaevideo/islands/WishlistButton.tsx";
 import ProductVisualization from "deco-sites/casaevideo/islands/ProductVisualization.tsx";
-import { useSignal } from "@preact/signals";
 import OursStores from "deco-sites/casaevideo/islands/OursStores.tsx";
 
 interface Props {
@@ -79,7 +78,7 @@ function MountedPDP({ page }: Props) {
             <ProductPrice product={product} />
             <AddToCartComponents page={page} />
             <div class="w-full order-2">
-              
+
               {platform === "vtex" && (
                 <ShippingSimulation
                   items={[{
@@ -90,13 +89,13 @@ function MountedPDP({ page }: Props) {
                 />
               )}
             </div>
-            
+
           </div>
           <div class="mt-4">
-              <OursStores product={{
-                id: Number(product.sku),
-                seller: seller || "1"
-              }}/>
+            <OursStores product={{
+              id: Number(product.sku),
+              seller: seller || "1"
+            }} />
           </div>
         </div>
       </div>
