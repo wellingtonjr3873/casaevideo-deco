@@ -13,7 +13,9 @@ import * as $AddToCartButton_vtex from "./islands/AddToCartButton/vtex.tsx";
 import * as $AddToCartButton_wake from "./islands/AddToCartButton/wake.tsx";
 import * as $AddToCartComponents from "./islands/AddToCartComponents.tsx";
 import * as $Analytics from "./islands/Analytics.tsx";
+import * as $BannerStopWatch from "./islands/BannerStopWatch.tsx";
 import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
+import * as $BuyTogetherTotal from "./islands/BuyTogetherTotal.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
 import * as $Header_Cart_nuvemshop from "./islands/Header/Cart/nuvemshop.tsx";
@@ -25,11 +27,16 @@ import * as $Header_Drawers from "./islands/Header/Drawers.tsx";
 import * as $Header_GeoLocationPointBar_GeoLocationPoint from "./islands/Header/GeoLocationPointBar/GeoLocationPoint.tsx";
 import * as $Header_GeoLocationPointBar_GeoLocationPointBar from "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
+import * as $Installments from "./islands/Installments.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OursStores from "./islands/OursStores.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
+import * as $ProductCardIsland from "./islands/ProductCardIsland.tsx";
+import * as $ProductGalleryIsland from "./islands/ProductGalleryIsland.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
+import * as $ProductShelfTimedOffers from "./islands/ProductShelfTimedOffers.tsx";
 import * as $ProductVisualization from "./islands/ProductVisualization.tsx";
+import * as $ReviewsList from "./islands/ReviewsList.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
 import * as $SliderJS from "./islands/SliderJS.tsx";
@@ -52,7 +59,9 @@ const manifest = {
     "./islands/AddToCartButton/wake.tsx": $AddToCartButton_wake,
     "./islands/AddToCartComponents.tsx": $AddToCartComponents,
     "./islands/Analytics.tsx": $Analytics,
+    "./islands/BannerStopWatch.tsx": $BannerStopWatch,
     "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
+    "./islands/BuyTogetherTotal.tsx": $BuyTogetherTotal,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
     "./islands/Header/Cart/nuvemshop.tsx": $Header_Cart_nuvemshop,
@@ -66,11 +75,16 @@ const manifest = {
     "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx":
       $Header_GeoLocationPointBar_GeoLocationPointBar,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
+    "./islands/Installments.tsx": $Installments,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OursStores.tsx": $OursStores,
     "./islands/OutOfStock.tsx": $OutOfStock,
+    "./islands/ProductCardIsland.tsx": $ProductCardIsland,
+    "./islands/ProductGalleryIsland.tsx": $ProductGalleryIsland,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
+    "./islands/ProductShelfTimedOffers.tsx": $ProductShelfTimedOffers,
     "./islands/ProductVisualization.tsx": $ProductVisualization,
+    "./islands/ReviewsList.tsx": $ReviewsList,
     "./islands/SearchControls.tsx": $SearchControls,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
     "./islands/SliderJS.tsx": $SliderJS,
