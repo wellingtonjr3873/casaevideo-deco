@@ -97,9 +97,6 @@ const manifest = {
     "deco-sites/casaevideo/sections/Links/Shortcuts.tsx": $$$$$$22,
     "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$23,
     "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$24,
-    "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx":
-      $$$$$$25,
-    "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$26,
     "deco-sites/casaevideo/sections/Product/BuyTogether.tsx": $$$$$$27,
     "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
       $$$$$$28,
@@ -108,6 +105,7 @@ const manifest = {
     "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$31,
     "deco-sites/casaevideo/sections/Product/NotFoundChallenge.tsx": $$$$$$32,
     "deco-sites/casaevideo/sections/Product/ProductInfo.tsx": $$$$$$33,
+<<<<<<< HEAD
     "deco-sites/casaevideo/sections/Product/ProductReviews.tsx": $$$$$$34,
     "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$35,
     "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$36,
@@ -119,6 +117,16 @@ const manifest = {
     "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$41,
     "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$42,
     "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$43,
+=======
+    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$34,
+    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$35,
+    "deco-sites/casaevideo/sections/Product/SearchResult.tsx": $$$$$$36,
+    "deco-sites/casaevideo/sections/Product/Wishlist.tsx": $$$$$$37,
+    "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$38,
+    "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$39,
+    "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$40,
+    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$41,
+>>>>>>> 9de8b827de01bed5cf831abd3d86aaf6bc0ea8d5
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,
