@@ -8,13 +8,15 @@ import Modal from "deco-sites/casaevideo/components/ui/Modal.tsx";
 
 export interface Modal3DProps {
   open: Signal<OpenModalType>;
-  imageSource?: ImageWidget;
+  produto3D?: ImageWidget;
+  productName?: string;
     
 }
 
 export default function Modal3D(props: Modal3DProps ) {
-  const { open, imageSource } = props;
+  const { open, produto3D, productName } = props;
   const id = useId();
+
 
   return (
     <div id={id}>
@@ -26,13 +28,10 @@ export default function Modal3D(props: Modal3DProps ) {
       <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
           <div className="relative w-full h-[579px] md:w-[795px] top-20 mx-auto p-4 border-0 md:border shadow-lg rounded-md bg-neutral-50">
             <div className="text-center flex flex-col items-center">
-              <h2 className="mb-4 md:mb-8 h6-bold">Nome do Produto</h2>  
-              <img
-                class="w-[296px] md:w-[264px] h-[233px] md:h-[291px]"
-                src={imageSource}
-                decoding="async"
-                loading="lazy"
-              />
+              <h2 className="mb-4 md:mb-8 h6-bold">{productName}</h2>  
+             
+
+              <iframe src={produto3D} class="w-[296px] md:w-[264px] h-[233px] md:h-[291px]" title="Imagem do produto 3D"></iframe>
               <div className="flex gap-8 w-[296px] md:w-[535px] border-[1px] rounded-lg  border-neutral-400 p-4 mt-8">
 
                 <svg width="41" height="39" viewBox="0 0 41 39" fill="none" xmlns="http://www.w3.org/2000/svg">
