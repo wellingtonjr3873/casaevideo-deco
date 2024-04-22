@@ -55,38 +55,6 @@ function FilterListSelected({ values }: FilterToggle) {
 function FilterValues({ key, values }: FilterToggle) {
   const flexDirection = ["tamanho", "cor"].includes(key) ? "flex-row" : "flex-col";
   
-  // function updateURL(valueMin:string, valueMax:string, queryString:string) {
-
-  //   if (IS_BROWSER) {
-  //     const currentLinkUrl = queryString.replace(/(&filter.price=)[^&]*(&filter.price=)[^&]*/, `$1${valueMin}%3A${valueMax}`);
-  //     const linkElement = document.getElementById('linkElement')  as HTMLAnchorElement;
-  //     linkElement.href = currentLinkUrl;
-  //   }
-   
-  // }
-
-//   if (IS_BROWSER) {
-//     const inputMin = document.getElementById('inputMin') as HTMLInputElement;
-//     const inputMax = document.getElementById('inputMax') as HTMLInputElement;
-    
-
-//      // Obtém os valores atuais dos inputs
-//     const minValue = inputMin.value.toString();
-//     const maxValue = inputMax.value.toString();
-//     // Obtém o URL atual do link
-//     const linkUrl = '';
-
-//     // Verifica se os elementos foram encontrados
-//     if (inputMin && inputMax) {
-//       const handleInput = () => {
-//         updateURL(minValue, maxValue, linkUrl);
-//       };
-//       // Adiciona um ouvinte de eventos para detectar mudanças nos inputs
-//       inputMin.addEventListener('input', handleInput);
-//       inputMax.addEventListener('input', handleInput);
-//   }
-// }
-
   return (
     <ul className={`flex flex-wrap gap-2 ${flexDirection}`}>
       <RangePrice/>
