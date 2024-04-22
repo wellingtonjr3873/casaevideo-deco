@@ -62,9 +62,6 @@ const manifest = {
     "deco-sites/casaevideo/loaders/reviews/productReviews.ts": $$$4,
     "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$5,
   },
-  "handlers": {
-    "deco-sites/casaevideo/handlers/vtexAbTest.ts": $$$$0,
-  },
   "sections": {
     "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
     "deco-sites/casaevideo/sections/Category/CategoryList.tsx": $$$$$$1,
