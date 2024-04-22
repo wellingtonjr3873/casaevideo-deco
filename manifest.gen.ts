@@ -8,8 +8,7 @@ import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
 import * as $$$2 from "./loaders/newslettter.ts";
 import * as $$$3 from "./loaders/product/buyTogether.ts";
-import * as $$$4 from "./loaders/reviews/productReviews.ts";
-import * as $$$5 from "./loaders/search/intelligenseSearch.ts";
+import * as $$$4 from "./loaders/search/intelligenseSearch.ts";
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/Benefits.tsx";
@@ -44,15 +43,14 @@ import * as $$$$$$30 from "./sections/Product/MountedPDP.tsx";
 import * as $$$$$$31 from "./sections/Product/NotFound.tsx";
 import * as $$$$$$32 from "./sections/Product/NotFoundChallenge.tsx";
 import * as $$$$$$33 from "./sections/Product/ProductInfo.tsx";
-import * as $$$$$$34 from "./sections/Product/ProductReviews.tsx";
-import * as $$$$$$35 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$36 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$37 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$38 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$39 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$40 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$41 from "./sections/Theme/Theme.tsx";
-import * as $$$$$$42 from "./sections/UtilLinks/UtilLinks.tsx";
+import * as $$$$$$34 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$35 from "./sections/Product/ProductShelfTabbed.tsx";
+import * as $$$$$$36 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$37 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$38 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$39 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$40 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$41 from "./sections/UtilLinks/UtilLinks.tsx";
 
 const manifest = {
   "loaders": {
@@ -60,8 +58,8 @@ const manifest = {
     "deco-sites/casaevideo/loaders/List/Sections.tsx": $$$1,
     "deco-sites/casaevideo/loaders/newslettter.ts": $$$2,
     "deco-sites/casaevideo/loaders/product/buyTogether.ts": $$$3,
-    "deco-sites/casaevideo/loaders/reviews/productReviews.ts": $$$4,
-    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$5,
+    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$4,
+
   },
   "sections": {
     "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
@@ -101,15 +99,14 @@ const manifest = {
     "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$31,
     "deco-sites/casaevideo/sections/Product/NotFoundChallenge.tsx": $$$$$$32,
     "deco-sites/casaevideo/sections/Product/ProductInfo.tsx": $$$$$$33,
-    "deco-sites/casaevideo/sections/Product/ProductReviews.tsx": $$$$$$34,
-    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$35,
-    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$36,
-    "deco-sites/casaevideo/sections/Product/SearchResult.tsx": $$$$$$37,
-    "deco-sites/casaevideo/sections/Product/Wishlist.tsx": $$$$$$38,
-    "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$39,
-    "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$40,
-    "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$41,
-    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$42,
+    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$34,
+    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$35,
+    "deco-sites/casaevideo/sections/Product/SearchResult.tsx": $$$$$$36,
+    "deco-sites/casaevideo/sections/Product/Wishlist.tsx": $$$$$$37,
+    "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$38,
+    "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$39,
+    "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$40,
+    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$41,
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,

@@ -5,7 +5,7 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
-
+import { IS_BROWSER } from "$fresh/runtime.ts";
 export interface Props {
   items: Array<SKU>;
 }
@@ -90,7 +90,7 @@ function ShippingSimulation({ items }: Props) {
   const loading = useSignal(false);
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
   const { simulate, cart } = useCart();
-  const currentCepIsExist = localStorage.getItem("USER_CEP")
+  const currentCepIsExist = IS_BROWSER ? localStorage?.getItem("USER_CEP") : undefined
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newCep = (e.target as HTMLInputElement).value;
