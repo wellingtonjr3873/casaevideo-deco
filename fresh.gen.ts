@@ -14,6 +14,7 @@ import * as $AddToCartComponents from "./islands/AddToCartComponents.tsx";
 import * as $Analytics from "./islands/Analytics.tsx";
 import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
 import * as $BuyTogetherTotal from "./islands/BuyTogetherTotal.tsx";
+import * as $BannerStopWatch from "./islands/BannerStopWatch.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
 import * as $Header_Cart_nuvemshop from "./islands/Header/Cart/nuvemshop.tsx";
@@ -25,6 +26,7 @@ import * as $Header_Drawers from "./islands/Header/Drawers.tsx";
 import * as $Header_GeoLocationPointBar_GeoLocationPoint from "./islands/Header/GeoLocationPointBar/GeoLocationPoint.tsx";
 import * as $Header_GeoLocationPointBar_GeoLocationPointBar from "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
+import * as $Installments from "./islands/Installments.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OursStores from "./islands/OursStores.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
@@ -54,6 +56,7 @@ const manifest = {
     "./islands/Analytics.tsx": $Analytics,
     "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
     "./islands/BuyTogetherTotal.tsx": $BuyTogetherTotal,
+    "./islands/BannerStopWatch.tsx": $BannerStopWatch,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
     "./islands/Header/Cart/nuvemshop.tsx": $Header_Cart_nuvemshop,
@@ -67,6 +70,7 @@ const manifest = {
     "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx":
       $Header_GeoLocationPointBar_GeoLocationPointBar,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
+    "./islands/Installments.tsx": $Installments,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OursStores.tsx": $OursStores,
     "./islands/OutOfStock.tsx": $OutOfStock,

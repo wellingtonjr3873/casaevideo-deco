@@ -7,6 +7,7 @@ import { useUI } from "$store/sdk/useUI.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import type { ComponentChildren } from "preact";
 import { lazy, Suspense } from "preact/compat";
+import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 
 const Menu = lazy(() => import("$store/components/header/Menu.tsx"));
 
@@ -17,18 +18,20 @@ export interface Props {
    */
   children?: ComponentChildren;
   platform: ReturnType<typeof usePlatform>;
+  minicartProps: MinicartProps;
 }
 
 const Aside = (
-  { title, iconTitle, onClose, children }: {
+  { title, iconTitle, onClose, children, style }: {
     title: string;
     iconTitle: ComponentChildren;
     onClose?: () => void;
     children: ComponentChildren;
+    style?: string;
   },
 ) => (
-  <div class="grid grid-rows-[48px_max-content] h-full divide-y max-w-sm w-full bg-brand-secondary-50">
-    <div class="flex justify-between items-center bg-brand-terciary-1 max-w-sm w-full">
+  <div class={`${style} grid h-full divide-y max-w-sm bg-brand-secondary-50`}>
+    <div class="flex justify-between items-center bg-brand-terciary-1 max-w-sm lg:max-w-[410px] w-full">
       <h1 class="px-4 py-3">
         <span class="small-regular items-center flex gap-2">
           {iconTitle && iconTitle}
@@ -53,7 +56,7 @@ const Aside = (
   </div>
 );
 
-function Drawers({ menu, children, platform }: Props) {
+function Drawers({ menu, children, platform, minicartProps }: Props) {
   const { displayCart, displayMenu, displaySearchDrawer } = useUI();
 
   return (
@@ -72,6 +75,7 @@ function Drawers({ menu, children, platform }: Props) {
           }}
           iconTitle={<Icon id="User" size={24} strokeWidth={2} />}
           title={"Olá Usuário"}
+          style="w-full grid-rows-[48px_max-content]"
         >
           {displayMenu.value && <Menu {...menu} />}
         </Aside>
@@ -85,10 +89,11 @@ function Drawers({ menu, children, platform }: Props) {
         aside={
           <Aside
             iconTitle={<Icon id="Cart" size={24} strokeWidth={2} />}
-            title="Minha sacola"
+            title="Produtos Adicionados"
             onClose={() => displayCart.value = false}
+            style="w-[85%] grid-rows-[48px] lg:max-w-[410px]"
           >
-            <Cart platform={platform} />
+            <Cart platform={platform} minicartProps={minicartProps} />
           </Aside>
         }
       >
