@@ -30,6 +30,7 @@ import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OursStores from "./islands/OursStores.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
+import * as $ProductShelfTimedOffers from "./islands/ProductShelfTimedOffers.tsx";
 import * as $ProductVisualization from "./islands/ProductVisualization.tsx";
 import * as $ReviewsList from "./islands/ReviewsList.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
@@ -73,6 +74,7 @@ const manifest = {
     "./islands/OursStores.tsx": $OursStores,
     "./islands/OutOfStock.tsx": $OutOfStock,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
+    "./islands/ProductShelfTimedOffers.tsx": $ProductShelfTimedOffers,
     "./islands/ProductVisualization.tsx": $ProductVisualization,
     "./islands/ReviewsList.tsx": $ReviewsList,
     "./islands/SearchControls.tsx": $SearchControls,

@@ -180,6 +180,8 @@ interface NeutralColors {
   /** @format color */
   "neutral-1"?: string;
   /** @format color */
+  "neutral-0"?: string;
+  /** @format color */
   "neutral-dark"?: string;
 }
 
