@@ -9,6 +9,7 @@ import type {
   FilterToggleValue,
   ProductListingPage,
 } from "apps/commerce/types.ts";
+import RangePrice from "deco-sites/casaevideo/islands/RangePrice.tsx";
 
 interface Props {
   filters: ProductListingPage["filters"];
@@ -36,7 +37,7 @@ function FilterListSelected({ values }: FilterToggle) {
           const { selected } = item;
           return selected && (
             <li key={`selected-item-${index}`} className="">
-              <a href={item.url} rel="nofollow" className="flex items-center justify-center gap-2 w-fit rounded-md border-2 border-brand-secondary-400 bg-brand-terciary-1 p-2">
+              <a href={item.url} rel="nofollow" className="flex items-center justify-center gap-2 w-fit rounded-md border border-brand-secondary-400 bg-brand-terciary-1 p-2">
                 <div aria-checked={selected} className="border rounded-full font-normal text-sm p-1">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
                 </div>
@@ -53,9 +54,42 @@ function FilterListSelected({ values }: FilterToggle) {
 
 function FilterValues({ key, values }: FilterToggle) {
   const flexDirection = ["tamanho", "cor"].includes(key) ? "flex-row" : "flex-col";
+  
+  // function updateURL(valueMin:string, valueMax:string, queryString:string) {
+
+  //   if (IS_BROWSER) {
+  //     const currentLinkUrl = queryString.replace(/(&filter.price=)[^&]*(&filter.price=)[^&]*/, `$1${valueMin}%3A${valueMax}`);
+  //     const linkElement = document.getElementById('linkElement')  as HTMLAnchorElement;
+  //     linkElement.href = currentLinkUrl;
+  //   }
+   
+  // }
+
+//   if (IS_BROWSER) {
+//     const inputMin = document.getElementById('inputMin') as HTMLInputElement;
+//     const inputMax = document.getElementById('inputMax') as HTMLInputElement;
+    
+
+//      // Obtém os valores atuais dos inputs
+//     const minValue = inputMin.value.toString();
+//     const maxValue = inputMax.value.toString();
+//     // Obtém o URL atual do link
+//     const linkUrl = '';
+
+//     // Verifica se os elementos foram encontrados
+//     if (inputMin && inputMax) {
+//       const handleInput = () => {
+//         updateURL(minValue, maxValue, linkUrl);
+//       };
+//       // Adiciona um ouvinte de eventos para detectar mudanças nos inputs
+//       inputMin.addEventListener('input', handleInput);
+//       inputMax.addEventListener('input', handleInput);
+//   }
+// }
 
   return (
     <ul className={`flex flex-wrap gap-2 ${flexDirection}`}>
+      <RangePrice/>
       {values.slice(0, 6).map((item, index) => {
         const { url, selected, value } = item;
 
@@ -71,13 +105,13 @@ function FilterValues({ key, values }: FilterToggle) {
 
         if (key === "price") {
           const range = parseRange(item.value);
-
+          console.log(item)
           return range && (
-            <ValueItem
-              key={index}
-              {...item}
-              label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
-            />
+              <ValueItem
+                key={index}
+                {...item}
+                label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
+              />
           );
         }
 
@@ -87,22 +121,23 @@ function FilterValues({ key, values }: FilterToggle) {
       {values.length > 6 && (
         <li className="w-full">
           <details className={`collapse`}>
-            <summary className="w-full block pt-2 px-4 collapse-title text-right text-xl font-medium">Ver mais</summary>
+            <summary className="w-full block pt-2 px-4 collapse-title text-right text-base font-bold">Ver mais</summary>
             <ul className="flex flex-wrap gap-2 flex-row">
-            {values.slice(6).map((item, index) => {
-              const { url, selected, value } = item;
+              {values.slice(6).map((item, index) => {
+                const { url, selected, value } = item;
 
-              if (key === "cor" || key === "tamanho") {
-                return (
-                  <li key={index}>
-                    <a href={url} rel="nofollow">
-                      <Avatar content={value} variant={selected ? "active" : "default"} />
-                    </a>
-                  </li>
-                );
-              }
-              return <ValueItem key={index} {...item} />;
-            })}
+                if (key === "cor" || key === "tamanho") {
+                  return (
+                    <li key={index}>
+                      <a href={url} rel="nofollow">
+                        <Avatar content={value} variant={selected ? "active" : "default"} />
+                      </a>
+                    </li>
+                  );
+                }
+                return <ValueItem key={index} {...item} />;
+              })}
+
             </ul>
           </details>
         </li>
