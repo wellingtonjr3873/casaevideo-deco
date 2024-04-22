@@ -7,9 +7,8 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import GeoLocationPointBar from "../../islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
-import { AppContext } from "$store/apps/site.ts";
-import type { SectionProps } from "deco/types.ts";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
+import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 
 interface Categories {
   items: {
@@ -59,6 +58,7 @@ export interface Props {
   };
   categories?: Categories;
   isMobile: boolean,
+  minicartProps: MinicartProps;
   /** *@hide */
   device: "mobile" | "desktop" | "tablet";
 }
@@ -94,6 +94,7 @@ function Header({
   },
   navItems,
   isMobile,
+  minicartProps,
   device
 }: Props) {
   const platform = usePlatform();
@@ -113,6 +114,7 @@ function Header({
                   {isMobile && <Drawers
                       menu={{ items: navItems }}
                       platform={platform}
+                      minicartProps={minicartProps}
                     />}
                 </span>
                 {logo && (
@@ -274,6 +276,7 @@ function Header({
                     {!isMobile && <Drawers
                       menu={{ items: navItems }}
                       platform={platform}
+                      minicartProps={minicartProps}
                     />}
 
                   </span>

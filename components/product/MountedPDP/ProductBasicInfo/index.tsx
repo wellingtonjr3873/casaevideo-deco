@@ -1,12 +1,19 @@
 import { Product } from "apps/commerce/types.ts";
-import { FreeShippingIcon } from "deco-sites/casaevideo/components/icons/FreeShippingIcon.tsx";
-import { PickingExpressIcon } from "deco-sites/casaevideo/components/icons/PickingExpressIcon.tsx";
-
+import type { tagsProps } from "../../MountedPDP/index.tsx"
 interface Props {
   product: Product;
+  tags?: tagsProps[];
+}
+interface PropertyValue {
+  "@type": string;
+  name?: string | undefined;
+  value?: string;
+  propertyID?: string;
+  valueReference?: string;
+  description?: string;
 }
 
-function ProductBasicInfo({ product }: Props) {
+function ProductBasicInfo({ product, tags }: Props) {
   const {
     gtin,
     isVariantOf,
@@ -15,12 +22,28 @@ function ProductBasicInfo({ product }: Props) {
   const description = product.description?.replaceAll("<br />", "") ||
     isVariantOf?.description?.replaceAll("<br />", "");
 
+  function clusterFilter(objects: PropertyValue[]): string[] {
+    return objects
+      .filter(obj => obj.name === "cluster")
+      .map(obj => obj.propertyID ?? "");
+  }
+
+  const productClusters = product.additionalProperty && product.additionalProperty;
+  const filteredCluesters = productClusters && clusterFilter(productClusters);
+
   return (
     <div class="flex flex-col gap-4 w-full">
       {/* tags */}
       <div class="flex gap-2">
-        <FreeShippingIcon />
-        <PickingExpressIcon />
+        {tags && tags?.map((tag) => {
+            return filteredCluesters && filteredCluesters?.map((clusterId) => (
+              clusterId == tag?.id &&
+              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-2 items-center" style={{ backgroundColor: tag?.bgColor }}>
+                <img src={tag?.icon?.[0]} />
+                {tag?.text}
+              </div>
+            ))
+        })}
       </div>
 
       <h1 class="body-bold md:h5-bold">
@@ -48,7 +71,6 @@ function ProductBasicInfo({ product }: Props) {
             dangerouslySetInnerHTML={{ __html: description }}
           />
         )}
-
         <a
           href="#description"
           class="text-brand-primary-600 x-small-regular underline"

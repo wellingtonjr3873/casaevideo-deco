@@ -2,9 +2,10 @@ import { Product } from "apps/commerce/types.ts";
 import { useOffer } from "deco-sites/casaevideo/sdk/useOffer.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { formatPrice } from "deco-sites/casaevideo/sdk/format.ts";
-
+import Installments from "deco-sites/casaevideo/islands/Installments.tsx";
 interface Props {
   product: Product;
+
 }
 
 function ProductPrice({ product }: Props) {
@@ -19,6 +20,10 @@ function ProductPrice({ product }: Props) {
     installments,
     availability,
   } = useOffer(offers);
+
+
+ 
+
 
   const priceHtml = (
     <div
@@ -53,9 +58,7 @@ function ProductPrice({ product }: Props) {
 
         {availability === "https://schema.org/InStock" && (
           <>
-            <a href="#PaymentOptions" class="small-regular text-neutral-600 underline">
-              Ver mais formas de pagamento
-            </a>
+            <Installments installments={product.offers?.offers[0]!}/>
 
             <div class="small-regular md:body-regular text-neutral-900 flex gap-1 items-center">
               <Icon id="CVCreditCard" width="21" height="16" />

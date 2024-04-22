@@ -3,20 +3,20 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Filters from "$store/components/search/Filters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
-import Breadcrumb from "$store/components/ui/Breadcrumb.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
+import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
 
 export type Props =
-  & Pick<ProductListingPage, "filters" | "breadcrumb" | "sortOptions">
+  & Pick<ProductListingPage, "filters" | "sortOptions">
   & {
     displayFilter?: boolean;
+    productQnt?: number;
   };
 
-function SearchControls(
-  { filters, breadcrumb, displayFilter, sortOptions }: Props,
-) {
+function SearchControls({ filters, displayFilter, sortOptions, productQnt }: Props,) {
   const open = useSignal(false);
+  const { layoutSelected } = useUI();
 
   return (
     <Drawer
@@ -41,22 +41,48 @@ function SearchControls(
         </>
       }
     >
-      <div class="flex flex-col justify-between mb-4 p-4 sm:mb-0 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] sm:border-b sm:border-base-200">
-        <div class="flex flex-row items-center sm:p-0 mb-2">
-          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
-        </div>
+      <div class="flex flex-col justify-between p-0 md:p-4 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] mb-6 md:mb-8">
+        <div class="w-full flex flex-row items-center justify-betwee sm:gap-4 sm:border-none justify-between">
 
-        <div class="flex flex-row items-center justify-between border-b border-base-200 sm:gap-4 sm:border-none">
-          <Button
-            class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
-            onClick={() => {
-              open.value = true;
-            }}
-          >
-            Filtrar
-            <Icon id="FilterList" width={16} height={16} />
-          </Button>
-          {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
+          <span class="hidden md:block">
+            ({productQnt && productQnt <= 1 ? `${productQnt} Produto` : `${productQnt} Produtos`})
+          </span>
+
+          <div class="w-full md:w-3/5 flex items-center justify-between md:justify-end md:gap-10">
+            {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
+
+            <Button
+              class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
+              onClick={() => {
+                open.value = true;
+              }}
+            >
+              <Icon id="FilterButtonMob" width={24} height={24} />
+              <span class="small-regular">Filtrar por</span>
+            </Button>
+
+            <div>
+              <Button
+                class={`${layoutSelected.value === "grid" ? "bg-brand-secondary-900 text-brand-terciary-base hover:bg-brand-secondary-900" : ""} border-0 shadow-none p-2 min-h-10 max-h-10 w-auto md:min-w-24`}
+                onClick={() => {
+                  layoutSelected.value = "grid"
+                }}
+              >
+                <Icon id={layoutSelected.value === "grid" ? "ViewGridSelected" : "ViewGrid"} width={24} height={24} />
+                <span class="hidden md:block">Grade</span>
+              </Button>
+
+              <Button
+                class={`${layoutSelected.value === "list" ? "bg-brand-secondary-900 text-brand-terciary-base hover:bg-brand-secondary-900" : ""} border-0 shadow-none p-2 min-h-10 max-h-10 w-auto md:min-w-24`}
+                onClick={() => {
+                  layoutSelected.value = "list"
+                }}
+              >
+                <Icon id={layoutSelected.value === "list" ? "ViewListSelected" : "ViewList"} width={24} height={24} />
+                <span class="hidden md:block">Lista</span>
+              </Button>
+            </div>
+          </div>
         </div>
       </div>
     </Drawer>
