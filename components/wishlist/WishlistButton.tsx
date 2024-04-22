@@ -29,8 +29,8 @@ function WishlistButton({
   const inWishlist = Boolean(listItem.value);
 
   const buttonClass = variant === "icon"
-    ? "btn-circle btn-ghost gap-2 justify-end w-[24px]"
-    : "btn-primary btn-outline gap-2 justify-end w-[24px]";
+    ? "btn-circle btn-ghost gap-2 justify-end w-[32px]"
+    : "btn-primary btn-outline gap-2 justify-end w-[32px]";
 
   return (
     <Button
