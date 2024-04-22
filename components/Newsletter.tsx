@@ -1,6 +1,6 @@
 
 import Island from "$store/islands/Newsletter.tsx"
-
+import Image from "apps/website/components/Image.tsx"
 export interface Form {
   placeholder?: string;
   buttonText?: string;
@@ -35,7 +35,7 @@ export default function Newsletter(props: Props) {
 
     <div class="flex gap-4 items-center">
       <figure class="hidden lg:block">
-        <img src={icon} decoding="async" loading="lazy" preload="false"/>
+        <Image src={icon} decoding="async" loading="lazy" preload="false"/>
       </figure>
 
       <div class="flex flex-col gap-2 items-center lg:items-start">

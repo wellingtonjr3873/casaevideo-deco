@@ -93,6 +93,11 @@ export type AvailableIcons =
   | "Image"
   | "Video"
   | "3D"
+  | "EmptyStar"
+  | "FullStar"
+  | "PickupPoint"
+  | "Checked"
+  | "Close"
   | "Plus";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {

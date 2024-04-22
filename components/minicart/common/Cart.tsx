@@ -6,7 +6,10 @@ import { AnalyticsItem } from "apps/commerce/types.ts";
 import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import Coupon, { Props as CouponProps } from "./Coupon.tsx";
 import FreeShippingProgressBar from "./FreeShippingProgressBar.tsx";
-
+import ProductShelfMinicart from "$store/components/minicart/ProductShelfMinicart.tsx"
+import { invoke } from "$store/runtime.ts";
+import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
+import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 interface Props {
   items: Item[];
   loading: boolean;
@@ -21,6 +24,7 @@ interface Props {
   onAddCoupon?: CouponProps["onAddCoupon"];
   onUpdateQuantity: ItemProps["onUpdateQuantity"];
   itemToAnalyticsItem: ItemProps["itemToAnalyticsItem"];
+  minicartProps?: MinicartProps;
 }
 
 function Cart({
@@ -37,102 +41,122 @@ function Cart({
   itemToAnalyticsItem,
   onUpdateQuantity,
   onAddCoupon,
+  minicartProps,
 }: Props) {
-  const { displayCart } = useUI();
-  const isEmtpy = items.length === 0;
+  const { displayCart, productMinicartShelf } = useUI();
+  const isEmpty = items.length === 0;
+  async function handleShelf(){
+    let shelfProducts;
+    try {
+      const result = await invoke.vtex.loaders.intelligentSearch.productList({
+        "props": { "collection": minicartProps?.collectionId || "", "count": minicartProps?.count || 0 }
+      });
+      shelfProducts = result;
+    }catch{
+      console.error("Erro ao exibir vitrine de produtos.")
+    }
+    if(shelfProducts){
+      productMinicartShelf.value = shelfProducts;
+    }
 
+    return shelfProducts;
+    }
+  
+    handleShelf()
+
+    async function handleVoltage(item: Item){
+      let voltageProduct, voltageName;
+      let product;
+      try {
+        const result = await invoke.vtex.loaders.intelligentSearch.productList({
+          "props": { "ids": [item.productID || ""] }
+        });
+        product = result;
+      }catch{
+        console.error("Erro ao exibir vitrine de produtos.")
+      }
+      if(product){
+        voltageName = product[0].additionalProperty?.find(property => property.name == "Voltagem");
+        voltageProduct = voltageName?.value;
+      }
+  
+      return voltageProduct;
+      }
   return (
+    <>
     <div
-      class="flex flex-col justify-center items-center overflow-hidden"
-      style={{ minWidth: "calc(min(100vw, 425px))", maxWidth: "425px" }}
+      class={`flex flex-col ${isEmpty ? "justify-end" : "justify-center"} items-center overflow-hidden`}
     >
-      {isEmtpy
+      {isEmpty
         ? (
-          <div class="flex flex-col gap-6">
-            <span class="font-medium text-2xl">Sua sacola está vazia</span>
-            <Button
-              class="btn-outline"
-              onClick={() => {
-                displayCart.value = false;
-              }}
-            >
-              Escolher produtos
-            </Button>
-          </div>
+          <>
+            <div class="flex flex-col gap-4 px-4 items-center justify-center">
+              <Icon id="Cart" width={48} height={45} strokeWidth={2} />
+              <span class="text-base font-bold text-neutral-dark">Seu carrinho está vazio</span>
+              <p class={`text-base font-normal text-neutral-dark text-center`}>Navegue por nossa loja e
+adicione produtos ao carrinho.</p>
+            </div>
+          </>
         )
         : (
           <>
             {/* Free Shipping Bar */}
-            <div class="px-2 py-4 w-full">
+            {/* <div class="px-2 py-4 w-full">
               <FreeShippingProgressBar
                 total={total}
                 locale={locale}
                 currency={currency}
                 target={freeShippingTarget}
               />
-            </div>
+            </div> */}
 
             {/* Cart Items */}
             <ul
               role="list"
-              class="mt-6 px-2 flex-grow overflow-y-auto flex flex-col gap-6 w-full"
+              class="mt-4 px-2 flex-grow overflow-y-scroll h-[267px] lg:px-4 lg:h-[50vh] flex flex-col gap-2 w-full"
             >
-              {items.map((item, index) => (
-                <li key={index}>
-                  <CartItem
-                    item={item}
-                    index={index}
-                    locale={locale}
-                    currency={currency}
-                    onUpdateQuantity={onUpdateQuantity}
-                    itemToAnalyticsItem={itemToAnalyticsItem}
-                  />
-                </li>
-              ))}
+              {items.map((item, index) => {
+                const voltagem = handleVoltage(item);
+                return(
+                  <li key={index}>
+                    <CartItem
+                      item={item}
+                      voltagem={voltagem}
+                      index={index}
+                      locale={locale}
+                      currency={currency}
+                      onUpdateQuantity={onUpdateQuantity}
+                      itemToAnalyticsItem={itemToAnalyticsItem}
+                    />
+                  </li>
+              )})}
             </ul>
-
+            {minicartProps &&
+              <ProductShelfMinicart {...minicartProps}/>
+            }
             {/* Cart Footer */}
-            <footer class="w-full">
+            <div class="w-full">
               {/* Subtotal */}
-              <div class="border-t border-base-200 py-2 flex flex-col">
-                {discounts > 0 && (
-                  <div class="flex justify-between items-center px-4">
-                    <span class="text-sm">Descontos</span>
-                    <span class="text-sm">
-                      {formatPrice(discounts, currency, locale)}
+              <div class={`flex justify-between items-center px-4`}>
+                <div class="py-2 flex flex-col">
+                    <span class={`text-lg text-neutral-dark font-bold`}>Subtotal</span>
+                    <span class={`text-sm text-neutral-400 font-normal`}>Frete a calcular</span>
+                </div>
+                <div class="py-2 flex flex-col">
+                    <span class="text-base text-neutral-dark font-bold text-right">
+                      {formatPrice(subtotal, currency, locale)} no Pix
                     </span>
-                  </div>
-                )}
-                <div class="w-full flex justify-between px-4 text-sm">
-                  <span>Subtotal</span>
-                  <span class="px-4">
-                    {formatPrice(subtotal, currency, locale)}
-                  </span>
+                    <span class="text-base text-neutral-dark font-normal text-right">
+                      {formatPrice(subtotal, currency, locale)} no cartão
+                    </span>
                 </div>
-                {onAddCoupon && (
-                  <Coupon onAddCoupon={onAddCoupon} coupon={coupon} />
-                )}
               </div>
-
-              {/* Total */}
-              <div class="border-t border-base-200 pt-4 flex flex-col justify-end items-end gap-2 mx-4">
-                <div class="flex justify-between items-center w-full">
-                  <span>Total</span>
-                  <span class="font-medium text-xl">
-                    {formatPrice(total, currency, locale)}
-                  </span>
-                </div>
-                <span class="text-sm text-base-300">
-                  Taxas e fretes serão calculados no checkout
-                </span>
-              </div>
-
               <div class="p-4">
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="btn-primary btn-block"
-                    disabled={loading || isEmtpy}
+                    class="btn-primary btn-block bg-brand-primary-1 text-base text-neutral-50 font-normal"
+                    disabled={loading || isEmpty}
                     onClick={() => {
                       sendEvent({
                         name: "begin_checkout",
@@ -147,14 +171,20 @@ function Cart({
                       });
                     }}
                   >
-                    Fechar pedido
+                    Ir para o carrinho
                   </Button>
                 </a>
               </div>
-            </footer>
+            </div>
           </>
         )}
     </div>
+    {isEmpty && minicartProps &&
+      <div class={`flex flex-col w-full max-w-[85vw] lg:max-w-[410px] justify-end mb-10`}>
+        <ProductShelfMinicart {...minicartProps}/>
+      </div>
+  	}
+    </>
   );
 }
 
