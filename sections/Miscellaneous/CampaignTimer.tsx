@@ -102,7 +102,7 @@ function CampaignTimer({
   layout = { textPosition: "Before counter" },
 }: Props) {
   const id = useId();
-
+  
   return (
     <>
       <div class="bg-accent text-accent-content">

@@ -10,8 +10,18 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import Image from "apps/website/components/Image.tsx";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { FreeShippingIcon } from "deco-sites/casaevideo/components/icons/FreeShippingIcon.tsx";
+import type { ImageWidget } from "apps/admin/widgets.ts";
+
+export interface tagsProps {
+  active?: boolean;
+  id?: string;
+  icon?: ImageWidget[];
+  text?: string;
+  bgColor: string;
+}
 
 export interface Layout {
+  tag?: tagsProps;
   basics?: {
     contentAlignment?: "Left" | "Center";
     oldPriceSize?: "Small" | "Normal";
@@ -37,6 +47,15 @@ export interface Layout {
     showCardShadow?: boolean;
     showCta?: boolean;
   };
+}
+
+interface PropertyValue {
+  "@type": string;
+  name?: string | undefined;
+  value?: string;
+  propertyID?: string;
+  valueReference?: string;
+  description?: string;
 }
 
 interface Props {
@@ -79,7 +98,25 @@ function ProductCard(
   const [front, back] = images ?? [];
   const { listPrice, price, installments } = useOffer(offers);
 
+  const productClusters = product.additionalProperty && product.additionalProperty;
+
+  function clusterFilter(objects: PropertyValue[]): string[] {
+    return objects
+      .filter(obj => obj.name === "cluster")
+      .map(obj => obj.propertyID ?? "");
+  }
+
+  const filteredCluesters = productClusters && clusterFilter(productClusters);
+
   const l = layout;
+
+  const firstItemTag = l?.tag;
+  const clusterIdtag = firstItemTag?.id;
+  const clusterActiveTag = firstItemTag?.active;
+  const clusterTagBgColor = firstItemTag?.bgColor;
+  const iconPathTag = firstItemTag?.icon?.[0];
+  const textTag = firstItemTag?.text;
+
   const align =
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
@@ -106,23 +143,21 @@ function ProductCard(
               {l?.hide?.productName ? "" : (
                 <h2
                   class="truncate x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
-                >{name ?? "" }</h2>
+                >{name ?? ""}</h2>
               )}
             </div>
           )}
         {l?.hide?.allPrices ? "" : (
           <div class="flex flex-col gap-2">
             <div
-              class={`flex flex-col gap-0 ${
-                l?.basics?.oldPriceSize === "Normal"
-                  ? "lg:flex-row lg:gap-2"
-                  : ""
-              } ${align === "center" ? "justify-center" : "justify-start"}`}
+              class={`flex flex-col gap-0 ${l?.basics?.oldPriceSize === "Normal"
+                ? "lg:flex-row lg:gap-2"
+                : ""
+                } ${align === "center" ? "justify-center" : "justify-start"}`}
             >
               <div
-                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2 ${
-                  l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                }`}
+                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2 ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                  }`}
               >
                 <span class="line-through">
                   {formatPrice(listPrice, offers?.priceCurrency)}
@@ -174,13 +209,11 @@ function ProductCard(
     <a
       id={id}
       href={url && relative(url)}
-      class={`card card-compact shadow-normal group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 ${
-        align === "center" ? "text-center" : "text-start"
-      } 
-        ${
-        l?.onMouseOver?.card === "Move up" &&
+      class={`card card-compact shadow-normal group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 ${align === "center" ? "text-center" : "text-start"
+        } 
+        ${l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
-      }
+        }
       `}
       data-deco="view-product"
     >
@@ -201,12 +234,20 @@ function ProductCard(
           },
         }}
       />
-      <figure class="flex flex-col" // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
+      <figure class="flex flex-col rounded-none" // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
         <div class="flex justify-between items-center w-full h-6">
-          <FreeShippingIcon color="black" small={true} />
-
+          <>
+            {filteredCluesters && clusterActiveTag && filteredCluesters?.map((clusterId) => (
+              clusterId == clusterIdtag && 
+              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-1 md:px-2 items-center text-xs whitespace-nowrap" style={{backgroundColor: clusterTagBgColor}}>              
+              <img src={iconPathTag} />
+              {textTag}
+            </div>              
+            ))
+            }
+          </>
           {platform === "vtex" && (
             <WishlistButton
               productGroupID={productGroupID}
@@ -224,11 +265,10 @@ function ProductCard(
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${
-              l?.onMouseOver?.image == "Zoom image"
-                ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-                : ""
-            }`}
+            class={`bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
+              ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
+              : ""
+              }`}
             sizes="(max-width: 640px) 50vw, 20vw"
             preload={preload}
             loading={preload ? "eager" : "lazy"}
@@ -236,17 +276,17 @@ function ProductCard(
           />
           {(!l?.onMouseOver?.image ||
             l?.onMouseOver?.image == "Change image") && device == "desktop" && (
-            <Image
-              src={back?.url ?? front.url!}
-              alt={back?.alternateName ?? front.alternateName}
-              width={WIDTH}
-              height={HEIGHT}
-              class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
-              sizes="(max-width: 640px) 50vw, 20vw"
-              loading="lazy"
-              decoding="async"
-            />
-          )}
+              <Image
+                src={back?.url ?? front.url!}
+                alt={back?.alternateName ?? front.alternateName}
+                width={WIDTH}
+                height={HEIGHT}
+                class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
+                sizes="(max-width: 640px) 50vw, 20vw"
+                loading="lazy"
+                decoding="async"
+              />
+            )}
         </div>
         {
           /* <figcaption
