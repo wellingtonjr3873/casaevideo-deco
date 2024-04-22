@@ -8,13 +8,22 @@ function BuyTogetherSelectButton(props: Props) {
   const { index } = props;
   const { addToCartState } = useBuyTogether();
 
+  function updateState () {
+    const updatedState = [...addToCartState.value];
+    updatedState[index] = !updatedState[index];
+
+    addToCartState.value = updatedState;
+  }
+
   return (
-    <input 
-      type="checkbox"
-      class="md:absolute top-4 right-5 border-1"
-      checked={addToCartState.value?.[index]}
-      onChange={() => addToCartState.value[index] = !addToCartState.value[index]}
-    />
+    <div class="buytogether-checkbox md:absolute top-4 right-5 border-1">
+      <input 
+        type="checkbox"
+        class="flex cursor-pointer"
+        checked={addToCartState.value?.[index]}
+        onChange={updateState}
+      />
+    </div>
   );
 }
 
