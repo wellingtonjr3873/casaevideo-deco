@@ -7,9 +7,8 @@ import Icon from "$store/components/ui/Icon.tsx";
 import Drawers from "$store/islands/Header/Drawers.tsx";
 import GeoLocationPointBar from "../../islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
-import { AppContext } from "$store/apps/site.ts";
-import type { SectionProps } from "deco/types.ts";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
+import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 
 interface Categories {
   items: {
@@ -59,6 +58,7 @@ export interface Props {
   };
   categories?: Categories;
   isMobile: boolean,
+  minicartProps: MinicartProps;
   /** *@hide */
   device: "mobile" | "desktop" | "tablet";
 }
@@ -94,6 +94,7 @@ function Header({
   },
   navItems,
   isMobile,
+  minicartProps,
   device
 }: Props) {
   const platform = usePlatform();
@@ -113,6 +114,7 @@ function Header({
                   {isMobile && <Drawers
                       menu={{ items: navItems }}
                       platform={platform}
+                      minicartProps={minicartProps}
                     />}
                 </span>
                 {logo && (
@@ -233,18 +235,19 @@ function Header({
                   id="User"
                   size={32}
                   class="text-neutral-900 "
+                  alt="Acesse sua conta agora"
                 />
                 <div class="flex flex-col">
                   <span class="small-regular">Bem vindo!</span>
                   <span class="x-small-underline">Entre ou cadastre-se</span>
                 </div>
                 {/* meus pedidos */}
-                <a>
-                  <Icon id="MyOrders" size={32} class="text-neutral-900" />
+                <a href="/account/#/orders"  aria-label="Meus pedidos">
+                  <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui"/>
                 </a>
                 {/* wishlist */}
-                <a>
-                  <Icon id="Wishlist" size={32} class="text-neutral-900" />
+                <a href="/wishlist"  aria-label="Meus favoritos">
+                  <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos"/>
                 </a>
               </a>
 
@@ -255,6 +258,7 @@ function Header({
                     id="Cart"
                     size={32}
                     class="fill-brand-secondary-900"
+                    alt="veja os produtos que estão no seu carrinho de compras"
                   />
                 </CartButtonVTEX>
               )}
@@ -272,6 +276,7 @@ function Header({
                     {!isMobile && <Drawers
                       menu={{ items: navItems }}
                       platform={platform}
+                      minicartProps={minicartProps}
                     />}
 
                   </span>

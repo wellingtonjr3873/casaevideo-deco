@@ -11,6 +11,9 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 // import { Picture, Source } from "apps/website/components/Picture.tsx";
 import { Head } from "$fresh/runtime.ts";
 
+import { Picture, Source } from "apps/website/components/Picture.tsx";
+import {Props as BannerStopWatchProps} from "$store/components/ui/BannerStopwatch.tsx";
+import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
 /**
  * @titleBy alt
  */
@@ -21,8 +24,8 @@ export interface Banner {
    */
   dateStartAt: string;
   /**
-   * @title Data final do banner
    * @format datetime
+   * @title Data final do banner
    */
   dateEndAt: string;
 
@@ -31,6 +34,12 @@ export interface Banner {
   */
   preload?: boolean;
 
+  /**
+   * @format boolean
+   * @title É um banner tipo cronometro?
+   * @default false
+   */
+  isStopwatch?: BannerStopWatchProps;
   /** @description Imagem Desktop */
   desktop: ImageWidget;
   /** @description Imagem Mobile */
@@ -66,6 +75,7 @@ const IMAGES_PROPS = {
       dateStartAt: "2024-01-27T00:19:00.000Z",
       dateEndAt: "2024-02-20T00:19:00.000Z",
       alt: "/feminino",
+      isStopwatch: false,
       // action: {
       //   href: "https://www.deco.cx/",
       //   label: "deco.cx",
@@ -93,6 +103,7 @@ const IMAGES_PROPS = {
       desktop:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
       preload: false,
+      isStopwatch: false
     },
     {
       dateStartAt: "2024-01-27T00:19:00.000Z",
@@ -109,6 +120,7 @@ const IMAGES_PROPS = {
       desktop:
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
       preload: false,
+      isStopwatch: false
     },
     {
       dateStartAt: "2024-02-20T00:19:00.000Z",
@@ -126,9 +138,11 @@ const IMAGES_PROPS = {
         "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
 
       preload: false,
+      isStopwatch: false
     },
   ],
 };
+
 
 function getCurrentDateTime() {
   const now = new Date();
@@ -144,7 +158,10 @@ function BannerItem(
     mobile,
     desktop,
     action,
+    isStopwatch,
+    dateEndAt,  
   } = image;
+
 
   return (
     <a
@@ -153,8 +170,9 @@ function BannerItem(
       aria-label={action?.label}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
-      <picture>
-        <source
+     { isStopwatch && <BannerStopWatch {...isStopwatch} endDateAt={dateEndAt}/> }
+      <Picture preload={lcp}>
+        <Source
           media="(max-width: 767px)"
           srcset={mobile}
           width={320}
@@ -173,7 +191,7 @@ function BannerItem(
           src={mobile}
           alt={alt}
         />
-      </picture>
+      </Picture>
       {action && (
         <div class="absolute h-min top-0 bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min max-w-[400px] flex flex-col gap-4 p-4 rounded glass">
           <span class="text-6xl font-medium text-base-100">
@@ -190,6 +208,11 @@ function BannerItem(
 }
 
 function Dots({ bannerImages, interval = 0 }: Props) {
+
+  const filteredImages = bannerImages?.filter(image => {
+    const now = getCurrentDateTime();
+    return now >= image.dateStartAt && now <= image.dateEndAt;
+  });
   return (
     <>
       <style
@@ -204,14 +227,9 @@ function Dots({ bannerImages, interval = 0 }: Props) {
         }}
       />
       <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4 h-[11px] absolute bottom-[-18px] left-1/2 max-[768px]:transform -translate-x-1/2">
-        {bannerImages?.map((image, index) => {
-          const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
-            getCurrentDateTime() <= image.dateEndAt;
+        {filteredImages?.map((image, index) => {
 
           return (
-            <>
-              {dateEndtAt &&
-                (
                   <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
                     <Slider.Dot index={index}>
                       <div class="">
@@ -222,9 +240,7 @@ function Dots({ bannerImages, interval = 0 }: Props) {
                       </div>
                     </Slider.Dot>
                   </li>
-                )}
-            </>
-          );
+                )
         })}
       </ul>
     </>
@@ -260,7 +276,15 @@ function Buttons() {
 
 function BannerCarousel(props: Props) {
   const id = useId();
-  const { bannerImages, interval } = { ...IMAGES_PROPS, ...props };
+  const { bannerImages, preload, interval } = { ...props };
+
+  const currentDateTime = getCurrentDateTime();
+  const filteredImages = bannerImages.filter(image =>
+    currentDateTime >= image.dateStartAt && currentDateTime <= image.dateEndAt
+  );
+
+
+  
 
   return (
     <>
@@ -269,14 +293,13 @@ function BannerCarousel(props: Props) {
         class="grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0"
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6 max-[768px]:px-4">
-          {bannerImages?.map((image, index) => {
+          {filteredImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
-            const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
-              getCurrentDateTime() <= image.dateEndAt;
+            
 
             return (
-              dateEndtAt &&
-              (
+              
+              
                 <>
                   {
                     image.preload && (
@@ -303,19 +326,20 @@ function BannerCarousel(props: Props) {
                     />
                   </Slider.Item>
                 </>
-              )
+              
             );
           })}
         </Slider>
 
         <Buttons />
 
-        <Dots bannerImages={bannerImages} interval={interval} />
+        <Dots bannerImages={filteredImages} interval={interval} />
 
         <SliderJS rootId={id} interval={interval && interval * 1e3} infinite />
       </div>
     </>
   );
 }
+
 
 export default BannerCarousel;

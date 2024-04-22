@@ -33,7 +33,7 @@ function QuantitySelector({ onChange, quantity, disabled, loading }: Props) {
 	      </svg>
       </Button>
       <input
-        class="input text-center [appearance:textfield] w-9 h-8 border rounded-lg text-neutral-900 p-0"
+        class="input text-center [appearance:textfield] w-9 h-8 border border-brand-secondary-100 rounded-lg text-neutral-900 p-0"
         type="number"
         inputMode="numeric"
         pattern="[0-9]*"

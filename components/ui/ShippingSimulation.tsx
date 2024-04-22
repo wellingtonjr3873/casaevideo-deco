@@ -1,11 +1,11 @@
 import { Signal, useSignal } from "@preact/signals";
-import { useCallback, useState } from "preact/hooks";
+import { useCallback, useEffect, useState } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
-
+import { IS_BROWSER } from "$fresh/runtime.ts";
 export interface Props {
   items: Array<SKU>;
 }
@@ -65,7 +65,7 @@ function ShippingContent({ simulation }: {
             <span class="text-button text-left small-regular">
               {method.deliveryChannel === "pickup-in-point" ?
                 `Retirada ${method?.pickupStoreInfo?.friendlyName?.split("-")?.[1]?.trim()}`
-              :
+                :
                 `Entrega ${method.name}`
               }
             </span>
@@ -90,13 +90,16 @@ function ShippingSimulation({ items }: Props) {
   const loading = useSignal(false);
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
   const { simulate, cart } = useCart();
+  const currentCepIsExist = IS_BROWSER ? localStorage?.getItem("USER_CEP") : undefined
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let newCep = (e.target as HTMLInputElement).value;
     newCep = newCep.replace(/\D/g, '');
     newCep = newCep.replace(/^(\d{5})(\d)/, '$1-$2');
     postalCode.value = newCep;
-};  
+  };
+
+
 
   const handleSimulation = useCallback(async () => {
     const cepNumbers = postalCode.value.replace(/-/g, '')
@@ -115,6 +118,18 @@ function ShippingSimulation({ items }: Props) {
       loading.value = false;
     }
   }, []);
+
+  if (currentCepIsExist) {
+    postalCode.value = currentCepIsExist;
+  }
+
+  useEffect(() => {
+    if (currentCepIsExist) {
+      postalCode.value = currentCepIsExist;
+      handleSimulation();
+    }
+  }, [])
+
 
   return (
     <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-auto">
@@ -136,7 +151,7 @@ function ShippingSimulation({ items }: Props) {
           class="input input-bordered w-full focus:outline-none"
           placeholder="CEP"
           maxLength={9}
-          size={9}          
+          size={9}
           value={postalCode.value}
           onChange={handleChange}
         />
@@ -146,7 +161,7 @@ function ShippingSimulation({ items }: Props) {
       </form>
 
       <div class="flex gap-2 items-center">
-        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php?t" target="_blank" class="small-underline text-brand-primary-1 flex gap-2 items-center">Não sei meu CEP <Icon id="CepOpen" size={24} /></a> 
+        <a href="https://buscacepinter.correios.com.br/app/endereco/index.php?t" target="_blank" class="small-underline text-brand-primary-1 flex gap-2 items-center">Não sei meu CEP <Icon id="CepOpen" size={24} /></a>
       </div>
 
       <div>
