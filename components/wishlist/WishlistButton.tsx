@@ -29,12 +29,12 @@ function WishlistButton({
   const inWishlist = Boolean(listItem.value);
 
   const buttonClass = variant === "icon"
-    ? "btn-circle btn-ghost gap-2 justify-end "
-    : "btn-primary btn-outline gap-2 justify-end";
+    ? "btn-circle btn-ghost gap-2 justify-end w-[24px]"
+    : "btn-primary btn-outline gap-2 justify-end w-[24px]";
 
   return (
     <Button
-      class={`${absolute ? 'absolute md:static right-4 top-16 z-10' : ''} ${buttonClass}`}
+      class={`${absolute ? 'absolute md:static right-4 top-16 z-10' : ''} ${buttonClass} h-[32px] min-h-[32px]`}
       loading={fetching.value}
       aria-label="Add to wishlist"
       onClick={async (e) => {
@@ -79,7 +79,7 @@ function WishlistButton({
     >
       <Icon
         id="Wishlist"
-        size={24}
+        size={32}
         strokeWidth={2}
         fill={inWishlist ? "black" : "none"}
       />

@@ -1,5 +1,7 @@
 import { SendEventOnView } from "deco-sites/casaevideo/islands/Analytics.tsx";
-import ProductCard, {Layout as cardLayout} from "$store/components/product/ProductCard.tsx";
+import ProductCard, {
+  Layout as cardLayout,
+} from "$store/components/product/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
@@ -25,7 +27,7 @@ function ProductShelf({
   device,
 }: SectionProps<typeof loader>) {
   const id = useId();
-  const platform = "vtex"
+
   if (!products || products.length === 0) {
     return null;
   }
@@ -33,7 +35,7 @@ function ProductShelf({
   if(device === "mobile"){
     return(
       <>
-        <div class="w-full container pl-4 sm:pl-0 py-6 flex flex-col gap-2 lg:py-6 max-w-[1280px] md:px-6 xl-b:px-0">
+        <div class="w-full container pl-4 sm:pl-0 flex flex-col gap-2 max-w-[1280px] md:px-6 xl-b:px-0">
           <h5 class="h5-bold w-full">{title}</h5>
 
             <ul class="flex overflow-x-scroll gap-4 col-span-full row-start-2 row-end-5  max-w-none">
@@ -45,7 +47,7 @@ function ProductShelf({
                     product={product}
                     itemListName={title}
                     layout={cardLayout}
-                    platform={platform}
+                    platform={"vtex"}
                     index={index}
                     device={device}
                   />
@@ -74,7 +76,7 @@ function ProductShelf({
     )
   }
   return (
-    <div class="w-full container pl-4 sm:pl-0 py-6 flex flex-col gap-2 lg:py-6 max-w-[1280px] md:px-6 xl-b:px-0">
+    <div class="w-full container pl-4 sm:pl-0  flex flex-col gap-2 max-w-[1280px] md:px-6 xl-b:px-0">
       <h5 class="h5-bold w-full">{title}</h5>
 
       <div
@@ -91,7 +93,7 @@ function ProductShelf({
                 product={product}
                 itemListName={title}
                 layout={cardLayout}
-                platform={platform}
+                platform={"vtex"}
                 index={index}
                 device={device}
               />

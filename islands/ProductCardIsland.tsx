@@ -1,27 +1,15 @@
-import type { Platform } from "$store/apps/site.ts";
 import { SendEventOnClick } from "deco-sites/casaevideo/islands/Analytics.tsx";
-import Avatar from "$store/components/ui/Avatar.tsx";
 import WishlistButton from "$store/islands/WishlistButton.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
-import { useVariantPossibilities } from "$store/sdk/useVariantPossiblities.ts";
 import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { FreeShippingIcon } from "deco-sites/casaevideo/components/icons/FreeShippingIcon.tsx";
-import type { ImageWidget } from "apps/admin/widgets.ts";
-
-export interface tagsProps {
-  active?: boolean;
-  id?: string;
-  icon?: ImageWidget[];
-  text?: string;
-  bgColor: string;
-}
+import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
 
 export interface Layout {
-  tag?: tagsProps;
   basics?: {
     contentAlignment?: "Left" | "Center";
     oldPriceSize?: "Small" | "Normal";
@@ -49,15 +37,6 @@ export interface Layout {
   };
 }
 
-interface PropertyValue {
-  "@type": string;
-  name?: string | undefined;
-  value?: string;
-  propertyID?: string;
-  valueReference?: string;
-  description?: string;
-}
-
 interface Props {
   product: Product;
   /** Preload card image */
@@ -70,7 +49,6 @@ interface Props {
   index?: number;
 
   layout?: Layout;
-  platform?: Platform;
   device?: "mobile" | "desktop" | "tablet";
 }
 
@@ -82,8 +60,8 @@ const relative = (url: string) => {
 const WIDTH = 210;
 const HEIGHT = 210;
 
-function ProductCard(
-  { product, preload, itemListName, layout, platform, index, device }: Props,
+function ProductCardIsland(
+  { product, preload, itemListName, layout, index, device }: Props,
 ) {
   const {
     url,
@@ -97,30 +75,28 @@ function ProductCard(
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
   const { listPrice, price, installments } = useOffer(offers);
-
-  const productClusters = product.additionalProperty && product.additionalProperty;
-
-  function clusterFilter(objects: PropertyValue[]): string[] {
-    return objects
-      .filter(obj => obj.name === "cluster")
-      .map(obj => obj.propertyID ?? "");
-  }
-
-  const filteredCluesters = productClusters && clusterFilter(productClusters);
+  const { layoutSelected } = useUI();
 
   const l = layout;
-
-  const firstItemTag = l?.tag;
-  const clusterIdtag = firstItemTag?.id;
-  const clusterActiveTag = firstItemTag?.active;
-  const clusterTagBgColor = firstItemTag?.bgColor;
-  const iconPathTag = firstItemTag?.icon?.[0];
-  const textTag = firstItemTag?.text;
-
   const align =
     !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
+
+
+  const gridLayout = `card card-compact shadow-normal h-full group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 ${align === "center" ? "text-center" : "text-start"
+    } 
+    ${l?.onMouseOver?.card === "Move up" &&
+    "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
+    }
+  `
+
+
+  const listLayout = `gap-2 rounded-lg flex shadow-normal group relative w-full bg-neutral-50 p-2 md:p-4 card-bordered border-brand-secondary-100 ${align === "center" ? "text-center" : "text-start"
+    } 
+${l?.onMouseOver?.card === "Move up" &&
+    "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
+    }`
 
   const cta = (
     <a
@@ -135,29 +111,33 @@ function ProductCard(
   const productCardPrice = (
     <>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col gap-3 lg:gap-4">
+      <div class={`flex-auto flex ${layoutSelected?.value === "grid" ? "flex-col" : "justify-between flex-col md:flex-row"} gap-3 lg:gap-4`}>
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
+              {layoutSelected?.value === "list" &&
+                <div class="max-w-[100px] mt-0 md:mt-4 hidden md:block md:mb-3">
+                  <FreeShippingIcon color="black" small={true} />
+                </div>
+              }
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
+                  class={`truncate  md:body-bold max-h-40 md:max-h-full line-clamp-2 md:min-h-[33px] whitespace-break-spaces ${layoutSelected?.value === "list" ? "max-w-[160px] md:max-w-[378px] h6-bold" : "small-regular md:x-small-bold"}`}
                 >{name ?? ""}</h2>
               )}
             </div>
           )}
         {l?.hide?.allPrices ? "" : (
-          <div class="flex flex-col gap-2">
+          <div class={`flex flex-col gap-2 ${layoutSelected?.value === "grid" ? "" : "justify-end"}`}>
             <div
               class={`flex flex-col gap-0 ${l?.basics?.oldPriceSize === "Normal"
                 ? "lg:flex-row lg:gap-2"
                 : ""
-                } ${align === "center" ? "justify-center" : "justify-start"}`}
+                } ${align === "center" ? "justify-center" : "justify-start"} text-end md:text-start`}
             >
               <div
-                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2 ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                  }`}
+                class={`flex text-base-300 xx-small-regular md:small-regular md:text-start gap-2 ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""} ${layoutSelected?.value === "list" ? "justify-end" : ""}`}
               >
                 <span class="line-through">
                   {formatPrice(listPrice, offers?.priceCurrency)}
@@ -171,18 +151,19 @@ function ProductCard(
                     </div>
                   )}
               </div>
-              <div class="body-bold md:h6-bold">
+              <div class={`body-bold md:h6-bold ${layoutSelected?.value === "list" ? "md:text-end" : ""}`}>
                 {formatPrice(price, offers?.priceCurrency)} no PIX
               </div>
             </div>
             {l?.hide?.installments
               ? ""
               : (
-                <div class="text-brand-secondary-900 x-small-regular truncate">
+                <div class={`text-brand-secondary-900 x-small-regular text-end md:text-start truncate ${layoutSelected?.value === "list" && "pb-3"}`}>
                   ou em até {installments}
                 </div>
               )}
           </div>
+
         )}
 
         {/* SKU Selector */}
@@ -201,6 +182,14 @@ function ProductCard(
           </>
         )} */
         }
+        {layoutSelected?.value === "list" &&
+          <div class="absolute top-2 right-2 md:top-3 md:right-4">
+            <WishlistButton
+              productGroupID={productGroupID}
+              productID={productID}
+            />
+          </div>
+        }
       </div>
     </>
   );
@@ -209,12 +198,7 @@ function ProductCard(
     <a
       id={id}
       href={url && relative(url)}
-      class={`card card-compact shadow-normal group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 ${align === "center" ? "text-center" : "text-start"
-        } 
-        ${l?.onMouseOver?.card === "Move up" &&
-        "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
-        }
-      `}
+      class={`${layoutSelected.value === "grid" ? gridLayout : listLayout}`}
       data-deco="view-product"
     >
       <SendEventOnClick
@@ -234,38 +218,29 @@ function ProductCard(
           },
         }}
       />
-      <figure class="flex flex-col rounded-none" // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
+      <figure class={`flex flex-col ${layoutSelected?.value === "list" ? "gap-2 items-center" : "items-left"}`} // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
-        <div class="flex justify-between items-center w-full h-6">
-          <>
-            {filteredCluesters && clusterActiveTag && filteredCluesters?.map((clusterId) => (
-              clusterId == clusterIdtag && 
-              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-1 md:px-2 items-center text-xs whitespace-nowrap" style={{backgroundColor: clusterTagBgColor}}>              
-              <img src={iconPathTag} />
-              {textTag}
-            </div>              
-            ))
-            }
-          </>
-          {platform === "vtex" && (
+        {layoutSelected?.value === "grid" &&
+          <div class="flex justify-between items-center w-full h-6">
+            <FreeShippingIcon color="black" small={true} />
             <WishlistButton
               productGroupID={productGroupID}
               productID={productID}
             />
-          )}
-        </div>
+          </div>
+        }
         {/* Product Images */}
         <div
           aria-label="view product"
-          class="grid grid-cols-1 grid-rows-1 w-2/3 sm:w-full p-2 justify-center items-center"
+          class={`grid grid-cols-1 grid-rows-1 w-full md:w-full justify-center items-center ${layoutSelected?.value === "list" ? "p-0 md:max-h-full" : "p-2 md:min-h-[210px] md:max-h-full"}`}
         >
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
+            class={`${layoutSelected?.value === "list" ? "max-h-52" : "md:max-h-full md:min-h-[210px]"} bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
               ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
               : ""
               }`}
@@ -306,6 +281,9 @@ function ProductCard(
           {l?.onMouseOver?.showCta && cta}
         </figcaption> */
         }
+        <div class="max-w-[100px] mt-0 md:hidden block">
+          <FreeShippingIcon color="black" small={true} />
+        </div>
       </figure>
 
       {productCardPrice}
@@ -313,4 +291,4 @@ function ProductCard(
   );
 }
 
-export default ProductCard;
+export default ProductCardIsland;

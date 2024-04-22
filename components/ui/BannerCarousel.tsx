@@ -60,8 +60,9 @@ export interface Banner {
 }
 
 export interface Props {
+  arrows?: boolean;
+  spacesCss?: string;
   bannerImages?: Banner[];
-
   /**
    * @title Intervalo AutoPlay
    * @description Tempo (em segundos) para iniciar a reprodução automática do carrossel.
@@ -73,7 +74,7 @@ const IMAGES_PROPS = {
   bannerImages: [
     {
       dateStartAt: "2024-01-27T00:19:00.000Z",
-      dateEndAt: "2024-02-20T00:19:00.000Z",
+      dateEndAt: "2027-02-29T00:19:00.000Z",
       alt: "/feminino",
       isStopwatch: false,
       // action: {
@@ -90,7 +91,7 @@ const IMAGES_PROPS = {
     },
     {
       dateStartAt: "2024-01-27T00:19:00.000Z",
-      dateEndAt: "2024-02-20T00:19:00.000Z",
+      dateEndAt: "2027-02-29T00:19:00.000Z",
       alt: "/feminino",
       // action: {
       //   href: "https://www.deco.cx/",
@@ -107,7 +108,7 @@ const IMAGES_PROPS = {
     },
     {
       dateStartAt: "2024-01-27T00:19:00.000Z",
-      dateEndAt: "2024-02-20T00:19:00.000Z",
+      dateEndAt: "2027-02-29T00:19:00.000Z",
       alt: "/feminino",
       // action: {
       //   href: "https://www.deco.cx/",
@@ -123,8 +124,8 @@ const IMAGES_PROPS = {
       isStopwatch: false
     },
     {
-      dateStartAt: "2024-02-20T00:19:00.000Z",
-      dateEndAt: "2024-02-29T00:19:00.000Z",
+      dateStartAt: "2027-02-29T00:19:00.000Z",
+      dateEndAt: "2027-02-29T00:19:00.000Z",
       alt: "/feminino",
       // action: {
       //   href: "https://www.deco.cx/",
@@ -248,6 +249,7 @@ function Dots({ bannerImages, interval = 0 }: Props) {
 }
 
 function Buttons() {
+
   return (
     <>
       <div class="absolute left-0 top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden xl-b:left-[-20px]">
@@ -276,7 +278,9 @@ function Buttons() {
 
 function BannerCarousel(props: Props) {
   const id = useId();
+
   const { bannerImages, preload, interval } = { ...props };
+
 
   const currentDateTime = getCurrentDateTime();
   const filteredImages = bannerImages.filter(image =>
@@ -290,10 +294,10 @@ function BannerCarousel(props: Props) {
     <>
       <div
         id={id}
-        class="grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0"
+        class={`grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] relative max-[768px]:h-[auto] ${spacesCss}`}
       >
-        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6 max-[768px]:px-4">
-          {filteredImages?.map((image, index) => {
+        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
+          {bannerImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
             
 
@@ -331,7 +335,9 @@ function BannerCarousel(props: Props) {
           })}
         </Slider>
 
-        <Buttons />
+        {arrows &&
+          <Buttons />
+        }
 
         <Dots bannerImages={filteredImages} interval={interval} />
 
