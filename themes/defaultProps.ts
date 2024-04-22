@@ -35,6 +35,7 @@ export const DEFAULT_PROPS = {
   "neutral-dark": "#444",
   "neutral-50": "white",
   "neutral-1": "white",
+  "neutral-0": "#FFF",
   "success": "#FFF",
   "success-light": "#FFF",
   "information": "#FFF",
@@ -45,7 +46,7 @@ export const DEFAULT_PROPS = {
   "error": "#FFF",
   "error-light": "#FFF",
   "complementary-1": "#FFF",
-  "complementary-2": "#FFF",
+  "complementary-2": "#A310F2",
   "complementary-3": "#FFF",
   "complementary-4": "#FFF",
 };
