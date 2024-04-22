@@ -5,7 +5,7 @@ import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
-import { useCallback, useState } from "preact/hooks";
+import { useCallback, useState, useEffect  } from "preact/hooks";
 
 export interface Item {
   image: {
@@ -15,6 +15,7 @@ export interface Item {
   name: string;
   brand?: string;
   quantity: number;
+  productID?: string;
   price: {
     sale: number;
     list: number;
@@ -24,7 +25,7 @@ export interface Item {
 export interface Props {
   item: Item;
   index: number;
-
+  voltagem?: Promise<string | undefined>;
   locale: string;
   currency: string;
 
@@ -36,6 +37,7 @@ function CartItem(
   {
     item,
     index,
+    voltagem,
     locale,
     currency,
     onUpdateQuantity,
@@ -45,6 +47,20 @@ function CartItem(
   const { image, name, brand, price: { sale, list }, quantity } = item;
   const isGift = sale < 0.01;
   const [loading, setLoading] = useState(false);
+  const [voltagemResult, setVoltagemResult] = useState<string | undefined>(undefined);
+
+  useEffect(() => {
+    async function fetchVoltagem() {
+      try {
+        const result = await voltagem;
+        setVoltagemResult(result);
+      } catch (error) {
+        console.error("Erro ao buscar voltagem:", error);
+      }
+    }
+
+    fetchVoltagem();
+  }, [voltagem]);
 
   const withLoading = useCallback(
     <A,>(cb: (args: A) => Promise<void>) => async (e: A) => {
@@ -73,6 +89,9 @@ function CartItem(
         <div class="flex justify-between">
           <div class={`flex flex-col gap-2`}>
             <span class={`font-bold text-neutral-dark text-xs h-8 textTruncate`}>{name}</span>
+            {voltagemResult !== undefined && (
+                <span className="font-normal text-neutral-dark text-xs">Voltagem: {voltagemResult}</span>
+            )}
             <span class={`font-bold text-brand-primary-1 text-xs`}>{brand}</span>
           </div>
           <Button

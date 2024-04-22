@@ -63,6 +63,25 @@ function Cart({
     }
   
     handleShelf()
+
+    async function handleVoltage(item: Item){
+      let voltageProduct, voltageName;
+      let product;
+      try {
+        const result = await invoke.vtex.loaders.intelligentSearch.productList({
+          "props": { "ids": [item.productID || ""] }
+        });
+        product = result;
+      }catch{
+        console.error("Erro ao exibir vitrine de produtos.")
+      }
+      if(product){
+        voltageName = product[0].additionalProperty?.find(property => property.name == "Voltagem");
+        voltageProduct = voltageName?.value;
+      }
+  
+      return voltageProduct;
+      }
   return (
     <>
     <div
@@ -96,18 +115,21 @@ adicione produtos ao carrinho.</p>
               role="list"
               class="mt-4 px-2 flex-grow overflow-y-scroll h-[267px] lg:px-4 lg:h-[50vh] flex flex-col gap-2 w-full"
             >
-              {items.map((item, index) => (
-                <li key={index}>
-                  <CartItem
-                    item={item}
-                    index={index}
-                    locale={locale}
-                    currency={currency}
-                    onUpdateQuantity={onUpdateQuantity}
-                    itemToAnalyticsItem={itemToAnalyticsItem}
-                  />
-                </li>
-              ))}
+              {items.map((item, index) => {
+                const voltagem = handleVoltage(item);
+                return(
+                  <li key={index}>
+                    <CartItem
+                      item={item}
+                      voltagem={voltagem}
+                      index={index}
+                      locale={locale}
+                      currency={currency}
+                      onUpdateQuantity={onUpdateQuantity}
+                      itemToAnalyticsItem={itemToAnalyticsItem}
+                    />
+                  </li>
+              )})}
             </ul>
             {minicartProps &&
               <ProductShelfMinicart {...minicartProps}/>

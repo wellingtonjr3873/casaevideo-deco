@@ -22,6 +22,7 @@ function Cart({minicartProps}: Props) {
         quantity: item.quantity,
         name: item.name,
         brand: item.additionalInfo.brandName || "",
+        productID: item.id,
         price: {
           sale: item.sellingPrice / 100,
           list: item.listPrice / 100,
