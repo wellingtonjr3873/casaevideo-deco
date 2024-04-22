@@ -53,6 +53,8 @@ export interface BrandColorsSecondary {
 export interface BrandColorsTerciary {
   /** @format color */
   "brand-terciary-1"?: string;
+  /** @format color */
+  "brand-terciary-base"?: string;
 }
 
 export interface ComplementaryColors {

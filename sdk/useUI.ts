@@ -12,6 +12,7 @@ const displaySubMenuIndex = signal(-1);
 const displaySearchPopup = signal(false);
 const displaySearchDrawer = signal(false);
 const displayGeoLocationPointPopup = signal(false);
+const layoutSelected = signal("grid");
 const productMinicartShelf = signal<Product[] | null>(null);
 
 const state = {
@@ -22,6 +23,7 @@ const state = {
   displaySearchPopup,
   displaySearchDrawer,
   displayGeoLocationPointPopup,
+  layoutSelected,
   productMinicartShelf,
 };
 

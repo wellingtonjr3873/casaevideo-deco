@@ -34,7 +34,7 @@ function WishlistButton({
 
   return (
     <Button
-      class={`${absolute ? 'absolute md:static right-4 top-16 z-10' : ''} ${buttonClass}`}
+      class={`${absolute ? 'absolute md:static right-4 top-16 z-10' : ''} ${buttonClass} h-[32px] min-h-[32px]`}
       loading={fetching.value}
       aria-label="Add to wishlist"
       onClick={async (e) => {
@@ -79,7 +79,7 @@ function WishlistButton({
     >
       <Icon
         id="Wishlist"
-        size={24}
+        size={32}
         strokeWidth={2}
         fill={inWishlist ? "black" : "none"}
       />
