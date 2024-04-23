@@ -57,7 +57,6 @@ function FilterValues({ key, values }: FilterToggle) {
   
   return (
     <ul className={`flex flex-wrap gap-2 ${flexDirection}`}>
-      <RangePrice/>
       {values.slice(0, 6).map((item, index) => {
         const { url, selected, value } = item;
 
@@ -73,13 +72,15 @@ function FilterValues({ key, values }: FilterToggle) {
 
         if (key === "price") {
           const range = parseRange(item.value);
-          console.log(item)
           return range && (
+            <>
               <ValueItem
                 key={index}
                 {...item}
                 label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
               />
+              {index === values.length-1 && (<RangePrice/>)}
+            </>
           );
         }
 
@@ -142,10 +143,13 @@ function Filters({ filters }: Props) {
       <ul className="flex flex-col gap-4">
         {
           filters.filter(isToggle).map((filter, index) => (
+            
             <li key={index} className="dropdown bg-neutral-50 py-3 px-5">
               <details className="group">
                 <summary className="m-1 flex justify-between items-center cursor-pointer font-bold text-base pb-3">
-                  {filter.label}
+                  {
+                    filter.label !== 'Preço' ? filter.label : 'Faixa de Preço' 
+                  }
                   <span className="w-4 h-4 text-center flex justify-center items-center">
                     <span className="group-open:-rotate-90 transition-all duration-200 ease-in">
                       <Icon id="ArrowAccordion" size={24} strokeWidth={2} fill="text-neutral-900" />
