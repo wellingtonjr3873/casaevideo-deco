@@ -14,6 +14,9 @@ import { ImageWidget } from "apps/admin/widgets.ts";
 import BannerCarousel, { Banner } from "deco-sites/casaevideo/components/ui/BannerCarousel.tsx";
 import MiniBannerCarousel, { MiniBanner } from "deco-sites/casaevideo/components/ui/MiniBannerCarousel.tsx";
 
+import NotFoundPage from "$store/sections/Product/NotFound.tsx"
+import { Props as NotFoundProps } from "$store/sections/Product/NotFound.tsx"
+
 export interface Layout {
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
@@ -213,7 +216,7 @@ function Result({
   startingPage = 0,
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
-  const pageName = breadcrumb?.itemListElement?.[0].name
+  const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
   const perPage = pageInfo.recordPerPage || products.length;
 
   const id = useId();
@@ -237,7 +240,7 @@ function Result({
             </aside>
           )}
           <div class="flex-grow w-full" id={id}>
-            {bannerCarousel && <BannerCarousel bannerImages={bannerCarousel} arrows={false} spacesCss={"max-[768px]:px-0 md:px-6 xl-b:px-0 my-[20px] mx-[auto]"} />}
+            {/* {bannerCarousel && <BannerCarousel bannerImages={bannerCarousel} arrows={false} spacesCss={"max-[768px]:px-0 md:px-6 xl-b:px-0 my-[20px] mx-[auto]"} />}
 
 
             {bannerGrid && bannerGrid.map((banner: SingleBanner) => (
@@ -269,8 +272,8 @@ function Result({
                   />
                 </Picture>
               </a>
-            ))
-            }
+            )) */}
+            {/* } */}
 
             {miniBannerCarousel &&
               <div class="flex flex-col my-[16px]">

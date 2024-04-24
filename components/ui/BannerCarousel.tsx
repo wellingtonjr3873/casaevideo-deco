@@ -12,7 +12,7 @@ import type { ImageWidget } from "apps/admin/widgets.ts";
 import { Head } from "$fresh/runtime.ts";
 
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import {Props as BannerStopWatchProps} from "$store/components/ui/BannerStopwatch.tsx";
+import { Props as BannerStopWatchProps } from "$store/components/ui/BannerStopwatch.tsx";
 import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
 /**
  * @titleBy alt
@@ -70,81 +70,6 @@ export interface Props {
   interval?: number;
 }
 
-const IMAGES_PROPS = {
-  bannerImages: [
-    {
-      dateStartAt: "2024-01-27T00:19:00.000Z",
-      dateEndAt: "2027-02-29T00:19:00.000Z",
-      alt: "/feminino",
-      isStopwatch: false,
-      // action: {
-      //   href: "https://www.deco.cx/",
-      //   label: "deco.cx",
-      //   title: "Demo Store",
-      //   subTitle: "Visit our site and start building now:",
-      // },
-      mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
-      desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
-      preload: true,
-    },
-    {
-      dateStartAt: "2024-01-27T00:19:00.000Z",
-      dateEndAt: "2027-02-29T00:19:00.000Z",
-      alt: "/feminino",
-      // action: {
-      //   href: "https://www.deco.cx/",
-      //   label: "deco.cx",
-      //   title: "Demo Store",
-      //   subTitle: "Visit our site and start building now:",
-      // },
-      mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
-      desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
-      preload: false,
-      isStopwatch: false
-    },
-    {
-      dateStartAt: "2024-01-27T00:19:00.000Z",
-      dateEndAt: "2027-02-29T00:19:00.000Z",
-      alt: "/feminino",
-      // action: {
-      //   href: "https://www.deco.cx/",
-      //   label: "deco.cx",
-      //   title: "Demo Store",
-      //   subTitle: "Visit our site and start building now:",
-      // },
-      mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
-      desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
-      preload: false,
-      isStopwatch: false
-    },
-    {
-      dateStartAt: "2027-02-29T00:19:00.000Z",
-      dateEndAt: "2027-02-29T00:19:00.000Z",
-      alt: "/feminino",
-      // action: {
-      //   href: "https://www.deco.cx/",
-      //   label: "deco.cx",
-      //   title: "Demo Store",
-      //   subTitle: "Visit our site and start building now:",
-      // },
-      mobile:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/44385bd1-23a7-4386-a5da-298dee508438",
-      desktop:
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/7e70cf9b-c19c-46d9-bb0e-b8321482aa49",
-
-      preload: false,
-      isStopwatch: false
-    },
-  ],
-};
-
-
 function getCurrentDateTime() {
   const now = new Date();
 
@@ -160,7 +85,7 @@ function BannerItem(
     desktop,
     action,
     isStopwatch,
-    dateEndAt,  
+    dateEndAt,
   } = image;
 
 
@@ -171,17 +96,17 @@ function BannerItem(
       aria-label={action?.label}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
-     { isStopwatch && <BannerStopWatch {...isStopwatch} endDateAt={dateEndAt}/> }
+      {isStopwatch && <BannerStopWatch {...isStopwatch} endDateAt={dateEndAt} />}
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
-          srcset={mobile}
+          src={mobile}
           width={320}
           height={280}
         />
-        <source
+        <Source
           media="(min-width: 768px)"
-          srcset={desktop}
+          src={desktop}
           width={1280}
           height={280}
         />
@@ -231,17 +156,17 @@ function Dots({ bannerImages, interval = 0 }: Props) {
         {filteredImages?.map((image, index) => {
 
           return (
-                  <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
-                    <Slider.Dot index={index}>
-                      <div class="">
-                        <div
-                          class="h-[11px] w-[11px] max-[768px]:w-[6px] max-[768px]:h-[6px] border-[2px] max-[768px]:border-[1px] border-[#ED1B2F] rounded-full group-disabled:bg-[#ED1B2F]"
-                          style={{ animationDuration: `${interval}s` }}
-                        />
-                      </div>
-                    </Slider.Dot>
-                  </li>
-                )
+            <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
+              <Slider.Dot index={index}>
+                <div class="">
+                  <div
+                    class="h-[11px] w-[11px] max-[768px]:w-[6px] max-[768px]:h-[6px] border-[2px] max-[768px]:border-[1px] border-[#ED1B2F] rounded-full group-disabled:bg-[#ED1B2F]"
+                    style={{ animationDuration: `${interval}s` }}
+                  />
+                </div>
+              </Slider.Dot>
+            </li>
+          )
         })}
       </ul>
     </>
@@ -279,16 +204,14 @@ function Buttons() {
 function BannerCarousel(props: Props) {
   const id = useId();
 
-  const { bannerImages, preload, interval } = { ...props };
+  const { bannerImages, preload, interval, arrows, spacesCss } = { ...props };
 
 
   const currentDateTime = getCurrentDateTime();
-  const filteredImages = bannerImages.filter(image =>
+  const filteredImages = bannerImages?.filter(image =>
     currentDateTime >= image.dateStartAt && currentDateTime <= image.dateEndAt
   );
 
-
-  
 
   return (
     <>
@@ -297,40 +220,40 @@ function BannerCarousel(props: Props) {
         class={`grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] relative max-[768px]:h-[auto] ${spacesCss}`}
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
-          {bannerImages?.map((image, index) => {
+          {filteredImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
-            
+
 
             return (
-              
-              
-                <>
-                  {
-                    image.preload && (
-                      <Head>
-                        <link rel="preload" href={image.mobile} as="image" media="(max-width: 767px)" />
-                        <link rel="preload" href={image.desktop} as="image" media="(min-width: 768px)" />
-                      </Head>
-                    )
-                  }
-                  <Slider.Item index={index} class="carousel-item w-full rounded-lg overflow-hidden">
-                    <BannerItem
-                      image={image}
-                      //LCP Refactor: antes pegava-se index 0 oque acarretava em erros, pois os banners cadastrados no painel que usam exibição/tempo continuam no map de imagens e isso faz com que essa logica de preload não se aplique a imagem LCP, pois o banner LCP poderá ter index 1 visto que o banner de index 0 expirou e não é mais exibido na tela.
-                      lcp={image.preload}
-                      id={`${id}::${index}`}
-                    />
-                    <SendEventOnClick
-                      id={`${id}::${index}`}
-                      event={{ name: "select_promotion", params }}
-                    />
-                    <SendEventOnView
-                      id={`${id}::${index}`}
-                      event={{ name: "view_promotion", params }}
-                    />
-                  </Slider.Item>
-                </>
-              
+
+
+              <>
+                {
+                  image.preload && (
+                    <Head>
+                      <link rel="preload" href={image.mobile} as="image" media="(max-width: 767px)" />
+                      <link rel="preload" href={image.desktop} as="image" media="(min-width: 768px)" />
+                    </Head>
+                  )
+                }
+                <Slider.Item index={index} class="carousel-item w-full rounded-lg overflow-hidden">
+                  <BannerItem
+                    image={image}
+                    //LCP Refactor: antes pegava-se index 0 oque acarretava em erros, pois os banners cadastrados no painel que usam exibição/tempo continuam no map de imagens e isso faz com que essa logica de preload não se aplique a imagem LCP, pois o banner LCP poderá ter index 1 visto que o banner de index 0 expirou e não é mais exibido na tela.
+                    lcp={image.preload}
+                    id={`${id}::${index}`}
+                  />
+                  <SendEventOnClick
+                    id={`${id}::${index}`}
+                    event={{ name: "select_promotion", params }}
+                  />
+                  <SendEventOnView
+                    id={`${id}::${index}`}
+                    event={{ name: "view_promotion", params }}
+                  />
+                </Slider.Item>
+              </>
+
             );
           })}
         </Slider>
