@@ -1,11 +1,10 @@
-import { useComputed, useSignal } from "@preact/signals";
+import {  useSignal } from "@preact/signals";
 import Icon from "$store/components/ui/Icon.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import { useUser } from "apps/vtex/hooks/useUser.ts";
 import { sendEvent } from "$store/sdk/analytics.tsx";
-import { useWishlist } from "deco-sites/casaevideo/hooks/useWishlist.ts";
-import { useEffect } from "preact/hooks";
 import { invoke } from "deco-sites/casaevideo/runtime.ts";
+import {useWishlist} from 'deco-sites/casaevideo/sdk/useWishlist.ts'
 
 export interface Props {
   productID: string;
@@ -21,68 +20,81 @@ function WishlistButton({
   absolute = false,
 }: Props) {
   const { user } = useUser();
-  const { loading, addItem, removeItem, getItem } = useWishlist();
-  const listItem = useComputed(() =>
-    false
-  );
 
-  useEffect(() => {
-    getItem({ sku: productID, productId: productGroupID }).then(console.log).catch(console.error)
-    // invoke['deco-sites/casaevideo'].loaders.Wishlist.get({items: [{productId: productGroupID!}], userId: user.value?.email}).then(console.log)
-  },[])
-  
-  const fetching = useSignal(false);
+  const localLoad = useSignal(false);
+
+  const {loading, wishlistListProducts, wishlistListId } = useWishlistTest();
 
   const isUserLoggedIn = Boolean(user.value?.email);
-  const inWishlist = Boolean(listItem.value);
+  const inWishlist = wishlistListProducts.value.some(item => item === productID);
+
+  const removeItemWishlist = (productId: string, userId: string) => {
+      return invoke['deco-sites/casaevideo'].loaders.Wishlist["remove-wishlist-item"]({userId, productId, listId: wishlistListId.value! })
+  }
+
+  const addItemWishlist = (productId: string, userId: string, skuId: string) => {
+      if(!wishlistListId.value) return invoke['deco-sites/casaevideo'].loaders.Wishlist["create-wishlist"]({userId, productId, skuId })
+      return invoke['deco-sites/casaevideo'].loaders.Wishlist["add-wishlist-item"]({userId, productId, skuId, listId: wishlistListId.value! })
+  }
 
   const buttonClass = variant === "icon"
     ? "btn-circle btn-ghost gap-2 justify-end w-[24px]"
     : "btn-primary btn-outline gap-2 justify-end w-[24px]";
 
+    const _addWishlistItem = async () => {
+      const res = await addItemWishlist(productID, user.value?.email, productGroupID);
+        if(res) {
+          wishlistListProducts.value = [...wishlistListProducts.value, productID]
+          sendEvent({
+            name: "add_to_wishlist",
+            params: {
+              items: [{
+                item_id: productID,
+                item_group_id: productGroupID,
+                quantity: 1,
+              }],
+            },
+          });
+        }
+    }
+
+    const _removeWishlistItem = async () => {
+      const res = await removeItemWishlist(productGroupID, user.value?.email);
+      if(res.data){
+        wishlistListProducts.value = wishlistListProducts.value.filter(item => item !== productID)
+      }
+    }
+
   return (
     <Button
       class={`${absolute ? 'absolute md:static right-4 top-16 z-10' : ''} ${buttonClass} h-[32px] min-h-[32px]`}
-      loading={fetching.value}
+      loading={localLoad.value || loading.value}
       aria-label="Add to wishlist"
       onClick={async (e) => {
         e.stopPropagation();
         e.preventDefault();
 
-        // if (!isUserLoggedIn) {
-        //   globalThis.window.alert(
-        //     "Please log in before adding to your wishlist",
-        //   );
+        if (!isUserLoggedIn) {
+          globalThis.window.alert(
+            "Please log in before adding to your wishlist",
+          );
 
-        //   return;
-        // }
+          return;
+        }
 
-        console.log('see')
-        if (!loading.value) {
+        if (loading.value) {
           return;
         }
         try {
-          fetching.value = true;
+          localLoad.value = true;
 
           if (inWishlist) {
-            await removeItem({ id: listItem.value!.id }!);
+            await _removeWishlistItem()
           } else if (productID && productGroupID) {
-            console.log('see')
-            await addItem({ sku: productID, productId: productGroupID });
-
-            sendEvent({
-              name: "add_to_wishlist",
-              params: {
-                items: [{
-                  item_id: productID,
-                  item_group_id: productGroupID,
-                  quantity: 1,
-                }],
-              },
-            });
+           await _addWishlistItem()
           }
         } finally {
-          fetching.value = false;
+          localLoad.value = false;
         }
       }}
     >
@@ -90,7 +102,9 @@ function WishlistButton({
         id="Wishlist" 
         size={24}
         strokeWidth={2}
-        fill={inWishlist ? "#E20613" : "none"}
+        style={{
+          color: inWishlist ? "#E20613" : "none"
+        }}
       />
       {variant === "icon" ? null : inWishlist ? "Remover" : "Favoritar"}
     </Button>

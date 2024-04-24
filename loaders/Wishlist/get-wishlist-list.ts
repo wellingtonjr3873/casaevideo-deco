@@ -1,28 +1,17 @@
 import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
-
-import { createHttpClient } from "apps/utils/http.ts";
 export interface Props {
-  /** *@hide */
-  items: {
-    productId: string;
-  }[];
-  /** *@hide */
   userId: string;
 }
 
-interface ApiService {
-  "GET /wishlist/v2/_internal/wishlists": {
-    response: {
-      data: any;
-    };
-  };
-}
+type Res = {
+  data: { title: string; id: string; count: number }[];
+};
 
 const loader = async (
-  props: Props,
-  req: Request,
+  _props: Props,
+  _req: Request,
   ctx: AppContext,
-): Promise<any> => {
+): Promise<Res> => {
   const account: "casaevideonewio" | "lebiscuit" = ctx.account ||
     ctx.commerce.account || "casaevideonewio";
   const apiKey = ctx.GatewayApiKey.get();
@@ -33,11 +22,6 @@ const loader = async (
     "lebiscuit":
       "http://api-gateway.lebiscuit.io/wishlist/v2/_internal/wishlists",
   };
-
-  const payload = JSON.stringify({
-    title: "Meus favoritos",
-    items: props.items.map((item) => ({ itemId: item.productId })),
-  });
 
   const url = pathsDictionary[account];
 
