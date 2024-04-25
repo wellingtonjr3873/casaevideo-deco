@@ -16,7 +16,7 @@ import MiniBannerCarousel, { MiniBanner } from "deco-sites/casaevideo/components
 
 import NotFoundPage from "$store/sections/Product/NotFound.tsx"
 import { Props as NotFoundProps } from "$store/sections/Product/NotFound.tsx"
-import Faq, {Question} from "deco-sites/casaevideo/sections/Content/Faq.tsx";
+import Faq, { Question } from "deco-sites/casaevideo/sections/Content/Faq.tsx";
 
 export interface Layout {
   /**
@@ -180,7 +180,30 @@ function Result({
               offset={offset}
               layout={{ card: cardLayout, columns: layout?.columns }}
             />
-            <Faq questions={questions}/>
+            <div class="flex justify-center my-4">
+              <div class="join">
+                <a
+                  aria-label="previous page link"
+                  rel="prev"
+                  href={pageInfo.previousPage ?? "#"}
+                  class="btn btn-ghost join-item"
+                >
+                  <Icon id="ChevronLeft" size={24} strokeWidth={2} />
+                </a>
+                <span class="btn btn-ghost join-item">
+                  Página {zeroIndexedOffsetPage + 1}
+                </span>
+                <a
+                  aria-label="next page link"
+                  rel="next"
+                  href={pageInfo.nextPage ?? "#"}
+                  class="btn btn-ghost join-item"
+                >
+                  <Icon id="ChevronRight" size={24} strokeWidth={2} />
+                </a>
+              </div>
+            </div>
+            <Faq questions={questions} />
           </div>
         </div>
       </div>
