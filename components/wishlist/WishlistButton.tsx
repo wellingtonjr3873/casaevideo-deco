@@ -38,8 +38,8 @@ function WishlistButton({
   }
 
   const buttonClass = variant === "icon"
-    ? "btn-circle btn-ghost gap-2 justify-end w-[24px]"
-    : "btn-primary btn-outline gap-2 justify-end w-[24px]";
+    ? "btn-circle btn-ghost gap-2 justify-end w-[32px]"
+    : "btn-primary btn-outline gap-2 justify-end w-[32px]";
 
     const _addWishlistItem = async () => {
       const res = await addItemWishlist(productID, user.value?.email, productGroupID);

@@ -24,8 +24,8 @@ export interface Banner {
    */
   dateStartAt: string;
   /**
-   * @format datetime
    * @title Data final do banner
+   * @format datetime
    */
   dateEndAt: string;
 
@@ -33,8 +33,7 @@ export interface Banner {
    * @description Marque esta opção quando este banner for a maior imagem na tela para otimizações de imagem
   */
   preload?: boolean;
-
-  /**
+    /**
    * @format boolean
    * @title É um banner tipo cronometro?
    * @default false
@@ -61,7 +60,6 @@ export interface Banner {
 
 export interface Props {
   arrows?: boolean;
-  spacesCss?: string;
   bannerImages?: Banner[];
   /**
    * @title Intervalo AutoPlay
@@ -88,7 +86,6 @@ function BannerItem(
     dateEndAt,
   } = image;
 
-
   return (
     <a
       id={id}
@@ -100,13 +97,13 @@ function BannerItem(
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
-          srcset={mobile}
+          src={mobile}
           width={320}
           height={280}
         />
-        <source
+        <Source
           media="(min-width: 768px)"
-          srcset={desktop}
+          src={desktop}
           width={1280}
           height={280}
         />
@@ -115,7 +112,6 @@ function BannerItem(
           loading={lcp ? "eager" : "lazy"}
           decoding={lcp ? "sync" : "async"}
           src={mobile}
-          alt={alt}
         />
       </Picture>
       {action && (
@@ -154,6 +150,9 @@ function Dots({ bannerImages, interval = 0 }: Props) {
       />
       <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4 h-[11px] absolute bottom-[-18px] left-1/2 max-[768px]:transform -translate-x-1/2">
         {filteredImages?.map((image, index) => {
+        const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
+        getCurrentDateTime() <= image.dateEndAt;
+            
 
           return (
             <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
@@ -174,7 +173,6 @@ function Dots({ bannerImages, interval = 0 }: Props) {
 }
 
 function Buttons() {
-
   return (
     <>
       <div class="absolute left-0 top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden xl-b:left-[-20px]">
@@ -204,26 +202,24 @@ function Buttons() {
 function BannerCarousel(props: Props) {
   const id = useId();
 
+
   const { bannerImages, preload, interval, arrows, spacesCss } = { ...props };
 
-
   const currentDateTime = getCurrentDateTime();
-  const filteredImages = bannerImages.filter(image =>
+  const filteredImages = bannerImages?.filter(image =>
     currentDateTime >= image.dateStartAt && currentDateTime <= image.dateEndAt
   );
-
+  
   return (
     <>
       <div
         id={id}
-        class={`grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] relative max-[768px]:h-[auto] ${spacesCss}`}
+        class="grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0 mt-0"
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
           {filteredImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
             return (
-
-
               <>
                 {
                   image.preload && (
