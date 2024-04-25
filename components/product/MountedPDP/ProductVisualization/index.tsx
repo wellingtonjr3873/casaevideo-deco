@@ -29,6 +29,7 @@ function ProductVisualization({ product }: Props) {
   const product3D = isVariantOf?.additionalProperty.find(property => property.name === "produto3D")?.value
 
   
+
    let options: Option[]
   if(product3D !== undefined) {
    options = [
