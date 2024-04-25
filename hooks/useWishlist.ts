@@ -33,7 +33,6 @@ export const useWishlist = () => {
   }, []);
 
   const addItem = async (props: AddItemProps) => {
-    console.log("hello");
     try {
       const res = await invoke["deco-sites/casaevideo"].loaders.Wishlist.add({
         items: [{
@@ -41,16 +40,12 @@ export const useWishlist = () => {
         }],
         userId: user.value.email,
       });
-
-      console.log(res, "seee");
     } catch (err) {
       console.error(err);
     }
   };
 
   const removeItem = (props: RemoveItemProps) => {
-    console.log(user.value, props);
-
     // invoke['deco-sites/casaevideo'].loaders.Wishlist.add
   };
 
