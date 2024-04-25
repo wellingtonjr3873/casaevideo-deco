@@ -24,6 +24,19 @@ function App(props: AppProps) {
         type="module"
         dangerouslySetInnerHTML={{ __html: `(${sw})();` }}
       />
+       <script>
+                    {`;(function () {
+                    const script = document.createElement('script')
+                    
+                    script.type = 'text/javascript'
+                    script.id = 'dt-widget'
+                    script.async = true
+                    script.src =
+                        'https://www13.directtalk.com.br/clientes/custom/casaeVideo/widget.min.js'
+                    document.getElementsByTagName('BODY')[0].appendChild(script) 
+                    })(document)
+                    `}
+                </script>
     </>
   );
 }
