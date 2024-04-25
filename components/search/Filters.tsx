@@ -88,28 +88,30 @@ function FilterValues({ key, values }: FilterToggle) {
       })}
 
       {values.length > 6 && (
-        <li className="w-full">
-          <div className="more-content">
-            <ul className="flex flex-wrap gap-2 flex-row">
-              {values.slice(6).map((item, index) => {
-                const { url, selected, value } = item;
+          <li className="w-full">
+            <div className="more-content">
+              <ul className="flex flex-wrap gap-2 flex-row">
+                {values.slice(6).map((item, index) => {
+                  const { url, selected, value } = item;
 
-                if (key === "cor" || key === "tamanho") {
-                  return (
-                    <li key={index}>
-                      <a href={url} rel="nofollow">
-                        <Avatar content={value} variant={selected ? "active" : "default"} />
-                      </a>
-                    </li>
-                  );
-                }
-                return <ValueItem key={index} {...item} />;
-              })}
-            </ul>
-          </div>
-          
-          <label class="cursor-pointer"><input type="checkbox"style={{ display: "none" }} />Ver mais</label>
-        </li>
+                  if (key === "cor" || key === "tamanho") {
+                    return (
+                      <li key={index}>
+                        <a href={url} rel="nofollow">
+                          <Avatar content={value} variant={selected ? "active" : "default"} />
+                        </a>
+                      </li>
+                    );
+                  }
+                  return <ValueItem key={index} {...item} />;
+                })}
+              </ul>
+            </div>
+
+            <label class="label-check cursor-pointer w-full text-right body-bold block">
+              <input class="hidden-checkbox" type="checkbox" style={{ display: "none" }} />              
+            </label>
+          </li>
 
       )}
     </ul>

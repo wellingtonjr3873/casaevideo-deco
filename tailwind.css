@@ -36,15 +36,15 @@
   /* EXEMPLO DE USO */
   /* 
     <li className="w-full">
-          <div className="more-content">
-            CONTEUDO AQUI
-          </div>
+      <div className="more-content">
+        CONTEUDO AQUI
+      </div>
 
-          <label class="cursor-pointer">
-            <input type="checkbox" style={{ display: "none" }} />
-            Ver mais
-          </label>
-    </li> 
+      <label class="label-check cursor-pointer w-full text-right body-bold block">
+        <input class="hidden-checkbox" type="checkbox" style={{ display: "none" }} />
+        Ver mais
+      </label>
+    </li>
   */
   .more-content {
     max-height: 0;
@@ -52,11 +52,19 @@
     overflow: hidden;
   }
 
-  .more-content:has(+label input:checked){
+  .more-content:has(+.label-check .hidden-checkbox:checked){
     max-height: 10000px;
     transition: max-height 0.8s ease;
     overflow: visible;
   }
+
+  .label-check:after {
+    content: "Ver mais"; 
+  }
+  .label-check:has(.hidden-checkbox:checked):after {
+    content: "Ver menos"; 
+  }
+
 
   /* --------------------- */
   /*    headline fonts     */
