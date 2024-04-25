@@ -121,7 +121,7 @@ function Filters({ filters }: Props) {
     <>
       {
         hasFilterActive && (
-          <div className="mb-2 bg-neutral-50 border border-brand-secondary-400">
+          <div className="mb-2 border border-brand-secondary-400">
             <header className="px-4 py-2 text-left">
               <p className="font-bold text-base">Fltros Selecionados</p>
             </header>

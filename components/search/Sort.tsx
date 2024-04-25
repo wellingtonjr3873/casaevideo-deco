@@ -48,7 +48,8 @@ function Sort({ sortOptions }: Props) {
         value,
         label: portugueseMappings[label as keyof typeof portugueseMappings] ??
           label,
-      })).filter(({ label }) => label).map(({ value, label }) => (
+      })).filter(({ label }) => label !== 'name:desc' && label !== 'name:asc').map(({ value, label }) => (
+  
         <option key={value} value={value} selected={value === sort}>
           <span class="text-sm">{label}</span>
         </option>

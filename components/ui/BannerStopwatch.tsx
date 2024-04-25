@@ -51,7 +51,6 @@ const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor,
 
     return <div class={`absolute flex ${positionDictionary[position || "base-right"]}`}>
         <div class="flex">
-
             <Picture preload={false}>
                 <Source
                 media="(max-width: 767px)"
@@ -76,8 +75,8 @@ const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor,
         </Picture>
         </div>
         <div>
-        <p class={`xx-small-regular lg:small-regular text-[${textColor || "white"}]`}>Aproveite, é por tempo limitado!</p>
-          <div class={`rounded-lg flex items-center justify-center ${ backgroundColor  ? `bg-[$${backgroundColor}]` : "bg-brand-terciary-1"} text-center w-[128px] lg:w-[198px] h-8 lg:h-[44px] ${!finalDate ? "animate-pulse" : ""}`}>
+        <p style={{color: textColor}} class={`xx-small-regular lg:small-regular text-[${textColor || "white"}]`}>Aproveite, é por tempo limitado!</p>
+          <div style={{backgroundColor}}class={`rounded-lg flex items-center justify-center "bg-brand-terciary-1 text-center w-[128px] lg:w-[198px] h-8 lg:h-[44px] ${!finalDate ? "animate-pulse" : ""}`}>
           {finalDate && <span class="h6-bold lg:h3-bold">{hours}:{minutes}:{seconds}</span>}</div>
         </div>
     </div>
