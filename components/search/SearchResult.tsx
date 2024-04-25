@@ -203,7 +203,7 @@ function Result({
                 </a>
               </div>
             </div>
-            <Faq questions={questions} />
+            {questions && <Faq questions={questions} />}
           </div>
         </div>
       </div>

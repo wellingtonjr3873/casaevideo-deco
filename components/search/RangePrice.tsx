@@ -48,7 +48,7 @@ export default function RangePrice() {
                 id="inputMin" 
                 onInput={handleMinInputChange} 
                 value={signalMinValue.value} 
-                class="input-range-min input border-brand-secondary-200 input-primary w-full max-w-20 min-w-20 h-10 px-4 py-2 focus:border-brand-terciary-1 focus:outline-brand-terciary-1" 
+                class="input-range-min input border-brand-secondary-200 input-primary w-full max-w-20 min-w-20 h-10 px-4 py-2 focus:border-brand-terciary-1 focus:outline-brand-terciary-1 text-xs" 
                 placeholder="Mínimo" 
                 required
             />
@@ -59,7 +59,7 @@ export default function RangePrice() {
                 id="inputMax" 
                 onInput={handleMaxInputChange} 
                 value={signalMaxValue.value} 
-                class="input-range-max input border-brand-secondary-200 input-primary w-full max-w-20 h-10 px-4 py-2 focus:border-brand-terciary-1 focus:outline-brand-terciary-1"  
+                class="input-range-max input border-brand-secondary-200 input-primary w-full max-w-20 h-10 px-4 py-2 focus:border-brand-terciary-1 focus:outline-brand-terciary-1 text-xs"  
                 placeholder="Máximo"
                 required
             />
