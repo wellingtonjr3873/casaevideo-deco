@@ -26,10 +26,10 @@ const portugueseMappings = {
   "price:desc": "Maior Preço",
   "price:asc": "Menor Preço",
   "orders:desc": "Mais vendidos",
-  "name:desc": "Nome - de Z a A",
-  "name:asc": "Nome - de A a Z",
-  // "release:desc": "Relevância - Decrescente",
-  "discount:desc": "Maior desconto",
+  // "name:desc": "Nome - de Z a A",
+  // "name:asc": "Nome - de A a Z",
+  "release:desc": "Mais recentes",
+  "discount:desc": "Descontos",
 };
 
 function Sort({ sortOptions }: Props) {
@@ -48,9 +48,10 @@ function Sort({ sortOptions }: Props) {
         value,
         label: portugueseMappings[label as keyof typeof portugueseMappings] ??
           label,
-      })).filter(({ label }) => label).map(({ value, label }) => (
-        <option key={value} value={value} selected={value === sort}>
-          <span class="text-sm">{label}</span>
+      })).filter(({ label }) => label !== 'name:desc' && label !== 'name:asc').map(({ value, label }) => (
+  
+        <option class="text-sm hover:bg-brand-primary-600" key={value} value={value} selected={value === sort}>
+          <span class="text-sm hover:bg-brand-primary-600">{label}</span>
         </option>
       ))}
     </select>
