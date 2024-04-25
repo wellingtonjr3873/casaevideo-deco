@@ -395,3 +395,8 @@
 .custom-scroll::-webkit-scrollbar-button{
   display: none;
 }
+
+#bot {
+  left: 0;
+  right: unset !important;
+}
