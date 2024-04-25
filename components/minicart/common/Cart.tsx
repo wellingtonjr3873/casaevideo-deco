@@ -155,7 +155,7 @@ adicione produtos ao carrinho.</p>
                 <a class="inline-block w-full" href={checkoutHref}>
                   <Button
                     data-deco="buy-button"
-                    class="btn-primary btn-block bg-brand-primary-1 text-base text-neutral-50 font-normal"
+                    class="btn-primary btn-block hover:bg-brand-primary-1 bg-brand-primary-1 text-base text-neutral-50 font-normal"
                     disabled={loading || isEmpty}
                     onClick={() => {
                       sendEvent({
