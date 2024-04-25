@@ -95,8 +95,8 @@ function MenuItem(
           onClose={handleCloseDrawer}
           class={classDrawer}
        >
-            <div class="navbar-children grid grid-rows-[64px_max-content] h-full divide-y bg-brand-secondary-50 max-w-[368px] w-[100%]">
-              <div class="flex justify-between items-center bg-brand-secondary-50 max-w-[368px] w-[100%] px-4 py-4 mb-4">
+            <div class="navbar-children grid grid-rows-[64px_max-content] h-full divide-y bg-brand-secondary-50 lg:max-w-[354px] w-full">
+              <div class="flex justify-between items-center bg-brand-secondary-50 lg:max-w-[354px] w-full px-4 py-4 mb-4">
                 <h1 class="">
                   <span class="font-medium text-2xl  inline-flex items-center">
                     <button
@@ -157,6 +157,7 @@ const FooterMenu = () => {
   </div>
 </div>
 }
+
 function Menu({ items }: Props) {
   const departaments = visibleAllDepartaments.value ? items : items.slice(0, 9);
 

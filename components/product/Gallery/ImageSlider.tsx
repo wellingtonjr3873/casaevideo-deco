@@ -5,6 +5,7 @@ import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import { ImageObject, ProductDetailsPage } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
+import ImageZoom from "../../../islands/ImageZoom.tsx";
 
 export interface Props {
   /** @title Integration */
@@ -94,17 +95,12 @@ export default function GallerySlider(props: Props) {
               index={index}
               class="carousel-item w-full"
             >
-              <Image
-                class="w-full"
-                sizes="(max-width: 640px) 100vw, 40vw"
-                style={{ aspectRatio }}
-                src={img.url!}
-                alt={img.alternateName}
+              <ImageZoom
+                url={img.url}
+                alternateName={img.alternateName}
                 width={width}
                 height={height}
-                // Preload LCP image for better web vitals
-                preload={index === 0}
-                loading={index === 0 ? "eager" : "lazy"}
+                index={index}
               />
             </Slider.Item>
           ))}
