@@ -103,9 +103,26 @@ function Header({
     return(
       <>
         <header class="bg-brand-terciary-1">
-          <div class="h-12 flex items-center justify-center bg-complementary-2">
-            <p class="body-bold text-neutral-50">Destaque</p>
-          </div>
+          {banner &&
+            <div class={`h-12 flex items-center justify-center`} style={{background: banner?.tipBgColor}}>
+              <Picture>
+                <Source
+                  media="(max-width: 768px)"
+                  src={banner.mobile.src}
+                  width={banner.mobile.largura}
+                  height={banner.mobile.altura}
+                />
+                <Source
+                  media="(min-width: 768px)"
+                  src={banner.desktop.src}
+                  width={banner.desktop.largura}
+                  height={banner.desktop.altura}
+                />
+
+                <img src={banner?.desktop.src} />
+              </Picture>
+            </div>
+          }
           <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
             <div className="flex justify-between">
               <div class="flex gap-2 items-center content-start">
