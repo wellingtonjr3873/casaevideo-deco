@@ -56,7 +56,7 @@ const DEFAULT_PROPS = {
 function Question({ question, answer }: Question) {
   return (
     <details class="collapse collapse-arrow join-item bg-complementary-3 outline-0 rounded-none border-none">
-      <summary class="collapse-title text-lg font-medium bg-complementary-3 outline-0 rounded-none border-none">
+      <summary class="collapse-title body-bold md:text-lg font-medium bg-complementary-3 outline-0 rounded-none border-none">
         {question}
       </summary>
       <div
@@ -97,7 +97,7 @@ export default function FAQ(props: Props) {
   return (
     <>
       {(!layout?.variation || layout?.variation === "Compact") && (
-        <div class="w-full container px-4 py-8 flex flex-col gap-4 lg:gap-8 lg:py-10 lg:px-40">
+        <div class="w-full container flex flex-col gap-4 lg:gap-8">
           <div class="flex flex-col gap-8 lg:gap-10">
             <div
               class="flex flex-col gap-8 lg:gap-10"

@@ -59,6 +59,7 @@ export interface Banner {
 }
 
 export interface Props {
+  arrows?: boolean;
   bannerImages?: Banner[];
   /**
    * @title Intervalo AutoPlay
@@ -201,7 +202,7 @@ function Buttons() {
 function BannerCarousel(props: Props) {
   const id = useId();
 
-  const { bannerImages, preload, interval, arrows, spacesCss } = { ...props };
+  const { bannerImages, interval, arrows} = { ...props };
 
 
   const currentDateTime = getCurrentDateTime();
@@ -214,7 +215,7 @@ function BannerCarousel(props: Props) {
     <>
       <div
         id={id}
-        class={`grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0 ${spacesCss}`}
+        class="grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0 mt-0"
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
           {filteredImages?.map((image, index) => {
