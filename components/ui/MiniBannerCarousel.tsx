@@ -184,9 +184,9 @@ function MiniBannerCarousel(props: Props) {
     <>
       <div
         id={id}
-        class={`max-w-[1280px] relative max-[768px]:h-[auto] ${spacesCss}`}
+        class={`max-w-[915px] relative max-[768px]:h-[auto] ${spacesCss}`}
       >
-        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-5">
+        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-5 max-w-[940px]">
           {miniBannerImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
             const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&

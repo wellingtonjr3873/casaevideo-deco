@@ -230,9 +230,9 @@ function Result({
             {pageName && pageName}
           </span>
         </div>
-        <div class="flex flex-row">
+        <div class="flex flex-row gap-5">
           {layout?.variant === "aside" && filters.length > 0 && (
-            <aside class="hidden sm:block w-min min-w-[250px]">
+            <aside class="hidden sm:block w-min min-w-[264px]">
               <Filters filters={filters} />
             </aside>
           )}

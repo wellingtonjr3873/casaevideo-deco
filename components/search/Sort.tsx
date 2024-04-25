@@ -28,7 +28,7 @@ const portugueseMappings = {
   "orders:desc": "Mais vendidos",
   "name:desc": "Nome - de Z a A",
   "name:asc": "Nome - de A a Z",
-  // "release:desc": "Relevância - Decrescente",
+  "release:desc": "Relevância - Decrescente",
   "discount:desc": "Maior desconto",
 };
 
@@ -42,7 +42,7 @@ function Sort({ sortOptions }: Props) {
       id="sort"
       name="sort"
       onInput={applySort}
-      class="bg-[unset] w-min h-[41px] px-1 rounded m-2 text-base-content cursor-pointer outline-none small-regular md:h6-regular text-neutral-900"
+      class="bg-[unset] w-min h-[41px] px-1 rounded m-2 text-base-content cursor-pointer outline-none small-regular md:h6-regular text-neutral-900 max-w-[120px]"
     >
       {sortOptions.map(({ value, label }) => ({
         value,

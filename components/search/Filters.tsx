@@ -54,9 +54,9 @@ function FilterListSelected({ values }: FilterToggle) {
 
 function FilterValues({ key, values }: FilterToggle) {
   const flexDirection = ["tamanho", "cor"].includes(key) ? "flex-row" : "flex-col";
-  
+
   return (
-    <ul className={`flex flex-wrap gap-2 ${flexDirection}`}>
+    <ul className={`flex flex-wrap gap-2 ${flexDirection} pt-3`}>
       {values.slice(0, 6).map((item, index) => {
         const { url, selected, value } = item;
 
@@ -74,12 +74,7 @@ function FilterValues({ key, values }: FilterToggle) {
           const range = parseRange(item.value);
           return range && (
             <>
-              <ValueItem
-                key={index}
-                {...item}
-                label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
-              />
-              {index === values.length-1 && (<RangePrice/>)}
+              {index === values.length - 1 && (<RangePrice />)}
             </>
           );
         }
@@ -116,6 +111,7 @@ function FilterValues({ key, values }: FilterToggle) {
 }
 
 
+
 function Filters({ filters }: Props) {
 
   //verifica se há pelo menos 1 filtro ativo
@@ -143,23 +139,33 @@ function Filters({ filters }: Props) {
       <ul className="flex flex-col gap-4">
         {
           filters.filter(isToggle).map((filter, index) => (
-            
-            <li key={index} className="dropdown bg-neutral-50 py-3 px-5">
-              <details className="group">
-                <summary className="m-1 flex justify-between items-center cursor-pointer font-bold text-base pb-3">
-                  {
-                    filter.label !== 'Preço' ? filter.label : 'Faixa de Preço' 
-                  }
-                  <span className="w-4 h-4 text-center flex justify-center items-center">
-                    <span className="group-open:-rotate-90 transition-all duration-200 ease-in">
-                      <Icon id="ArrowAccordion" size={24} strokeWidth={2} fill="text-neutral-900" />
+            filter.key != "price" ?
+              <li key={index} className="dropdown bg-neutral-50 py-3 px-5 min-w-[264px]">
+                <details className="group">
+                  <summary className="m-1 flex justify-between items-center cursor-pointer font-bold text-base">
+                    {filter.label}
+                    <span className="w-4 h-4 text-center flex justify-center items-center">
+                      <span className="group-open:-rotate-90 transition-all duration-200 ease-in">
+                        <Icon id="ArrowAccordion" size={24} strokeWidth={2} fill="text-neutral-900" />
+                      </span>
                     </span>
-                  </span>
-                </summary>
-                <FilterValues {...filter} />
-              </details>
-            </li>
-          ))}
+                  </summary>
+                  <FilterValues {...filter} />
+                </details>
+              </li>
+              :
+              <li key={index} className="dropdown bg-neutral-50 py-3 px-5 min-w-[264px]">
+                <div className="group">
+                  <div className="m-1 flex justify-between items-center cursor-pointer font-bold text-base">
+                    {
+                      filter.label !== 'Preço' ? filter.label : 'Faixa de Preço'
+                    }                    
+                  </div>
+                  <FilterValues {...filter} />
+                </div>
+              </li>
+          ))
+        }
       </ul>
     </>
   );
