@@ -104,6 +104,11 @@ export type AvailableIcons =
   | "PickupPoint"
   | "Checked"
   | "Close"
+  | "Close"
+  | "sucessToast"
+  | "infoToast"
+  | "warningToast"
+  | "closeToast"
   | "Plus";
 
 interface Props extends JSX.SVGAttributes<SVGSVGElement> {
