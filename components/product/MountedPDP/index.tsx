@@ -30,35 +30,7 @@ export interface Props {
 
 function MountedPDP({ 
   page, 
-  tags = [
-    {
-      "icon": [
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/85015157-8b37-47e2-8136-50d107593f90"
-      ],
-      "active": true,
-      "id": "2223",
-      "text": "Frete Grátis",
-      "bgColor": "purple"
-    },
-    {
-      "icon": [
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/85015157-8b37-47e2-8136-50d107593f90"
-      ],
-      "active": true,
-      "id": "2223",
-      "text": "Frete Grátis 2",
-      "bgColor": "purple"
-    },
-    {
-      "icon": [
-        "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/85015157-8b37-47e2-8136-50d107593f90"
-      ],
-      "active": true,
-      "id": "2223",
-      "text": "Frete Grátis 3",
-      "bgColor": "purple"
-    }
-  ]
+  tags
 }: Props) {
   const platform = usePlatform();
   const id = useId();
@@ -89,9 +61,6 @@ function MountedPDP({
       <div class="p-4 md:px-0">
         <Breadcrumb itemListElement={breadcrumb.itemListElement} homeName="Casa&Video" />
       </div>
-
-
-
       <div class="flex flex-col md:flex-row gap-3" id={id}>
         <div class="md:bg-neutral-50 w-full md:w-2/3 flex flex-col md:flex-row gap-4 rounded-lg min-h-[520px] h-min md:py-4  md:border md:border-brand-secondary-100">
           {/* Product Image */}

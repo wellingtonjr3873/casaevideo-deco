@@ -36,10 +36,12 @@ import * as $ProductGalleryIsland from "./islands/ProductGalleryIsland.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
 import * as $ProductShelfTimedOffers from "./islands/ProductShelfTimedOffers.tsx";
 import * as $ProductVisualization from "./islands/ProductVisualization.tsx";
+import * as $RangePrice from "./islands/RangePrice.tsx";
 import * as $ReviewsList from "./islands/ReviewsList.tsx";
 import * as $SearchControls from "./islands/SearchControls.tsx";
 import * as $ShippingSimulation from "./islands/ShippingSimulation.tsx";
 import * as $SliderJS from "./islands/SliderJS.tsx";
+import * as $Toast_Toast from "./islands/Toast/Toast.tsx";
 import * as $WishlistButton from "./islands/WishlistButton.tsx";
 import { type Manifest } from "$fresh/server.ts";
 
@@ -84,10 +86,12 @@ const manifest = {
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,
     "./islands/ProductShelfTimedOffers.tsx": $ProductShelfTimedOffers,
     "./islands/ProductVisualization.tsx": $ProductVisualization,
+    "./islands/RangePrice.tsx": $RangePrice,
     "./islands/ReviewsList.tsx": $ReviewsList,
     "./islands/SearchControls.tsx": $SearchControls,
     "./islands/ShippingSimulation.tsx": $ShippingSimulation,
     "./islands/SliderJS.tsx": $SliderJS,
+    "./islands/Toast/Toast.tsx": $Toast_Toast,
     "./islands/WishlistButton.tsx": $WishlistButton,
   },
   baseUrl: import.meta.url,

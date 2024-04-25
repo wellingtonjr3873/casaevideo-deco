@@ -151,7 +151,7 @@ ${l?.onMouseOver?.card === "Move up" &&
                     </div>
                   )}
               </div>
-              <div class={`body-bold md:h6-bold ${layoutSelected?.value === "list" ? "md:text-end" : ""}`}>
+              <div class={`body-bold md:h6-bold text-start ${layoutSelected?.value === "list" ? "md:text-end" : ""}`}>
                 {formatPrice(price, offers?.priceCurrency)} no PIX
               </div>
             </div>
