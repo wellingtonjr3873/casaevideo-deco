@@ -50,8 +50,8 @@ function Sort({ sortOptions }: Props) {
           label,
       })).filter(({ label }) => label !== 'name:desc' && label !== 'name:asc').map(({ value, label }) => (
   
-        <option class="text-sm hover:bg-brand-primary-600" key={value} value={value} selected={value === sort}>
-          <span class="text-sm hover:bg-brand-primary-600">{label}</span>
+        <option key={value} value={value} selected={value === sort}>
+          <span class="text-sm">{label}</span>
         </option>
       ))}
     </select>
