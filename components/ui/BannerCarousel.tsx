@@ -59,6 +59,7 @@ export interface Banner {
 }
 
 export interface Props {
+  arrows?: boolean;
   bannerImages?: Banner[];
   /**
    * @title Intervalo AutoPlay
@@ -201,7 +202,7 @@ function Buttons() {
 function BannerCarousel(props: Props) {
   const id = useId();
 
-  const { bannerImages, preload, interval, arrows, spacesCss } = { ...props };
+  const { bannerImages, interval, arrows} = { ...props };
 
 
   const currentDateTime = getCurrentDateTime();

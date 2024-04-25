@@ -16,6 +16,7 @@ import MiniBannerCarousel, { MiniBanner } from "deco-sites/casaevideo/components
 
 import NotFoundPage from "$store/sections/Product/NotFound.tsx"
 import { Props as NotFoundProps } from "$store/sections/Product/NotFound.tsx"
+import Faq, {Question} from "deco-sites/casaevideo/sections/Content/Faq.tsx";
 
 export interface Layout {
   /**
@@ -69,149 +70,28 @@ export interface Props {
   miniBannerCarousel?: MiniBanner[];
   /** @description 0 for ?page=0 as your first page */
   startingPage?: 0 | 1;
+  /** @title FAQ */
+  questions?: Question[];
 }
 
 function Result({
   page,
   layout,
   cardLayout,
-  bannerCarousel = [
+  bannerCarousel,
+  bannerGrid,
+  miniBannerCarousel,
+  questions = [
     {
-      "alt": "VERÃO CASA E VIDEO",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/012b3dbb-5047-4b8c-838d-dff01efb899e",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/81f1aa23-cf1c-4271-8227-a37fd9f2c96d",
-      "preload": true,
-      "dateEndAt": "2024-12-30T20:14:00.000Z",
-      "dateStartAt": "2024-01-31T20:14:00.000Z"
+      question: "Como faço para acompanhar o meu pedido?",
+      answer:
+        "Acompanhar o seu pedido é fácil! Assim que o seu pedido for enviado, enviaremos um e-mail de confirmação com um número de rastreamento. Basta clicar no número de rastreamento ou visitar o nosso site e inserir o número de rastreamento na seção designada para obter atualizações em tempo real sobre a localização e o status de entrega do seu pedido.",
     },
     {
-      "alt": "VERÃO CASA E VIDEO",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/012b3dbb-5047-4b8c-838d-dff01efb899e",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/81f1aa23-cf1c-4271-8227-a37fd9f2c96d",
-      "preload": true,
-      "dateEndAt": "2024-12-30T20:14:00.000Z",
-      "dateStartAt": "2024-01-31T20:14:00.000Z"
+      question: "Qual é a política de devolução?",
+      answer:
+        "Oferecemos uma política de devolução sem complicações. Se você não estiver completamente satisfeito(a) com a sua compra, pode devolver o item em até 30 dias após a entrega para obter um reembolso total ou troca. Certifique-se de que o item esteja sem uso, na embalagem original e acompanhado do recibo. Entre em contato com a nossa equipe de atendimento ao cliente e eles o(a) orientarão pelo processo de devolução.",
     },
-    {
-      "alt": "VERÃO CASA E VIDEO",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/012b3dbb-5047-4b8c-838d-dff01efb899e",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/81f1aa23-cf1c-4271-8227-a37fd9f2c96d",
-      "preload": true,
-      "dateEndAt": "2024-12-30T20:14:00.000Z",
-      "dateStartAt": "2024-01-31T20:14:00.000Z"
-    },
-    {
-      "alt": "VERÃO CASA E VIDEO",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/012b3dbb-5047-4b8c-838d-dff01efb899e",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/81f1aa23-cf1c-4271-8227-a37fd9f2c96d",
-      "preload": true,
-      "dateEndAt": "2024-12-30T20:14:00.000Z",
-      "dateStartAt": "2024-01-31T20:14:00.000Z"
-    }
-  ],
-  bannerGrid = [
-    {
-      srcDesktop: "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/b4b07511-ba19-453d-94e7-988d402a99d2",
-      bannerWidthDesk: 992,
-      bannerHeightDesk: 121,
-      srcMobile: "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/ddd587d8-141d-4e7a-9192-c6276dd9674b",
-      bannerWidthMob: 992,
-      bannerHeightMob: 280,
-      alt: "Os melhores Smarts",
-      href: "/"
-    }
-  ],
-  miniBannerCarousel = [
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    },
-    {
-      "dateStartAt": "2024-04-22T09:46:00.000Z",
-      "dateEndAt": "2027-11-22T13:46:00.000Z",
-      "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-      "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-      "alt": "BOSH",
-      "href": "/",
-      "preload": true,
-    }
   ],
   startingPage = 0,
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
@@ -240,7 +120,7 @@ function Result({
             </aside>
           )}
           <div class="flex-grow w-full" id={id}>
-            {/* {bannerCarousel && <BannerCarousel bannerImages={bannerCarousel} arrows={false} spacesCss={"max-[768px]:px-0 md:px-6 xl-b:px-0 my-[20px] mx-[auto]"} />}
+            {bannerCarousel && <BannerCarousel bannerImages={bannerCarousel} arrows={false} />}
 
 
             {bannerGrid && bannerGrid.map((banner: SingleBanner) => (
@@ -272,8 +152,9 @@ function Result({
                   />
                 </Picture>
               </a>
-            )) */}
-            {/* } */}
+            ))
+            }
+
 
             {miniBannerCarousel &&
               <div class="flex flex-col my-[16px]">
@@ -299,30 +180,7 @@ function Result({
               offset={offset}
               layout={{ card: cardLayout, columns: layout?.columns }}
             />
-          </div>
-        </div>
-
-        <div class="flex justify-center my-4">
-          <div class="join">
-            <a
-              aria-label="previous page link"
-              rel="prev"
-              href={pageInfo.previousPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronLeft" size={24} strokeWidth={2} />
-            </a>
-            <span class="btn btn-ghost join-item">
-              Page {zeroIndexedOffsetPage + 1}
-            </span>
-            <a
-              aria-label="next page link"
-              rel="next"
-              href={pageInfo.nextPage ?? "#"}
-              class="btn btn-ghost join-item"
-            >
-              <Icon id="ChevronRight" size={24} strokeWidth={2} />
-            </a>
+            <Faq questions={questions}/>
           </div>
         </div>
       </div>
