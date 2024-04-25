@@ -131,7 +131,7 @@ function Searchbar({
             <ul id="search-suggestion" class="flex flex-col gap-6">
               {searches.map(({term, attributes }) => (
                 <li>
-                  <a href={`/s?q=${term}`} class="flex gap-4 items-center">
+                  <a href={`/search?q=${term}`} class="flex gap-4 items-center">
                     <span dangerouslySetInnerHTML={{ __html: term }} class="body-regular" />
                   </a>
                   <ul class="ml-2">
@@ -196,7 +196,7 @@ function Searchbar({
               )})}
               </div>
 
-         { searches[0]?.term && <a href={`/s?q=${searches[0].term}`} class="x-small-regular">veja todos os {searches[0].count} produtos</a> }
+         { searches[0]?.term && <a href={`/search?q=${searches[0].term}`} class="x-small-regular">veja todos os {searches[0].count} produtos</a> }
             </div>
           </div>
         </div>

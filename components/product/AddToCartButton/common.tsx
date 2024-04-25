@@ -4,6 +4,8 @@ import { useUI } from "$store/sdk/useUI.ts";
 import { AddToCartParams } from "apps/commerce/types.ts";
 import { useState } from "preact/hooks";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
+import { useToast } from "deco-sites/casaevideo/sdk/useToast.ts";
+import { ToastSucess, ToastError, ToastInfo, ToastWarning } from "$store/islands/Toast/Toast.tsx";
 
 export interface Props {
   /** @description: sku name */
@@ -16,6 +18,7 @@ export interface Props {
 const useAddToCart = ({ eventParams, onAddItem }: Props) => {
   const [loading, setLoading] = useState(false);
   const { displayCart } = useUI();
+  const { toastSucess, toastError, toastInfo, toastWarning } = useToast();
 
   const onClick = async (e: MouseEvent) => {
     e.preventDefault();
@@ -35,6 +38,10 @@ const useAddToCart = ({ eventParams, onAddItem }: Props) => {
     } finally {
       setLoading(false);
     }
+    toastSucess.value = true;
+    toastError.value = true;
+    toastInfo.value = true;
+    toastWarning.value = true;
   };
 
   return { onClick, loading, "data-deco": "add-to-cart" };
@@ -46,8 +53,14 @@ export default function AddToCartButton(props: Props) {
   const label = props.label;
 
   return (
-    <Button class={`btn-primary text-neutral-50 border-0 bg-brand-primary-1 hover:bg-brand-primary-1 body-regular ${className}`} {...btnProps}>
-      <Icon id="Cart" class="text-neutral-50" width={24} height={24} /> {label ? label : "Comprar"}
-    </Button>
+    <>
+      <Button class={`btn-primary text-neutral-50 border-0 bg-brand-primary-1 hover:bg-brand-primary-1 body-regular ${className}`} {...btnProps}>
+        <Icon id="Cart" class="text-neutral-50" width={24} height={24} /> {label ? label : "Comprar"}
+      </Button>
+      <ToastSucess className={`top-[100px] left-4`}/>
+      <ToastError className={`top-[200px] left-4`}/>
+      <ToastInfo className={`top-[300px] left-4`}/>
+      <ToastWarning className={`top-[400px] left-4`}/>
+    </>
   );
 }

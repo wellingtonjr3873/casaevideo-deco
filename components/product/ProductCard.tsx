@@ -92,11 +92,13 @@ function ProductCard(
     image: images,
     offers,
     isVariantOf,
+    
   } = product;
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
-  const { listPrice, price, installments } = useOffer(offers);
+
+  const { listPrice, price, installments, availability } = useOffer(offers);
 
   const productClusters = product.additionalProperty && product.additionalProperty;
 
@@ -147,7 +149,7 @@ function ProductCard(
               )}
             </div>
           )}
-        {l?.hide?.allPrices ? "" : (
+        {l?.hide?.allPrices ? "" : availability === "https://schema.org/InStock" ? (
           <div class="flex flex-col gap-2">
             <div
               class={`flex flex-col gap-0 ${l?.basics?.oldPriceSize === "Normal"
@@ -183,7 +185,7 @@ function ProductCard(
                 </div>
               )}
           </div>
-        )}
+        ) : <button class="w-full py-2 border border-brand-secondary-400 small-regular rounded-md mt-auto text-neutral-900">Indisponivel</button>}
 
         {/* SKU Selector */}
         {
