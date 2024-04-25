@@ -125,7 +125,7 @@ function Filters({ filters }: Props) {
     <>
       {
         hasFilterActive && (
-          <div className="mb-2 bg-neutral-50 border border-brand-secondary-400">
+          <div className="mb-2 border border-brand-secondary-400">
             <header className="px-4 py-2 text-left">
               <p className="font-bold text-base">Fltros Selecionados</p>
             </header>
@@ -146,7 +146,7 @@ function Filters({ filters }: Props) {
             
             <li key={index} className="dropdown bg-neutral-50 py-3 px-5">
               <details className="group">
-                <summary className="m-1 flex justify-between items-center cursor-pointer font-bold text-base pb-3">
+                <summary className="m-1 flex justify-between list-none items-center cursor-pointer font-bold text-base group-open:pb-3">
                   {
                     filter.label !== 'Preço' ? filter.label : 'Faixa de Preço' 
                   }
