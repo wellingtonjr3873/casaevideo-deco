@@ -467,6 +467,12 @@
   display: none;
 }
 
+
+#bot {
+  left: 0;
+  right: unset !important;
+}
+
 .toast-slide{
     -webkit-animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1 both;
     animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1 both;
@@ -492,3 +498,4 @@
             transform: translateX(16px);
   }
 }
+
