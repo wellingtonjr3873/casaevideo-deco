@@ -96,7 +96,7 @@ export default function BannnerIsland(props: Props) {
     borderRadius,
     banners = [],
   } = { ...DEFAULT_PROPS, ...props };
-
+  
   const id = useId();
 
   return (

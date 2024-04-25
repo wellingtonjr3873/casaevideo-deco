@@ -1,6 +1,6 @@
-import ProductCard, {
+import ProductCardIsland, {
   Layout as CardLayout,
-} from "$store/components/product/ProductCard.tsx";
+} from "$store/islands/ProductCardIsland.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product } from "apps/commerce/types.ts";
 
@@ -38,12 +38,11 @@ function ProductGallery({ products, layout, offset }: Props) {
   return (
     <div class={`grid ${mobile} gap-2 items-center ${desktop} sm:gap-10`}>
       {products?.map((product, index) => (
-        <ProductCard
+        <ProductCardIsland
           product={product}
           preload={index === 0}
           index={offset + index}
           layout={layout?.card}
-          platform={platform}
         />
       ))}
     </div>

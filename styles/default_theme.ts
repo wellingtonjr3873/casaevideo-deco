@@ -24,6 +24,7 @@ export const DEFAULT_THEME = {
   "--brand-secondary-50": "#F3F3F3",
 
   "--brand-terciary-1": "#FFF100",
+  "--brand-terciary-base": "#FFF200",
 
   "--complementary-1": "#D4FF00",
   "--complementary-2": "#A310F2",
@@ -42,6 +43,7 @@ export const DEFAULT_THEME = {
   "--neutral-200": "#C6C6C6",
   "--neutral-100": "#DDDDDD",
   "--neutral-50": "#FFFFFF",
+  "--neutral-0": "#FFF",
   "--neutral-dark": "#444",
 
   "--success-light": "#A7D0B8",
@@ -52,5 +54,5 @@ export const DEFAULT_THEME = {
   "--warning": "#F8D13A",
   "--warning-dark": "#BF9800",
   "--error-light": "#F2CBCC",
-  "--error": "#CF040A",
+  "--error": "#CF040A"
 };

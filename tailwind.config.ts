@@ -19,6 +19,9 @@ export default {
     },
     extend: {
       colors: {
+        complementary: {
+          2: "oklch(var(--complementary-2))",
+        },
         neutral: {
           900: "oklch(var(--neutral-900))",
           800: "oklch(var(--neutral-800))",
@@ -30,6 +33,7 @@ export default {
           200: "oklch(var(--neutral-200))",
           100: "oklch(var(--neutral-100))",
           50: "oklch(var(--neutral-50))",
+          0: "oklch(var(--neutral-0))",
         },
         success: "oklch(var(--success))",
       },
