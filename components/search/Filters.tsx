@@ -147,9 +147,11 @@ function Filters({ filters }: Props) {
             <li key={index} className="dropdown bg-neutral-50 py-3 px-5">
               <details className="group">
                 <summary className="m-1 flex justify-between list-none items-center cursor-pointer font-bold text-base group-open:pb-3">
-                  {
-                    filter.label !== 'Preço' ? filter.label : 'Faixa de Preço' 
-                  }
+                  <span>
+                    {
+                      filter.label !== 'Preço' ? filter.label : 'Faixa de Preço' 
+                    }
+                  </span>
                   <span className="w-4 h-4 text-center flex justify-center items-center">
                     <span className="group-open:-rotate-90 transition-all duration-200 ease-in">
                       <Icon id="ArrowAccordion" size={24} strokeWidth={2} fill="text-neutral-900" />
