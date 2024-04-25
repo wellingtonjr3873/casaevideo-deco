@@ -11,13 +11,16 @@ const accountDictionary = {
     "https://casaevideonewio.vtexcommercestable.com.br/api/io/_v/private/graphql/v1",
 };
 
-const loader = async (props: Props): Promise<true | null> => {
+const loader = async (props: Props): Promise<boolean | null> => {
   const client = createGraphqlClient({
     endpoint: accountDictionary["CV"],
   });
 
   try {
-    const { subscribeNewsletter } = await client.query({
+    const { subscribeNewsletter } = await client.query<
+      { subscribeNewsletter: boolean },
+      unknown
+    >({
       query: newslettterMutation(props.email),
     });
     return subscribeNewsletter;
