@@ -10,7 +10,7 @@ const LoggedUser = () => {
   const visiblePopup = useSignal(false);
   const handleSetVisibblePopUp = () => visiblePopup.value = !visiblePopup.value
 
-  return  loading.value ? <>{!user.value ?
+  return  !loading.value ? <>{!user.value ?
     <>
       <a
         class="flex items-center justify-center gap-1"
@@ -86,7 +86,7 @@ const LoggedUser = () => {
       <a href="/wishlist" aria-label="Meus favoritos">
         <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos" />
       </a>
-    </div>}</> : <div class="w-[216px] h-[35px]"><div class="loading loading-spinner w-5"/></div>
+    </div>}</> : <div class="w-[216px] h-[35px] flex items-center justify-center"><div class="loading loading-spinner w-5"/></div>
 }
 
 export default LoggedUser
