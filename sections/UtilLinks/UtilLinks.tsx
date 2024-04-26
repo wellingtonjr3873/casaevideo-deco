@@ -24,7 +24,7 @@ function UtilLinks(props: Props) {
       {
         "label": "Parcele em até 10x",
         "title": "Parcele em até 10x",
-        "buttonText": "Ver regras",
+        "buttonText": "Mínimo de R$39,90*",
         "href": "#",
         "image":
           "https://casaevideonewio.vteximg.com.br/arquivos/icon-card.png",
@@ -32,15 +32,15 @@ function UtilLinks(props: Props) {
       {
         "label": "Retire na loja",
         "title": "Retire na loja",
-        "buttonText": "Ver regras",
+        "buttonText": "Economize o frete",
         "href": "#",
         "image":
           "https://casaevideonewio.vteximg.com.br/arquivos/icon-retire.png",
       },
       {
-        "label": "Entrega em até 24 horas*",
-        "title": "Entrega em até 24 horas*",
-        "buttonText": "Ver regras",
+        "label": "Entrega expressa",
+        "title": "Entrega expressa",
+        "buttonText": "Em até 24h*",
         "href": "#",
         "image":
           "https://casaevideonewio.vteximg.com.br/arquivos/icon-entrega.png",
@@ -48,7 +48,7 @@ function UtilLinks(props: Props) {
       {
         "label": "Chat Online",
         "title": "Chat Online",
-        "buttonText": "Como podemos ajudar?",
+        "buttonText": "Podemos ajudar?",
         "href": "#",
         "image":
           "https://casaevideonewio.vteximg.com.br/arquivos/icon-chat.png",
@@ -60,7 +60,7 @@ function UtilLinks(props: Props) {
     
     <div
       id={id}
-      class="lg:flex lg:justify-center p-[24px] lg:py-10 lg:gap-[117px] max-[768px]:gap-[22px] max-[768px]:grid max-[768px]:grid-cols-2"
+      class="lg:flex lg:justify-between mx-auto max-w-[1280px] p-[24px] lg:p-12 lg:gap-[117px] max-[768px]:gap-[16px] max-[768px]:grid max-[768px]:grid-cols-2"
     >
       {list.map((
         { label, title, href, image, buttonText },
@@ -84,10 +84,10 @@ function UtilLinks(props: Props) {
             )}
 
           <div class="flex flex-col items-start">
-            <span class="text-base-content text-center max-[768px]:text-[12px]">
+            <span class="text-base-content text-neutral-900 text-center small-bold max-[768px]:text-[12px]">
               {title}
             </span>
-            <span class="text-base-content text-center underline max-[768px]:text-[12px]">
+            <span class="text-base-content text-neutral-900 text-[14px] text-center max-[768px]:text-[12px]">
               {buttonText}
             </span>
           </div>

@@ -135,6 +135,10 @@
     @apply text-black text-lg font-bold leading-[140%]
   }
 
+  .h6-bold-20 {
+    @apply text-[20px] font-bold leading-[140%]
+  }
+
   .h6-regular {
     @apply text-black text-lg font-normal leading-[140%]
   }
