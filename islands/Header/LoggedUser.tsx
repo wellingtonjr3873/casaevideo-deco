@@ -1,23 +1,16 @@
-import { Person } from "apps/commerce/types.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 import { useSignal } from "@preact/signals";
 import { useUser } from "apps/vtex/hooks/useUser.ts";
 
 
-type Props = {
-  user: Person | null
-}
+const LoggedUser = () => {
 
-
-const LoggedUser = ({ user }: Props) => {
-
-  const { user: UserTesting } = useUser();
-  console.log(UserTesting, `loggin user in loggedUser`)
-
+  const { user, loading } = useUser();
+ 
   const visiblePopup = useSignal(false);
   const handleSetVisibblePopUp = () => visiblePopup.value = !visiblePopup.value
 
-  return !UserTesting.value ?
+  return  loading.value ? <>{!user.value ?
     <>
       <a
         class="flex items-center justify-center gap-1"
@@ -42,7 +35,8 @@ const LoggedUser = ({ user }: Props) => {
         <a href="/wishlist" aria-label="Meus favoritos">
           <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos" />
         </a>
-      </a></> :
+      </a>
+    </> :
     <div class="flex items-center justify-center gap-1">
       <button class="flex items-center justify-start center gap-1 cursor-pointer w-[154px]" onClick={handleSetVisibblePopUp}>
         {visiblePopup.value && <div class="inset-0 fixed z-20 overflow-hidden cursor-default" onClick={(e) => {
@@ -71,7 +65,7 @@ const LoggedUser = ({ user }: Props) => {
                     <a href="/account#/addresses">Meus endereços</a>
                   </li>
                   <li class="h6-regular text-neutral-900 pt-2 text-left">
-                    <a href="/no-cache/user/logout">Sair</a>
+                    <a href="/api/vtexid/pub/logout?scope=casaevideonewio&returnUrl=/">Sair</a>
                   </li>
                 </ul>
               </nav>
@@ -81,7 +75,7 @@ const LoggedUser = ({ user }: Props) => {
 
         <div class="flex flex-col gap-1 items-start">
           <span class="x-small-regular text-neutral-900">Olá,</span>
-          <h3 class="small-bold text-neutral-900">{UserTesting.value.name || "Usuario"}</h3>
+          <h3 class="small-bold text-neutral-900">{user.value.name || "Usuario"}</h3>
         </div>
       </button>
       {/* meus pedidos */}
@@ -92,7 +86,7 @@ const LoggedUser = ({ user }: Props) => {
       <a href="/wishlist" aria-label="Meus favoritos">
         <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos" />
       </a>
-    </div>
+    </div>}</> : <div class="w-[216px] h-[35px]"><div class="loading loading-spinner w-5"/></div>
 }
 
 export default LoggedUser

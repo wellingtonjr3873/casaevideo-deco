@@ -11,7 +11,8 @@ import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 
 import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
-import { useSignal } from "https://esm.sh/v135/@preact/signals@1.2.2/X-ZS8q/dist/signals.js";
+import LoggedUserMobile from "$store/islands/Header/LoggedUserMobile.tsx";
+
 import { useUser } from "apps/vtex/hooks/useUser.ts";
 
 interface Categories {
@@ -106,8 +107,6 @@ function Header({
 
   const platform = usePlatform();
   const { user } = useUser();
-  console.log(user)
-
   if (device === "mobile") {
     return (
       <>
@@ -163,19 +162,7 @@ function Header({
                 )}
               </div>
               <div className="flex items-center justify-end">
-              
-                  <a
-                    class="flex items-center justify-center"
-                    href={user.value ? '/account#' : "/login"}
-                    aria-label="Log in"
-                  >
-                    <Icon
-                      id="User"
-                      strokeWidth={0.4}
-                      size={24}
-                      class="text-neutral-900 fill-transparent"
-                    />
-                  </a> 
+                <LoggedUserMobile />
                 {platform === "vtex" && (
                   <CartButtonVTEX>
                     <Icon
@@ -252,7 +239,7 @@ function Header({
               {!isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile }} />}
             </div>
             <div class="flex items-center gap-2">
-               <LoggedUser user={user.value}/>
+               <LoggedUser />
               {/* cart */}
               {platform === "vtex" && (
                 <CartButtonVTEX>
