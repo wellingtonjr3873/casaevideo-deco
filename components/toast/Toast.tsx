@@ -6,21 +6,21 @@ export interface Props{
 }
 
 export function ToastSucess({ className }: Props){
-    const { toastSucess } = useToast();
+    const { toastSucess, toastMessage } = useToast();
 
     if(toastSucess.value){
         setInterval(() => {
             toastSucess.value = false;
-        }, 7000);
+        }, 700000);
 
         return(
             <>
-                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-success-light border border-success rounded-lg h-10 w-64 text-xs lg:text-base lg:h-[60px] lg:w-80`}>
+                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-success-light border border-success rounded-lg h-10 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto gap-2`}>
                     <div class={`flex gap-2 h-full w-full items-center`}>
                         <div class={`h-full flex items-center rounded-l-md bg-success px-4`}>
                             <Icon id="sucessToast" size={16}/>
                         </div>
-                        <span>Mensagem default.</span>
+                        <span>{`${toastMessage.value || 'Mensagem default.'}`}</span>
                     </div>
                     <button onClick={() => {
                         toastSucess.value = false;
@@ -36,7 +36,7 @@ export function ToastSucess({ className }: Props){
 }
 
 export function ToastInfo({ className }: Props){
-    const { toastInfo } = useToast();
+    const { toastInfo, toastMessage } = useToast();
 
     if(toastInfo.value){
         setInterval(() => {
@@ -50,7 +50,7 @@ export function ToastInfo({ className }: Props){
                         <div class={`h-full flex items-center rounded-l-md bg-information px-4`}>
                             <Icon id="infoToast" size={16}/>
                         </div>
-                        <span>Mensagem default.</span>
+                        <span>{`${toastMessage.value || 'Mensagem default.'}`}</span>
                     </div>
                     <button onClick={() => {
                         toastInfo.value = false;
@@ -66,7 +66,7 @@ export function ToastInfo({ className }: Props){
 }
 
 export function ToastWarning({ className }: Props){
-    const { toastWarning } = useToast();
+    const { toastWarning, toastMessage } = useToast();
 
     if(toastWarning.value){
         setInterval(() => {
@@ -80,7 +80,7 @@ export function ToastWarning({ className }: Props){
                         <div class={`h-full flex items-center rounded-l-md bg-warning px-4`}>
                             <Icon id="warningToast" size={16}/>
                         </div>
-                        <span>Mensagem default.</span>
+                        <span>{`${toastMessage.value || 'Mensagem default.'}`}</span>
                     </div>
                     <button onClick={() => {
                         toastWarning.value = false;
@@ -96,7 +96,7 @@ export function ToastWarning({ className }: Props){
 }
 
 export function ToastError({ className }: Props){
-    const { toastError } = useToast();
+    const { toastError, toastMessage } = useToast();
 
     if(toastError.value){
         setInterval(() => {
@@ -110,7 +110,7 @@ export function ToastError({ className }: Props){
                         <div class={`h-full flex items-center rounded-l-md bg-error px-4`}>
                             <Icon id="infoToast" size={16}/>
                         </div>
-                        <span>Mensagem default.</span>
+                        <span>{`${toastMessage.value || 'Mensagem default.'}`}</span>
                     </div>
                     <button onClick={() => {
                         toastError.value = false;
