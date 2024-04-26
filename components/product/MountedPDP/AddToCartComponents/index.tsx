@@ -5,6 +5,7 @@ import { useSignal } from "@preact/signals";
 import AddToCartButtonVTEX from "deco-sites/casaevideo/components/product/AddToCartButton/vtex.tsx";
 import OutOfStock from "deco-sites/casaevideo/components/product/OutOfStock.tsx";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
+import VoltsModal from "deco-sites/casaevideo/components/product/MountedPDP/VoltsModal/index.tsx";
 
 export interface Props {
   page: ProductDetailsPage | null;
@@ -44,6 +45,8 @@ function AddToCartComponents({ page }: Props) {
     listPrice,
   });
 
+  const productWithVolts = product.isVariantOf?.additionalProperty.find((prop) => prop.name?.toLocaleLowerCase().includes("volt"));
+
   function verifySeller(seller: string) {
     return /^CV\d+$/.test(seller);
   }
@@ -66,12 +69,22 @@ function AddToCartComponents({ page }: Props) {
           </div>
 
           <div class="flex flex-col gap-2 order-3">
-            <AddToCartButtonVTEX
-              eventParams={{ items: [eventItem] }}
-              productID={productID}
-              seller={seller}
-              quantity={quantity.value}
-            />
+            {productWithVolts ? (
+              <VoltsModal
+                eventItem={eventItem}
+                productID={productID}
+                seller={seller}
+                volts={productWithVolts.value || ''}
+                quantity={quantity.value}
+              />
+            ) : (
+              <AddToCartButtonVTEX
+                eventParams={{ items: [eventItem] }}
+                productID={productID}
+                seller={seller}
+                quantity={quantity.value}
+              />
+            )}
           </div>
 
           <span class="small-regular text-neutral-900 flex gap-2 order-4">

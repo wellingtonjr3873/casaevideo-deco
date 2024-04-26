@@ -74,6 +74,59 @@ function FilterValues({ key, values }: FilterToggle) {
           const range = parseRange(item.value);
           return range && (
             <>
+              <ValueItem
+                key={index}
+                {...item}
+                label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
+              />
+              {index === values.length - 1 && (<RangePrice />)}
+            </>
+          );
+        }
+
+        return <ValueItem key={index} {...item} />;
+      })}
+
+      {values.length > 6 && (
+          <li className="w-full">
+            <div className="more-content">
+              <ul className="flex flex-wrap gap-2 flex-row">
+                {values.slice(6).map((item, index) => {
+                  const { url, selected, value } = item;
+
+                  if (key === "cor" || key === "tamanho") {
+                    return (
+                      <li key={index}>
+                        <a href={url} rel="nofollow">
+                          <Avatar content={value} variant={selected ? "active" : "default"} />
+                        </a>
+                      </li>
+                    );
+                  }
+                  return <ValueItem key={index} {...item} />;
+                })}
+              </ul>
+            </div>
+
+            <label class="label-check cursor-pointer w-full text-right body-bold block">
+              <input class="hidden-checkbox" type="checkbox" style={{ display: "none" }} />              
+            </label>
+          </li>
+
+      )}
+    </ul>
+  );
+}
+function FilterValuesPrice({ key, values }: FilterToggle) {
+  const flexDirection = ["tamanho", "cor"].includes(key) ? "flex-row" : "flex-col";
+
+  return (
+    <ul className={`flex flex-wrap gap-2 ${flexDirection} pt-3`}>
+      {values.slice(0, 6).map((item, index) => {
+        if (key === "price") {
+          const range = parseRange(item.value);
+          return range && (
+            <>
               {index === values.length - 1 && (<RangePrice />)}
             </>
           );
@@ -111,7 +164,6 @@ function FilterValues({ key, values }: FilterToggle) {
 }
 
 
-
 function Filters({ filters }: Props) {
 
   //verifica se há pelo menos 1 filtro ativo
@@ -121,7 +173,7 @@ function Filters({ filters }: Props) {
     <>
       {
         hasFilterActive && (
-          <div className="mb-2 border border-brand-secondary-400">
+          <div className="mb-2 bg-neutral-50 border border-brand-secondary-400">
             <header className="px-4 py-2 text-left">
               <p className="font-bold text-base">Fltros Selecionados</p>
             </header>
@@ -140,10 +192,12 @@ function Filters({ filters }: Props) {
         {
           filters.filter(isToggle).map((filter, index) => (
             filter.key != "price" ?
-              <li key={index} className="dropdown bg-neutral-50 py-3 px-5 min-w-[264px]">
+              <li key={index} className="dropdown bg-neutral-50 py-3 px-5">
                 <details className="group">
                   <summary className="m-1 flex justify-between items-center cursor-pointer font-bold text-base">
-                    {filter.label}
+                    {
+                      filter.label !== 'Preço' ? filter.label : 'Faixa de Preço'
+                    }
                     <span className="w-4 h-4 text-center flex justify-center items-center">
                       <span className="group-open:-rotate-90 transition-all duration-200 ease-in">
                         <Icon id="ArrowAccordion" size={24} strokeWidth={2} fill="text-neutral-900" />
@@ -154,14 +208,14 @@ function Filters({ filters }: Props) {
                 </details>
               </li>
               :
-              <li key={index} className="dropdown bg-neutral-50 py-3 px-5 min-w-[264px]">
+              <li key={index} className="dropdown bg-neutral-50 py-3 px-5">
                 <div className="group">
                   <div className="m-1 flex justify-between items-center cursor-pointer font-bold text-base">
                     {
                       filter.label !== 'Preço' ? filter.label : 'Faixa de Preço'
-                    }                    
+                    }
                   </div>
-                  <FilterValues {...filter} />
+                  <FilterValuesPrice {...filter} />
                 </div>
               </li>
           ))

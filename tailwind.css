@@ -32,80 +32,116 @@
     height: 100vh;
   }
 
+  /* See more componente ssr */
+  /* EXEMPLO DE USO */
+  /* 
+    <li className="w-full">
+      <div className="more-content">
+        CONTEUDO AQUI
+      </div>
+
+      <label class="label-check cursor-pointer w-full text-right body-bold block">
+        <input class="hidden-checkbox" type="checkbox" style={{ display: "none" }} />
+        Ver mais
+      </label>
+    </li>
+  */
+
+  .more-content {
+    max-height: 0;
+    transition: max-height 0.8s ease;
+    overflow: hidden;
+  }
+
+  .more-content:has(+.label-check .hidden-checkbox:checked){
+    max-height: 10000px;
+    transition: max-height 0.8s ease;
+    overflow: visible;
+  }
+
+  .label-check:after {
+    content: "Ver mais"; 
+  }
+  .label-check:has(.hidden-checkbox:checked):after {
+    content: "Ver menos"; 
+  }
+
   /* --------------------- */
   /*    headline fonts     */
   /* ----------------------*/
-  
-  .h1-bold{
-    @apply text-black text-5xl font-bold  leading-[140%]
-  }
-  .h1-regular{
-    @apply text-black text-5xl font-normal  leading-[67.20%]
+
+  .h1-bold {
+    @apply text-black text-5xl font-bold leading-[140%]
   }
 
-  .h1-underline{
-    @apply text-black text-5xl font-normal  leading-[67.20%] underline
+  .h1-regular {
+    @apply text-black text-5xl font-normal leading-[67.20%]
   }
 
-  .h2-bold{
-    @apply text-black text-4xl font-bold  leading-[140%]
+  .h1-underline {
+    @apply text-black text-5xl font-normal leading-[67.20%] underline
   }
 
-  .h2-regular{
-    @apply text-black text-4xl font-normal  leading-[140%]
+  .h2-bold {
+    @apply text-black text-4xl font-bold leading-[140%]
   }
 
-  .h2-underline{
-    @apply text-black text-4xl font-normal  leading-[140%] underline
+  .h2-regular {
+    @apply text-black text-4xl font-normal leading-[140%]
   }
 
-  .h3-bold{
-    @apply text-black text-3xl font-bold  leading-[140%]
-  }
-  .h3-regular{
-    @apply text-black text-3xl font-normal  leading-[140%]
+  .h2-underline {
+    @apply text-black text-4xl font-normal leading-[140%] underline
   }
 
-  .h3-underline{
-    @apply text-black text-3xl font-normal  leading-[140%] underline
+  .h3-bold {
+    @apply text-black text-3xl font-bold leading-[140%]
   }
 
-  .h4-bold{
-    @apply text-black text-2xl font-bold  leading-[140%]
+  .h3-regular {
+    @apply text-black text-3xl font-normal leading-[140%]
   }
 
-  .h4-regular{
-    @apply text-black text-2xl font-normal  leading-[140%]
+  .h3-underline {
+    @apply text-black text-3xl font-normal leading-[140%] underline
   }
 
-  
-  .h4-underline{
-    @apply text-black text-2xl font-normal  leading-[140%] underline
+  .h4-bold {
+    @apply text-black text-2xl font-bold leading-[140%]
   }
 
-  .h5-bold{
-    @apply text-black text-xl font-bold  leading-[140%]
+  .h4-regular {
+    @apply text-black text-2xl font-normal leading-[140%]
   }
 
-  .h5-regular{
-    @apply text-black text-xl font-normal  leading-[140%]
+
+  .h4-underline {
+    @apply text-black text-2xl font-normal leading-[140%] underline
   }
 
-  .h5-underline{
-    @apply text-black text-xl font-normal  leading-[140%] underline
+  .h5-bold {
+    @apply text-black text-xl font-bold leading-[140%]
   }
 
-  .h6-bold{
-    @apply text-black text-lg font-bold  leading-[140%]
+  .h5-regular {
+    @apply text-black text-xl font-normal leading-[140%]
   }
 
-  .h6-regular{
-    @apply text-black text-lg font-normal  leading-[140%]
+  .h5-underline {
+    @apply text-black text-xl font-normal leading-[140%] underline
   }
 
-  
-  .h6-underline{
-    @apply text-black text-lg font-normal  leading-[140%] underline
+  .h6-bold {
+    @apply text-black text-lg font-bold leading-[140%]
+  }
+
+  .h6-regular {
+    @apply text-black text-lg font-normal leading-[140%]
+  }
+
+
+  .h6-underline {
+    @apply text-black text-lg font-normal leading-[140%] underline
   }
 
 
@@ -113,58 +149,58 @@
   /*    body fonts     */
   /* ----------------------*/
 
-  .body-bold{
-    @apply text-base font-bold  leading-[140%]
+  .body-bold {
+    @apply text-base font-bold leading-[140%]
   }
 
-  .body-regular{
-    @apply text-base font-normal  leading-[140%]
+  .body-regular {
+    @apply text-base font-normal leading-[140%]
   }
 
-  
-  .body-underline{
-    @apply text-base font-normal  leading-[140%] underline
+
+  .body-underline {
+    @apply text-base font-normal leading-[140%] underline
   }
 
-  .small-bold{
+  .small-bold {
     @apply text-sm font-bold leading-[140%]
   }
 
-  .small-regular{
+  .small-regular {
     @apply text-sm font-normal leading-[140%]
   }
 
-  .small-regular-placeholder::placeholder{
-    @apply text-black text-sm font-normal  leading-[140%]
+  .small-regular-placeholder::placeholder {
+    @apply text-black text-sm font-normal leading-[140%]
   }
 
 
-  .small-underline{
-    @apply text-black text-sm font-normal  leading-[140%] underline
+  .small-underline {
+    @apply text-black text-sm font-normal leading-[140%] underline
   }
 
-  .x-small-bold{
-    @apply text-black text-xs font-bold  leading-[140%]
+  .x-small-bold {
+    @apply text-black text-xs font-bold leading-[140%]
   }
 
-  .x-small-regular{
-    @apply text-black text-xs font-normal  leading-[140%]
+  .x-small-regular {
+    @apply text-black text-xs font-normal leading-[140%]
   }
 
-  
-  .x-small-underline{
-    @apply text-black text-xs font-normal  leading-[140%] underline
+
+  .x-small-underline {
+    @apply text-black text-xs font-normal leading-[140%] underline
   }
 
-  .xx-small-bold{
-    @apply text-black text-[9px] font-bold  leading-[140%]
+  .xx-small-bold {
+    @apply text-black text-[9px] font-bold leading-[140%]
   }
 
-  .xx-small-regular{
-    @apply text-black text-[9px] font-normal  leading-[140%]
+  .xx-small-regular {
+    @apply text-black text-[9px] font-normal leading-[140%]
   }
 
-  .xx-small-underline{
+  .xx-small-underline {
     @apply text-black text-[9px] font-normal leading-[140%] underline
   }
 
@@ -186,7 +222,8 @@
   .shadow-farest {
     box-shadow: 0px 16px 32px 8px #39393914;
   }
-  .text-nowrap{
+
+  .text-nowrap {
     text-wrap: nowrap;
   }
 
@@ -202,7 +239,7 @@
     position: absolute;
     border-radius: 1px;
   }
-  
+
   .buytogether-checkbox input:checked:after {
     content: "✔";
     width: 13px;
@@ -221,6 +258,67 @@
     color: white;
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(243deg) brightness(102%) contrast(104%);
   }
+
+  .pdp-description {
+    min-height: 58px;
+    justify-content: flex-start;
+    align-items: flex-start;
+   }
+
+  .pdp-description iframe {
+    min-height: 500px;
+    width: 100%;
+  }
+
+  .pdp-description iframe .controle {
+    margin: 0;
+  }
+
+  .pdp-see-more.collapse-content {
+    visibility: hidden;
+  }
+
+  .pdp-see-more .collapse-title {
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0) 1%, #FFFFFF 10%);
+    padding: 28px 16px;
+  }
+
+  .pdp-see-more.collapse > input[type="checkbox"]  {
+    position: absolute;
+    min-height: 46px;
+    bottom: 16px;
+    width: 166px;
+    left: 50%;
+    transform: translateX(-47%);
+    border-radius: 6px;
+    opacity: 1;
+    border: 1px solid #9B9B9B;
+    visibility: visible;
+  }
+
+  .collapse:not(.collapse-close) > input[type="checkbox"]:checked ~ .collapse-content.pdp-see-more {
+    min-height: 200px;
+    align-items: flex-start;
+  }
+
+  .collapse:not(.collapse-close) > input[type="checkbox"]:checked 
+  ~ .collapse-content.pdp-see-more .collapse-content {
+    visibility: visible;
+    min-height: 200px;
+  }
+
+  .pdp-see-more.collapse-arrow>.collapse-title:after {
+    left: calc(50% + 45px);
+    margin-top: 2px;
+
+  }
+
+  .pdp-see-more.collapse-arrow:not(.collapse-close) > input[type="checkbox"]:checked ~ .collapse-title:after {
+    margin-top: -2px;
+  }
 }
 
 @media (min-width: 1536px) {
@@ -232,7 +330,8 @@
 .group:disabled .group-disabled\:animate-progress {
   animation: progress-frame ease normal
 }
-.collapse-arrow > .collapse-title:after{
+
+.collapse-arrow>.collapse-title:after {
   width: 0.75rem;
   height: 0.75rem;
   box-shadow: 1px 1px;
@@ -263,25 +362,25 @@
   transition: background-color .2s ease-out;
 }
 
-.notFoundText p{
+.notFoundText p {
   font-size: 16px;
 }
 
-.notFoundText h2{
+.notFoundText h2 {
   font-size: 36px;
 }
 
-.notFoundText h3{
+.notFoundText h3 {
   font-size: 16px;
 }
 
-@media only screen and (min-width: 1024px){
-  .notFoundText h3{
+@media only screen and (min-width: 1024px) {
+  .notFoundText h3 {
     font-size: 24px;
   }
 }
 
-.btnMinicartAddToCart{
+.btnMinicartAddToCart {
   height: auto;
   min-height: auto;
   background: transparent;
@@ -295,20 +394,20 @@
   font-weight: 400;
 }
 
-#containerInfoMinicart .btnMinicartAddToCart:hover{
+#containerInfoMinicart .btnMinicartAddToCart:hover {
   background-color: transparent;
 }
 
-.btnMinicartAddToCart svg{
+.btnMinicartAddToCart svg {
   display: none;
 }
 
-.textTruncate{
-  overflow: hidden; 
+.textTruncate {
+  overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-line-clamp: 2;
-  -webkit-box-orient: vertical; 
+  -webkit-box-orient: vertical;
 }
 
 .subMenu-content {
@@ -356,11 +455,11 @@
   border: 0px solid #ffffff;
 }
 
-.divide-y>:not([hidden])~:not([hidden]){
+.divide-y>:not([hidden])~:not([hidden]) {
   border-top: none;
 }
 
-.navbar-submenu{
+.navbar-submenu {
   position: absolute;
   top: 0;
   left: 0;
@@ -370,20 +469,19 @@
   overflow-y: auto;
   visibility: hidden;
 
-} 
+}
 
 .navbar-submenu.open {
   visibility: visible;
 }
 
-.navbar-submenu .navbar-children{
+.navbar-submenu .navbar-children {
   transition: all 0.4s ease;
 }
 
-.navbar-submenu.open .navbar-children{
+.navbar-submenu.open .navbar-children {
   transform: translateX(0%);
   animation: 0.4s drawer-entering ease normal
-
 }
 
 @keyframes drawer-entering {
@@ -396,7 +494,7 @@
   }
 }
 
-.navbar-submenu.is-leave .navbar-children{
+.navbar-submenu.is-leave .navbar-children {
   transform: translateX(-100%);
 }
 
@@ -409,23 +507,30 @@
   z-index: 52;
   overflow: hidden;
 }
+
 .navbar-submenu .drawer-overlay {
   background: none !important;
 }
 
-.custom-scroll::-webkit-scrollbar{
+.custom-scroll::-webkit-scrollbar {
   width: 0.5rem;
   border: 1px solid oklch(var(--brand-secondary-200));
-  border-radius: 8px;;
+  border-radius: 8px;
+  ;
   background-color: oklch(var(--brand-secondary-50));
 }
 
-.custom-scroll::-webkit-scrollbar-thumb{
+.custom-scroll::-webkit-scrollbar-thumb {
   background: oklch(var(--brand-secondary-200));
 }
 
-.custom-scroll::-webkit-scrollbar-button{
+.custom-scroll::-webkit-scrollbar-button {
   display: none;
+}
+
+#bot {
+  left: 0;
+  right: unset !important;
 }
 
 .toast-slide{
@@ -453,3 +558,4 @@
             transform: translateX(16px);
   }
 }
+
