@@ -7,12 +7,14 @@ export interface Props extends Omit<BtnProps, "onAddItem"> {
   quantity?: number;
   className?: string;
   label?: string;
+  showToasts?: boolean;
+  callback?: () => void;
 }
 
-function AddToCartButton({ seller, productID, eventParams, quantity = 1, className, label }: Props) {
+function AddToCartButton({ seller, productID, eventParams, quantity = 1, className, label, showToasts, callback }: Props) {
   const { addItems } = useCart();
-  const onAddItem = () =>
-    addItems({
+  const onAddItem = () => {
+    const result = addItems({
       orderItems: [{
         id: productID,
         seller: seller,
@@ -20,7 +22,11 @@ function AddToCartButton({ seller, productID, eventParams, quantity = 1, classNa
       }],
     });
 
-  return <Button onAddItem={onAddItem} eventParams={eventParams} className={className} label={label}/>;
+    return result;
+  }
+    
+
+  return <Button onAddItem={onAddItem} eventParams={eventParams} callback={callback} className={className} label={label} showToasts={showToasts} />;
 }
 
 export default AddToCartButton;
