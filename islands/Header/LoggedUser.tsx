@@ -10,7 +10,7 @@ const LoggedUser = () => {
   const visiblePopup = useSignal(false);
   const handleSetVisibblePopUp = () => visiblePopup.value = !visiblePopup.value
 
-  return  loading.value ? <>{!user.value ?
+  return  !loading.value ? <>{!user.value ?
     <>
       <a
         class="flex items-center justify-center gap-1"
