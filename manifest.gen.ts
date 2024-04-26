@@ -48,17 +48,18 @@ import * as $$$$$$29 from "./sections/Product/ImageGallerySlider.tsx";
 import * as $$$$$$30 from "./sections/Product/MountedPDP.tsx";
 import * as $$$$$$31 from "./sections/Product/NotFound.tsx";
 import * as $$$$$$32 from "./sections/Product/NotFoundChallenge.tsx";
-import * as $$$$$$33 from "./sections/Product/ProductInfo.tsx";
-import * as $$$$$$34 from "./sections/Product/ProductReviews.tsx";
-import * as $$$$$$35 from "./sections/Product/ProductShelf.tsx";
-import * as $$$$$$36 from "./sections/Product/ProductShelfTabbed.tsx";
-import * as $$$$$$37 from "./sections/Product/ProductShelfTimedOffers.tsx";
-import * as $$$$$$38 from "./sections/Product/SearchResult.tsx";
-import * as $$$$$$39 from "./sections/Product/Wishlist.tsx";
-import * as $$$$$$40 from "./sections/Social/InstagramPosts.tsx";
-import * as $$$$$$41 from "./sections/Social/WhatsApp.tsx";
-import * as $$$$$$42 from "./sections/Theme/Theme.tsx";
-import * as $$$$$$43 from "./sections/UtilLinks/UtilLinks.tsx";
+import * as $$$$$$33 from "./sections/Product/ProductDescription.tsx";
+import * as $$$$$$34 from "./sections/Product/ProductInfo.tsx";
+import * as $$$$$$35 from "./sections/Product/ProductReviews.tsx";
+import * as $$$$$$36 from "./sections/Product/ProductShelf.tsx";
+import * as $$$$$$37 from "./sections/Product/ProductShelfTabbed.tsx";
+import * as $$$$$$38 from "./sections/Product/ProductShelfTimedOffers.tsx";
+import * as $$$$$$39 from "./sections/Product/SearchResult.tsx";
+import * as $$$$$$40 from "./sections/Product/Wishlist.tsx";
+import * as $$$$$$41 from "./sections/Social/InstagramPosts.tsx";
+import * as $$$$$$42 from "./sections/Social/WhatsApp.tsx";
+import * as $$$$$$43 from "./sections/Theme/Theme.tsx";
+import * as $$$$$$44 from "./sections/UtilLinks/UtilLinks.tsx";
 
 const manifest = {
   "loaders": {
@@ -111,18 +112,19 @@ const manifest = {
     "deco-sites/casaevideo/sections/Product/MountedPDP.tsx": $$$$$$30,
     "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$31,
     "deco-sites/casaevideo/sections/Product/NotFoundChallenge.tsx": $$$$$$32,
-    "deco-sites/casaevideo/sections/Product/ProductInfo.tsx": $$$$$$33,
-    "deco-sites/casaevideo/sections/Product/ProductReviews.tsx": $$$$$$34,
-    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$35,
-    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$36,
+    "deco-sites/casaevideo/sections/Product/ProductDescription.tsx": $$$$$$33,
+    "deco-sites/casaevideo/sections/Product/ProductInfo.tsx": $$$$$$34,
+    "deco-sites/casaevideo/sections/Product/ProductReviews.tsx": $$$$$$35,
+    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$36,
+    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$37,
     "deco-sites/casaevideo/sections/Product/ProductShelfTimedOffers.tsx":
-      $$$$$$37,
-    "deco-sites/casaevideo/sections/Product/SearchResult.tsx": $$$$$$38,
-    "deco-sites/casaevideo/sections/Product/Wishlist.tsx": $$$$$$39,
-    "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$40,
-    "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$41,
-    "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$42,
-    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$43,
+      $$$$$$38,
+    "deco-sites/casaevideo/sections/Product/SearchResult.tsx": $$$$$$39,
+    "deco-sites/casaevideo/sections/Product/Wishlist.tsx": $$$$$$40,
+    "deco-sites/casaevideo/sections/Social/InstagramPosts.tsx": $$$$$$41,
+    "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$42,
+    "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$43,
+    "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$44,
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,

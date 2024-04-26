@@ -23,7 +23,7 @@ function WishlistButton({
 
   const localLoad = useSignal(false);
 
-  const {loading, wishlistListProducts, wishlistListId } = useWishlistTest();
+  const {loading, wishlistListProducts, wishlistListId } = useWishlist();
 
   const isUserLoggedIn = Boolean(user.value?.email);
   const inWishlist = wishlistListProducts.value.some(item => item === productID);
@@ -42,7 +42,7 @@ function WishlistButton({
     : "btn-primary btn-outline gap-2 justify-end w-[32px]";
 
     const _addWishlistItem = async () => {
-      const res = await addItemWishlist(productID, user.value?.email, productGroupID);
+      const res = await addItemWishlist(productID, user?.value?.email, productGroupID);
         if(res) {
           wishlistListProducts.value = [...wishlistListProducts.value, productID]
           sendEvent({
@@ -60,7 +60,7 @@ function WishlistButton({
 
     const _removeWishlistItem = async () => {
       const res = await removeItemWishlist(productGroupID, user.value?.email);
-      if(res.data){
+      if(res){
         wishlistListProducts.value = wishlistListProducts.value.filter(item => item !== productID)
       }
     }
@@ -76,7 +76,7 @@ function WishlistButton({
 
         if (!isUserLoggedIn) {
           globalThis.window.alert(
-            "Please log in before adding to your wishlist",
+            "Por favor, entre na sua conta para adicionar produtos aos favoritos.",
           );
 
           return;
