@@ -120,7 +120,7 @@
   }
 
   .h5-bold {
-    @apply text-black text-xl font-bold leading-[140%]
+    @apply  text-xl font-bold leading-[140%]
   }
 
   .h5-regular {
@@ -180,7 +180,7 @@
   }
 
   .x-small-bold {
-    @apply text-black text-xs font-bold leading-[140%]
+    @apply text-xs font-bold leading-[140%]
   }
 
   .x-small-regular {

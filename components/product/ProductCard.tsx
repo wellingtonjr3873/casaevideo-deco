@@ -144,7 +144,7 @@ function ProductCard(
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
+                  class="truncate text-[#393939] x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
                 >{name ?? ""}</h2>
               )}
             </div>
