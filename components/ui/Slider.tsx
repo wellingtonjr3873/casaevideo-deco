@@ -32,7 +32,6 @@ function Item({
 }
 
 function NextButton(props: JSX.IntrinsicElements["button"]) {
-  console.log(props, "props aqui")
   return <button data-slide="next" aria-label="Next item" {...props} />;
 }
 
