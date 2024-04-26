@@ -37,6 +37,9 @@ export default {
         },
         success: "oklch(var(--success))",
       },
+      backgroundColor:{
+        'unset': 'unset'
+      },
       screens: {
         "xl-b": "1366px",
       },

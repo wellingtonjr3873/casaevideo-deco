@@ -48,7 +48,7 @@ function SearchControls({ filters, displayFilter, sortOptions, productQnt }: Pro
             ({productQnt && productQnt <= 1 ? `${productQnt} Produto` : `${productQnt} Produtos`})
           </span>
 
-          <div class="w-full md:w-3/5 flex items-center justify-between md:justify-end md:gap-10">
+          <div class="w-full md:w-4/5 flex items-center justify-between md:justify-end md:gap-10">
             {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
 
             <Button

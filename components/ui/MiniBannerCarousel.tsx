@@ -171,7 +171,7 @@ function Buttons() {
             strokeWidth={0}
           />
         </Slider.NextButton>
-      </div>
+      </div>  
     </>
   );
 }
@@ -184,9 +184,9 @@ function MiniBannerCarousel(props: Props) {
     <>
       <div
         id={id}
-        class={`max-w-[1280px] relative max-[768px]:h-[auto] ${spacesCss}`}
+        class={`relative max-[768px]:h-[auto] ${spacesCss}`}
       >
-        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-5">
+        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-5 max-w-[950px]">
           {miniBannerImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
             const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
