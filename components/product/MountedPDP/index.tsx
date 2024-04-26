@@ -1,6 +1,6 @@
 import { useId } from "$store/sdk/useId.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import { ProductDetailsPage } from "apps/commerce/types.ts";
+import { ProductDetailsPage, PropertyValue } from "apps/commerce/types.ts";
 import Breadcrumb from "deco-sites/casaevideo/components/ui/Breadcrumb.tsx";
 import ProductBasicInfo from "deco-sites/casaevideo/components/product/MountedPDP/ProductBasicInfo/index.tsx";
 import GallerySlider from "deco-sites/casaevideo/components/product/Gallery/ImageSlider.tsx";
@@ -83,6 +83,7 @@ function MountedPDP({
     itemListElement: breadcrumbList?.itemListElement.slice(0, -1),
     numberOfItems: breadcrumbList.numberOfItems - 1,
   };
+
 
   return (
     <div class="container flex flex-col">
