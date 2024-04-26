@@ -245,3 +245,6 @@ export const flex = {
     },
   },
 };
+
+
+export const DEFAULT_WISHLIST_LIST_NAME = "Meus favoritos"

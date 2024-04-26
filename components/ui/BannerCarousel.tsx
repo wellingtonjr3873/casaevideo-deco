@@ -202,15 +202,14 @@ function Buttons() {
 function BannerCarousel(props: Props) {
   const id = useId();
 
-  const { bannerImages, interval, arrows} = { ...props };
 
+  const { bannerImages, preload, interval, arrows, spacesCss } = { ...props };
 
   const currentDateTime = getCurrentDateTime();
   const filteredImages = bannerImages?.filter(image =>
     currentDateTime >= image.dateStartAt && currentDateTime <= image.dateEndAt
   );
-
-
+  
   return (
     <>
       <div

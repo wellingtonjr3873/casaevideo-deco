@@ -20,7 +20,7 @@ export interface Props {
 const useAddToCart = ({ eventParams, onAddItem, callback }: Props) => {
   const [loading, setLoading] = useState(false);
   const { displayCart } = useUI();
-  const { toastSucess, toastError, toastInfo, toastWarning } = useToast();
+  const { toastSucess, toastError, toastMessage} = useToast();
 
   const onClick = async (e: MouseEvent) => {
     e.preventDefault();
@@ -39,13 +39,14 @@ const useAddToCart = ({ eventParams, onAddItem, callback }: Props) => {
       callback && callback();
 
       displayCart.value = true;
+      toastSucess.value = true;
+      toastMessage.value = "Produto adicionado ao carrinho com sucesso!"
+    } catch (error) {
+      toastError.value = true;
+      toastMessage.value = "Houve um problema ao tentar adicionar ao carrinho, tente novamente!"
     } finally {
       setLoading(false);
     }
-    toastSucess.value = true;
-    toastError.value = true;
-    toastInfo.value = true;
-    toastWarning.value = true;
   };
 
   return { onClick, loading, "data-deco": "add-to-cart" };
