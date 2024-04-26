@@ -105,7 +105,8 @@ function Header({
   // const {loading, user } = useUser();
 
   const platform = usePlatform();
-  const {user} = useUser();
+  const { user } = useUser();
+  console.log(user)
 
   if (device === "mobile") {
     return (
