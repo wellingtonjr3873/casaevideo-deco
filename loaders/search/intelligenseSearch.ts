@@ -87,11 +87,11 @@ const loaders = async (
   const productSearch = () => {
     const facets = withDefaultFacets([], ctx);
     const params = withDefaultParams({ query, count: count ?? 4, locale });
-
+    console.log('aqui rodou o productSearch!!@@@@@@@@@@@')
     return vcsDeprecated
       ["GET /api/io/_v/api/intelligent-search/product_search/*facets"]({
         ...params,
-        facets: toPath(facets),
+        facets: toPath(facets) + "&showSponsored=true&placement=top-search",
       }, { ...STALE, headers: withSegmentCookie(segment) })
       .then((res) => res.json());
   };
