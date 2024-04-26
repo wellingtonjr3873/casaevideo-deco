@@ -60,7 +60,7 @@ function UtilLinks(props: Props) {
     
     <div
       id={id}
-      class="lg:flex lg:justify-between p-[24px] lg:p-12 lg:gap-[117px] max-[768px]:gap-[16px] max-[768px]:grid max-[768px]:grid-cols-2"
+      class="lg:flex lg:justify-between mx-auto max-w-[1280px] p-[24px] lg:p-12 lg:gap-[117px] max-[768px]:gap-[16px] max-[768px]:grid max-[768px]:grid-cols-2"
     >
       {list.map((
         { label, title, href, image, buttonText },
