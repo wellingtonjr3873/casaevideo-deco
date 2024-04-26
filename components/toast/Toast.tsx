@@ -15,7 +15,7 @@ export function ToastSucess({ className }: Props){
 
         return(
             <>
-                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-success-light border border-success rounded-lg h-10 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto gap-2`}>
+                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-success-light border border-success rounded-lg h-14 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto gap-2`}>
                     <div class={`flex gap-2 h-full w-full items-center`}>
                         <div class={`h-full flex items-center rounded-l-md bg-success px-4`}>
                             <Icon id="sucessToast" size={16}/>
@@ -45,7 +45,7 @@ export function ToastInfo({ className }: Props){
 
         return(
             <>
-                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-information-light border border-information rounded-lg h-10 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto`}>
+                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-information-light border border-information rounded-lg h-14 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto`}>
                     <div class={`flex gap-2 h-full w-full items-center`}>
                         <div class={`h-full flex items-center rounded-l-md bg-information px-4`}>
                             <Icon id="infoToast" size={16}/>
@@ -75,7 +75,7 @@ export function ToastWarning({ className }: Props){
 
         return(
             <>
-                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-warning-light border border-warning rounded-lg h-10 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto`}>
+                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-warning-light border border-warning rounded-lg h-14 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto`}>
                     <div class={`flex gap-2 h-full w-full items-center`}>
                         <div class={`h-full flex items-center rounded-l-md bg-warning px-4`}>
                             <Icon id="warningToast" size={16}/>
@@ -105,7 +105,7 @@ export function ToastError({ className }: Props){
 
         return(
             <>
-                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-error-light border border-error rounded-lg h-10 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto`}>
+                <div class={`${className} toast-slide duration-200 z-50 flex pr-4 items-center fixed bg-error-light border border-error rounded-lg h-14 w-64 text-xs lg:text-base lg:h-[60px] lg:w-auto`}>
                     <div class={`flex gap-2 h-full w-full items-center`}>
                         <div class={`h-full flex items-center rounded-l-md bg-error px-4`}>
                             <Icon id="infoToast" size={16}/>
