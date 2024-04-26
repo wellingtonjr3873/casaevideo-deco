@@ -10,6 +10,10 @@ import { MenuButton } from "$store/islands/Header/Buttons.tsx";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 
+import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
+import { useSignal } from "https://esm.sh/v135/@preact/signals@1.2.2/X-ZS8q/dist/signals.js";
+import { useUser } from "apps/vtex/hooks/useUser.ts";
+
 interface Categories {
   items: {
     label: string;
@@ -97,14 +101,18 @@ function Header({
   minicartProps,
   device
 }: Props) {
+
+  // const {loading, user } = useUser();
+
   const platform = usePlatform();
-  
-  if(device === "mobile"){
-    return(
+  const {user} = useUser();
+
+  if (device === "mobile") {
+    return (
       <>
         <header class="bg-brand-terciary-1">
           {banner &&
-            <div class={`h-12 flex items-center justify-center`} style={{background: banner?.tipBgColor}}>
+            <div class={`h-12 flex items-center justify-center`} style={{ background: banner?.tipBgColor }}>
               <Picture>
                 <Source
                   media="(max-width: 768px)"
@@ -129,10 +137,10 @@ function Header({
                 <span class="flex">
                   <MenuButton />
                   {isMobile && <Drawers
-                      menu={{ items: navItems }}
-                      platform={platform}
-                      minicartProps={minicartProps}
-                    />}
+                    menu={{ items: navItems }}
+                    platform={platform}
+                    minicartProps={minicartProps}
+                  />}
                 </span>
                 {logo && (
                   <Picture>
@@ -154,18 +162,19 @@ function Header({
                 )}
               </div>
               <div className="flex items-center justify-end">
-                <a
-                  class="flex items-center justify-center"
-                  href="/login"
-                  aria-label="Log in"
-                >
-                  <Icon
-                    id="User"
-                    strokeWidth={0.4}
-                    size={24}
-                    class="text-neutral-900 fill-transparent"
-                  />
-                </a>
+              
+                  <a
+                    class="flex items-center justify-center"
+                    href={user.value ? '/account#' : "/login"}
+                    aria-label="Log in"
+                  >
+                    <Icon
+                      id="User"
+                      strokeWidth={0.4}
+                      size={24}
+                      class="text-neutral-900 fill-transparent"
+                    />
+                  </a> 
                 {platform === "vtex" && (
                   <CartButtonVTEX>
                     <Icon
@@ -178,7 +187,7 @@ function Header({
               </div>
             </div>
             <div>
-              {isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
+              {isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile }} />}
             </div>
           </div>
           <div className="lg:hidden">
@@ -192,7 +201,7 @@ function Header({
     <>
       <header id="header" class="bg-brand-terciary-1">
         {banner &&
-          <div class={`h-12 flex items-center justify-center`} style={{background: banner?.tipBgColor}}>
+          <div class={`h-12 flex items-center justify-center`} style={{ background: banner?.tipBgColor }}>
             <Picture>
               <Source
                 media="(max-width: 768px)"
@@ -239,35 +248,10 @@ function Header({
               </figure>
             </a>
             <div class="w-full">
-              {!isMobile &&  <Searchbar  searchbar={{...searchbar, platform, isMobile}}  />}
+              {!isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile }} />}
             </div>
             <div class="flex items-center gap-2">
-              {/* user */}
-              <a
-                class="flex items-center justify-center gap-1"
-                href="/login"
-                aria-label="Log in"
-              >
-                <Icon
-                  id="User"
-                  size={32}
-                  class="text-neutral-900 "
-                  alt="Acesse sua conta agora"
-                />
-                <div class="flex flex-col">
-                  <span class="small-regular">Bem vindo!</span>
-                  <span class="x-small-underline">Entre ou cadastre-se</span>
-                </div>
-                {/* meus pedidos */}
-                <a href="/account/#/orders"  aria-label="Meus pedidos">
-                  <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui"/>
-                </a>
-                {/* wishlist */}
-                <a href="/wishlist"  aria-label="Meus favoritos">
-                  <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos"/>
-                </a>
-              </a>
-
+               <LoggedUser user={user.value}/>
               {/* cart */}
               {platform === "vtex" && (
                 <CartButtonVTEX>
@@ -319,7 +303,7 @@ function Header({
           <GeoLocationPointBar />
         </div>
       </header>
-    
+
     </>
   );
 }

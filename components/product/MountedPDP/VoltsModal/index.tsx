@@ -1,17 +1,20 @@
 import AddToCartButtonVTEX, { Props as AddToCartButtonVTEXProps } from "deco-sites/casaevideo/components/product/AddToCartButton/vtex.tsx";
 import Modal from "deco-sites/casaevideo/components/ui/Modal.tsx";
 import { useId } from "deco-sites/casaevideo/sdk/useId.ts";
+
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import { useSignal } from "@preact/signals";
 import Button from "deco-sites/casaevideo/components/ui/Button.tsx";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 
 export interface Props extends Pick<AddToCartButtonVTEXProps, "seller" | "productID" | "quantity"> {
+
   eventItem: AnalyticsItem;
   volts: string;
 }
 
 function VoltsModal({ seller, volts, productID, quantity = 1, eventItem }: Props) {
+
   const openVolts = useSignal<boolean>(false);
   const id = useId();
 
@@ -67,6 +70,7 @@ function VoltsModal({ seller, volts, productID, quantity = 1, eventItem }: Props
         <Icon id="Cart" class="text-neutral-50" width={24} height={24} /> Comprar
       </Button>
     </div>
+
   );
 }
 
