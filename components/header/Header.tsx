@@ -11,8 +11,8 @@ import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 
 import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
-import { useUser } from "deco-sites/casaevideo/teste-apps/vtex/hooks/useUser.ts";
 import { useSignal } from "https://esm.sh/v135/@preact/signals@1.2.2/X-ZS8q/dist/signals.js";
+import { useUser } from "apps/vtex/hooks/useUser.ts";
 
 interface Categories {
   items: {
