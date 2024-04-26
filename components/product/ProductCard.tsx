@@ -92,7 +92,7 @@ function ProductCard(
     image: images,
     offers,
     isVariantOf,
-    
+
   } = product;
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
@@ -137,20 +137,24 @@ function ProductCard(
   const productCardPrice = (
     <>
       {/* Prices & Name */}
-      <div class="flex-auto flex flex-col gap-3 lg:gap-4">
+      <div class="flex-auto flex flex-col">
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
               {l?.hide?.productName ? "" : (
                 <h2
-                  class="truncate x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
+                  class="truncate text-[#393939] x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
                 >{name ?? ""}</h2>
               )}
             </div>
           )}
+        {/* IMPLEMENTAR ESTRELAS YOURVIEWS AQUI */}
+        <div class="min-h-[24px] w-full pb-2 pt-1">
+
+        </div>
         {l?.hide?.allPrices ? "" : availability === "https://schema.org/InStock" ? (
-          <div class="flex flex-col gap-2">
+          <div class="flex flex-col">
             <div
               class={`flex flex-col gap-0 ${l?.basics?.oldPriceSize === "Normal"
                 ? "lg:flex-row lg:gap-2"
@@ -167,13 +171,13 @@ function ProductCard(
 
                 {(price && listPrice && price !== listPrice) &&
                   (
-                    <div class="bg-success gap-1 h-4 sm:h-5 md:h-6 flex px-1 justify-center items-center text-neutral-50 rounded">
+                    <div class="bg-success gap-1 h-4 sm:h-5 md:h-5 flex px-1 justify-center items-center text-neutral-50 rounded">
                       <Icon id="ArrowDown" width={16} height={16} />
                       {((1 - (price / listPrice)) * 100).toFixed(0)}%
                     </div>
                   )}
               </div>
-              <div class="body-bold md:h6-bold">
+              <div class="body-bold md:h6-bold-20 text-neutral-dark">
                 {formatPrice(price, offers?.priceCurrency)} no PIX
               </div>
             </div>
@@ -211,7 +215,7 @@ function ProductCard(
     <a
       id={id}
       href={url && relative(url)}
-      class={`card card-compact shadow-normal group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 ${align === "center" ? "text-center" : "text-start"
+      class={`card gap-2 card-compact md:max-w-[242px] md:max-h-[435px] group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 rounded-lg ${align === "center" ? "text-center" : "text-start"
         } 
         ${l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
@@ -239,16 +243,18 @@ function ProductCard(
       <figure class="flex flex-col rounded-none" // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
-        <div class="flex justify-between items-center w-full h-6">
+        <div class="flex justify-between items-center w-full h-8">
           <>
-            {filteredCluesters && clusterActiveTag && filteredCluesters?.map((clusterId) => (
-              clusterId == clusterIdtag && 
-              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-1 md:px-2 items-center text-xs whitespace-nowrap" style={{backgroundColor: clusterTagBgColor}}>              
-              <img src={iconPathTag} />
-              {textTag}
-            </div>              
-            ))
-            }
+            <div>
+              {filteredCluesters && clusterActiveTag && filteredCluesters?.map((clusterId) => (
+                clusterId == clusterIdtag &&
+                <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-1 md:px-2 items-center text-xs whitespace-nowrap" style={{ backgroundColor: clusterTagBgColor }}>
+                  <img src={iconPathTag} />
+                  {textTag}
+                </div>
+              ))
+              }
+            </div>
           </>
           {platform === "vtex" && (
             <WishlistButton

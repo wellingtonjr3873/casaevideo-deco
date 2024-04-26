@@ -188,10 +188,10 @@ function Result({
                   href={pageInfo.previousPage ?? "#"}
                   class="btn btn-ghost join-item"
                 >
-                  <Icon id="ChevronLeft" size={24} strokeWidth={2} />
+                  <Icon id="SliderArrowLeft" size={24} strokeWidth={2} />
                 </a>
                 <span class="btn btn-ghost join-item">
-                  Página {zeroIndexedOffsetPage + 1}
+                  {zeroIndexedOffsetPage + 1}
                 </span>
                 <a
                   aria-label="next page link"
@@ -199,11 +199,11 @@ function Result({
                   href={pageInfo.nextPage ?? "#"}
                   class="btn btn-ghost join-item"
                 >
-                  <Icon id="ChevronRight" size={24} strokeWidth={2} />
+                  <Icon id="SliderArrowRight" size={24} strokeWidth={2} />
                 </a>
               </div>
             </div>
-            <Faq questions={questions} />
+            {questions && <Faq questions={questions} />}
           </div>
         </div>
       </div>
