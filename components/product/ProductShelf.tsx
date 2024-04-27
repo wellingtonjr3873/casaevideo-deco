@@ -34,7 +34,7 @@ function ProductShelf({
     return(
       <>
         <div class="w-full container pl-4 sm:pl-0 py-6 flex flex-col gap-2 lg:py-6 max-w-[1280px] md:px-6 xl-b:px-0">
-          <h5 class="h5-bold w-full">{title}</h5>
+          <h5 class="h5-bold text-[#272E35] w-full">{title}</h5>
 
             <ul class="flex overflow-x-scroll gap-4 col-span-full row-start-2 row-end-5  max-w-none">
               {products?.map((product, index) => (
@@ -74,8 +74,8 @@ function ProductShelf({
     )
   }
   return (
-    <div class="w-full container pl-4 sm:pl-0 py-6 flex flex-col gap-2 lg:py-6 max-w-[1280px] md:px-6 xl-b:px-0">
-      <h5 class="h5-bold w-full">{title}</h5>
+    <div class="w-full container pl-4 sm:pl-0 pt-6 pb-12 flex flex-col gap-2  max-w-[1280px] md:px-6 xl-b:px-0">
+      <h5 class="h5-bold text-[#272E35] w-full">{title}</h5>
 
       <div
         id={id}
@@ -85,7 +85,7 @@ function ProductShelf({
           {products?.map((product, index) => (
             <Slider.Item
               index={index}
-              class="carousel-item w-full max-w-[160px] last:pr-6 sm:last:pr-0 md:w-[calc(25%-16px)] xl:md:w-[calc(20%-16px)] md:max-w-none md:first:w-[25%] xl:first:w-[20%]"
+              class="carousel-item w-full max-w-[160px] last:pr-6 sm:last:pr-0 md:max-w-[242px] md:max-h-[435px]"
             >
               <ProductCard
                 product={product}
