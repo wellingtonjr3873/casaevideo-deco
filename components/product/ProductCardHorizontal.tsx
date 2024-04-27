@@ -202,9 +202,9 @@ ${l?.onMouseOver?.card === "Move up" &&
       href={url && relative(url)}
       class={listLayout}
       data-deco="view-product"
-      data-van-res-id={advertisement?.adResponseId}
-      data-van-aid={advertisement?.adId}
-      data-van-prod-name={name}
+      {...(advertisement?.adId && { "data-van-aid": advertisement.adId })}
+      {...(advertisement?.adResponseId && { "data-van-res-id": advertisement.adResponseId })}
+      {...(advertisement?.adId && { "data-van-prod-name": name })}
     >
       <SendEventOnClick
         id={id}
