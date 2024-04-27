@@ -92,8 +92,10 @@ function ProductCard(
     image: images,
     offers,
     isVariantOf,
-    
+    // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
+    advertisement,
   } = product;
+  
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
@@ -136,6 +138,11 @@ function ProductCard(
 
   const productCardPrice = (
     <>
+
+      {/* Prouct Advertisement TAG */}
+      <div class="h-3 flex justify-start items-center">
+        {advertisement?.adId && <span class="text-[12px] text-[#989898]">Patrocinado</span>}
+      </div>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col gap-3 lg:gap-4">
         {l?.hide?.productName && l?.hide?.productDescription
@@ -211,13 +218,16 @@ function ProductCard(
     <a
       id={id}
       href={url && relative(url)}
-      class={`card card-compact shadow-normal group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 ${align === "center" ? "text-center" : "text-start"
+      class={`card card-compact shadow-normal group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 min-h-[421px] max-h-[421px] ${align === "center" ? "text-center" : "text-start"
         } 
         ${l?.onMouseOver?.card === "Move up" &&
         "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
         }
       `}
       data-deco="view-product"
+      data-van-res-id={advertisement?.adResponseId}
+      data-van-aid={advertisement?.adId}
+      data-van-prod-name={name}
     >
       <SendEventOnClick
         id={id}
@@ -242,11 +252,11 @@ function ProductCard(
         <div class="flex justify-between items-center w-full h-6">
           <>
             {filteredCluesters && clusterActiveTag && filteredCluesters?.map((clusterId) => (
-              clusterId == clusterIdtag && 
-              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-1 md:px-2 items-center text-xs whitespace-nowrap" style={{backgroundColor: clusterTagBgColor}}>              
-              <img src={iconPathTag} />
-              {textTag}
-            </div>              
+              clusterId == clusterIdtag &&
+              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-1 md:px-2 items-center text-xs whitespace-nowrap" style={{ backgroundColor: clusterTagBgColor }}>
+                <img src={iconPathTag} />
+                {textTag}
+              </div>
             ))
             }
           </>
