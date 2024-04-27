@@ -70,6 +70,8 @@ function ProductCardHorizontal(
     image: images,
     offers,
     isVariantOf,
+    // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
+    advertisement,
   } = product;
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
@@ -116,9 +118,13 @@ ${l?.onMouseOver?.card === "Move up" &&
           ? ""
           : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
-                <div class="max-w-[100px] mt-0 md:mt-4 hidden md:block md:mb-3">
-                  <FreeShippingIcon color="black" small={true} />
-                </div>
+              <div class="max-w-[100px] mt-0 md:mt-4 hidden md:block md:mb-3">
+                <FreeShippingIcon color="black" small={true} />
+              </div>
+              {/* Prouct Advertisement TAG */}
+              <div class="h-3 flex justify-start items-center">
+                {advertisement?.adId && <span class="text-[12px] text-[#989898]">Patrocinado</span>}
+              </div>
               {l?.hide?.productName ? "" : (
                 <h2
                   class={`truncate  md:body-bold max-h-40 md:max-h-full line-clamp-2 md:min-h-[33px] whitespace-break-spaces max-w-[160px] md:max-w-[378px] h6-bold`}
@@ -180,12 +186,12 @@ ${l?.onMouseOver?.card === "Move up" &&
           </>
         )} */
         }
-          <div class="absolute top-2 right-2 md:top-3 md:right-4">
-            <WishlistButton
-              productGroupID={productGroupID}
-              productID={productID}
-            />
-          </div>
+        <div class="absolute top-2 right-2 md:top-3 md:right-4">
+          <WishlistButton
+            productGroupID={productGroupID}
+            productID={productID}
+          />
+        </div>
       </div>
     </>
   );
@@ -196,6 +202,9 @@ ${l?.onMouseOver?.card === "Move up" &&
       href={url && relative(url)}
       class={listLayout}
       data-deco="view-product"
+      data-van-res-id={advertisement?.adResponseId}
+      data-van-aid={advertisement?.adId}
+      data-van-prod-name={name}
     >
       <SendEventOnClick
         id={id}

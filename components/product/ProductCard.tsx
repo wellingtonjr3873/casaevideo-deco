@@ -95,7 +95,6 @@ function ProductCard(
     // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
     advertisement,
   } = product;
-  
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
@@ -138,7 +137,6 @@ function ProductCard(
 
   const productCardPrice = (
     <>
-
       {/* Prouct Advertisement TAG */}
       <div class="h-3 flex justify-start items-center">
         {advertisement?.adId && <span class="text-[12px] text-[#989898]">Patrocinado</span>}
