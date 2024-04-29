@@ -58,9 +58,9 @@ function ShippingContent({ simulation }: {
   }
 
   return (
-    <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 rounded-lg w-full ">
+    <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 lg:rounded-lg w-full ">
       {filteredDelivery.map((method) => (
-        <li class="flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2">
+        <li class={`${method.price === 0 && "-order-1"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
           <div class="flex flex-col">
             <span class="text-button text-left small-regular">
               {method.deliveryChannel === "pickup-in-point" ?
