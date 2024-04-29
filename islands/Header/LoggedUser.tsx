@@ -10,6 +10,8 @@ const LoggedUser = () => {
   const visiblePopup = useSignal(false);
   const handleSetVisibblePopUp = () => visiblePopup.value = !visiblePopup.value
 
+
+
   return  !loading.value ? <>{!user.value ?
     <>
       <a
@@ -75,7 +77,7 @@ const LoggedUser = () => {
 
         <div class="flex flex-col gap-1 items-start">
           <span class="x-small-regular text-neutral-900">Olá,</span>
-          <h3 class="small-bold text-neutral-900">{user.value.name || "Usuario"}</h3>
+          <h3 class="small-bold text-neutral-900 max-w-[108px] truncate ...">{user.value.givenName || user.value.email}</h3>
         </div>
       </button>
       {/* meus pedidos */}
