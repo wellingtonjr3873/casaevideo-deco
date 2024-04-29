@@ -8,9 +8,9 @@ export interface Props  {
      */
     endDateAt?: string
     /** @title Imagem do logo Desktop */
-    desktop: ImageWidget;
+    desktop?: ImageWidget;
     /** @title Imagem do logo Mobile */
-    mobile: ImageWidget;
+    mobile?: ImageWidget;
     position: "base-left" | "top-left" | "top-right" | "base-center" | "base-right",
     /** 
      * @format color 
