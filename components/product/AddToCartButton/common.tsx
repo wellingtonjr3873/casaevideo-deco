@@ -66,9 +66,7 @@ export default function AddToCartButton({ showToasts = true, ...props }: Props) 
       {showToasts && (
         <>
           <ToastSucess className={`top-[100px] left-4`}/>
-          <ToastError className={`top-[200px] left-4`}/>
-          <ToastInfo className={`top-[300px] left-4`}/>
-          <ToastWarning className={`top-[400px] left-4`}/>
+          <ToastError className={`top-[100px] left-4`}/>
         </>
       )}
     </>
