@@ -7,7 +7,7 @@ export interface Props  {
     * @hide
      */
     endDateAt?: string
-    /** @tittle Imagem do logo Desktop */
+    /** @title Imagem do logo Desktop */
     desktop: ImageWidget;
     /** @title Imagem do logo Mobile */
     mobile: ImageWidget;
