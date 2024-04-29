@@ -48,10 +48,10 @@ interface Props {
 }
 
 const variants = {
-  active: "text-brand-terciary-1 border-brand-terciary-1 border-2",
+  active: "text-brand-terciary-700 border-brand-primary-700 border-2",
   disabled:
     `relative after:absolute after:left-0 after:top-1/2 after:h-[1px] after:bg-red-800 after:w-full after:block after:-rotate-45 after:content-[""]`,
-  default: "border border-brand-secondary-100 hover:border-brand-terciary-1",
+  default: "border border-brand-secondary-100 hover:border-brand-primary-700",
 };
 
 function Avatar({ content, variant = "default" }: Props) {
@@ -63,9 +63,7 @@ function Avatar({ content, variant = "default" }: Props) {
   return (
     <div class="avatar placeholder md:small-regular body-regular">
       <div
-        class={`rounded-md ${isColor ? 'w-[40px]': 'w-[90px]'} h-[40px] ${colors[content] ?? colors[variant]} ${
-          variants[variant]
-        }`}
+        class={`rounded-md border-brand-primary-700 ${isColor ? 'w-[40px]': 'w-[90px]'} h-[40px] b ${colors[content] ?? colors[variant]} a ${variants[variant]} c`}
       >
         {isColor ? (
           <img src={imageUrl} alt={imageContent.replace("Cor: ", "")} />
