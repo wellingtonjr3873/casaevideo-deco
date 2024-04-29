@@ -51,16 +51,6 @@
         "static/*"
       ]
 
-    },
-    "rules": {
-      "tags": [
-        "fresh",
-        "recommended"
-      ],
-      "exclude": [
-        "static/*"
-      ]
-
     }
   },
   "nodeModulesDir": true,
