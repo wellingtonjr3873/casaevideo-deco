@@ -535,6 +535,7 @@
 #bot {
   left: 0;
   right: unset !important;
+  z-index: 2 !important;
 }
 
 .toast-slide{
