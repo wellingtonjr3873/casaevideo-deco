@@ -84,7 +84,7 @@ const LoggedUser = () => {
       </a>
       {/* wishlist */}
       <a href="/wishlist" aria-label="Meus favoritos">
-        <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos" />
+        <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
       </a>
     </div>}</> : <div class="w-[216px] h-[35px] flex items-center justify-center"><div class="loading loading-spinner w-5"/></div>
 }
