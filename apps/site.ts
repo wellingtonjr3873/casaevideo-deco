@@ -23,6 +23,11 @@ export type Props = {
    * @title Api dos serviços
    */
   GatewayApiKey: Secret;
+  /**
+   * @title Account vendor
+   * @description Account vendor by
+   */
+  account: "lebiscuit" | "casaevideonewio";
 } & CommerceProps;
 
 export type Platform =

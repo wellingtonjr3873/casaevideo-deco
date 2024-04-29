@@ -1,17 +1,23 @@
 import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
+import { Product } from "apps/vtex/utils/types.ts";
 export interface Props {
   userId: string;
   listId: string;
 }
-type Res = {};
+type Res = {
+  data: {
+    id: string;
+    title: string;
+    products: Product[];
+  };
+};
 
 const loader = async (
   props: Props,
   _req: Request,
   ctx: AppContext,
-): Promise<any> => {
-  const account: "casaevideonewio" | "lebiscuit" = ctx.account ||
-    ctx.commerce.account || "casaevideonewio";
+): Promise<Res | boolean> => {
+  const account: "casaevideonewio" | "lebiscuit" = ctx.account;
   const apiKey = ctx.GatewayApiKey.get();
 
   const pathsDictionary = {
@@ -25,7 +31,7 @@ const loader = async (
 
   const headers = new Headers();
   headers.append("X-Api-Key", apiKey!);
-  headers.append("X-Ocelot-Auth", "wellingtonrufino@lelabs.com.br");
+  headers.append("X-Ocelot-Auth", props.userId);
 
   try {
     const res = await fetch(url, { headers, method: "GET" });
