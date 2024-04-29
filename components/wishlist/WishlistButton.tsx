@@ -62,7 +62,7 @@ function WishlistButton({
   }
 
   const _removeWishlistItem = async () => {
-    const res = await removeItemWishlist(productGroupID!, user.value!.email!);
+    const res = await removeItemWishlist(productID!, user.value!.email!);
     if (res) {
       wishlistListProducts.value = wishlistListProducts.value.filter(item => item !== productID)
       toastSucess.value = true;
