@@ -146,11 +146,17 @@ const   setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
   const onClickPrev = () => {
     const indices = getElementsInsideContainer();
+    console.log(indices, "indice aqui")
     // Wow! items per page is how many elements are being displayed inside the container!!
     const itemsPerPage = indices.length;
+    console.log(itemsPerPage, "perpage aqui")
+
 
     const isShowingFirst = indices[0] === 0;
+    console.log(isShowingFirst, "showing aqui")
     const pageIndex = Math.floor(indices[indices.length - 1] / itemsPerPage);
+    console.log(pageIndex, "page aqui")
+
 
     goToItem(
       isShowingFirst ? items.length - 1 : (pageIndex - 1) * itemsPerPage,
