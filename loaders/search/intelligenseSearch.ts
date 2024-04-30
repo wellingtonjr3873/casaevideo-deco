@@ -90,9 +90,9 @@ const loaders = async (
 
     return vcsDeprecated
       ["GET /api/io/_v/api/intelligent-search/product_search/*facets"]({
-        ...params,
-        showSponsored:true, 
+        showSponsored: true, 
         placement: "top-search",
+        ...params,
         facets: toPath(facets),
       }, { ...STALE, headers: withSegmentCookie(segment) })
       .then((res) => res.json());
@@ -114,8 +114,8 @@ const loaders = async (
     searches,
     products: await Promise.all(
       products
-        .map((p) => toProduct(p, p.items[0], 0, options)),
-    ),
+        .map((p) => toProduct(p, p.items[0], 0, options)).slice(0, count)
+    )
   };
 };
 
