@@ -128,7 +128,7 @@ const   setup = ({ rootId, scroll, interval, infinite }: Props) => {
       return;
     }
 
-    const diff = (item.offsetLeft - root.scrollLeft) - slider.scrollLeft;
+    const diff = (item.offsetLeft - root.offsetLeft) - slider.scrollLeft;
 
     const diffAbs = Math.abs(diff);
 
