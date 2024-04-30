@@ -148,7 +148,7 @@ const FooterMenu = () => {
   return <div class="flex flex-col justify-between items-center gap-[8px] py-[16px] px-[40px] self-end">
   <span class="text-center">Baixe o nosso novo app Casa&Vídeo</span>
   <div class="flex justify-between items-center gap-[8px]">
-    <a href="/">
+    <a href="https://casaevideo.onelink.me/QIjQ/m3ukjv5d">
       <Icon id="AppleStoreImg" width={133} height={44} strokeWidth={0} />
     </a>
     <a href="/">
@@ -173,7 +173,7 @@ function Menu({ items }: Props) {
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
-              href="/wishlist"
+              href="/account/#/orders"
             >
               <Icon id="MyOrders" size={24} strokeWidth={2} class="text-neutral-900" />
               <span class="text-sm flex justify-between items-center text-left w-full">
@@ -246,7 +246,7 @@ function Menu({ items }: Props) {
         </ul>
 
         <ul class="flex flex-col pt-[16px] gap-[2px] bg-brand-secondary-50">
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+          {/* <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="/wishlist"
@@ -256,7 +256,7 @@ function Menu({ items }: Props) {
                 Central de Atendimento
               </span>
             </a>
-          </li>
+          </li> */}
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
@@ -271,7 +271,7 @@ function Menu({ items }: Props) {
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
-              href="https://www.deco.cx"
+              href="/nossas-lojas"
             >
               <Icon id="OurStores" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
