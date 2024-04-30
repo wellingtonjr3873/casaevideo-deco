@@ -116,11 +116,6 @@ ${l?.onMouseOver?.card === "Move up" &&
           ? ""
           : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
-              {layoutSelected?.value === "list" &&
-                <div class="max-w-[100px] mt-0 md:mt-4 hidden md:block md:mb-3">
-                  <FreeShippingIcon color="black" small={true} />
-                </div>
-              }
               {l?.hide?.productName ? "" : (
                 <h2
                   class={`truncate  md:body-bold max-h-40 md:max-h-full line-clamp-2 md:min-h-[33px] whitespace-break-spaces ${layoutSelected?.value === "list" ? "max-w-[160px] md:max-w-[378px] h6-bold" : "small-regular md:x-small-bold"}`}
@@ -166,7 +161,7 @@ ${l?.onMouseOver?.card === "Move up" &&
 
         )}
 
-        {/* SKU Selector */}
+        {/* SKU Selecagsor */}
         {
           /* {l?.elementsPositions?.skuSelector === "Bottom" && (
           <>
@@ -223,7 +218,7 @@ ${l?.onMouseOver?.card === "Move up" &&
         {/* Wishlist button */}
         {layoutSelected?.value === "grid" &&
           <div class="flex justify-between items-center w-full h-6">
-            <FreeShippingIcon color="black" small={true} />
+            {/* <FreeShippingIcon color="black" small={true} /> */}
             <WishlistButton
               productGroupID={productGroupID}
               productID={productID}
@@ -281,9 +276,9 @@ ${l?.onMouseOver?.card === "Move up" &&
           {l?.onMouseOver?.showCta && cta}
         </figcaption> */
         }
-        <div class="max-w-[100px] mt-0 md:hidden block">
+        {/* <div class="max-w-[100px] mt-0 md:hidden block">
           <FreeShippingIcon color="black" small={true} />
-        </div>
+        </div> */}
       </figure>
 
       {productCardPrice}

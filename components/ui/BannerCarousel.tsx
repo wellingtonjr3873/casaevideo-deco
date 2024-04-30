@@ -18,6 +18,10 @@ import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
  * @titleBy alt
  */
 export interface Banner {
+    /** @description Imagem Desktop */
+    desktop: ImageWidget;
+    /** @description Imagem Mobile */
+    mobile: ImageWidget;
   /**
    * @title Data inicial do banner
    * @format datetime
@@ -27,35 +31,22 @@ export interface Banner {
    * @title Data final do banner
    * @format datetime
    */
-  dateEndAt: string;
-
+  dateEndAt?: string;
   /**
    * @description Marque esta opção quando este banner for a maior imagem na tela para otimizações de imagem
   */
   preload?: boolean;
+  /** @description Texto ALT da imagem */
+  alt: string;
+  /** @description Texto Title da imagem */
+  title?: string;
+  /** @description Link da imagem */
+  href: string;
     /**
    * @format boolean
    * @title É um banner tipo cronometro?
-   * @default false
    */
   isStopwatch?: BannerStopWatchProps;
-  /** @description Imagem Desktop */
-  desktop: ImageWidget;
-  /** @description Imagem Mobile */
-  mobile: ImageWidget;
-  /** @description Texto ALT da imagem */
-  alt: string;
-
-  action?: {
-    /** @description Link da imagem */
-    href: string;
-    /** @description Texto imagem title */
-    title: string;
-    /** @description Texto imagem subtitle */
-    subTitle: string;
-    /** @description Texto do botão */
-    label: string;
-  };
 }
 
 export interface Props {
@@ -81,16 +72,17 @@ function BannerItem(
     alt,
     mobile,
     desktop,
-    action,
     isStopwatch,
     dateEndAt,
+    title, 
+    href
   } = image;
 
   return (
     <a
       id={id}
-      href={action?.href ?? "#"}
-      aria-label={action?.label}
+      href={href}
+      title={title}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
       {isStopwatch && <BannerStopWatch {...isStopwatch} endDateAt={dateEndAt} />}
@@ -100,31 +92,26 @@ function BannerItem(
           src={mobile}
           width={320}
           height={280}
+          alt={alt}
+          title={title}
         />
         <Source
           media="(min-width: 768px)"
           src={desktop}
           width={1280}
           height={280}
+          alt={alt}
+          title={title}
         />
         <img
           class="object-cover w-full h-full"
           loading={lcp ? "eager" : "lazy"}
           decoding={lcp ? "sync" : "async"}
           src={mobile}
+          alt={alt}
+          title={title}
         />
       </Picture>
-      {action && (
-        <div class="absolute h-min top-0 bottom-0 m-auto left-0 right-0 sm:right-auto sm:left-[12%] max-h-min max-w-[400px] flex flex-col gap-4 p-4 rounded glass">
-          <span class="text-6xl font-medium text-base-100">
-            {action.title}
-          </span>
-          <span class="font-medium text-xl text-base-100">
-            {action.subTitle}
-          </span>
-          <Button class="glass">{action.label}</Button>
-        </div>
-      )}
     </a>
   );
 }
@@ -133,8 +120,13 @@ function Dots({ bannerImages, interval = 0 }: Props) {
 
   const filteredImages = bannerImages?.filter(image => {
     const now = getCurrentDateTime();
+    if(!image?.dateEndAt) {
+      return now >= image.dateStartAt
+    }
+
     return now >= image.dateStartAt && now <= image.dateEndAt;
   });
+
   return (
     <>
       <style
@@ -150,10 +142,6 @@ function Dots({ bannerImages, interval = 0 }: Props) {
       />
       <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4 h-[11px] absolute bottom-[-18px] left-1/2 max-[768px]:transform -translate-x-1/2">
         {filteredImages?.map((image, index) => {
-        const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&
-        getCurrentDateTime() <= image.dateEndAt;
-            
-
           return (
             <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
               <Slider.Dot index={index}>
@@ -203,12 +191,15 @@ function BannerCarousel(props: Props) {
   const id = useId();
 
 
-  const { bannerImages, preload, interval, arrows, spacesCss } = { ...props };
+  const { bannerImages, interval, arrows } = { ...props };
 
   const currentDateTime = getCurrentDateTime();
-  const filteredImages = bannerImages?.filter(image =>
-    currentDateTime >= image.dateStartAt && currentDateTime <= image.dateEndAt
-  );
+  const filteredImages = bannerImages?.filter(image => {
+    if(!image?.dateEndAt) {
+      return currentDateTime >= image.dateStartAt
+    }
+    return currentDateTime >= image.dateStartAt && currentDateTime <= image.dateEndAt!
+});
   
   return (
     <>

@@ -212,7 +212,7 @@ function Header({
         {/* desktop version */}
 
         <div class="hidden lg:flex flex-col  md:px-6 max-w-[1280px] mx-auto pt-5 gap-5 xl-b:px-0">
-          <div class="grid grid-cols-[140px_auto_280px] items-center w-full gap-4">
+          <div class="grid grid-cols-[240px_auto_280px] items-center w-full gap-4">
             <a href="/" title="Link de retorno para página inicial">
               <figure>
                 {logo && (
