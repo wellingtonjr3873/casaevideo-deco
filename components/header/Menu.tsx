@@ -151,7 +151,7 @@ const FooterMenu = () => {
     <a href="https://casaevideo.onelink.me/QIjQ/m3ukjv5d">
       <Icon id="AppleStoreImg" width={133} height={44} strokeWidth={0} />
     </a>
-    <a href="/">
+    <a href="https://casaevideo.onelink.me/QIjQ/m3ukjv5d">
       <Icon id="GooglePlayImg" width={133} height={44} strokeWidth={0} />
     </a>
   </div>
