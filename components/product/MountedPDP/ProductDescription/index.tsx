@@ -107,6 +107,7 @@ function ProductDescription(props: Props) {
 
   return (
     <div class="container px-4 md:px-0 mt-4">
+      {product.description && product.description.length > 0 &&
       <div class="pdp-description collapse collapse-arrow bg-neutral-50 px-2 rounded-none rounded-t-lg md:rounded-lg border border-brand-secondary-100 transition-none">
         <input type="checkbox" name="my-accordion-3" checked /> 
         <div class="collapse-title body-bold p-4">
@@ -129,6 +130,7 @@ function ProductDescription(props: Props) {
           )}
         </div>
       </div>
+      }
     
     
       <div class="flex flex-col md:flex-row md:gap-4 md:mt-4">
