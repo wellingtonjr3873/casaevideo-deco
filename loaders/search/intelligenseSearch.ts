@@ -91,8 +91,8 @@ const loaders = async (
     return vcsDeprecated
       ["GET /api/io/_v/api/intelligent-search/product_search/*facets"]({
         ...params,
-        showSponsored=true,
-        placement: "top-search"
+        showSponsored:true, 
+        placement: "top-search",
         facets: toPath(facets),
       }, { ...STALE, headers: withSegmentCookie(segment) })
       .then((res) => res.json());
