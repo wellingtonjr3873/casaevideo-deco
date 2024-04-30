@@ -264,7 +264,7 @@ function Menu({ items }: Props) {
             >
               <Icon id="CreditCard" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                Cartão Casa&Vídeo
+                Cartão Casa&Video
               </span>
             </a>
           </li>
