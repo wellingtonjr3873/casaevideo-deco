@@ -32,7 +32,7 @@ const LoggedUser = () => {
           <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui" />
         </a>
         {/* wishlist */}
-        <a href="/wishlist" aria-label="Meus favoritos">
+        <a href="/account/#/wishlist" aria-label="Meus favoritos">
           <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
         </a>
       </a>
