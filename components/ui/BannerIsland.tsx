@@ -103,7 +103,7 @@ export default function BannnerIsland(props: Props) {
     <div class="container w-full px-4 mx-auto max-w-[1280px] md:px-6 xl-b:px-0">
       {title &&
         (
-          <div class="py-6 md:py-0 md:pb-[40px] flex items-center mt-6">
+          <div class="py-6 md:py-0 md:pb-[8px] flex items-center mt-6">
             <h2 class="h5-bold w-full">
               {title}
             </h2>
