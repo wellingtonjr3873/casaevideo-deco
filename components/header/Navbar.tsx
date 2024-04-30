@@ -79,7 +79,7 @@ function Navbar({ items, searchbar, logo }: {
           </a>
           <a
             class="btn btn-circle btn-sm btn-ghost"
-            href="/wishlist"
+            href="/account/#/wishlist"
             aria-label="Wishlist"
           >
             <Icon
