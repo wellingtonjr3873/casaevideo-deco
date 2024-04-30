@@ -15,7 +15,7 @@ function GeoLocationPointBar() {
 
         {/* Televendas Links */}
         <div class="flex items-center gap-8 hidden lg:flex">
-          <a class="flex gap-1 items-center text-neutral-50 small-underline" href="tel:+552140023535">
+          <a class="flex gap-1 items-center text-neutral-50 small-underline" href="/televendas">
             <Icon width={24} height={24} id={"Televenda"} />
             Televendas: (21) 4002-3535
           </a>
