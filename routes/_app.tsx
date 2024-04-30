@@ -24,8 +24,8 @@ function App(props: AppProps) {
         type="module"
         dangerouslySetInnerHTML={{ __html: `(${sw})();` }}
       />
-       <script>
-                    {`;(function () {
+      <script>
+        {`;(function () {
                     const script = document.createElement('script')
                     
                     script.type = 'text/javascript'
@@ -36,7 +36,27 @@ function App(props: AppProps) {
                     document.getElementsByTagName('BODY')[0].appendChild(script) 
                     })(document)
                     `}
-                </script>
+      </script>
+
+      <script>
+        {`
+          (function(v, t, e, x, a, f, s) {
+            f = v.vtexaf = v.vtexaf || function () {
+              (f.q = f.q || []).push(arguments)
+            };
+            f.l = +new Date;
+            s = t.createElement(e);
+            s.async = !0;
+            s.src = x;
+            an = 'casaevideonewio';
+            s.setAttribute('an', an);
+            a = t.getElementsByTagName(e)[0];
+            a.parentNode.insertBefore(s, a)
+          })(window, document, 'script', 'https://activity-flow.vtex.com/af/af.js');
+        `}
+      </script>
+
+
     </>
   );
 }
