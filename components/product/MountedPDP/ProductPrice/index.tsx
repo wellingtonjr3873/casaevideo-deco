@@ -13,6 +13,10 @@ function ProductPrice({ product }: Props) {
     offers
   } = product;
 
+  const allProduct = product
+
+  const lowPrice = allProduct?.offers?.lowPrice
+
   const {
     price = 0,
     listPrice,
@@ -21,9 +25,6 @@ function ProductPrice({ product }: Props) {
     availability,
     pixPrice,
   } = useOffer(offers);
-
-
- 
 
 
   const priceHtml = (
@@ -35,13 +36,13 @@ function ProductPrice({ product }: Props) {
       </span>
 
       <div class="small-regular md:body-regular text-neutral-900 flex items-end">
-        <span class="h5-bold md:h4-bold">{formatPrice(pixPrice, offers?.priceCurrency)}</span>
+        <span class="h5-bold md:h4-bold">{formatPrice(lowPrice, offers?.priceCurrency)}</span>
         <span class="pl-1">no PIX</span>
         {(price && pixPrice && price !== pixPrice) && (
           <>
             <div class="bg-success gap-1 sm:h-5 h-6 flex ml-2 px-1 justify-center items-center text-neutral-50 rounded">
               <Icon id="ArrowDown" width={16} height={16} />
-              {((1 - (pixPrice / price)) * 100).toFixed(0)}% no Pix
+              {(((listPrice - lowPrice)/listPrice) * 100).toFixed(0)}% no Pix
             </div>
           </>
         )}
