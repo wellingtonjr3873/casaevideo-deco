@@ -144,7 +144,7 @@ adicione produtos ao carrinho.</p>
                 </div>
                 <div class="py-2 flex flex-col">
                     <span class="text-base text-neutral-dark font-bold text-right">
-                      {formatPrice(subtotal, currency, locale)} no Pix
+                      {formatPrice(subtotal, currency, locale)}
                     </span>
                     <span class="text-base text-neutral-dark font-normal text-right">
                       {formatPrice(subtotal, currency, locale)} no cartão
