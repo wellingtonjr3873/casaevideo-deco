@@ -92,7 +92,8 @@ function ProductCard(
     image: images,
     offers,
     isVariantOf,
-
+    // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
+    advertisement,
   } = product;
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
@@ -136,6 +137,10 @@ function ProductCard(
 
   const productCardPrice = (
     <>
+      {/* Prouct Advertisement TAG */}
+      <div class="h-3 flex justify-start items-center">
+        {advertisement?.adId && <span class="text-[12px] text-[#989898]">Patrocinado</span>}
+      </div>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col">
         {l?.hide?.productName && l?.hide?.productDescription
@@ -222,6 +227,9 @@ function ProductCard(
         }
       `}
       data-deco="view-product"
+      {...(advertisement?.adId && { "data-van-aid": advertisement.adId })}
+      {...(advertisement?.adResponseId && { "data-van-res-id": advertisement.adResponseId })}
+      {...(advertisement?.adId && { "data-van-prod-name": name })}
     >
       <SendEventOnClick
         id={id}

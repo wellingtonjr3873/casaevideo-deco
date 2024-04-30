@@ -60,7 +60,7 @@ const relative = (url: string) => {
 const WIDTH = 210;
 const HEIGHT = 210;
 
-function ProductCardIsland(
+function ProductCardHorizontal(
   { product, preload, itemListName, layout, index, device }: Props,
 ) {
   const {
@@ -70,6 +70,8 @@ function ProductCardIsland(
     image: images,
     offers,
     isVariantOf,
+    // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
+    advertisement,
   } = product;
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
@@ -111,20 +113,27 @@ ${l?.onMouseOver?.card === "Move up" &&
   const productCardPrice = (
     <>
       {/* Prices & Name */}
-      <div class={`flex-auto flex ${layoutSelected?.value === "grid" ? "flex-col" : "justify-between flex-col md:flex-row"} gap-3 lg:gap-4`}>
+      <div class={`flex-auto flex justify-between flex-col md:flex-row gap-3 lg:gap-4`}>
         {l?.hide?.productName && l?.hide?.productDescription
           ? ""
           : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
+              <div class="max-w-[100px] mt-0 md:mt-4 hidden md:block md:mb-3">
+                <FreeShippingIcon color="black" small={true} />
+              </div>
+              {/* Prouct Advertisement TAG */}
+              <div class="h-3 flex justify-start items-center">
+                {advertisement?.adId && <span class="text-[12px] text-[#989898]">Patrocinado</span>}
+              </div>
               {l?.hide?.productName ? "" : (
                 <h2
-                  class={`truncate  md:body-bold max-h-40 md:max-h-full line-clamp-2 md:min-h-[33px] whitespace-break-spaces ${layoutSelected?.value === "list" ? "max-w-[160px] md:max-w-[378px] h6-bold" : "small-regular md:x-small-bold"}`}
+                  class={`truncate  md:body-bold max-h-40 md:max-h-full line-clamp-2 md:min-h-[33px] whitespace-break-spaces max-w-[160px] md:max-w-[378px] h6-bold`}
                 >{name ?? ""}</h2>
               )}
             </div>
           )}
         {l?.hide?.allPrices ? "" : (
-          <div class={`flex flex-col gap-2 ${layoutSelected?.value === "grid" ? "" : "justify-end"}`}>
+          <div class={`flex flex-col gap-2 justify-end`}>
             <div
               class={`flex flex-col gap-0 ${l?.basics?.oldPriceSize === "Normal"
                 ? "lg:flex-row lg:gap-2"
@@ -132,7 +141,7 @@ ${l?.onMouseOver?.card === "Move up" &&
                 } ${align === "center" ? "justify-center" : "justify-start"} text-end md:text-start`}
             >
               <div
-                class={`flex text-base-300 xx-small-regular md:small-regular md:text-start gap-2 ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""} ${layoutSelected?.value === "list" ? "justify-end" : ""}`}
+                class={`flex text-base-300 xx-small-regular md:small-regular md:text-start gap-2 ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""} justify-end`}
               >
                 <span class="line-through">
                   {formatPrice(listPrice, offers?.priceCurrency)}
@@ -146,14 +155,14 @@ ${l?.onMouseOver?.card === "Move up" &&
                     </div>
                   )}
               </div>
-              <div class={`body-bold md:h6-bold text-start ${layoutSelected?.value === "list" ? "md:text-end" : ""}`}>
+              <div class={`body-bold md:h6-bold text-start md:text-end`}>
                 {formatPrice(price, offers?.priceCurrency)} no PIX
               </div>
             </div>
             {l?.hide?.installments
               ? ""
               : (
-                <div class={`text-brand-secondary-900 x-small-regular text-end md:text-start truncate ${layoutSelected?.value === "list" && "pb-3"}`}>
+                <div class={`text-brand-secondary-900 x-small-regular text-end md:text-start truncate pb-3`}>
                   ou em até {installments}
                 </div>
               )}
@@ -177,14 +186,12 @@ ${l?.onMouseOver?.card === "Move up" &&
           </>
         )} */
         }
-        {layoutSelected?.value === "list" &&
-          <div class="absolute top-2 right-2 md:top-3 md:right-4">
-            <WishlistButton
-              productGroupID={productGroupID}
-              productID={productID}
-            />
-          </div>
-        }
+        <div class="absolute top-2 right-2 md:top-3 md:right-4">
+          <WishlistButton
+            productGroupID={productGroupID}
+            productID={productID}
+          />
+        </div>
       </div>
     </>
   );
@@ -193,8 +200,11 @@ ${l?.onMouseOver?.card === "Move up" &&
     <a
       id={id}
       href={url && relative(url)}
-      class={`${layoutSelected.value === "grid" ? gridLayout : listLayout}`}
+      class={listLayout}
       data-deco="view-product"
+      {...(advertisement?.adId && { "data-van-aid": advertisement.adId })}
+      {...(advertisement?.adResponseId && { "data-van-res-id": advertisement.adResponseId })}
+      {...(advertisement?.adId && { "data-van-prod-name": name })}
     >
       <SendEventOnClick
         id={id}
@@ -213,7 +223,7 @@ ${l?.onMouseOver?.card === "Move up" &&
           },
         }}
       />
-      <figure class={`flex flex-col ${layoutSelected?.value === "list" ? "gap-2 items-center" : "items-left"}`} // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
+      <figure class={`flex flex-col gap-2 items-center`}
       >
         {/* Wishlist button */}
         {layoutSelected?.value === "grid" &&
@@ -228,14 +238,14 @@ ${l?.onMouseOver?.card === "Move up" &&
         {/* Product Images */}
         <div
           aria-label="view product"
-          class={`grid grid-cols-1 grid-rows-1 w-full md:w-full justify-center items-center ${layoutSelected?.value === "list" ? "p-0 md:max-h-full" : "p-2 md:min-h-[210px] md:max-h-full"}`}
+          class={`grid grid-cols-1 grid-rows-1 w-full md:w-full justify-center items-center p-0 md:max-h-full`}
         >
           <Image
             src={front.url!}
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`${layoutSelected?.value === "list" ? "max-h-52" : "md:max-h-full md:min-h-[210px]"} bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
+            class={`max-h-52 bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
               ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
               : ""
               }`}
@@ -286,4 +296,4 @@ ${l?.onMouseOver?.card === "Move up" &&
   );
 }
 
-export default ProductCardIsland;
+export default ProductCardHorizontal;
