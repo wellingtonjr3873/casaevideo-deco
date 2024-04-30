@@ -62,9 +62,9 @@ function VoltsModal({ seller, volts, productID, quantity = 1, eventItem }: Props
       <Button
         class="btn-primary text-neutral-50 border-0 bg-brand-primary-1 hover:bg-brand-primary-1 body-regular w-full"
         onClick={() => {
-          console.log("value", openVolts?.value)
+          
           openVolts.value = true;
-          console.log("value", openVolts?.value)
+         
         }}
       >
         <Icon id="Cart" class="text-neutral-50" width={24} height={24} /> Comprar

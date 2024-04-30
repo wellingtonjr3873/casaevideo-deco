@@ -10,6 +10,8 @@ const LoggedUser = () => {
   const visiblePopup = useSignal(false);
   const handleSetVisibblePopUp = () => visiblePopup.value = !visiblePopup.value
 
+
+
   return  !loading.value ? <>{!user.value ?
     <>
       <a
@@ -33,7 +35,7 @@ const LoggedUser = () => {
         </a>
         {/* wishlist */}
         <a href="/wishlist" aria-label="Meus favoritos">
-          <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos" />
+          <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
         </a>
       </a>
     </> :
@@ -75,7 +77,7 @@ const LoggedUser = () => {
 
         <div class="flex flex-col gap-1 items-start">
           <span class="x-small-regular text-neutral-900">Olá,</span>
-          <h3 class="small-bold text-neutral-900">{user.value.name || "Usuario"}</h3>
+          <h3 class="small-bold text-neutral-900 max-w-[108px] truncate ...">{user.value.givenName || user.value.email}</h3>
         </div>
       </button>
       {/* meus pedidos */}
@@ -84,7 +86,7 @@ const LoggedUser = () => {
       </a>
       {/* wishlist */}
       <a href="/wishlist" aria-label="Meus favoritos">
-        <Icon id="Wishlist" size={32} class="text-neutral-900" alt="veja quais são seus produtos favoritos" />
+        <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
       </a>
     </div>}</> : <div class="w-[216px] h-[35px] flex items-center justify-center"><div class="loading loading-spinner w-5"/></div>
 }

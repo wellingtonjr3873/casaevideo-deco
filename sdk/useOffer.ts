@@ -20,10 +20,6 @@ const bestInstallment = (
     return curr;
   }
 
-  if (acc.price < curr.price) {
-    return acc;
-  }
-
   if (
     acc.billingDuration && curr.billingDuration &&
     acc.billingDuration < curr.billingDuration
@@ -44,7 +40,7 @@ const installmentToString = (
     return "";
   }
 
-  const withTaxes = sellingPrice < price;
+  const withTaxes = sellingPrice < price - price * 0.055 ;
 
   return `${billingDuration}x de R$ ${billingIncrement.toFixed(2).replace('.', ',')} ${
     withTaxes ? "com juros" : "sem juros"
@@ -73,18 +69,20 @@ export const useOffer = (aggregateOffer?: AggregateOffer) => {
   );
   const installment = offer?.priceSpecification.reduce(bestInstallment, null);
   const seller = offer?.seller;
-  const price = offer?.price;
+  const price = offer?.priceSpecification.find((spec) =>
+    spec.priceType === "https://schema.org/SalePrice"
+  );
   const availability = offer?.availability;
   const pixPrice = getPixPrice(offer as Offer, listPrice?.price || 0);
 
   return {
-    price,
+    price: price?.price || offer?.price,
     listPrice: listPrice?.price,
     pixPrice,
     availability,
     seller,
-    installments: installment && price
-      ? installmentToString(installment, price)
+    installments: installment && price?.price
+      ? installmentToString(installment, price?.price)
       : null,
   };
 };

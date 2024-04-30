@@ -1,3 +1,4 @@
+import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
 export interface Props {
   productId: string;
   userId: string;
@@ -9,8 +10,7 @@ const loader = async (
   _req: Request,
   ctx: AppContext,
 ): Promise<boolean> => {
-  const account: "casaevideonewio" | "lebiscuit" = ctx.account ||
-    ctx.commerce.account || "casaevideonewio";
+  const account: "casaevideonewio" | "lebiscuit" = ctx.account;
 
   const pathsDictionary = {
     "casaevideonewio":
@@ -23,7 +23,7 @@ const loader = async (
 
   const headers = new Headers();
   headers.append("X-Api-Key", apiKey!);
-  headers.append("X-Ocelot-Auth", "wellingtonrufino@lelabs.com.br");
+  headers.append("X-Ocelot-Auth", props.userId);
   headers.append("Content-Type", "application/json");
 
   const payload = JSON.stringify({

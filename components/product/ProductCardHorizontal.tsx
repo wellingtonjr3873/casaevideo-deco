@@ -170,7 +170,7 @@ ${l?.onMouseOver?.card === "Move up" &&
 
         )}
 
-        {/* SKU Selector */}
+        {/* SKU Selecagsor */}
         {
           /* {l?.elementsPositions?.skuSelector === "Bottom" && (
           <>
@@ -228,7 +228,7 @@ ${l?.onMouseOver?.card === "Move up" &&
         {/* Wishlist button */}
         {layoutSelected?.value === "grid" &&
           <div class="flex justify-between items-center w-full h-6">
-            <FreeShippingIcon color="black" small={true} />
+            {/* <FreeShippingIcon color="black" small={true} /> */}
             <WishlistButton
               productGroupID={productGroupID}
               productID={productID}
@@ -286,9 +286,9 @@ ${l?.onMouseOver?.card === "Move up" &&
           {l?.onMouseOver?.showCta && cta}
         </figcaption> */
         }
-        <div class="max-w-[100px] mt-0 md:hidden block">
+        {/* <div class="max-w-[100px] mt-0 md:hidden block">
           <FreeShippingIcon color="black" small={true} />
-        </div>
+        </div> */}
       </figure>
 
       {productCardPrice}

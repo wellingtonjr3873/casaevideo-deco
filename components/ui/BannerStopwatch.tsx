@@ -7,10 +7,10 @@ export interface Props  {
     * @hide
      */
     endDateAt?: string
-    /** @tittle Imagem do logo Desktop */
-    desktop: ImageWidget;
+    /** @title Imagem do logo Desktop */
+    desktop?: ImageWidget;
     /** @title Imagem do logo Mobile */
-    mobile: ImageWidget;
+    mobile?: ImageWidget;
     position: "base-left" | "top-left" | "top-right" | "base-center" | "base-right",
     /** 
      * @format color 

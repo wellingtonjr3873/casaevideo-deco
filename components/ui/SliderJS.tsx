@@ -128,7 +128,7 @@ const   setup = ({ rootId, scroll, interval, infinite }: Props) => {
       return;
     }
 
-    const diff = (item.offsetLeft - root.scrollLeft) - slider.scrollLeft;
+    const diff = (item.offsetLeft - root.offsetLeft) - slider.scrollLeft;
 
     const diffAbs = Math.abs(diff);
 
@@ -146,11 +146,17 @@ const   setup = ({ rootId, scroll, interval, infinite }: Props) => {
 
   const onClickPrev = () => {
     const indices = getElementsInsideContainer();
+   
     // Wow! items per page is how many elements are being displayed inside the container!!
     const itemsPerPage = indices.length;
+   
+
 
     const isShowingFirst = indices[0] === 0;
+ 
     const pageIndex = Math.floor(indices[indices.length - 1] / itemsPerPage);
+   
+
 
     goToItem(
       isShowingFirst ? items.length - 1 : (pageIndex - 1) * itemsPerPage,
