@@ -32,13 +32,31 @@ export default function RangePrice() {
             ele monta um novo, também verifica se os inputs estão com valores validos.
         */
         const minMaxIsVoid = (signalMinValue.value && signalMaxValue.value) === '' ? true : false;
-        console.log(minMaxIsVoid)
         signalUrlFilter.value = currentQueryString && !minMaxIsVoid ? (
             currentQueryString.search?.includes('filter.price=') ? 
                 currentQueryString.search.replace(regex, `${signalMinValue.value}%3A${signalMaxValue.value}`) 
                 : `?filter.category-1=${currentQueryString.pathname.replace('/', '')}&filter.price=${signalMinValue.value}%3A${signalMaxValue.value}`
         ) : '#linkElement';
+
+        
     }, [signalMinValue.value, signalMaxValue.value]);
+
+    useEffect(() => {
+        const filterAlreadyExist = currentQueryString.search?.includes('filter.price=');
+        if(filterAlreadyExist){
+            const values = currentQueryString.search.substring(1);
+            const queryParams = {};
+            values.split('&').forEach(pair => {
+                const [key, value] = pair.split('=');
+                queryParams[key] = decodeURIComponent(value);
+            });
+            const [min, max] = queryParams['filter.price'].split(':');
+            signalMinValue.value = min
+            signalMaxValue.value = max
+            inputMinRef.current!.value = min
+            inputMaxRef.current!.value = max
+        }
+    }, [])
 
     return (
         <li className="flex justify-center items-center gap-2">
