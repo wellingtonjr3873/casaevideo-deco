@@ -59,6 +59,8 @@ interface PropertyValue {
 }
 
 interface Props {
+  /** *@hide */
+  dataVanPlacement?: string;
   product: Product;
   /** Preload card image */
   preload?: boolean;
@@ -83,7 +85,7 @@ const WIDTH = 210;
 const HEIGHT = 210;
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform, index, device }: Props,
+  { product, preload, itemListName, layout, platform, index, device, dataVanPlacement }: Props,
 ) {
   const {
     url,
@@ -95,6 +97,7 @@ function ProductCard(
     // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
     advertisement,
   } = product;
+
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
@@ -230,6 +233,7 @@ function ProductCard(
       {...(advertisement?.adId && { "data-van-aid": advertisement.adId })}
       {...(advertisement?.adResponseId && { "data-van-res-id": advertisement.adResponseId })}
       {...(advertisement?.adId && { "data-van-prod-name": name })}
+      {...(dataVanPlacement && { "data-van-placement": dataVanPlacement })}
     >
       <SendEventOnClick
         id={id}
