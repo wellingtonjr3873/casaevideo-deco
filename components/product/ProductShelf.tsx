@@ -15,6 +15,8 @@ export interface Props {
   title?: string;
   cardLayout?: cardLayout;
   /** *@hide */
+  dataVanPlacement?: string;
+  /** *@hide */
   device: "mobile" | "desktop" | "tablet";
 }
 
@@ -23,6 +25,7 @@ function ProductShelf({
   title,
   cardLayout,
   device,
+  dataVanPlacement,
 }: SectionProps<typeof loader>) {
   const id = useId();
   const platform = "vtex"
@@ -48,6 +51,7 @@ function ProductShelf({
                     platform={platform}
                     index={index}
                     device={device}
+                    dataVanPlacement={dataVanPlacement}
                   />
                 </li>
               ))}

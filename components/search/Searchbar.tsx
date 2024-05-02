@@ -174,6 +174,7 @@ function Searchbar({
                       platform={platform}
                       index={index}
                       itemListName="Suggeestions"
+                      dataVanPlacement={"autocomplete"}
                       /> 
                     </div>
                     :
