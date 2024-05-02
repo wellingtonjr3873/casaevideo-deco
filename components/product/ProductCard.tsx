@@ -97,6 +97,11 @@ function ProductCard(
     // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
     advertisement,
   } = product;
+    
+  const allProduct = product
+
+  const lowPrice = allProduct?.offers?.lowPrice
+
 
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
@@ -181,12 +186,12 @@ function ProductCard(
                   (
                     <div class="bg-success gap-1 h-4 sm:h-5 md:h-5 flex px-1 justify-center items-center text-neutral-50 rounded">
                       <Icon id="ArrowDown" width={16} height={16} />
-                      {((1 - (pixPrice / listPrice)) * 100).toFixed(0)}%
+                      {(((listPrice- lowPrice)/listPrice) * 100).toFixed(0)}%
                     </div>
                   )}
               </div>
               <div class="body-bold md:h6-bold-20 text-neutral-dark">
-                {formatPrice(pixPrice, offers?.priceCurrency)} no PIX
+                {formatPrice(lowPrice, offers?.priceCurrency)} no PIX
               </div>
             </div>
             {l?.hide?.installments
