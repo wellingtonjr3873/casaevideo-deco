@@ -18,21 +18,39 @@ export interface Banner {
 }
 
 export interface Props {
+  /**
+ * @description Nome da campanha do Form
+ */
+  campaing?: string;
+  /**
+ * @description Id da tabela do masterdata
+ */
+  tabelaMd: string;
+  /**
+* @description Banner Topo
+*/
   bannerTop: Banner;
+  /**
+* @description Banner meio
+*/
   bannerMid: Banner;
+  /**
+* @description Banner inferior
+*/
   bannerBottom: Banner;
-} 
+}
 
 function LeadForm({
+  campaing,
+  tabelaMd,
   bannerTop,
   bannerMid,
   bannerBottom,
   device,
 }: SectionProps<typeof loader>) {
-  console.log('aqui - device', device)
 
   return (
-    <section class="container w-full px-4 mx-auto max-w-[1280px] md:px-6 xl-b:px-0">
+    <section class="container w-full px-0 mx-auto max-w-[1280px] md:px-6 xl-b:px-0">
       <div class={`grid gap-2 md:gap-2 mt-2`}>
         {bannerTop &&
           <a
@@ -64,8 +82,8 @@ function LeadForm({
         }
 
         {bannerMid &&
-          <div style={{ background: `no-repeat url(${bannerMid.srcDesktop})` }} class="min-h-[600px] relative">
-            <Form />
+          <div style={{ background: `no-repeat url(${device == "mobile" ? bannerMid.srcMobile : bannerMid.srcDesktop})` }} class="min-h-[600px] relative mb-[340px] md:mb-0 md:px-0">
+            <Form campaing={campaing} tabelaMd={tabelaMd} />
           </div>
         }
 
