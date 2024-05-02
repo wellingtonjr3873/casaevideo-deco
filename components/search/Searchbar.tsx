@@ -54,7 +54,7 @@ export interface Props {
 }
 
 function Searchbar({
-  placeholder = "Buscar pro produto ou marca...",
+  placeholder = "Buscar por produto ou marca...",
   action = "/s",
   name = "q",
   loader,
@@ -94,7 +94,7 @@ function Searchbar({
 
             setQuery(value);
           }}
-          placeholder={"Buscar pro produto ou marca..."}
+          placeholder={"Buscar por produto ou marca..."}
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
