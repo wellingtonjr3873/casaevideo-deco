@@ -78,7 +78,7 @@ const Installments = ({installments}: Props) => {
 
      const handleSetInstallmentBar = (name: string) => selectedOptionIndex.value = name
     return <>
-    <a class="small-regular text-neutral-600 underline" onClick={() => handleInstallmentsModal(true)}>
+    <a class="small-regular text-neutral-600 underline cursor-pointer" onClick={() => handleInstallmentsModal(true)}>
         Ver mais formas de pagamento
     </a>
     {openedInstallmentsModal.value && <Modal handleCloseModal={handleInstallmentsModal}>
@@ -97,7 +97,7 @@ const Installments = ({installments}: Props) => {
                         <tr class="text-neutral-900 body-regular">
                             <td class="w-[45%] md:w-[35%] body-regular text-neutral-900 pl-4 py-2">{item.billingDuration}x de {formatPrice(item.billingIncrement)}</td> 
                             <td class="small-regular text-neutral-500">sem juros</td>  
-                            <td class="ml-auto text-neutral-900 body-regular text-right pr-4 py-2">{formatPrice(item.billingIncrement)}</td>
+                            <td class="ml-auto text-neutral-900 body-regular text-right pr-4 py-2">{formatPrice(item.price)}</td>
                         </tr>
                     )}
                 </tbody>

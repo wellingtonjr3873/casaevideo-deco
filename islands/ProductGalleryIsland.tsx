@@ -41,6 +41,7 @@ function ProductGalleryIsland({ products, layout, offset }: Props,) {
           preload={index === 0}
           index={offset + index}
           layout={layout?.card}
+          dataVanPlacement={"top_search"}
         />
       ))}
     </div>
