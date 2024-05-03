@@ -60,8 +60,7 @@ function Form({ campaing = "NÃO DEFINIDO NO SITE EDITOR", tabelaMd = "LL" }: Pr
             });
         } catch (err) {
             console.error(err)
-            resultMessage.value = "Erro ao se cadastrar"
-            
+            resultMessage.value = "Erro ao se cadastrar"            
             setTimeout(() => {
                 resultMessage.value = "Cadastrar"
             }, twoSeconds);
