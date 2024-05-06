@@ -60,27 +60,13 @@ function FilterValues({ key, values }: FilterToggle) {
       {values.slice(0, 6).map((item, index) => {
         const { url, selected, value } = item;
 
-        if (key === "cor" || key === "tamanho") {
+        if (key === "tamanho") {
           return (
             <li key={index}>
               <a href={url} rel="nofollow">
                 <Avatar content={value} variant={selected ? "active" : "default"} />
               </a>
             </li>
-          );
-        }
-
-        if (key === "price") {
-          const range = parseRange(item.value);
-          return range && (
-            <>
-              <ValueItem
-                key={index}
-                {...item}
-                label={`${formatPrice(range.from)} - ${formatPrice(range.to)}`}
-              />
-              {index === values.length - 1 && (<RangePrice />)}
-            </>
           );
         }
 
@@ -117,51 +103,56 @@ function FilterValues({ key, values }: FilterToggle) {
     </ul>
   );
 }
-function FilterValuesPrice({ key, values }: FilterToggle) {
-  const flexDirection = ["tamanho", "cor"].includes(key) ? "flex-row" : "flex-col";
+// function FilterValuesPrice({ key, values }: FilterToggle) {
+//   const flexDirection = ["tamanho", "cor"].includes(key) ? "flex-row" : "flex-col";
 
-  return (
-    <ul className={`flex flex-wrap gap-2 ${flexDirection} pt-3`}>
-      {values.slice(0, 6).map((item, index) => {
-        if (key === "price") {
-          const range = parseRange(item.value);
-          return range && (
-            <>
-              {index === values.length - 1 && (<RangePrice />)}
-            </>
-          );
-        }
+//   return (
+//     <ul className={`flex flex-wrap gap-2 ${flexDirection} pt-3`}>
+//       {values.slice(0, 6).map((item, index) => {
+//         if (key === "price") {
+//           const range = parseRange(item.value);
+//           return range && (
+//             <>
+//               {index === values.length - 1 && (<RangePrice />)}
+//             </>
+//           );
+//         }
 
-        return <ValueItem key={index} {...item} />;
-      })}
+//         return <ValueItem key={index} {...item} />;
+//       })}
 
-      {values.length > 6 && (
-        <li className="w-full">
-          <details className={`collapse`}>
-            <summary className="w-full block pt-2 px-4 collapse-title text-right text-base font-bold">Ver mais</summary>
-            <ul className="flex flex-wrap gap-2 flex-row">
-              {values.slice(6).map((item, index) => {
-                const { url, selected, value } = item;
+//       {values.length > 6 && (
+//         <li className="w-full">
+//           <details className={`collapse`}>
+//             <summary className="w-full block pt-2 px-4 collapse-title text-right text-base font-bold">Ver mais</summary>
+//             <ul className="flex flex-wrap gap-2 flex-row">
+//               {values.slice(6).map((item, index) => {
+//                 const { url, selected, value } = item;
 
-                if (key === "cor" || key === "tamanho") {
-                  return (
-                    <li key={index}>
-                      <a href={url} rel="nofollow">
-                        <Avatar content={value} variant={selected ? "active" : "default"} />
-                      </a>
-                    </li>
-                  );
-                }
-                return <ValueItem key={index} {...item} />;
-              })}
 
-            </ul>
-          </details>
-        </li>
-      )}
-    </ul>
-  );
-}
+//                 if (key === "tamanho") {
+
+//                   const filterName = url.split(".")!.pop()!.split("=")[0];
+//                   const composedFilter = `&filter.${filterName}=${value}`
+
+//                   return (
+//                     <li key={index}>
+//                       <a href={url} rel="nofollow">
+//                         <Avatar content={value} variant={selected ? "active" : "default"} />
+//                       </a>
+//                     </li>
+//                   );
+//                 }
+//                 return <ValueItem key={index} {...item} />;
+//               })}
+
+//             </ul>
+//           </details>
+//         </li>
+//       )}
+//     </ul>
+//   );
+// }
 
 
 function Filters({ filters }: Props) {
@@ -173,7 +164,7 @@ function Filters({ filters }: Props) {
     <>
       {
         hasFilterActive && (
-          <div className="mb-2 bg-neutral-50 border border-brand-secondary-400">
+          <div className="mb-2 bg-transparent border border-neultral-200">
             <header className="px-4 py-2 text-left">
               <p className="font-bold text-base">Fltros Selecionados</p>
             </header>
@@ -188,7 +179,7 @@ function Filters({ filters }: Props) {
           </div>
         )
       }
-      <ul className="flex flex-col gap-4">
+      <ul className="flex flex-col gap-4 ">
         {
           filters.filter(isToggle).map((filter, index) => (
             filter.key != "price" ?
@@ -215,7 +206,7 @@ function Filters({ filters }: Props) {
                       filter.label !== 'Preço' ? filter.label : 'Faixa de Preço'
                     }
                   </div>
-                  <FilterValuesPrice {...filter} />
+                  <RangePrice />
                 </div>
               </li>
           ))

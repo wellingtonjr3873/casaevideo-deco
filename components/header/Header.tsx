@@ -14,6 +14,8 @@ import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
 import LoggedUserMobile from "$store/islands/Header/LoggedUserMobile.tsx";
 
 import { useUser } from "apps/vtex/hooks/useUser.ts";
+import {Device}  from "deco-sites/casaevideo/loaders/device.ts";
+import { Resolved } from "deco/engine/core/resolver.ts";
 
 interface Categories {
   items: {
@@ -66,6 +68,7 @@ export interface Props {
   minicartProps: MinicartProps;
   /** *@hide */
   device: "mobile" | "desktop" | "tablet";
+  typeDevice?: Resolved<Device>
 }
 
 function Header({
@@ -100,11 +103,12 @@ function Header({
   navItems,
   isMobile,
   minicartProps,
-  device
+  device,
+  typeDevice
 }: Props) {
 
   // const {loading, user } = useUser();
-
+  console.log(typeDevice)
   const platform = usePlatform();
   const { user } = useUser();
   if (device === "mobile") {

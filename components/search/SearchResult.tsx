@@ -220,7 +220,7 @@ function Result({
 }
 
 function SearchResult({ page, ...props }: Props) {
-  if (!page || page.products.length == 0) {
+  if (!page) {
     return <NotFoundPage {...props.notFoundPage} />;
   }
 

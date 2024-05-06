@@ -42,10 +42,10 @@ export default function RangePrice() {
     }, [signalMinValue.value, signalMaxValue.value]);
 
     useEffect(() => {
-        const filterAlreadyExist = currentQueryString.search?.includes('filter.price=');
+        const filterAlreadyExist = currentQueryString!.search.includes('filter.price=');
         if(filterAlreadyExist){
-            const values = currentQueryString.search.substring(1);
-            const queryParams = {};
+            const values = currentQueryString!.search.substring(1);
+            const queryParams : {[key:string]: string}= {};
             values.split('&').forEach(pair => {
                 const [key, value] = pair.split('=');
                 queryParams[key] = decodeURIComponent(value);
@@ -59,14 +59,14 @@ export default function RangePrice() {
     }, [])
 
     return (
-        <li className="flex justify-center items-center gap-2">
+        <li className="flex justify-start items-center gap-2">
             <input 
                 ref={inputMinRef} 
                 type="number" 
                 id="inputMin" 
                 onInput={handleMinInputChange} 
                 value={signalMinValue.value} 
-                class="input-range-min input border-brand-secondary-200 input-primary w-full max-w-20 min-w-20 h-10 px-4 py-2 focus:border-brand-terciary-1 focus:outline-brand-terciary-1 text-xs" 
+                class="input-range-min input border-brand-secondary-200 input-primary w-full  min-w-20 h-10 px-4 py-2 focus:border-brand-terciary-1 focus:outline-brand-terciary-1 text-xs" 
                 placeholder="Mínimo" 
                 required
             />
@@ -77,13 +77,13 @@ export default function RangePrice() {
                 id="inputMax" 
                 onInput={handleMaxInputChange} 
                 value={signalMaxValue.value} 
-                class="input-range-max input border-brand-secondary-200 input-primary w-full max-w-20 h-10 px-4 py-2 focus:border-brand-terciary-1 focus:outline-brand-terciary-1 text-xs"  
+                class="input-range-max input border-brand-secondary-200 input-primary w-full h-10 px-4 py-2 focus:border-brand-terciary-1 focus:outline-brand-terciary-1 text-xs"  
                 placeholder="Máximo"
                 required
             />
             <a 
                 id="linkElement" 
-                class="flex justify-center items-center bg-brand-terciary-1 h-10 min-w-10 rounded-md hover:scale-95" 
+                class="flex justify-center items-center bg-brand-terciary-base h-10 min-w-10 rounded-md hover:scale-95" 
                 href={signalUrlFilter.value}
             >
                 <Icon 
