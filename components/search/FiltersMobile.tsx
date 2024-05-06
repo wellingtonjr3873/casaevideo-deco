@@ -1,9 +1,7 @@
 import type { Filter, FilterToggle, FilterToggleValue, ProductListingPage } from "apps/commerce/types.ts";
 import { useSignal } from "@preact/signals";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
-import { parseRange } from "apps/commerce/utils/filters.ts";
 import Avatar from "deco-sites/casaevideo/components/ui/Avatar.tsx";
-import { formatPrice } from "deco-sites/casaevideo/sdk/format.ts";
 import RangePrice from "deco-sites/casaevideo/components/search/RangePrice.tsx";
 
 import { useEffect } from "preact/hooks";
@@ -11,23 +9,21 @@ import { useEffect } from "preact/hooks";
 
 
 type ChildrenFilter = {
-    composeFilters: (filterName: string, value: string) => void;
+    composeFilters: (filterName: string, value: string, url: string) => void;
     selectedFilters: string
 }
 const isToggle = (filter: Filter): filter is FilterToggle =>
     filter["@type"] === "FilterToggle";
 
-function ValueItem({ url, label, value, composeFilters, selectedFilters }: FilterToggleValue & ChildrenFilter) {
-
-
-    const filterName = url.split(".")!.pop()!.split("=")[0];
-    const composedFilter = `&filter.${filterName}=${value}`
+function ValueItem({ url, label, value, composeFilters, selectedFilters, rootCategory }: FilterToggleValue & ChildrenFilter & {rootCategory: string}) {
+ 
+    const composedFilter = `filter.${rootCategory}=${value}`
     const isSelected = selectedFilters.includes(composedFilter);
 
     return (
         <li className="py-2 w-full">
             <button href={url} rel="nofollow" className="flex items-center gap-2" onClick={() => {
-                composeFilters(filterName, value)
+                composeFilters(rootCategory, value, url)
             }}>
                 <div checked={isSelected} className="checkbox checkbox-warning w-4 h-4 border-brand-secondary-200 rounded-[4px] border-[2.75px]" />
                 <span className="small-regular w-full break-words text-left">{label}</span>
@@ -73,10 +69,10 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
                 const isSelected = selectedFilters.includes(composedFilter);
 
                 if (key === "tamanho") {
-                    return (
+                    return (    
                         <li key={index}>    
                             <button rel="nofollow" onClick={() => {
-                                composeFilters(key, value)
+                                composeFilters(key, value, url)
                             }}>
                                 <Avatar content={value} variant={isSelected ? "active" : "default"} />
                             </button>
@@ -84,7 +80,7 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
                     );
                 }
 
-                return <ValueItem key={index} {...item} composeFilters={composeFilters} selectedFilters={selectedFilters} />;
+                return <ValueItem key={index} {...item} composeFilters={composeFilters} selectedFilters={selectedFilters} rootCategory={key} />;
             })}
 
             {values.length > 6 && (
@@ -92,17 +88,16 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
                     <div className="more-content">
                         <ul className="flex flex-wrap gap-2 flex-row">
                             {values.slice(6).map((item, index) => {
-                                const { url, value, label } = item;
+                                const { url, value } = item;
                                 
-                                const filterName = url.split(".")!.pop()!.split("=")[0];
-                                const composedFilter = `&filter.${filterName}=${value}`
-                                const isSelected = selectedFilters.includes(label);
+                                const composedFilter = `&filter.${key}=${value}`
+                                const isSelected = selectedFilters.includes(composedFilter);
                                 
                                 if (key === "tamanho") {
                                     return (
                                         <li key={index}>
                                             <button href={url} rel="nofollow" onClick={() => {
-                                                composeFilters(filterName, value)
+                                                composeFilters(key, value, url)
                                             }}>
                                                 <Avatar content={value} variant={isSelected ? "active" : "default"} />
                                             </button>
@@ -110,7 +105,7 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
                                     );
                                 }
                                 return <ValueItem key={index} {...item} composeFilters={composeFilters}
-                                    selectedFilters={selectedFilters} />;
+                                    selectedFilters={selectedFilters} rootCategory={key} />;
                             })}
                         </ul>
                     </div>
@@ -173,18 +168,24 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
 // }
 
 const FilstersMobile = (props: Pick<ProductListingPage, "filters" | "sortOptions">) => {
-    const { filters, sortOptions } = props;
+    const { filters } = props;
 
     const selectedFilters = useSignal("");
 
-    const composeFilters = (filterName: string, filterValue: string) => {
+    const composeFilters = (filterName: string, filterValue: string, url: string) => {
+        console.log(url, 'seee')
+        const firstParameter = url.split("&")[0].substring(1);
+        
 
-        const composedFilter = `&filter.${filterName}=${filterValue}`
+        const categoryParameterIsExist = selectedFilters.value.includes(firstParameter)
+    
+        const composedFilter = categoryParameterIsExist ? `&filter.${filterName}=${filterValue}` : `${firstParameter}&filter.${filterName}=${filterValue}` ;
 
         if (selectedFilters.value.includes(composedFilter)) {
             selectedFilters.value = selectedFilters.value.replace(composedFilter, "");
             return
         }
+
         selectedFilters.value = `${selectedFilters.value}${composedFilter}`;
     }
 
@@ -196,7 +197,6 @@ const FilstersMobile = (props: Pick<ProductListingPage, "filters" | "sortOptions
     useEffect(() => {
         selectedFilters.value = window.location.search.substring(1);
     }, []);
-
 
     //verifica se há pelo menos 1 filtro ativo
     const hasFilterActive = filters.filter(isToggle).some(filter => filter.values.some(value => value.selected));
