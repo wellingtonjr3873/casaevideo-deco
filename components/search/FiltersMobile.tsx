@@ -67,13 +67,12 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
     return (
         <ul className={`flex flex-wrap gap-2 ${flexDirection} pt-3`}>
             {values.slice(0, 6).map((item, index) => {
-                const { url, value, label } = item;
+                const { url, value } = item;
 
                 const composedFilter = `&filter.${key}=${value}`
                 const isSelected = selectedFilters.includes(composedFilter);
 
                 if (key === "tamanho") {
-    
                     return (
                         <li key={index}>    
                             <button rel="nofollow" onClick={() => {

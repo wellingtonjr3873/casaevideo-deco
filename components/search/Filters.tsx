@@ -1,6 +1,5 @@
 import Avatar from "$store/components/ui/Avatar.tsx";
-import { formatPrice } from "$store/sdk/format.ts";
-import { parseRange } from "apps/commerce/utils/filters.ts";
+  
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 
 import type {
@@ -9,6 +8,7 @@ import type {
   FilterToggleValue,
   ProductListingPage,
 } from "apps/commerce/types.ts";
+
 import RangePrice from "deco-sites/casaevideo/islands/RangePrice.tsx";
 
 interface Props {
@@ -53,7 +53,7 @@ function FilterListSelected({ values }: FilterToggle) {
 }
 
 function FilterValues({ key, values }: FilterToggle) {
-  const flexDirection = ["tamanho", "cor"].includes(key) ? "flex-row" : "flex-col";
+  const flexDirection = ["tamanho"].includes(key) ? "flex-row" : "flex-col";
 
   return (
     <ul className={`flex flex-wrap gap-2 ${flexDirection} pt-3`}>
@@ -80,7 +80,7 @@ function FilterValues({ key, values }: FilterToggle) {
                 {values.slice(6).map((item, index) => {
                   const { url, selected, value } = item;
 
-                  if (key === "cor" || key === "tamanho") {
+                  if (key === "tamanho") {
                     return (
                       <li key={index}>
                         <a href={url} rel="nofollow">
@@ -199,16 +199,16 @@ function Filters({ filters }: Props) {
                 </details>
               </li>
               :
-              <li key={index} className="dropdown bg-neutral-50 py-3 px-5">
+              <div key={index} className="dropdown bg-neutral-50 py-3 px-5">
                 <div className="group">
                   <div className="m-1 flex justify-between items-center cursor-pointer font-bold text-base">
                     {
                       filter.label !== 'Preço' ? filter.label : 'Faixa de Preço'
-                    }
+                    } 
                   </div>
                   <RangePrice />
                 </div>
-              </li>
+              </div>
           ))
         }
       </ul>
