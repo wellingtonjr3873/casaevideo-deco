@@ -25,19 +25,19 @@ interface Categories {
 export interface Props {
   /** @title Configuração Tip Bar */
   banner?: {
-    tipBgColor: string;
+    tipBgColor?: string;
     mobile: {
-      src: ImageWidget;
-      alt: string;
-      altura: number;
-      largura: number;
+      src?: ImageWidget;
+      alt?: string;
+      altura?: number;
+      largura?: number;
     };
 
     desktop: {
-      src: ImageWidget;
-      alt: string;
-      altura: number;
-      largura: number;
+      src?: ImageWidget;
+      alt?: string;
+      altura?: number;
+      largura?: number;
     };
   };
   /** @title Search Bar */

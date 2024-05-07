@@ -253,7 +253,7 @@ function Footer({
           <div class="gap-4 hidden lg:flex">
             <p class="flex gap-2 small-underline text-brand-secondary-900">
               <Icon id="Padlock" size={25} />
-              <a href="">Politica de privacide</a>
+              <a href="">Politica de privacidade</a>
             </p>
             <span class="h-[23px] w-[1px] bg-brand-secondary-300" />
             <a href="" class="small-underline text-brand-secondary-900">
