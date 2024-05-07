@@ -22,23 +22,19 @@ interface Categories {
     href: string;
   }[];
 }
+
+interface TopBanner{
+  src?: ImageWidget;
+  alt?: string;
+  altura?: number;
+  largura?: number;
+}
 export interface Props {
   /** @title Configuração Tip Bar */
   banner?: {
-    tipBgColor: string;
-    mobile: {
-      src: ImageWidget;
-      alt: string;
-      altura: number;
-      largura: number;
-    };
-
-    desktop: {
-      src: ImageWidget;
-      alt: string;
-      altura: number;
-      largura: number;
-    };
+    tipBgColor?: string;
+    mobile?: TopBanner;
+    desktop?: TopBanner;
   };
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
@@ -116,18 +112,18 @@ function Header({
               <Picture>
                 <Source
                   media="(max-width: 768px)"
-                  src={banner.mobile.src}
-                  width={banner.mobile.largura}
-                  height={banner.mobile.altura}
+                  src={banner?.mobile?.src || ""}
+                  width={banner?.mobile?.largura || 0}
+                  height={banner?.mobile?.altura || 0}
                 />
                 <Source
                   media="(min-width: 768px)"
-                  src={banner.desktop.src}
-                  width={banner.desktop.largura}
-                  height={banner.desktop.altura}
+                  src={banner?.desktop?.src || ""}
+                  width={banner?.desktop?.largura || 0}
+                  height={banner?.desktop?.altura || 0}
                 />
 
-                <img src={banner?.desktop.src} />
+                <img src={banner?.desktop?.src || ""} />
               </Picture>
             </div>
           }
@@ -193,18 +189,18 @@ function Header({
             <Picture>
               <Source
                 media="(max-width: 768px)"
-                src={banner.mobile.src}
-                width={banner.mobile.largura}
-                height={banner.mobile.altura}
+                src={banner?.mobile?.src || ""}
+                width={banner?.mobile?.largura || 0}
+                height={banner?.mobile?.altura || 0}
               />
               <Source
                 media="(min-width: 768px)"
-                src={banner.desktop.src}
-                width={banner.desktop.largura}
-                height={banner.desktop.altura}
+                src={banner?.desktop?.src || ""}
+                width={banner?.desktop?.largura || 0}
+                height={banner?.desktop?.altura || 0}
               />
 
-              <img src={banner?.desktop.src} />
+              <img src={banner?.desktop?.src || ""} />
             </Picture>
           </div>
         }
