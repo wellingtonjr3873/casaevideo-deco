@@ -106,6 +106,7 @@ function ProductCard(
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
+  const titleImage = front.url?.split("/")[6].replaceAll("-"," ").split(".")[0];
 
   const { listPrice, price, pixPrice, installments, availability } = useOffer(offers);
 
@@ -287,7 +288,8 @@ function ProductCard(
         >
           <Image
             src={front.url!}
-            alt={front.alternateName}
+            title={titleImage}
+            alt={name}
             width={WIDTH}
             height={HEIGHT}
             class={`bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
@@ -303,7 +305,8 @@ function ProductCard(
             l?.onMouseOver?.image == "Change image") && device == "desktop" && (
               <Image
                 src={back?.url ?? front.url!}
-                alt={back?.alternateName ?? front.alternateName}
+                title={titleImage}
+                alt={name}
                 width={WIDTH}
                 height={HEIGHT}
                 class="bg-base-100 col-span-full row-span-full transition-opacity rounded w-full opacity-0 lg:group-hover:opacity-100"
