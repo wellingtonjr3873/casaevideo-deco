@@ -1,10 +1,17 @@
 import { asset, Head } from "$fresh/runtime.ts";
 
-function GlobalTags() {
+export interface Props{
+  url: string;
+}
+
+function GlobalTags({url}: Props) {
   return (
     <Head>
       {/* Enable View Transitions API */}
       <meta name="view-transition" content="same-origin" />
+
+      {/* Enable canonical tag */}
+      <link rel="canonical" href={url || ""} />
 
       {/* Tailwind v3 CSS file */}
       <link href={asset("/styles.css")} rel="stylesheet" />
