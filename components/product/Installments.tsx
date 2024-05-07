@@ -43,7 +43,7 @@ const Installments = ({installments}: Props) => {
     const availableOffersDictionary = {
       "picpay": "Pic pay",
       "visa": "Cartão de crédito",
-      "casaevideo": "Cartão Casa & Video",
+      "casaevideo": "Cartão Casa&Video",
       "amedigital": "Ame Digital",
       "pix": "Pix",
       "googlepay": "Google Pay"
