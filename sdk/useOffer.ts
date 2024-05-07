@@ -40,11 +40,11 @@ const installmentToString = (
     return "";
   }
 
-  const withTaxes = sellingPrice < price - price * 0.055 ;
+  const withTaxes = sellingPrice < price - price * 0.055;
 
-  return `${billingDuration}x de R$ ${billingIncrement.toFixed(2).replace('.', ',')} ${
-    withTaxes ? "com juros" : "sem juros"
-  }`;
+  return `${billingDuration}x de R$ ${
+    billingIncrement.toFixed(2).replace(".", ",")
+  } ${withTaxes ? "com juros" : "sem juros"}`;
 };
 
 function getPixPrice(offer: Offer, listPrice: number) {
@@ -64,6 +64,7 @@ function getPixPrice(offer: Offer, listPrice: number) {
 
 export const useOffer = (aggregateOffer?: AggregateOffer) => {
   const offer = aggregateOffer?.offers[0];
+
   const listPrice = offer?.priceSpecification.find((spec) =>
     spec.priceType === "https://schema.org/ListPrice"
   );
@@ -81,6 +82,7 @@ export const useOffer = (aggregateOffer?: AggregateOffer) => {
     pixPrice,
     availability,
     seller,
+    sellerName: offer?.sellerName,
     installments: installment && price?.price
       ? installmentToString(installment, price?.price)
       : null,
