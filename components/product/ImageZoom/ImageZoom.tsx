@@ -1,16 +1,14 @@
 import Image from "apps/website/components/Image.tsx";
 
-function zoom(event) {
-  const imagem = document.getElementById('imagem') as any;
+function zoom(event: MouseEvent) {
+  const imagem = document.getElementById('imagem') as HTMLElement;
   const container = document.querySelector('.img-container');
 
   const rect = container?.getBoundingClientRect();
 
   // Calcula a posição do mouse em relação ao container
-  //@ts-ignore
-  const mouseX = event.clientX - rect?.left;
-  //@ts-ignore
-  const mouseY = event.clientY - rect?.top;
+  const mouseX = event.clientX - rect?.left!;
+  const mouseY = event.clientY - rect?.top!;
 
   // Calcula o percentual do zoom baseado na posição do mouse
   const percentualZoom = 2; // Ajuste conforme necessário
@@ -58,8 +56,8 @@ export default function ImageZoom(image: Props) {
 
   return (
     <div
-     onmousemove={zoom}
-     onmouseleave={reset}
+     onMouseMove={zoom}
+     onMouseLeave={reset}
      class="img-container" style="overflow: hidden;object-fit: scale-down;position: relative;width: 100%;height: 400px;">
       <Image
         id="imagem"

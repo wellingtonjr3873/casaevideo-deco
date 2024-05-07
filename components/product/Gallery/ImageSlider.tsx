@@ -96,8 +96,8 @@ export default function GallerySlider(props: Props) {
               class="carousel-item w-full"
             >
               <ImageZoom
-                url={img.url}
-                alternateName={img.alternateName}
+                url={`${img.url}`}
+                alternateName={`${img.alternateName}`}
                 width={width}
                 height={height}
                 index={index}

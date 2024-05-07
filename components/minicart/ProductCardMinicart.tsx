@@ -59,7 +59,7 @@ function ProductCardMinicart(
         decoding="async"
       />
       <div id="containerInfoMinicart" class={`flex flex-col gap-2`}>
-          <h2 class={`text-xs font-bold text-neutral-900 textTruncate h-9`}>{name}</h2>
+          <h2 class={`text-xs font-bold text-neutral-900 textTruncate h-9 max-h-7`}>{name}</h2>
           <h3 class={`text-sm font-bold text-neutral-900 flex items-end gap-2`}>{formatPrice(price, offers?.priceCurrency)} <span class={`text-xs font-normal`}>no Pix</span></h3>
           <AddToCartButtonVTEX
             eventParams={{ items: [] }}
