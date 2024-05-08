@@ -173,10 +173,8 @@ const FilstersMobile = (props: Pick<ProductListingPage, "filters" | "sortOptions
     const selectedFilters = useSignal("");
 
     const composeFilters = (filterName: string, filterValue: string, url: string) => {
-        console.log(url, 'seee')
         const firstParameter = url.split("&")[0].substring(1);
-        
-
+    
         const categoryParameterIsExist = selectedFilters.value.includes(firstParameter)
     
         const composedFilter = categoryParameterIsExist ? `&filter.${filterName}=${filterValue}` : `${firstParameter}&filter.${filterName}=${filterValue}` ;
