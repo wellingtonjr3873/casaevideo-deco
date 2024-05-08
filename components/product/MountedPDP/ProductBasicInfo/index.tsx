@@ -15,7 +15,8 @@ interface PropertyValue {
 
 function ProductBasicInfo({ product, tags }: Props) {
   const {
-    gtin,
+    // gtin,
+    sku,
     isVariantOf,
   } = product;
 
@@ -51,9 +52,9 @@ function ProductBasicInfo({ product, tags }: Props) {
       </h1>
 
       <div>
-        {gtin && (
+        {sku && (
           <span class="x-small-regular text-base-300 flex gap-2">
-            <span>(Código: {gtin})</span>
+            <span>(Código: {sku})</span>
             <span>
               Marca:{" "}
               <span class="text-brand-primary-600 underline">
