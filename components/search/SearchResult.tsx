@@ -97,7 +97,7 @@ function Result({
     <>
       <div class="container px-4 sm:py-10">
         <div class="flex flex-col md:flex-row items-left sm:p-0 mb-2  text-left mt-[24px]">
-          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
+          <Breadcrumb itemListElement={breadcrumb?.itemListElement} isCategory={true} />
           <span class="block md:hidden h6-bold mt-[24px]">
             {pageName && pageName}
           </span>
