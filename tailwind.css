@@ -445,6 +445,10 @@
   scrollbar-color: #C6C6C6 #f3f3f3;
 }
 
+.childrenSectionFull > section{
+  width: 100%;
+}
+
 .subMenuChildren::-webkit-scrollbar {
   width: 14px;
 }

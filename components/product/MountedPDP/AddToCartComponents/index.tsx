@@ -29,10 +29,14 @@ function AddToCartComponents({ page }: Props) {
 
   const {
     productID,
-    offers
+    offers,
+    
+    
   } = product;
+
   const {
     seller = "1",
+    sellerName,    
     price,
     listPrice,
     availability,
@@ -47,9 +51,9 @@ function AddToCartComponents({ page }: Props) {
 
   const productWithVolts = product.isVariantOf?.additionalProperty.find((prop) => prop.name?.toLocaleLowerCase().includes("volt"));
 
-  function verifySeller(seller: string) {
-    return /^CV\d+$/.test(seller);
-  }
+  // function verifySeller(seller: string) {
+  //   return /^CV\d+$/.test(seller);
+  // }
 
   const quantity = useSignal(1);
 
@@ -89,7 +93,7 @@ function AddToCartComponents({ page }: Props) {
 
           <span class="small-regular text-neutral-900 flex gap-2 order-4">
             Vendido e entregue por:
-            <strong class="text-brand-primary-700">{seller === "1" || verifySeller(seller) ? "Casa & Video" : seller}</strong>
+            <strong class="text-brand-primary-700">{sellerName}</strong>
           </span>
         </>
       ) : <OutOfStock productID={productID} />}
