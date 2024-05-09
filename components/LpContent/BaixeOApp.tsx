@@ -1,11 +1,4 @@
-// import Image from "apps/website/components/Image.tsx";
-// import type { ImageWidget, HTMLWidget } from "apps/admin/widgets.ts";
 
-// export interface Props{
-//     imgBox: ImageWidget;
-//     alt: string;
-//     content: HTMLWidget;
-// }
 
 export default function BaixeOApp() {
  
