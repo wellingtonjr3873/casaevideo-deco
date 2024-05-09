@@ -14,7 +14,7 @@ function App(props: AppProps) {
       <Theme />
 
       {/* Include Icons and manifest */}
-      <GlobalTags />
+      <GlobalTags url={props.url.href}/>
 
       {/* Rest of Preact tree */}
       <props.Component />
