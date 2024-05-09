@@ -137,7 +137,7 @@ function Searchbar({
                   <ul class="ml-2">
                       {attributes?.map(item => {
                         return <li>
-                              <a href={`/${item.key}`} class="x-small-regular" >
+                              <a href={`/search?q=${item.value}`} class="x-small-regular" >
                                 {item.labelValue}
                               </a>
                           </li>
