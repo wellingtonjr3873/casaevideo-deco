@@ -6,10 +6,11 @@ import type { Product } from "apps/commerce/types.ts";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 import Image from "apps/website/components/Image.tsx";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
-import { FreeShippingIcon } from "deco-sites/casaevideo/components/icons/FreeShippingIcon.tsx";
-import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
+import { Tags } from "deco-sites/casaevideo/components/types/TagsProps.ts";
+import { clusterFilter } from "deco-sites/casaevideo/components/utils/clusterFilter.ts";
 
 export interface Layout {
+  tag?: Tags;
   basics?: {
     contentAlignment?: "Left" | "Center";
     oldPriceSize?: "Small" | "Normal";
@@ -73,30 +74,31 @@ function ProductCardHorizontal(
     // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
     advertisement,
   } = product;
+
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
   const { listPrice, price, installments } = useOffer(offers);
-  const { layoutSelected } = useUI();
 
-  const l = layout;
+  const productClusters = product.additionalProperty && product.additionalProperty;
+  const filteredCluesters = productClusters && clusterFilter(productClusters);
+
+  const tag = layout?.tag;
+  const clusterIdtag = tag?.id;
+  const clusterActiveTag = tag?.active;
+  const clusterTagBgColor = tag?.bgColor;
+  const iconPathTag = tag?.icon?.[0];
+  const textTag = tag?.text;
+
   const align =
-    !l?.basics?.contentAlignment || l?.basics?.contentAlignment == "Left"
+    !layout?.basics?.contentAlignment || layout?.basics?.contentAlignment == "Left"
       ? "left"
       : "center";
 
 
-  const gridLayout = `card card-compact shadow-normal h-full group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 ${align === "center" ? "text-center" : "text-start"
-    } 
-    ${l?.onMouseOver?.card === "Move up" &&
-    "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
-    }
-  `
-
-
   const listLayout = `gap-2 rounded-lg flex shadow-normal group relative w-full bg-neutral-50 p-2 md:p-4 card-bordered border-brand-secondary-100 ${align === "center" ? "text-center" : "text-start"
     } 
-${l?.onMouseOver?.card === "Move up" &&
+${layout?.onMouseOver?.card === "Move up" &&
     "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
     }`
 
@@ -106,7 +108,7 @@ ${l?.onMouseOver?.card === "Move up" &&
       aria-label="view product"
       class="btn btn-block"
     >
-      {l?.basics?.ctaText || "Ver produto"}
+      {layout?.basics?.ctaText || "Ver produto"}
     </a>
   );
 
@@ -114,34 +116,40 @@ ${l?.onMouseOver?.card === "Move up" &&
     <>
       {/* Prices & Name */}
       <div class={`flex-auto flex justify-between flex-col md:flex-row gap-3 lg:gap-4`}>
-        {l?.hide?.productName && l?.hide?.productDescription
+        {layout?.hide?.productName && layout?.hide?.productDescription
           ? ""
           : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
-              <div class="max-w-[100px] mt-0 md:mt-4 hidden md:block md:mb-3">
-                <FreeShippingIcon color="black" small={true} />
+              <div>
+                {filteredCluesters && clusterActiveTag && filteredCluesters?.map((clusterId) => (
+                  clusterId == clusterIdtag &&
+                  <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-1 md:px-2 items-center text-xs whitespace-nowrap" style={{ backgroundColor: clusterTagBgColor }}>
+                    <img src={iconPathTag} />
+                    {textTag}
+                  </div>
+                ))
+                }
               </div>
-              {/* Prouct Advertisement TAG */}
               <div class="h-3 flex justify-start items-center">
                 {advertisement?.adId && <span class="text-[12px] text-[#989898]">Patrocinado</span>}
               </div>
-              {l?.hide?.productName ? "" : (
+              {layout?.hide?.productName ? "" : (
                 <h2
                   class={`truncate  md:body-bold max-h-40 md:max-h-full line-clamp-2 md:min-h-[33px] whitespace-break-spaces max-w-[160px] md:max-w-[378px] h6-bold`}
                 >{name ?? ""}</h2>
               )}
             </div>
           )}
-        {l?.hide?.allPrices ? "" : (
+        {layout?.hide?.allPrices ? "" : (
           <div class={`flex flex-col gap-2 justify-end`}>
             <div
-              class={`flex flex-col gap-0 ${l?.basics?.oldPriceSize === "Normal"
+              class={`flex flex-col gap-0 ${layout?.basics?.oldPriceSize === "Normal"
                 ? "lg:flex-row lg:gap-2"
                 : ""
                 } ${align === "center" ? "justify-center" : "justify-start"} text-end md:text-start`}
             >
               <div
-                class={`flex text-base-300 xx-small-regular md:small-regular md:text-start gap-2 ${l?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""} justify-end`}
+                class={`flex text-base-300 xx-small-regular md:small-regular md:text-start gap-2 ${layout?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""} justify-end`}
               >
                 <span class="line-through">
                   {formatPrice(listPrice, offers?.priceCurrency)}
@@ -159,7 +167,7 @@ ${l?.onMouseOver?.card === "Move up" &&
                 {formatPrice(price, offers?.priceCurrency)} no PIX
               </div>
             </div>
-            {l?.hide?.installments
+            {layout?.hide?.installments
               ? ""
               : (
                 <div class={`text-brand-secondary-900 x-small-regular text-end md:text-start truncate pb-3`}>
@@ -169,23 +177,6 @@ ${l?.onMouseOver?.card === "Move up" &&
           </div>
 
         )}
-
-        {/* SKU Selecagsor */}
-        {
-          /* {l?.elementsPositions?.skuSelector === "Bottom" && (
-          <>
-            {l?.hide?.skuSelector ? "" : (
-              <ul
-                class={`flex items-center gap-2 w-full ${
-                  align === "center" ? "justify-center" : "justify-start"
-                } ${l?.onMouseOver?.showSkuSelector ? "lg:hidden" : ""}`}
-              >
-                {skuSelector}
-              </ul>
-            )}
-          </>
-        )} */
-        }
         <div class="absolute top-2 right-2 md:top-3 md:right-4">
           <WishlistButton
             productGroupID={productGroupID}
@@ -225,16 +216,6 @@ ${l?.onMouseOver?.card === "Move up" &&
       />
       <figure class={`flex flex-col gap-2 items-center`}
       >
-        {/* Wishlist button */}
-        {layoutSelected?.value === "grid" &&
-          <div class="flex justify-between items-center w-full h-6">
-            {/* <FreeShippingIcon color="black" small={true} /> */}
-            <WishlistButton
-              productGroupID={productGroupID}
-              productID={productID}
-            />
-          </div>
-        }
         {/* Product Images */}
         <div
           aria-label="view product"
@@ -245,7 +226,7 @@ ${l?.onMouseOver?.card === "Move up" &&
             alt={front.alternateName}
             width={WIDTH}
             height={HEIGHT}
-            class={`max-h-52 bg-base-100 col-span-full row-span-full rounded w-full ${l?.onMouseOver?.image == "Zoom image"
+            class={`max-h-52 bg-base-100 col-span-full row-span-full rounded w-full ${layout?.onMouseOver?.image == "Zoom image"
               ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
               : ""
               }`}
@@ -254,8 +235,8 @@ ${l?.onMouseOver?.card === "Move up" &&
             loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
-          {(!l?.onMouseOver?.image ||
-            l?.onMouseOver?.image == "Change image") && device == "desktop" && (
+          {(!layout?.onMouseOver?.image ||
+            layout?.onMouseOver?.image == "Change image") && device == "desktop" && (
               <Image
                 src={back?.url ?? front.url!}
                 alt={back?.alternateName ?? front.alternateName}
@@ -268,27 +249,6 @@ ${l?.onMouseOver?.card === "Move up" &&
               />
             )}
         </div>
-        {
-          /* <figcaption
-          class={`
-          absolute bottom-1 left-0 w-full flex flex-col gap-3 p-2 ${
-            l?.onMouseOver?.showSkuSelector || l?.onMouseOver?.showCta
-              ? "transition-opacity opacity-0 lg:group-hover:opacity-100"
-              : "lg:hidden"
-          }`}
-        >
-
-          {l?.onMouseOver?.showSkuSelector && (
-            <ul class="flex justify-center items-center gap-2 w-full">
-              {skuSelector}
-            </ul>
-          )}
-          {l?.onMouseOver?.showCta && cta}
-        </figcaption> */
-        }
-        {/* <div class="max-w-[100px] mt-0 md:hidden block">
-          <FreeShippingIcon color="black" small={true} />
-        </div> */}
       </figure>
 
       {productCardPrice}
