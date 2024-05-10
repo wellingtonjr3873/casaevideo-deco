@@ -9,7 +9,7 @@ interface Props {
 
 function Breadcrumb({ itemListElement = [], homeName = "Casa&Video", isCategory = false }: Props) {
   const items = [{ name: homeName, item: "/" }, ...itemListElement];
-  console.log(items.length)
+  
   return (
     <div class="overflow-visible x-small-regular md:body-regular text-neutral-900 p-0">
       <ul class="last:x-small-bold md:last:body-bold flex-wrap flex min-h-min items-center whitespace-nowrap">
