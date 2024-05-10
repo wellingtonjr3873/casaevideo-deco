@@ -55,12 +55,12 @@ const DEFAULT_PROPS = {
 
 function Question({ question, answer }: Question) {
   return (
-    <details class="collapse collapse-arrow join-item bg-complementary-3 outline-0 rounded-none border-none">
-      <summary class="collapse-title body-bold md:text-lg font-medium bg-complementary-3 outline-0 rounded-none border-none">
+    <details class="collapse collapse-arrow join-item outline-0 !rounded-lg border border-neutral-100">
+      <summary class="collapse-title body-bold md:h6-bold  bg-neutral-0 outline-0 border-b border-neutral-100">
         {question}
       </summary>
       <div
-        class="collapse-content"
+        class="collapse-content bg-neutral-0 !py-6 !px-4 md:!px-8 md:py-6"
         dangerouslySetInnerHTML={{ __html: answer }}
       />
     </details>
@@ -89,63 +89,24 @@ export default function FAQ(props: Props) {
   const {
     questions = [],
     title,
-    description,
     contact,
-    layout,
   } = { ...DEFAULT_PROPS, ...props };
 
   return (
     <>
-      {(!layout?.variation || layout?.variation === "Compact") && (
-        <div class="w-full container flex flex-col gap-4 lg:gap-8">
+        <div class="container flex flex-col gap-2 lg:gap-4 w-full px-4 py-6 max-w-[1280px] xl-b:px-0">
           <div class="flex flex-col gap-8 lg:gap-10">
             <div
               class="flex flex-col gap-8 lg:gap-10"
               dangerouslySetInnerHTML={{ __html: title }}
             />
-            <div class="join join-vertical w-full rounded-none gap-3">
+            <div class="join join-vertical w-full rounded-none gap-4">
               {questions.map((question) => <Question {...question} />)}
             </div>
           </div>
 
           <Contact {...contact} />
         </div>
-      )}
-
-      {layout?.variation === "Full" && (
-        <div class="w-full container flex flex-col px-4 py-8 lg:py-0 lg:px-0">
-          <div class="flex flex-col gap-8 lg:gap-10">
-            <div
-              class="flex flex-col gap-8 lg:gap-10"
-              dangerouslySetInnerHTML={{ __html: title }}
-            />
-            <div class="join join-vertical w-full  rounded-none gap-3">
-              {questions.map((question) => <Question {...question} />)}
-            </div>
-          </div>
-
-          <Contact {...contact} />
-        </div>
-      )}
-
-      {layout?.variation === "Side to side" && (
-        <div class="w-full container px-4 py-8 grid gap-8 grid-flow-row grid-cols-1 lg:grid-flow-col lg:grid-cols-2 lg:grid-rows-2 lg:py-10 lg:px-0">
-          <div class="order-1 lg:order-1">
-            <div
-              class="flex flex-col gap-8 lg:gap-10"
-              dangerouslySetInnerHTML={{ __html: title }}
-            />
-          </div>
-          <div class="order-2 lg:order-3 lg:row-span-2">
-            <div class="join join-vertical rounded-none gap-3">
-              {questions.map((question) => <Question {...question} />)}
-            </div>
-          </div>
-          <div class="order-3 lg:order-2">
-            <Contact {...contact} />
-          </div>
-        </div>
-      )}
     </>
   );
 }
