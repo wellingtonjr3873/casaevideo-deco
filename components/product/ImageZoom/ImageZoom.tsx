@@ -39,6 +39,7 @@ function reset() {
 export interface Props {
   url: string;
   alternateName: string
+  title?: string;
   width: number;
   height: number;
   index: number;
@@ -65,6 +66,7 @@ export default function ImageZoom(image: Props) {
         sizes="(max-width: 640px) 100vw, 40vw"
         style={` aspectRatio: ${aspectRatio}; transform-origin: 816px 296px;`}
         src={url!}
+        title={image.title}
         alt={alternateName}
         width={width}
         height={height}

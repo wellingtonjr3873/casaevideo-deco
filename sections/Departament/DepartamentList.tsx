@@ -87,9 +87,9 @@ function DepartamentList(props: Props) {
                   )}
                 {description &&
                   (
-                    <span class="text-base-content text-center small-regular">
+                    <h2 class="text-base-content text-center small-regular">
                       {description}
-                    </span>
+                    </h2>
                   )}
               </a>
             </Slider.Item>

@@ -46,20 +46,7 @@ export interface Props {
   miniBannerImages?: MiniBanner[];
 }
 
-const IMAGES_PROPS = {
-  miniBannerImages: [
-      {
-        "dateStartAt": "2024-04-22T09:46:00.000Z",
-        "dateEndAt": "2027-11-22T13:46:00.000Z",
-        "desktop": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/df74c65f-5bc0-428c-8aed-9700b43d746a",
-        "mobile": "https://ozksgdmyrqcxcwhnbepg.supabase.co/storage/v1/object/public/assets/3429/daaf0b07-4677-4945-b9d7-a227c936f508",
-        "alt": "BOSH",
-        "href": "/",
-        "preload": true,
-      }
-  ],
-  
-};
+const IMAGES_PROPS = {};
 
 function getCurrentDateTime() {
   const now = new Date();
@@ -86,14 +73,14 @@ function BannerItem(
         <source
           media="(max-width: 767px)"
           srcset={mobile}
-          width={78}
-          height={32}
+          width={79}
+          height={50}
         />
         <source
           media="(min-width: 768px)"
           srcset={desktop}
-          width={118}
-          height={48}
+          width={79}
+          height={50}
         />
         <img
           class="object-cover"
@@ -184,9 +171,9 @@ function MiniBannerCarousel(props: Props) {
     <>
       <div
         id={id}
-        class={`relative max-[768px]:h-[auto] ${spacesCss}`}
+        class={`relative max-[768px]:h-[auto] ${spacesCss} container w-full px-4 mx-auto max-w-[1280px] md:px-6 xl-b:px-0`}
       >
-        <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-5 max-w-[950px]">
+        <Slider class="carousel flex flex-row items-center justify-around carousel-center w-full col-span-full row-span-full gap-5 max-w-[1280px]">
           {miniBannerImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
             const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&

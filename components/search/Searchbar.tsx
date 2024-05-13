@@ -70,16 +70,18 @@ function Searchbar({
   const hasTerms = Boolean(searches.length);
 
   return (
-    <div class="w-full grid gap-8 overflow-y-hidden h-[40px]">
+    <div class="w-full grid gap-8 overflow-y-hidden h-[40px]" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
       <form
         id={id}
         action={action}
+        content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
         class="flex bg-[white] rounded-[4px] shadow-[0px_2px_8px_0px_rgba(57, 57, 57, 0.08)] overflow-hidden"
       >
         <input
           ref={searchInputRef}
           id="search-input"
-          class="flex-grow h-[40px] pl-[8px] pt-[8px] pb-[8px] outline-none small-regular text-brand-secondary-900 placeholder:text-brand-secondary-900 placeholder:font-[var(--font-family)]"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
+          class="flex-grow bg-[#FFF] h-[40px] pl-[8px] pt-[8px] pb-[8px] outline-none small-regular text-brand-secondary-900 placeholder:text-brand-secondary-900 placeholder:font-[var(--font-family)]"
           name={name}
           onInput={(e) => {
             const value = e.currentTarget.value;
@@ -101,7 +103,7 @@ function Searchbar({
         />
         <Button
           type="submit"
-          class="border-none h-[40px] p-[12px] min-h-fit"
+          class="border-none h-[40px] p-[12px] min-h-fit bg-[#FFF] shadow-none"
           aria-label="Search"
           for={id}
           tabIndex={-1}
@@ -137,7 +139,7 @@ function Searchbar({
                   <ul class="ml-2">
                       {attributes?.map(item => {
                         return <li>
-                              <a href={`/${item.key}`} class="x-small-regular" >
+                              <a href={`/search?q=${item.value}`} class="x-small-regular" >
                                 {item.labelValue}
                               </a>
                           </li>
