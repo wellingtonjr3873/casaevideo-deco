@@ -11,7 +11,7 @@ export function ToastSucess({ className }: Props){
     if(toastSucess.value){
         setInterval(() => {
             toastSucess.value = false;
-        }, 700000);
+        }, 5000);
 
         return(
             <>
@@ -41,7 +41,7 @@ export function ToastInfo({ className }: Props){
     if(toastInfo.value){
         setInterval(() => {
             toastInfo.value = false;
-        }, 7000);
+        }, 5000);
 
         return(
             <>
@@ -71,7 +71,7 @@ export function ToastWarning({ className }: Props){
     if(toastWarning.value){
         setInterval(() => {
             toastWarning.value = false;
-        }, 7000);
+        }, 5000);
 
         return(
             <>
@@ -101,7 +101,7 @@ export function ToastError({ className }: Props){
     if(toastError.value){
         setInterval(() => {
             toastError.value = false;
-        }, 7000);
+        }, 5000);
 
         return(
             <>

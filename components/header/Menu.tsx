@@ -151,7 +151,7 @@ const FooterMenu = () => {
     <a href="https://casaevideo.onelink.me/QIjQ/m3ukjv5d">
       <Icon id="AppleStoreImg" width={133} height={44} strokeWidth={0} />
     </a>
-    <a href="/">
+    <a href="https://casaevideo.onelink.me/QIjQ/m3ukjv5d">
       <Icon id="GooglePlayImg" width={133} height={44} strokeWidth={0} />
     </a>
   </div>
@@ -184,7 +184,7 @@ function Menu({ items }: Props) {
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
-              href="https://www.deco.cx"
+              href="/cupom-de-desconto"
             >
               <Icon id="MyCoupons" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
@@ -195,7 +195,7 @@ function Menu({ items }: Props) {
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
-              href="https://www.deco.cx"
+              href="https://api.whatsapp.com/send?1=pt_BR&phone=5521991043269"
             >
               <Icon id="BuyWhatsapp" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
@@ -206,7 +206,7 @@ function Menu({ items }: Props) {
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
-              href="https://www.deco.cx"
+              href="tel:+552140023535"
             >
               <Icon id="Televendas" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
@@ -260,11 +260,11 @@ function Menu({ items }: Props) {
           <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
-              href="https://www.deco.cx"
+              href="/cartaocasaevideo"
             >
               <Icon id="CreditCard" size={24} strokeWidth={2} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                Cartão Casa&Vídeo
+                Cartão Casa&Video
               </span>
             </a>
           </li>

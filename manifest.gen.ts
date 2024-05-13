@@ -63,6 +63,7 @@ import * as $$$$$$44 from "./sections/Social/WhatsApp.tsx";
 import * as $$$$$$45 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$46 from "./sections/UtilLinks/UtilLinks.tsx";
 
+
 const manifest = {
   "loaders": {
     "deco-sites/casaevideo/loaders/Layouts/ProductCard.tsx": $$$0,
@@ -130,6 +131,7 @@ const manifest = {
     "deco-sites/casaevideo/sections/Social/WhatsApp.tsx": $$$$$$44,
     "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$45,
     "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$46,
+
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,

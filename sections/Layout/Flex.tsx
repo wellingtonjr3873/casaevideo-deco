@@ -40,7 +40,7 @@ function Flex({ layout, children }: Props) {
   return (
     <div
       class={clx(
-        "flex",
+        "flex container childrenSectionFull max-w-[1280px]",
         flex.gap.mobile[layout?.gap?.mobile ?? "4"],
         flex.gap.desktop[layout?.gap?.desktop ?? "8"],
         flex.direction.mobile[layout?.direction?.mobile ?? "col"],

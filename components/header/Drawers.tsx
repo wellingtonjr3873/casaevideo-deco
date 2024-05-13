@@ -30,8 +30,8 @@ const Aside = (
     style?: string;
   },
 ) => (
-  <div class={`${style} grid h-full divide-y bg-brand-secondary-50 w-full lg:max-w-[354px]`}>
-    <div class="flex justify-between items-center bg-brand-terciary-1 lg:max-w-[354px] w-full">
+  <div class={`${style} grid h-full divide-y bg-brand-secondary-50 w-full lg:max-w-[410px]`}>
+    <div class="flex justify-between items-center bg-brand-terciary-1 lg:max-w-[410px] w-full">
       <h1 class="px-4 py-3">
         <span class="small-regular items-center flex gap-2">
           {iconTitle && iconTitle}
