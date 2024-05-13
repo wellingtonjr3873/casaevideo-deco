@@ -84,9 +84,9 @@ function UtilLinks(props: Props) {
             )}
 
           <div class="flex flex-col items-start">
-            <span class="text-base-content text-neutral-900 text-center small-bold max-[768px]:text-[12px]">
+            <h2 class="text-base-content text-neutral-900 text-center small-bold max-[768px]:text-[12px]">
               {title}
-            </span>
+            </h2>
             <span class="text-base-content text-neutral-900 text-[14px] text-center max-[768px]:text-[12px]">
               {buttonText}
             </span>

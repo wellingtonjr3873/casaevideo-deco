@@ -16,6 +16,7 @@ import * as $$$3 from "./loaders/Wishlist/create-wishlist.ts";
 import * as $$$4 from "./loaders/Wishlist/get-wishlist-items.ts";
 import * as $$$5 from "./loaders/Wishlist/get-wishlist-list.ts";
 import * as $$$6 from "./loaders/Wishlist/remove-wishlist-item.ts";
+
 import * as $$$$$$0 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryList.tsx";
 import * as $$$$$$2 from "./sections/Content/Benefits.tsx";

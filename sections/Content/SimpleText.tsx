@@ -4,7 +4,7 @@ export interface Text {
 }
 
 const DEFAULT_PROPS = {
-  text: "BATATA"  
+  text: "DEFAULT"  
 };
 
 export default function SimpleText(props: Text) {

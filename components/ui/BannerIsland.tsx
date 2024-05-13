@@ -31,6 +31,10 @@ export type BorderRadius =
 export interface Props {
   title?: string;
   /**
+   * @description Habilite apenas para utilizar o texto como titulo h1 da página
+   */
+  isH1?: boolean;
+  /**
    * @description Item's border radius in px
    */
   borderRadius: {
@@ -88,6 +92,7 @@ const DEFAULT_PROPS: Props = {
     mobile: "3xl",
     desktop: "3xl",
   },
+  isH1: false,
 };
 
 export default function BannnerIsland(props: Props) {
@@ -95,6 +100,7 @@ export default function BannnerIsland(props: Props) {
     title,
     borderRadius,
     banners = [],
+    isH1,
   } = { ...DEFAULT_PROPS, ...props };
   
   const id = useId();
@@ -104,9 +110,20 @@ export default function BannnerIsland(props: Props) {
       {title &&
         (
           <div class="py-6 md:py-0 md:pb-[8px] flex items-center mt-6">
-            <h2 class="h5-bold w-full">
-              {title}
-            </h2>
+            {isH1 ? 
+              <>
+                <h1 class="h5-bold w-full">
+                  {title}
+                </h1>
+              </>
+            :
+              <>
+                <h2 class="h5-bold w-full">
+                  {title}
+                </h2>
+              </>
+            }
+            
           </div>
         )}
         <div className="flex overflow-x-scroll md:overflow-x-hidden">
