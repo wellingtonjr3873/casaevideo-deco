@@ -92,14 +92,11 @@ function ShippingSimulation({ items }: Props) {
   const { simulate, cart } = useCart();
   const currentCepIsExist = IS_BROWSER ? localStorage?.getItem("USER_CEP") : undefined
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    let newCep = (e.target as HTMLInputElement).value;
-    newCep = newCep.replace(/\D/g, '');
-    newCep = newCep.replace(/^(\d{5})(\d)/, '$1-$2');
-    postalCode.value = newCep;
+  const formatarCEP = (cep: string) => {
+    cep = cep.replace(/\D/g, '');
+    cep = cep.replace(/^(\d{5})(\d)/, '$1-$2');
+    return cep;
   };
-
-
 
   const handleSimulation = useCallback(async () => {
     const cepNumbers = postalCode.value.replace(/-/g, '')
@@ -118,10 +115,6 @@ function ShippingSimulation({ items }: Props) {
       loading.value = false;
     }
   }, []);
-
-  if (currentCepIsExist) {
-    postalCode.value = currentCepIsExist;
-  }
 
   useEffect(() => {
     if (currentCepIsExist) {
@@ -153,9 +146,11 @@ function ShippingSimulation({ items }: Props) {
           maxLength={9}
           size={9}
           value={postalCode.value}
-          onChange={handleChange}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+            postalCode.value = formatarCEP((e.target as HTMLInputElement).value)
+          }}
         />
-        <Button type="submit" loading={loading.value}>
+        <Button class="min-w-[86px]" type="submit" loading={loading.value}>
           Calcular
         </Button>
       </form>

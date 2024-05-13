@@ -91,7 +91,7 @@ function Drawers({ menu, children, platform, minicartProps }: Props) {
             iconTitle={<Icon id="Cart" size={24} strokeWidth={2} />}
             title="Produtos Adicionados"
             onClose={() => displayCart.value = false}
-            style="w-[85%] grid-rows-[48px] lg:max-w-[354px]"
+            style="w-[85%] grid-rows-[48px] lg:max-w-[404px]"
           >
             <Cart platform={platform} minicartProps={minicartProps} />
           </Aside>

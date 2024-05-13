@@ -152,7 +152,9 @@ function ProductCard(
                   (
                     <div class="bg-success gap-1 h-4 sm:h-5 md:h-5 flex px-1 justify-center items-center text-neutral-50 rounded">
                       <Icon id="ArrowDown" width={16} height={16} />
-                      {(((listPrice- lowPrice)/listPrice) * 100).toFixed(0)}%
+                      {listPrice && lowPrice &&
+                       `${(((listPrice- lowPrice)/listPrice) * 100).toFixed(0)}%`
+                      }
                     </div>
                   )}
               </div>
