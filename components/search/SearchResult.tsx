@@ -1,5 +1,8 @@
 import { SendEventOnView } from "deco-sites/casaevideo/islands/Analytics.tsx";
+
 import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
+import { Layout as CardLayoutHorizontal } from "$store/components/product/ProductCardHorizontal.tsx";
+
 import Filters from "$store/components/search/Filters.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import SearchControls from "$store/islands/SearchControls.tsx";
@@ -64,6 +67,7 @@ export interface Props {
   page: ProductListingPage | null;
   layout?: Layout;
   cardLayout?: CardLayout;
+  cardHorizontal?: CardLayoutHorizontal;
   bannerCarousel?: Banner[];
   /** @maxItems 1 */
   bannerGrid?: SingleBanner[];
@@ -83,6 +87,7 @@ function Result({
   miniBannerCarousel,
   questions,
   startingPage = 0,
+  cardHorizontal
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
@@ -97,7 +102,7 @@ function Result({
     <>
       <div class="container px-4 sm:py-10">
         <div class="flex flex-col md:flex-row items-left sm:p-0 mb-2  text-left mt-[24px]">
-          <Breadcrumb itemListElement={breadcrumb?.itemListElement} />
+          <Breadcrumb itemListElement={breadcrumb?.itemListElement} isCategory={true} />
           <span class="block md:hidden h6-bold mt-[24px]">
             {pageName && pageName}
           </span>
@@ -167,7 +172,7 @@ function Result({
             <ProductGalleryIsland
               products={products}
               offset={offset}
-              layout={{ card: cardLayout, columns: layout?.columns }}
+              layout={{ card: cardLayout, columns: layout?.columns, cardHorizontal  }}
             />
             <div class="flex justify-center my-4">
               <div class="join">

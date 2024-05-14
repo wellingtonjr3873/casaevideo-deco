@@ -33,6 +33,7 @@ export interface Props {
   /** @title Configuração Tip Bar */
   banner?: {
     tipBgColor?: string;
+    href?: string;
     mobile?: TopBanner;
     desktop?: TopBanner;
   };
@@ -67,6 +68,7 @@ export interface Props {
 function Header({
   banner = {
     tipBgColor: "#b301d2",
+    href: "/",
     mobile: {
       src: "https://casaevideonewio.vteximg.com.br/arquivos/tip-mob.png",
       alt: "Banner Tip",
@@ -106,24 +108,26 @@ function Header({
       <>
         <header class="bg-brand-terciary-1">
           {banner &&
-            <div class={`h-12 flex items-center justify-center`} style={{ background: banner?.tipBgColor }}>
-              <Picture>
-                <Source
-                  media="(max-width: 768px)"
-                  src={banner?.mobile?.src || ""}
-                  width={banner?.mobile?.largura || 0}
-                  height={banner?.mobile?.altura || 0}
-                />
-                <Source
-                  media="(min-width: 768px)"
-                  src={banner?.desktop?.src || ""}
-                  width={banner?.desktop?.largura || 0}
-                  height={banner?.desktop?.altura || 0}
-                />
+            <a href={banner.href}>
+              <div class={`h-12 flex items-center justify-center`} style={{ background: banner?.tipBgColor }}>
+                <Picture>
+                  <Source
+                    media="(max-width: 768px)"
+                    src={banner?.mobile?.src || ""}
+                    width={banner?.mobile?.largura || 0}
+                    height={banner?.mobile?.altura || 0}
+                  />
+                  <Source
+                    media="(min-width: 768px)"
+                    src={banner?.desktop?.src || ""}
+                    width={banner?.desktop?.largura || 0}
+                    height={banner?.desktop?.altura || 0}
+                  />
 
-                <img src={banner?.desktop?.src || ""} />
-              </Picture>
-            </div>
+                  <img src={banner?.desktop?.src || ""} />
+                </Picture>
+              </div>
+            </a>
           }
           <div class="flex flex-col bg-brand-terciary-1 p-4 gap-6 lg:hidden">
             <div className="flex justify-between">
@@ -183,24 +187,26 @@ function Header({
     <>
       <header id="header" class="bg-brand-terciary-1">
         {banner &&
-          <div class={`h-12 flex items-center justify-center`} style={{ background: banner?.tipBgColor }}>
-            <Picture>
-              <Source
-                media="(max-width: 768px)"
-                src={banner?.mobile?.src || ""}
-                width={banner?.mobile?.largura || 0}
-                height={banner?.mobile?.altura || 0}
-              />
-              <Source
-                media="(min-width: 768px)"
-                src={banner?.desktop?.src || ""}
-                width={banner?.desktop?.largura || 0}
-                height={banner?.desktop?.altura || 0}
-              />
+          <a href={banner.href}>
+            <div class={`h-12 flex items-center justify-center`} style={{ background: banner?.tipBgColor }}>
+              <Picture>
+                <Source
+                  media="(max-width: 768px)"
+                  src={banner?.mobile?.src || ""}
+                  width={banner?.mobile?.largura || 0}
+                  height={banner?.mobile?.altura || 0}
+                />
+                <Source
+                  media="(min-width: 768px)"
+                  src={banner?.desktop?.src || ""}
+                  width={banner?.desktop?.largura || 0}
+                  height={banner?.desktop?.altura || 0}
+                />
 
-              <img src={banner?.desktop?.src || ""} />
-            </Picture>
-          </div>
+                <img src={banner?.desktop?.src || ""} />
+              </Picture>
+            </div>
+          </a>
         }
 
         {/* desktop version */}

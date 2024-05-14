@@ -46,7 +46,7 @@ export default function RangePrice() {
         if(filterAlreadyExist){
             const values = currentQueryString!.search.substring(1);
             const queryParams : {[key:string]: string}= {};
-            values.split('&').forEach(pair => {
+            values?.split('&').forEach(pair => {
                 const [key, value] = pair.split('=');
                 queryParams[key] = decodeURIComponent(value);
             });

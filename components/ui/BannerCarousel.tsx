@@ -211,33 +211,22 @@ function BannerCarousel(props: Props) {
           {filteredImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
             return (
-              <>
-                {
-                  image.preload && (
-                    <Head>
-                      <link rel="preload" href={image.mobile} as="image" media="(max-width: 767px)" />
-                      <link rel="preload" href={image.desktop} as="image" media="(min-width: 768px)" />
-                    </Head>
-                  )
-                }
-                <Slider.Item index={index} class="carousel-item w-full rounded-lg overflow-hidden">
-                  <BannerItem
-                    image={image}
-                    //LCP Refactor: antes pegava-se index 0 oque acarretava em erros, pois os banners cadastrados no painel que usam exibição/tempo continuam no map de imagens e isso faz com que essa logica de preload não se aplique a imagem LCP, pois o banner LCP poderá ter index 1 visto que o banner de index 0 expirou e não é mais exibido na tela.
-                    lcp={image.preload}
-                    id={`${id}::${index}`}
-                  />
-                  <SendEventOnClick
-                    id={`${id}::${index}`}
-                    event={{ name: "select_promotion", params }}
-                  />
-                  <SendEventOnView
-                    id={`${id}::${index}`}
-                    event={{ name: "view_promotion", params }}
-                  />
-                </Slider.Item>
-              </>
-
+              <Slider.Item index={index} class="carousel-item w-full rounded-lg overflow-hidden">
+                <BannerItem
+                  image={image}
+                  //LCP Refactor: antes pegava-se index 0 oque acarretava em erros, pois os banners cadastrados no painel que usam exibição/tempo continuam no map de imagens e isso faz com que essa logica de preload não se aplique a imagem LCP, pois o banner LCP poderá ter index 1 visto que o banner de index 0 expirou e não é mais exibido na tela.
+                  lcp={image.preload}
+                  id={`${id}::${index}`}
+                />
+                <SendEventOnClick
+                  id={`${id}::${index}`}
+                  event={{ name: "select_promotion", params }}
+                />
+                <SendEventOnView
+                  id={`${id}::${index}`}
+                  event={{ name: "view_promotion", params }}
+                />
+              </Slider.Item>
             );
           })}
         </Slider>
