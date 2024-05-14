@@ -55,8 +55,8 @@ const DEFAULT_PROPS = {
 
 function Question({ question, answer }: Question) {
   return (
-    <details class="collapse collapse-arrow join-item outline-0 !rounded-lg border border-neutral-100">
-      <summary class="collapse-title body-bold md:h6-bold  bg-neutral-0 outline-0 border-b border-neutral-100">
+    <details class="collapse collapse-arrow join-item bg-[#FFF] outline-0 rounded-none border-none">
+      <summary class="collapse-title body-bold md:text-lg font-medium bg-[#FFF] outline-0 rounded-none border-none">
         {question}
       </summary>
       <div

@@ -42,11 +42,12 @@ export default function RangePrice() {
     }, [signalMinValue.value, signalMaxValue.value]);
 
     useEffect(() => {
-        const filterAlreadyExist = currentQueryString.search?.includes('filter.price=');
+        const filterAlreadyExist = currentQueryString?.search?.includes('filter.price=');
         if(filterAlreadyExist){
-            const values = currentQueryString.search.substring(1);
-            const queryParams = {};
-            values.split('&').forEach(pair => {
+            const values = currentQueryString?.search.substring(1);
+            const queryParams: { [key: string]: string } = {};
+            
+            values?.split('&').forEach(pair => {
                 const [key, value] = pair.split('=');
                 queryParams[key] = decodeURIComponent(value);
             });

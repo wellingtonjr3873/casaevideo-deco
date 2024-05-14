@@ -122,9 +122,9 @@ function ProductCard(
           : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
               {layout?.hide?.productName ? "" : (
-                <h2
+                <h3
                   class="truncate text-[#393939] x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
-                >{name ?? ""}</h2>
+                >{name ?? ""}</h3>
               )}
             </div>
           )}
@@ -152,7 +152,9 @@ function ProductCard(
                   (
                     <div class="bg-success gap-1 h-4 sm:h-5 md:h-5 flex px-1 justify-center items-center text-neutral-50 rounded">
                       <Icon id="ArrowDown" width={16} height={16} />
-                      {(((listPrice- lowPrice)/listPrice) * 100).toFixed(0)}%
+                      {listPrice && lowPrice &&
+                       `${(((listPrice- lowPrice)/listPrice) * 100).toFixed(0)}%`
+                      }
                     </div>
                   )}
               </div>

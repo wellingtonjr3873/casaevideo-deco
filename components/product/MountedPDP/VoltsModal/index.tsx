@@ -27,7 +27,7 @@ function VoltsModal({ seller, volts, productID, quantity = 1, eventItem }: Props
           onClose={() => openVolts.value = false}
         >
           <div
-            class="modal-box flex flex-col items-center justify-center bg-neutral-50 px-10 py-4 rounded h-[274px] md:h-40 md:w-[756px] relative"
+            class="modal-box flex flex-col items-center justify-center bg-neutral-50 px-10 py-4 rounded h-[274px] md:h-40 md:w-[756px] relative overflow-hidden"
           >
             <strong class="h5-bold md:h4-bold text-neutral-1 text-center">Confirme o produto selecionado</strong>
 

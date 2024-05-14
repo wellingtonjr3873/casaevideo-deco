@@ -32,12 +32,12 @@ const Aside = (
 ) => (
   <div class={`${style} grid h-full divide-y bg-brand-secondary-50 w-full lg:max-w-[410px]`}>
     <div class="flex justify-between items-center bg-brand-terciary-1 lg:max-w-[410px] w-full">
-      <h1 class="px-4 py-3">
+      <p class="px-4 py-3">
         <span class="small-regular items-center flex gap-2">
           {iconTitle && iconTitle}
           {title}
         </span>
-      </h1>
+      </p>
       {onClose && (
         <Button class="btn btn-ghost" onClick={onClose}>
           <Icon id="CvlbCross" size={24} strokeWidth={2} />
@@ -91,7 +91,7 @@ function Drawers({ menu, children, platform, minicartProps }: Props) {
             iconTitle={<Icon id="Cart" size={24} strokeWidth={2} />}
             title="Produtos Adicionados"
             onClose={() => displayCart.value = false}
-            style="w-[85%] grid-rows-[48px] lg:max-w-[354px]"
+            style="w-[85%] grid-rows-[48px] lg:max-w-[404px]"
           >
             <Cart platform={platform} minicartProps={minicartProps} />
           </Aside>
