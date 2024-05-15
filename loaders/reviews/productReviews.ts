@@ -12,6 +12,7 @@ import {
 } from "../../types/reviews.ts";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { ExtensionOf } from "apps/website/loaders/extension.ts";
+import { logger } from "deco/observability/otel/config.ts"
 
 export interface Props {
   productId: string;
@@ -65,7 +66,8 @@ export default function productDetailsPage(
 
   return async (productDetailsPage: ProductDetailsPage | null) => {
     if (!productDetailsPage) {
-      new Error(_req.toString() + "erro de request aqui")
+      logger.error(`{erro de request aqui} >>> ${_req}`)
+      
       return null;
     }
 
