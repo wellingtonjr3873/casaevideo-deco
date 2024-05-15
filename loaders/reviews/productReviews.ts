@@ -65,6 +65,7 @@ export default function productDetailsPage(
 
   return async (productDetailsPage: ProductDetailsPage | null) => {
     if (!productDetailsPage) {
+      console.log(_req, "requeste aqui >>>>>>>>>>>>>>>")
       return null;
     }
 
