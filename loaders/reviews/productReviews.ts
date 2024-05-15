@@ -65,7 +65,6 @@ export default function productDetailsPage(
 
   return async (productDetailsPage: ProductDetailsPage | null) => {
     if (!productDetailsPage) {
-      new Error(_req.toString() + "erro de request aqui")
       return null;
     }
 
