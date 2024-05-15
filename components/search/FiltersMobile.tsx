@@ -246,7 +246,7 @@ const FilstersMobile = (props: Pick<ProductListingPage, "filters" | "sortOptions
                                             filter.label !== 'Preço' ? filter.label : 'Faixa de Preço'
                                         }
                                     </div>
-                                    <RangePrice />
+                                    <RangePrice {...filter}/>
                                 </div>
                             </li>
                     ))

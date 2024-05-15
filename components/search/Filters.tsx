@@ -103,57 +103,6 @@ function FilterValues({ key, values }: FilterToggle) {
     </ul>
   );
 }
-// function FilterValuesPrice({ key, values }: FilterToggle) {
-//   const flexDirection = ["tamanho", "cor"].includes(key) ? "flex-row" : "flex-col";
-
-//   return (
-//     <ul className={`flex flex-wrap gap-2 ${flexDirection} pt-3`}>
-//       {values.slice(0, 6).map((item, index) => {
-//         if (key === "price") {
-//           const range = parseRange(item.value);
-//           return range && (
-//             <>
-//               {index === values.length - 1 && (<RangePrice />)}
-//             </>
-//           );
-//         }
-
-//         return <ValueItem key={index} {...item} />;
-//       })}
-
-//       {values.length > 6 && (
-//         <li className="w-full">
-//           <details className={`collapse`}>
-//             <summary className="w-full block pt-2 px-4 collapse-title text-right text-base font-bold">Ver mais</summary>
-//             <ul className="flex flex-wrap gap-2 flex-row">
-//               {values.slice(6).map((item, index) => {
-//                 const { url, selected, value } = item;
-
-
-//                 if (key === "tamanho") {
-
-//                   const filterName = url.split(".")!.pop()!.split("=")[0];
-//                   const composedFilter = `&filter.${filterName}=${value}`
-
-//                   return (
-//                     <li key={index}>
-//                       <a href={url} rel="nofollow">
-//                         <Avatar content={value} variant={selected ? "active" : "default"} />
-//                       </a>
-//                     </li>
-//                   );
-//                 }
-//                 return <ValueItem key={index} {...item} />;
-//               })}
-
-//             </ul>
-//           </details>
-//         </li>
-//       )}
-//     </ul>
-//   );
-// }
-
 
 function Filters({ filters }: Props) {
 
@@ -181,8 +130,8 @@ function Filters({ filters }: Props) {
       }
       <ul className="flex flex-col gap-4 ">
         {
-          filters.filter(isToggle).map((filter, index) => (
-            filter.key != "price" ?
+          filters.filter(isToggle).map((filter, index) => {
+           return  filter.key != "price" ?
               <li key={index} className="dropdown bg-neutral-50 py-3 px-5">
                 <details className="group">
                   <summary className="m-1 flex justify-between items-center cursor-pointer font-bold text-base">
@@ -206,10 +155,10 @@ function Filters({ filters }: Props) {
                       filter.label !== 'Preço' ? filter.label : 'Faixa de Preço'
                     } 
                   </div>
-                  <RangePrice />
+                  <RangePrice {...filter}/>
                 </div>
               </div>
-          ))
+})
         }
       </ul>
     </>
