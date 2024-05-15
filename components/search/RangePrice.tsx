@@ -1,14 +1,17 @@
 import { JSX } from 'preact';
 import { useSignal } from "@preact/signals";
-import { useRef, useEffect } from 'preact/hooks';
-import { IS_BROWSER } from "$fresh/runtime.ts";
+import { useEffect, useRef } from 'preact/hooks';
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
+import { FilterToggle } from "apps/commerce/types.ts";
 
-export default function RangePrice() {
+
+export default function RangePrice(props: FilterToggle) {
+    
+    const REGEX_FILTER_MATCH = /filter\.price=\d+(\.\d+)?:\d+(\.\d+)?/g
+    
     const signalMinValue = useSignal('');
     const signalMaxValue = useSignal('');
-    const signalUrlFilter = useSignal('');
-
+    
     const inputMinRef = useRef<HTMLInputElement>(null);
     const inputMaxRef = useRef<HTMLInputElement>(null);
 
@@ -22,31 +25,36 @@ export default function RangePrice() {
         signalMaxValue.value = newValue;
     };
 
-    const regex = /(\d*\.?\d+)%3A(\d*\.?\d+)/;
-    const currentQueryString = IS_BROWSER ? globalThis.location : undefined;
 
-    useEffect(() => {
-        /*
-            Reconstroi os filtros, se encontra parametro de filtro .price na url ele atualiza 
-            apenas os valores do primeiro filter price encontrado na url, se não encontra 
-            ele monta um novo, também verifica se os inputs estão com valores validos.
-        */
-        const minMaxIsVoid = (signalMinValue.value && signalMaxValue.value) === '' ? true : false;
-        signalUrlFilter.value = currentQueryString && !minMaxIsVoid ? (
-            currentQueryString.search?.includes('filter.price=') ? 
-                currentQueryString.search.replace(regex, `${signalMinValue.value}%3A${signalMaxValue.value}`) 
-                : `?filter.category-1=${currentQueryString.pathname.replace('/', '')}&filter.price=${signalMinValue.value}%3A${signalMaxValue.value}`
-        ) : '#linkElement';
+    const _validMinAndMaxValue = () => {
+        if(!signalMinValue.value || !signalMaxValue.value){
+           return
+        }
+    }
+    
+    const handleClickInput = () => {
 
+        const validFields = () => {}
+
+        const urlAlreadyHaveRangeFilter = window.location.search.includes("filter.price=")
+        const filterValue = `filter.price=${signalMinValue.value}:${signalMaxValue.value}`;
         
-    }, [signalMinValue.value, signalMaxValue.value]);
+        if(urlAlreadyHaveRangeFilter){
+             window.location.href = window.location.href.replace(REGEX_FILTER_MATCH, filterValue)
+            return;
+        }
+
+        const urlFilter = decodeURIComponent(props?.values[0]?.url).replace(REGEX_FILTER_MATCH, filterValue)
+        window.location.href = urlFilter
+    }
+
 
     useEffect(() => {
-        const filterAlreadyExist = currentQueryString!.search.includes('filter.price=');
+        const filterAlreadyExist = globalThis.location!.search.includes('filter.price=');
         if(filterAlreadyExist){
-            const values = currentQueryString!.search.substring(1);
+            const values = globalThis.location!.search.substring(1);
             const queryParams : {[key:string]: string}= {};
-            values.split('&').forEach(pair => {
+            values?.split('&').forEach(pair => {
                 const [key, value] = pair.split('=');
                 queryParams[key] = decodeURIComponent(value);
             });
@@ -70,7 +78,7 @@ export default function RangePrice() {
                 placeholder="Mínimo" 
                 required
             />
-            -
+            
             <input 
                 ref={inputMaxRef} 
                 type="number" 
@@ -81,10 +89,10 @@ export default function RangePrice() {
                 placeholder="Máximo"
                 required
             />
-            <a 
+            <button 
                 id="linkElement" 
                 class="flex justify-center items-center bg-brand-terciary-base h-10 min-w-10 rounded-md hover:scale-95" 
-                href={signalUrlFilter.value}
+                onClick={handleClickInput}
             >
                 <Icon 
                     id="ArrowBack" 
@@ -93,7 +101,7 @@ export default function RangePrice() {
                     strokeWidth={2} 
                     fill="text-neutral-900" 
                 />
-            </a>
+            </button>
         </li>
     )
 }

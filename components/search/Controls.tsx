@@ -46,9 +46,9 @@ function SearchControls({ filters, displayFilter, sortOptions, productQnt }: Pro
       <div class="flex flex-col justify-between p-0 md:p-4 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] mb-6 md:mb-8">
         <div class="w-full flex flex-row items-center justify-betwee sm:gap-4 sm:border-none justify-between">
 
-          <span class="hidden md:block">
+          <h2 class="hidden md:block">
             ({productQnt && productQnt <= 1 ? `${productQnt} Produto` : `${productQnt} Produtos`})
-          </span>
+          </h2>
 
           <div class="w-full md:w-4/5 flex items-center justify-between md:justify-end md:gap-10">
             {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
