@@ -24,8 +24,6 @@ function ProductReviews(props: Props) {
   const { page } = props;
   const correctPage = page as PageProps;
 
-  console.log(page, "page >>>>>>>>>>>>>>>>>")
-
   if (correctPage === null) {
     throw new Error("Missing Product Details Page Info");
   }
