@@ -12,6 +12,7 @@ interface Props {
 export function handleGetStars(rating: number) {
   const stars = new Array(5).fill('star');
   const filledStars = Math.round(rating);
+  
 
   return stars.map((_, idx) => {
     return idx < filledStars ? 
@@ -23,9 +24,10 @@ export function handleGetStars(rating: number) {
 function ProductReviews(props: Props) {
   const { page } = props;
   const correctPage = page as PageProps;
+  console.log("BATATAO")
 
   if (correctPage === null) {
-    throw new Error("Missing Product Details Page Info");
+    throw new Error(`batata: ${props.page?.product?.url}`);
   }
 
   const {

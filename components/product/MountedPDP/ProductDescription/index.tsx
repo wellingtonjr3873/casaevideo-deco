@@ -64,7 +64,7 @@ function ProductDescription(props: Props) {
   const { page } = props;
 
   if (page === null) {
-    throw new Error("Missing Product Details Page Info");
+    throw new Error(`potato: ${props.page?.product?.url}`);
   }
 
   const {
