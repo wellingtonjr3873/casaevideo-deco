@@ -23,7 +23,7 @@ function BuyTogether(props: Props) {
   } = correctPage;
 
   if (correctPage === null) {
-    throw new Error(`Missing Product Details Page Info: ${props.page?.product?.url}`);
+    throw new Error("Missing Product Details Page Info");
   }
 
   if (product.productID === null || buyTogether.length === 0) {

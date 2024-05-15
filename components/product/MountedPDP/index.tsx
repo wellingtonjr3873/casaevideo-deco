@@ -36,7 +36,7 @@ function MountedPDP({
   const id = useId();
 
   if (page === null) {
-    throw new Error(`Missing Product Details Page Info: ${props.page?.product?.url}`);
+    throw new Error("Missing Product Details Page Info");
   }
 
   const {
