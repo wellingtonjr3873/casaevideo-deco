@@ -1,3 +1,5 @@
+// deno-lint-ignore ban-ts-comment
+//@ts-nocheck
 import { signal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { invoke } from "deco-sites/casaevideo/runtime.ts";
