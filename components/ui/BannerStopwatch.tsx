@@ -55,21 +55,21 @@ const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor,
                 <Source
                 media="(max-width: 767px)"
                 fetchPriority="high"
-                src={mobile}
+                src={mobile ? mobile : ""}
                 width={320}
                 height={280}
                 />
                 <Source
                 media="(min-width: 768px)"
                 fetchPriority="high"
-                src={desktop}
+                src={desktop ? desktop : ""}
                 width={1280}
                 height={280}
                 />
                 <img
                 class="object-cover w-full h-full"
                 loading="eager"
-                src={desktop}
+                src={desktop ? desktop : ""}
                 alt={""}
                 />
         </Picture>

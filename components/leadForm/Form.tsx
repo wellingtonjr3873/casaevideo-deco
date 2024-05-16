@@ -17,11 +17,15 @@ function Form({ campaing = "NÃO DEFINIDO NO SITE EDITOR", tabelaMd = "LL" }: Pr
     const resultMessage = useSignal<string>("Cadastrar");
 
     const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.target.value = phoneMask(e.target.value);
+        if(!e) return
+        const target = e?.target as HTMLInputElement
+        target.value = phoneMask(target.value);
     };
 
     const handleCpfChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        e.target.value = cpfMask(e.target.value);
+        if(!e) return
+        const target = e?.target as HTMLInputElement;
+        target.value = cpfMask(target.value);
     };
 
     const phoneMask = (value: string) => {
