@@ -1,3 +1,4 @@
+//Well vai refatorar a tipagem.
 // deno-lint-ignore ban-ts-comment
 //@ts-nocheck
 import { signal } from "@preact/signals";
