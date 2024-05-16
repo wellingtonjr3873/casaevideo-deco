@@ -90,6 +90,9 @@ const loaders = async (
 
     return vcsDeprecated
       ["GET /api/io/_v/api/intelligent-search/product_search/*facets"]({
+        //Well vai refatorar a tipagem.
+        // deno-lint-ignore ban-ts-comment
+        //@ts-ignore
         showSponsored: true, 
         placement: "top-search",
         ...params,
