@@ -66,7 +66,7 @@ export default function productDetailsPage(
 
   return async (productDetailsPage: ProductDetailsPage | null) => {
     if (!productDetailsPage) {
-      logger.error(`{erro de request aqui} >>> ${_req}`)
+      logger.error(`{erro de request aqui} >>>${JSON.stringify(_req)}`)
       
       return null;
     }
