@@ -25,7 +25,7 @@ function ProductShelf({
 
   return (
     <div class="w-full mb-5">
-      <h2 class="py-2 text-sm text-center text-neutral-dark font-normal">{title}</h2>
+      <p class="py-2 text-sm text-center text-neutral-dark font-normal">{title}</p>
       <div
         id={id}
         class="px-4 flex flex-col relative"

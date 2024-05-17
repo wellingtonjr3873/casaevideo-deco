@@ -167,11 +167,11 @@ function Footer({
           />
           {/* {mobile-apps} */}
           <div class="flex flex-col bg-brand-secondary-50 lg:bg-neutral-50 items-center py-[16px] lg:py-0">
-            <h2 class="small-bold text-left mb-[8px]">Baixe o app</h2>
+            <p class="small-bold text-left mb-[8px]">Baixe o app</p>
             <MobileApps content={mobileApps} />
-            <h2 class="small-bold text-left mb-[8px]">
+            <p class="small-bold text-left mb-[8px]">
               Siga-nos nas mídias sociais
-            </h2>
+            </p>
             <div class="flex gap-[8px] items-center justify-start">
               {social.items.map((item) => {
                 return (
@@ -190,7 +190,7 @@ function Footer({
 
         {/*categories */}
         <div class="mt-[32px] hidden lg:block">
-          <h2 class="small-bold mb-[24px]">Categorias</h2>
+          <p class="small-bold mb-[24px]">Categorias</p>
           <ul class="grid grid-cols-4 gap-y-[12px]">
             {categories.map((item) => {
               return (
@@ -207,7 +207,7 @@ function Footer({
         <div class="mt-[32px] px-[16px] lg:p-0 flex flex-col lg:flex-row gap-[32px] lg:gap-[72px] lg:items-center mb-[32px] lg:mb-0">
           {/* pagamentop */}
           <div>
-            <h2 class="small-bold mb-[12px]">Pagamento</h2>
+            <p class="small-bold mb-[12px]">Pagamento</p>
             <ul class="flex flex-row flex-wrap max-w-[280px] lg:max-w-none">
               {payments.items.map((item) => {
                 return (
@@ -220,7 +220,7 @@ function Footer({
           </div>
           {/* segurança */}
           <div>
-            <h2 class="small-bold mb-[8px] lg:hidden">Segurança</h2>
+            <p class="small-bold mb-[8px] lg:hidden">Segurança</p>
 
             <ul class="flex flex-wrap items-center lg:gap-[12px] lg:flex-nowrap">
               {security?.images?.map((item) => {
