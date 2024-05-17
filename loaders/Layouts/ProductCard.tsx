@@ -73,6 +73,7 @@ export const Preview = (props: Props) => {
                   "@type": "Offer",
                   "price": 69.3,
                   "seller": "1",
+                  "sellerDefault": true, // Add this property
                   "priceValidUntil": "2024-09-04T13:03:31Z",
                   "inventoryLevel": { "value": 10000 },
                   "teasers": [],

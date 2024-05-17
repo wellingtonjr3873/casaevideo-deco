@@ -42,7 +42,9 @@ function ProductPrice({ product }: Props) {
           <>
             <div class="bg-success gap-1 sm:h-5 h-6 flex ml-2 px-1 justify-center items-center text-neutral-50 rounded">
               <Icon id="ArrowDown" width={16} height={16} />
-              {(((listPrice - lowPrice)/listPrice) * 100).toFixed(0)}% no Pix
+              {listPrice && lowPrice &&
+                `${(((listPrice - lowPrice)/listPrice) * 100).toFixed(0)}% no Pix`
+              }
             </div>
           </>
         )}

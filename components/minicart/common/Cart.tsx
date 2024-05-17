@@ -180,7 +180,7 @@ adicione produtos ao carrinho.</p>
         )}
     </div>
     {isEmpty && minicartProps &&
-      <div class={`flex flex-col w-full max-w-[85vw] lg:max-w-[410px] justify-end mb-10`}>
+      <div class={`flex flex-col w-full mx-auto max-w-[100vw] lg:max-w-[410px] justify-end mb-10`}>
         <ProductShelfMinicart {...minicartProps}/>
       </div>
   	}
