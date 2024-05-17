@@ -1,6 +1,8 @@
-import ProductCardIsland, {
-  Layout as CardLayout,
-} from "$store/islands/ProductCardIsland.tsx";
+//VERIFICAR DEPOIS SE ESTÃO USANDO ESSE COMPONENTE EM ALGUM LUGAR @@@@@@@@@@@@@@@@@@@@@@@@@@@@
+
+// import ProductCardIsland, {
+//   Layout as CardLayout,
+// } from "$store/islands/ProductCardIsland.tsx";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
 import { Product } from "apps/commerce/types.ts";
 
@@ -13,7 +15,7 @@ export interface Props {
   products: Product[] | null;
   offset: number;
   layout?: {
-    card?: CardLayout;
+    // card?: CardLayout;
     columns?: Columns;
   };
 }
@@ -38,12 +40,13 @@ function ProductGallery({ products, layout, offset }: Props) {
   return (
     <div class={`grid ${mobile} gap-2 items-center ${desktop} sm:gap-10`}>
       {products?.map((product, index) => (
-        <ProductCardIsland
-          product={product}
-          preload={index === 0}
-          index={offset + index}
-          layout={layout?.card}
-        />
+        // <ProductCardIsland
+        //   product={product}
+        //   preload={index === 0}
+        //   index={offset + index}
+        //   layout={layout?.card}
+        // />
+        <></>
       ))}
     </div>
   );
