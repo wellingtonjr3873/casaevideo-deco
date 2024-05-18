@@ -9,8 +9,8 @@ import ProductCardMinicart from "$store/components/minicart/ProductCardMinicart.
 import { useUI } from "$store/sdk/useUI.ts"
 
 export interface Props {
-  collectionId: string;
-  count: number;
+  collectionId?: string;
+  count?: number;
   title?: string;
 }
 
