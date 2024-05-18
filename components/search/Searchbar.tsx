@@ -54,7 +54,7 @@ export interface Props {
 }
 
 function Searchbar({
-  placeholder = "Buscar pro produto ou marca...",
+  placeholder = "Buscar por produto ou marca...",
   action = "/s",
   name = "q",
   loader,
@@ -96,7 +96,7 @@ function Searchbar({
 
             setQuery(value);
           }}
-          placeholder={"Buscar pro produto ou marca..."}
+          placeholder={"Buscar por produto ou marca..."}
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
@@ -139,7 +139,7 @@ function Searchbar({
                   <ul class="ml-2">
                       {attributes?.map(item => {
                         return <li>
-                              <a href={`/search?q=${item.value}`} class="x-small-regular" >
+                              <a href={`/search?q=${item.labelValue.toLowerCase()}`} class="x-small-regular" >
                                 {item.labelValue}
                               </a>
                           </li>

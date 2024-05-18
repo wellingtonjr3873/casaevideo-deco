@@ -16,8 +16,6 @@ import * as $$$3 from "./loaders/Wishlist/create-wishlist.ts";
 import * as $$$4 from "./loaders/Wishlist/get-wishlist-items.ts";
 import * as $$$5 from "./loaders/Wishlist/get-wishlist-list.ts";
 import * as $$$6 from "./loaders/Wishlist/remove-wishlist-item.ts";
-
-
 import * as $$$$$$0 from "./sections/Category/BannerList.tsx";
 import * as $$$$$$1 from "./sections/Category/CategoryBanner.tsx";
 import * as $$$$$$2 from "./sections/Category/CategoryList.tsx";
@@ -68,7 +66,6 @@ import * as $$$$$$46 from "./sections/Theme/Theme.tsx";
 import * as $$$$$$47 from "./sections/UtilLinks/UtilLinks.tsx";
 import * as $$$$$$48 from "./sections/LpContent/BaixeOApp.tsx";
 
-
 const manifest = {
   "loaders": {
     "deco-sites/casaevideo/loaders/Layouts/ProductCard.tsx": $$$0,
@@ -84,50 +81,55 @@ const manifest = {
     "deco-sites/casaevideo/loaders/Wishlist/remove-wishlist-item.ts": $$$6,
   },
   "sections": {
-    "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$0,
-    "deco-sites/casaevideo/sections/Category/CategoryList.tsx": $$$$$$1,
-    "deco-sites/casaevideo/sections/Content/Benefits.tsx": $$$$$$2,
-    "deco-sites/casaevideo/sections/Content/Faq.tsx": $$$$$$3,
-    "deco-sites/casaevideo/sections/Content/Logos.tsx": $$$$$$4,
-    "deco-sites/casaevideo/sections/Content/SimpleText.tsx": $$$$$$5,
-    "deco-sites/casaevideo/sections/Content/Testimonials.tsx": $$$$$$6,
-    "deco-sites/casaevideo/sections/Departament/DepartamentList.tsx": $$$$$$7,
-    "deco-sites/casaevideo/sections/Footer/Footer.tsx": $$$$$$8,
-    "deco-sites/casaevideo/sections/Forms/LeadForm.tsx": $$$$$$9,
-    "deco-sites/casaevideo/sections/Gallery.tsx": $$$$$$10,
-    "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$11,
+    "deco-sites/casaevideo/sections/Banners Text/BannersText.tsx": $$$$$$0,
+    "deco-sites/casaevideo/sections/Category/BannerList.tsx": $$$$$$1,
+    "deco-sites/casaevideo/sections/Category/CategoryBanner.tsx": $$$$$$2,
+    "deco-sites/casaevideo/sections/Category/CategoryList.tsx": $$$$$$3,
+    "deco-sites/casaevideo/sections/Content/Article.tsx": $$$$$$4,
+    "deco-sites/casaevideo/sections/Content/Benefits.tsx": $$$$$$5,
+    "deco-sites/casaevideo/sections/Content/Faq.tsx": $$$$$$6,
+    "deco-sites/casaevideo/sections/Content/Logos.tsx": $$$$$$7,
+    "deco-sites/casaevideo/sections/Content/SimpleText.tsx": $$$$$$8,
+    "deco-sites/casaevideo/sections/Content/Testimonials.tsx": $$$$$$9,
+    "deco-sites/casaevideo/sections/Departament/DepartamentList.tsx": $$$$$$10,
+    "deco-sites/casaevideo/sections/Footer/Footer.tsx": $$$$$$11,
+    "deco-sites/casaevideo/sections/Forms/LeadForm.tsx": $$$$$$12,
+    "deco-sites/casaevideo/sections/Gallery.tsx": $$$$$$13,
+    "deco-sites/casaevideo/sections/Header/Header.tsx": $$$$$$14,
     "deco-sites/casaevideo/sections/HiddenContentLogin/HiddenContentLogin.tsx":
-      $$$$$$12,
-    "deco-sites/casaevideo/sections/Images/BannerIsland.tsx": $$$$$$13,
-    "deco-sites/casaevideo/sections/Images/BannersGrid.tsx": $$$$$$14,
-    "deco-sites/casaevideo/sections/Images/Carousel.tsx": $$$$$$15,
-    "deco-sites/casaevideo/sections/Images/ImageGallery.tsx": $$$$$$16,
-    "deco-sites/casaevideo/sections/Images/ShoppableBanner.tsx": $$$$$$17,
-    "deco-sites/casaevideo/sections/Layout/Container.tsx": $$$$$$18,
-    "deco-sites/casaevideo/sections/Layout/Flex.tsx": $$$$$$19,
-    "deco-sites/casaevideo/sections/Layout/Grid.tsx": $$$$$$20,
-    "deco-sites/casaevideo/sections/Layout/GridItem.tsx": $$$$$$21,
-    "deco-sites/casaevideo/sections/Links/LinkTree.tsx": $$$$$$22,
-    "deco-sites/casaevideo/sections/Links/Shortcuts.tsx": $$$$$$23,
-    "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$24,
-    "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$25,
+      $$$$$$15,
+    "deco-sites/casaevideo/sections/Images/Banner.tsx": $$$$$$16,
+    "deco-sites/casaevideo/sections/Images/BannerIsland.tsx": $$$$$$17,
+    "deco-sites/casaevideo/sections/Images/BannersGrid.tsx": $$$$$$18,
+    "deco-sites/casaevideo/sections/Images/Carousel.tsx": $$$$$$19,
+    "deco-sites/casaevideo/sections/Images/ImageGallery.tsx": $$$$$$20,
+    "deco-sites/casaevideo/sections/Images/ShoppableBanner.tsx": $$$$$$21,
+    "deco-sites/casaevideo/sections/Layout/Container.tsx": $$$$$$22,
+    "deco-sites/casaevideo/sections/Layout/Flex.tsx": $$$$$$23,
+    "deco-sites/casaevideo/sections/Layout/Grid.tsx": $$$$$$24,
+    "deco-sites/casaevideo/sections/Layout/GridItem.tsx": $$$$$$25,
+    "deco-sites/casaevideo/sections/Links/LinkTree.tsx": $$$$$$26,
+    "deco-sites/casaevideo/sections/Links/Shortcuts.tsx": $$$$$$27,
+    "deco-sites/casaevideo/sections/MiniBannerCarousel/MiniBannerCarousel.tsx":
+      $$$$$$28,
+    "deco-sites/casaevideo/sections/Miscellaneous/CampaignTimer.tsx": $$$$$$29,
+    "deco-sites/casaevideo/sections/Miscellaneous/CookieConsent.tsx": $$$$$$30,
     "deco-sites/casaevideo/sections/MostSearchedProducts/MostSearchedProducts.tsx":
-      $$$$$$26,
-    "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$27,
-    "deco-sites/casaevideo/sections/Product/BuyTogether.tsx": $$$$$$28,
+      $$$$$$31,
+    "deco-sites/casaevideo/sections/Newsletter/Newsletter.tsx": $$$$$$32,
+    "deco-sites/casaevideo/sections/Product/BuyTogether.tsx": $$$$$$33,
     "deco-sites/casaevideo/sections/Product/ImageGalleryFrontBack.tsx":
-      $$$$$$29,
-    "deco-sites/casaevideo/sections/Product/ImageGallerySlider.tsx": $$$$$$30,
-    "deco-sites/casaevideo/sections/Product/MountedPDP.tsx": $$$$$$31,
-    "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$32,
-    "deco-sites/casaevideo/sections/Product/NotFoundChallenge.tsx": $$$$$$33,
-    "deco-sites/casaevideo/sections/Product/ProductDescription.tsx": $$$$$$34,
-    "deco-sites/casaevideo/sections/Product/ProductInfo.tsx": $$$$$$35,
-    "deco-sites/casaevideo/sections/Product/ProductReviews.tsx": $$$$$$36,
-    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$37,
-    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$38,
+      $$$$$$34,
+    "deco-sites/casaevideo/sections/Product/ImageGallerySlider.tsx": $$$$$$35,
+    "deco-sites/casaevideo/sections/Product/MountedPDP.tsx": $$$$$$36,
+    "deco-sites/casaevideo/sections/Product/NotFound.tsx": $$$$$$37,
+    "deco-sites/casaevideo/sections/Product/NotFoundChallenge.tsx": $$$$$$38,
+    "deco-sites/casaevideo/sections/Product/ProductDescription.tsx": $$$$$$39,
+    "deco-sites/casaevideo/sections/Product/ProductInfo.tsx": $$$$$$40,
+    "deco-sites/casaevideo/sections/Product/ProductReviews.tsx": $$$$$$41,
+    "deco-sites/casaevideo/sections/Product/ProductShelf.tsx": $$$$$$42,
+    "deco-sites/casaevideo/sections/Product/ProductShelfTabbed.tsx": $$$$$$43,
     "deco-sites/casaevideo/sections/Product/ProductShelfTimedOffers.tsx":
-
       $$$$$$41,
     "deco-sites/casaevideo/sections/Product/SearchResult.tsx": $$$$$$42,
     "deco-sites/casaevideo/sections/Product/Wishlist.tsx": $$$$$$43,
@@ -136,8 +138,6 @@ const manifest = {
     "deco-sites/casaevideo/sections/Theme/Theme.tsx": $$$$$$46,
     "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$47,
      "deco-sites/casaevideo/sections/LpContent/BaixeOApp.tsx": $$$$$$48,
-
-
   "actions": {
     "deco-sites/casaevideo/actions/tableMasterdata.ts": $$$$$$$$$0,
 

@@ -208,7 +208,7 @@ function ProductCard(
           },
         }}
       />
-      <figure class="flex flex-col rounded-none" // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
+      <figure class="flex md:min-h-[255px] flex-col rounded-none" // style={{ aspectRatio: `${WIDTH} / ${HEIGHT}` }}
       >
         {/* Wishlist button */}
         <div class="flex justify-between items-center w-full h-8">

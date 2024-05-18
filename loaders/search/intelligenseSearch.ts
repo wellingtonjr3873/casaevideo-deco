@@ -10,6 +10,7 @@ import { createHttpClient } from "apps/utils/http.ts";
 import { fetchSafe } from "apps/vtex/utils/fetchVTEX.ts";
 import { VTEXCommerceStable } from "apps/vtex/utils/client.ts";
 import { STALE } from "apps/utils/fetch.ts";
+import { LabelledFuzzy, mapLabelledFuzzyToFuzzy } from "apps/vtex/loaders/intelligentSearch/productListingPage.ts";
 
 export interface Props {
   query?: string;
@@ -24,6 +25,12 @@ export interface Props {
    * @deprecated Use product extensions instead
    */
   similars?: boolean;
+
+  /**
+  * @title Fuzzy, padrão vtex é disabled.
+  * @default disabled
+  */
+  fuzzy?: LabelledFuzzy;
 }
 export interface Searches {
   term: string;
@@ -51,7 +58,7 @@ const loaders = async (
   ctx: AppContext,
 ): Promise<IntelligenseSearch | null> => {
   const { url } = req;
-  const { count, query } = props;
+  const { count, query, fuzzy = "disabled"} = props;
   const locale = "pt-BR"; // config!.defaultLocale; // TODO
   const segment = getSegmentFromBag(ctx);
 
@@ -69,14 +76,14 @@ const loaders = async (
 
   const intelligenseSuggestions = () =>
     vcsDeprecated
-      ["GET /api/io/_v/api/intelligent-search/autocomplete_suggestions"]({
-        locale,
-        query: query ?? "",
-      }, {
-        // Not adding suggestions to cache since queries are very spread out
-        // deco: { cache: "stale-while-revalidate" },
-        headers: withSegmentCookie(segment),
-      }).then((res) => res.json());
+    ["GET /api/io/_v/api/intelligent-search/autocomplete_suggestions"]({
+      locale,
+      query: query ?? "",
+    }, {
+      // Not adding suggestions to cache since queries are very spread out
+      // deco: { cache: "stale-while-revalidate" },
+      headers: withSegmentCookie(segment),
+    }).then((res) => res.json());
 
   // const topSearches = () =>
   //   vcsDeprecated["GET /api/io/_v/api/intelligent-search/top_searches"]({
@@ -86,15 +93,18 @@ const loaders = async (
 
   const productSearch = () => {
     const facets = withDefaultFacets([], ctx);
-    const params = withDefaultParams({ query, count: count ?? 4, locale });
+    const params = withDefaultParams({ query, count: count ?? 4, locale, fuzzy: mapLabelledFuzzyToFuzzy(fuzzy) });
 
     return vcsDeprecated
-      ["GET /api/io/_v/api/intelligent-search/product_search/*facets"]({
-        showSponsored: true, 
-        placement: "top-search",
-        ...params,
-        facets: toPath(facets),
-      }, { ...STALE, headers: withSegmentCookie(segment) })
+    ["GET /api/io/_v/api/intelligent-search/product_search/*facets"]({
+      //Well vai refatorar a tipagem.
+      // deno-lint-ignore ban-ts-comment
+      //@ts-ignore
+      showSponsored: true,
+      placement: "top-search",
+      ...params,
+      facets: toPath(facets),
+    }, { ...STALE, headers: withSegmentCookie(segment) })
       .then((res) => res.json());
   };
 

@@ -6,7 +6,23 @@ import Form from "deco-sites/casaevideo/islands/Form.tsx";
 
 export interface Banner {
   srcDesktop: ImageWidget;
+  /**
+* @description Largura original do banner Desktop
+*/
+  widthDesk: number;
+  /**
+ * @description Altura original do banner Desktop
+ */
+  heightDesk: number;
   srcMobile: ImageWidget;
+  /**
+ * @description Largura original do banner Mobile
+ */
+  widthMob: number;
+  /**
+ * @description Altura original do banner Mobile
+ */
+  heightMob: number;
   /**
    * @description Texto alt da imagem
    */
@@ -61,15 +77,15 @@ function LeadForm({
               <Source
                 media="(max-width: 767px)"
                 src={bannerTop.srcMobile}
-                width={333}
-                height={333}
+                width={bannerTop.widthDesk ?? ""}
+                height={bannerTop.heightDesk ?? ""}
                 fetchPriority="low"
               />
               <Source
                 media="(min-width: 768px)"
                 src={bannerTop.srcDesktop}
-                width={333}
-                height={333}
+                width={bannerTop.widthMob ?? ""}
+                height={bannerTop.heightMob ?? ""}
               />
               <img
                 class="w-full"
@@ -96,15 +112,15 @@ function LeadForm({
               <Source
                 media="(max-width: 767px)"
                 src={bannerBottom.srcMobile}
-                width={333}
-                height={333}
+                width={bannerBottom.widthDesk}
+                height={bannerBottom.heightDesk}
                 fetchPriority="low"
               />
               <Source
                 media="(min-width: 768px)"
                 src={bannerBottom.srcDesktop}
-                width={333}
-                height={333}
+                width={bannerBottom.widthMob}
+                height={bannerBottom.heightMob}
               />
               <img
                 class="w-full"
