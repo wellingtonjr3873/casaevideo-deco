@@ -146,7 +146,7 @@ function MenuItem(
 const visibleAllDepartaments = signal(false);
 const FooterMenu = () => {
   return <div class="flex flex-col justify-between items-center gap-[8px] py-[16px] px-[40px] self-end">
-  <span class="text-center">Baixe o nosso novo app Casa&Vídeo</span>
+  <span class="text-center">Baixe o nosso novo app Casa&Video</span>
   <div class="flex justify-between items-center gap-[8px]">
     <a href="https://casaevideo.onelink.me/QIjQ/m3ukjv5d">
       <Icon id="AppleStoreImg" width={133} height={44} strokeWidth={0} />
