@@ -60,6 +60,12 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
     jsonLD.product.additionalProperty = []
     jsonLD.product.isVariantOf?.hasVariant.forEach((variant) => {
         variant.additionalProperty = []
+        variant.offers?.offers.map((offer) => {
+          offer.priceSpecification = []
+        })
+    })
+    jsonLD.product.offers?.offers.map((offer) => {
+      offer.priceSpecification = []
     })
   }
 
