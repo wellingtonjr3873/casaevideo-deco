@@ -38,6 +38,7 @@ function ProductPrice({ product }: Props) {
       <div class="small-regular md:body-regular text-neutral-900 flex items-end">
         <span class="h5-bold md:h4-bold">{formatPrice(lowPrice, offers?.priceCurrency)}</span>
         <span class="pl-1">no PIX</span>
+        
         {(price && pixPrice && price !== pixPrice) && (
           <>
             <div class="bg-success gap-1 sm:h-5 h-6 flex ml-2 px-1 justify-center items-center text-neutral-50 rounded">
