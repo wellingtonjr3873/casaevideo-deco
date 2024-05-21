@@ -87,7 +87,8 @@ function Result({
   miniBannerCarousel,
   questions,
   startingPage = 0,
-  cardHorizontal
+  cardHorizontal,
+
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
@@ -227,6 +228,11 @@ function Result({
 function SearchResult({ page, ...props }: Props) {
   if (!page) {
     return <NotFoundPage {...props.notFoundPage} />;
+  }
+
+  if(page && !page.products.length){
+    console.log(page, 'seee')
+    return <NotFoundPage {...props.notFoundPage} ctaPath={page.seo?.canonical}/>;
   }
 
   return <Result {...props} page={page} />;

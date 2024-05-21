@@ -11,9 +11,18 @@ export interface Props {
     text: HTMLWidget;
     ctaText?: string;
     sections: Sections[];
+    ctaStyles?: {
+      backgroundColor: string,
+      color: string,
+    }
+    ctaPath?: string,
 }
 
-export default function NotFoundPage({ image, alt, text, sections, ctaText }: Props) {
+export default function NotFoundPage({ image, alt, text, sections, ctaText, ctaStyles = {
+  backgroundColor: 'bg-neutral-1',
+  color: 'text-neutral-50',
+},
+ctaPath = '/'}: Props) {
 
     return (
         <div class={`flex flex-col gap-4 justify-center items-center mt-10`}>
@@ -31,7 +40,7 @@ export default function NotFoundPage({ image, alt, text, sections, ctaText }: Pr
                   class="flex flex-col text-center gap-3 notFoundText leading-none lg:text-left"
                   dangerouslySetInnerHTML={{ __html: text }}
                   />
-                  <a href="/" class={`px-4 py-2.5 flex items-center justify-center max-w-[320px] mx-auto bg-neutral-1 text-neutral-50 rounded-md w-full`}>
+                  <a href={ctaPath} style={ctaStyles} class={`px-4 py-2.5 flex items-center justify-center max-w-[320px] mx-auto rounded-md w-full`}>
                     <button>{ctaText || "Voltar para a home do site"}</button>
                   </a>
                 </div>
