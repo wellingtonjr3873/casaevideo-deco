@@ -32,10 +32,12 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
   const {
     title: titleProp,
     description: descriptionProp,
-    jsonLD,
+    jsonLD: originalJsonLD,
     omitVariants,
   } = props;
 
+  const jsonLD = JSON.parse(JSON.stringify(originalJsonLD));
+  
   const title = renderTemplateString(
     titleTemplate,
     titleProp || jsonLD?.seo?.title || "",
