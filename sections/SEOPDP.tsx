@@ -62,9 +62,6 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
         variant.additionalProperty = []
     })
   }
-  
-
-  console.log(jsonLD)
 
   return {
     ...seoSiteProps,
