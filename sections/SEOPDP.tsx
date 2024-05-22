@@ -221,7 +221,7 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
   
   
   const { reviews } = originalJsonLD; 
-  const ratingExist = reviews && reviews.Element.Rating;
+  const ratingExist = reviews && reviews.Element;
   let reviewProperties = {}
   if(ratingExist){
     const factoryReviewPropertie = factoryReviewJsonType(reviews);
