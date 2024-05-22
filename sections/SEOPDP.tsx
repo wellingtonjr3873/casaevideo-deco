@@ -66,6 +66,7 @@ type AggregateRatingSchema = {
 const factoryReviewJsonType = (review: ReviewResponse) => {
   const ratingValue = review.Element.Rating;
 
+  const bestRating = review.Element.RatingHistogram.RatingList[0].Rate
     const ratingCount = review.Element.Recommend.TotalReviews;
 
 
@@ -77,7 +78,7 @@ const factoryReviewJsonType = (review: ReviewResponse) => {
         reviewRating: {
           "@type": "Rating",
           ratingValue: item.Rating,
-          bestRating: ratingValue
+          bestRating: bestRating
         },
         author: {
           "@type": "Person",
@@ -123,7 +124,7 @@ export interface Props {
 }
 
 /** @title Product details */
-export function loader(props: Props, _req: Request, ctx: AppContext) {
+export async function loader(props: Props, _req: Request, ctx: AppContext) {
   const {
     titleTemplate = "",
     descriptionTemplate = "",
@@ -220,6 +221,8 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
   const ratingExist = reviews && reviews.Element;
   let reviewProperties = {}
   if(ratingExist){
+
+    await Deno.writeTextFileSync('./review.json', JSON.stringify(reviews));
     const factoryReviewPropertie = factoryReviewJsonType(reviews);
     reviewProperties = factoryReviewPropertie
   };
