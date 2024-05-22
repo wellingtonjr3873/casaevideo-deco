@@ -115,7 +115,7 @@ function Filters({ filters }: Props) {
         hasFilterActive && (
           <div className="mb-2 bg-transparent border border-neultral-200">
             <header className="px-4 py-2 text-left">
-              <p className="font-bold text-base">Fltros Selecionados</p>
+              <p className="font-bold text-base">Filtros Selecionados</p>
             </header>
             <ul className="flex flex-wrap justify-start items-center gap-2 px-4 py-2">
               {
