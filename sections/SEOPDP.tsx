@@ -97,7 +97,7 @@ const factoryReviewJsonType = (review: ReviewResponse) => {
       aggregateRating?: AggregateRatingSchema
     } = {}
     if(reviewsType.length){
-      reviewsType.length > 1 ? reviewProperties.review = reviewsType : reviewProperties.review = reviewsType[0]
+      reviewsType.length > 1 ? reviewProperties.review = reviewsType.splice(0, 5) : reviewProperties.review = reviewsType[0]
     }
 
     const aggregateRating: AggregateRatingSchema = {
