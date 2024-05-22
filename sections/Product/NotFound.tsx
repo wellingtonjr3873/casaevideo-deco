@@ -40,7 +40,7 @@ ctaPath = '/'}: Props) {
                   class="flex flex-col text-center gap-3 notFoundText leading-none lg:text-left"
                   dangerouslySetInnerHTML={{ __html: text }}
                   />
-                  <a href={ctaPath} style={ctaStyles} class={`px-4 py-2.5 flex items-center justify-center max-w-[320px] mx-auto rounded-md w-full`}>
+                  <a href={ctaPath} class={`${Object.values(ctaStyles).map(item => item).join(" ")} px-4 py-2.5 flex items-center justify-center max-w-[320px] mx-auto rounded-md w-full`}>
                     <button>{ctaText || "Voltar para a home do site"}</button>
                   </a>
                 </div>

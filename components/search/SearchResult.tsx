@@ -225,14 +225,21 @@ function Result({
   );
 }
 
-function SearchResult({ page, ...props }: Props) {
-  if (!page) {
-    return <NotFoundPage {...props.notFoundPage} />;
-  }
 
-  if(page && !page.products.length){
-    console.log(page, 'seee')
-    return <NotFoundPage {...props.notFoundPage} ctaPath={page.seo?.canonical}/>;
+const NOT_FOUND_SEARCH_TEXT = "<h2>OOPS!</h2><h3><strong>Nenhum resultado encontrado :(</strong></h3><p>Que tal tentar outra combinação ?</p>"
+function SearchResult({ page, ...props }: Props) {
+  if (!page || page && !page.products.length) {
+
+    const defaultProps = page && !page.products.length ? {
+      ...props.notFoundPage,
+      text: NOT_FOUND_SEARCH_TEXT,
+      ctaText: "Editar filtros",
+      ctaStyles: {
+        backgroundColor: 'bg-brand-primary-1', 
+        color: 'text-[white]'
+      }
+    } : props.notFoundPage
+    return <NotFoundPage {...defaultProps} />;
   }
 
   return <Result {...props} page={page} />;
