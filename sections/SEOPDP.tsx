@@ -7,6 +7,8 @@ import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { canonicalFromBreadcrumblist } from "apps/commerce/utils/canonical.ts";
 import { AppContext } from "apps/commerce/mod.ts";
 import { Teaser } from "apps/vtex/utils/types.ts";
+import { ProductReviewsLoader } from "deco-sites/casaevideo/loaders/reviews/productReviews.ts";
+import { ReviewResponse } from "deco-sites/casaevideo/types/reviews.ts";
 
 const agregateValeusInTeasers = (teasers: Teaser[]) => {
   const agregateDiscount = teasers.map((item) => {
@@ -34,13 +36,79 @@ const agregateValeusInTeasers = (teasers: Teaser[]) => {
 
 const getPixDiscountValue = (teasers: Teaser[], value: number) => {
   const pixDiscountPercentage =
-  agregateValeusInTeasers(teasers) / 100;
+    agregateValeusInTeasers(teasers) / 100;
 
   const lowPrice = Number(
     (value * (1 - pixDiscountPercentage)).toFixed(2),
   );
 
   return lowPrice
+}
+
+type ReviewTypeSchema = {
+  "@type": "Review",
+  reviewRating: {
+    "@type": "Rating",
+    ratingValue: number,
+    bestRating: number,
+  },
+  author: {
+    "@type": "Person",
+    name: string
+  }
+}
+
+type AggregateRatingSchema = {
+  "@type": "AggregateRating",
+  ratingValue: number,
+  reviewCount: number
+}
+const factoryReviewJsonType = (review: ReviewResponse) => {
+  const ratingValue = review.Element.Rating;
+
+    const { ReviewBattle: {
+      BestReview
+    } } = review.Element
+    const bestReviewRaring = BestReview.Rating;
+    const ratingCount = review.Element.Recommend.TotalReviews;
+
+
+    const reviewsType : ReviewTypeSchema[]= [];
+
+    review.Element.Reviews.forEach(item => {
+      const review: ReviewTypeSchema = {
+        "@type": "Review",
+        reviewRating: {
+          "@type": "Rating",
+          ratingValue: item.Rating,
+          bestRating: bestReviewRaring
+        },
+        author: {
+          "@type": "Person",
+          name: item.User.Name
+        }
+      };
+
+      reviewsType.push(review)
+    })
+
+    const reviewProperties: {
+      review?: ReviewTypeSchema[] | ReviewTypeSchema,
+      aggregateRating?: AggregateRatingSchema
+    } = {}
+    if(reviewsType.length){
+      reviewsType.length > 1 ? reviewProperties.review = reviewsType : reviewProperties.review = reviewsType[0]
+    }
+
+    const aggregateRating: AggregateRatingSchema = {
+      "@type": "AggregateRating",
+      ratingValue,
+      reviewCount: ratingCount
+    }
+
+    reviewProperties.aggregateRating = aggregateRating
+
+    return reviewProperties
 }
 
 export interface Props {
@@ -59,7 +127,7 @@ export interface Props {
 }
 
 /** @title Product details */
-export function loader(props: Props, _req: Request, ctx: AppContext) {
+export async function loader(props: Props, _req: Request, ctx: AppContext) {
   const {
     titleTemplate = "",
     descriptionTemplate = "",
@@ -74,7 +142,7 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
 
   const jsonLD = JSON.parse(JSON.stringify(originalJsonLD));
 
-  
+
   const title = renderTemplateString(
     titleTemplate,
     titleProp || jsonLD?.seo?.title || "",
@@ -87,10 +155,10 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
   const canonical = jsonLD?.seo?.canonical
     ? jsonLD?.seo?.canonical
     : jsonLD?.breadcrumbList
-    ? canonicalFromBreadcrumblist(jsonLD?.breadcrumbList)
-    : undefined;
+      ? canonicalFromBreadcrumblist(jsonLD?.breadcrumbList)
+      : undefined;
   const noIndexing = props.noIndexing || !jsonLD || jsonLD.seo?.noIndexing;
-  
+
   if (omitVariants && jsonLD?.product.isVariantOf?.hasVariant) {
     jsonLD.product.isVariantOf.hasVariant = [];
   }
@@ -109,72 +177,82 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
   //   }
 
 
-    delete jsonLD.product.brand["id@"];
+  delete jsonLD.product.brand["@id"];
 
-    const HIGH_PRICE_SPECIFICATION_LABEL = "https://schema.org/ListPrice";
-    const LOW_PRICE_SPECIFICATION_LABEL = "https://schema.org/SalePrice";
+  const HIGH_PRICE_SPECIFICATION_LABEL = "https://schema.org/ListPrice";
+  const LOW_PRICE_SPECIFICATION_LABEL = "https://schema.org/SalePrice";
+
+  const offersList = [];
+  const [baseOffer] = jsonLD.product.offers.offers;
+  const highPriceInSpecification = baseOffer.priceSpecification.find(item => item.priceType === HIGH_PRICE_SPECIFICATION_LABEL);
+  const lowPriceSpecificationLabel = baseOffer.priceSpecification.find(item => item.priceType === LOW_PRICE_SPECIFICATION_LABEL);
+
+  const lowPriceWithDiscountPix = getPixDiscountValue(baseOffer.teasers, lowPriceSpecificationLabel.price);
 
 
+  offersList.push({
+    '@type': 'Offer',
+    price: lowPriceWithDiscountPix,
+    priceCurrency: "BRL",
+    availability: baseOffer.availability,
+    sku: jsonLD.product.sku,
+    itemCondition: 'http://schema.org/NewCondition',
+    priceValidUntil: baseOffer.priceValidUntil,
+    seller: {
+      '@type': 'Organization',
+      name: baseOffer.sellerName
+    },
+  })
 
-
-    const offersList = [];
-    const [baseOffer] = jsonLD.product.offers.offers;
-    const highPriceInSpecification = baseOffer.priceSpecification.find(item => item.priceType === HIGH_PRICE_SPECIFICATION_LABEL);
-    const lowPriceSpecificationLabel = baseOffer.priceSpecification.find(item => item.priceType === LOW_PRICE_SPECIFICATION_LABEL);
-
-    const lowPriceWithDiscountPix = getPixDiscountValue(baseOffer.teasers, lowPriceSpecificationLabel.price);
-
-    
-    offersList.push({
-      '@type': 'Offer',
-      price: lowPriceWithDiscountPix,
-      priceCurrency: "BRL",
-      availability: baseOffer.availability,
-      sku: jsonLD.product.sku,
-      itemCondition: 'http://schema.org/NewCondition',
-      priceValidUntil: baseOffer.priceValidUntil,
-      seller: {
-        '@type': 'Organization',
-        name: baseOffer.sellerName
-      },
-    })
-    
-    const offers = (() => {
-      if(lowPriceWithDiscountPix !== lowPriceSpecificationLabel || lowPriceWithDiscountPix !== highPriceInSpecification){
-        return {
-          "@type": "AggregateOffer",
-          "priceCurrency": "BRL",
-          "highPrice": highPriceInSpecification.price,
-          "lowPrice": lowPriceWithDiscountPix,
-          "offerCount": 1,
-          offers: offersList
-        }
+  const offers = (() => {
+    if (lowPriceWithDiscountPix !== lowPriceSpecificationLabel || lowPriceWithDiscountPix !== highPriceInSpecification) {
+      return {
+        "@type": "AggregateOffer",
+        "priceCurrency": "BRL",
+        "highPrice": highPriceInSpecification.price,
+        "lowPrice": lowPriceWithDiscountPix,
+        "offerCount": 1,
+        offers: offersList
       }
-      return [offersList]
-    })();  
-    
-    const tratedJsonLD = {
-      '@type': 'Product',
-      '@id': `${jsonLD.product.url.replace(`?skuId=${jsonLD.product.sku}`, "")}`,
-      brand: jsonLD.product.brand,
-      category: jsonLD.product.category,
-      name: jsonLD.product.name,
-      image: image,
-      description: jsonLD.product.description,
-      mpn: jsonLD.product.productID,
-      sku: jsonLD.product.sku,
-      offers: offers,
-    };
+    }
+    return [offersList]
+  })();
+
   
-    return {
-      ...seoSiteProps,
-      title,
-      description,
-      image,
-      canonical,
-      noIndexing,
-      jsonLDs: [tratedJsonLD],
-   };
+  
+  const { reviews } = originalJsonLD; 
+  const ratingExist = reviews && reviews.Element.Rating;
+  let reviewProperties = {}
+  if(ratingExist){
+    const factoryReviewPropertie = factoryReviewJsonType(reviews);
+    reviewProperties = factoryReviewPropertie
+  };
+
+  
+
+  const tratedJsonLD = {
+    '@type': 'Product',
+    '@id': `${jsonLD.product.url.replace(`?skuId=${jsonLD.product.sku}`, "")}`,
+    brand: jsonLD.product.brand,
+    category: jsonLD.product.category,
+    name: jsonLD.product.name,
+    image: image,
+    description: jsonLD.product.description,
+    mpn: jsonLD.product.productID,
+    sku: jsonLD.product.sku,
+    offers: offers,
+    ...reviewProperties
+  };
+
+  return {
+    ...seoSiteProps,
+    title,
+    description,
+    image,
+    canonical,
+    noIndexing,
+    jsonLDs: [tratedJsonLD]
+  };
 }
 
 function Section(props: Props): SEOSection {
