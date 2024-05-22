@@ -66,10 +66,6 @@ type AggregateRatingSchema = {
 const factoryReviewJsonType = (review: ReviewResponse) => {
   const ratingValue = review.Element.Rating;
 
-    const { ReviewBattle: {
-      BestReview
-    } } = review.Element
-    const bestReviewRaring = BestReview.Rating;
     const ratingCount = review.Element.Recommend.TotalReviews;
 
 
@@ -81,7 +77,7 @@ const factoryReviewJsonType = (review: ReviewResponse) => {
         reviewRating: {
           "@type": "Rating",
           ratingValue: item.Rating,
-          bestRating: bestReviewRaring
+          bestRating: ratingValue
         },
         author: {
           "@type": "Person",
@@ -97,7 +93,7 @@ const factoryReviewJsonType = (review: ReviewResponse) => {
       aggregateRating?: AggregateRatingSchema
     } = {}
     if(reviewsType.length){
-      reviewsType.length > 1 ? reviewProperties.review = reviewsType.splice(0, 5) : reviewProperties.review = reviewsType[0]
+      reviewsType.length > 1 ? reviewProperties.review = reviewsType : reviewProperties.review = reviewsType[0]
     }
 
     const aggregateRating: AggregateRatingSchema = {
@@ -127,7 +123,7 @@ export interface Props {
 }
 
 /** @title Product details */
-export async function loader(props: Props, _req: Request, ctx: AppContext) {
+export function loader(props: Props, _req: Request, ctx: AppContext) {
   const {
     titleTemplate = "",
     descriptionTemplate = "",
