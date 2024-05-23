@@ -9,8 +9,8 @@ import ProductCardMinicart from "$store/components/minicart/ProductCardMinicart.
 import { useUI } from "$store/sdk/useUI.ts"
 
 export interface Props {
-  collectionId: string;
-  count: number;
+  collectionId?: string;
+  count?: number;
   title?: string;
 }
 
@@ -25,7 +25,7 @@ function ProductShelf({
 
   return (
     <div class="w-full mb-5">
-      <h3 class="py-2 text-sm text-center text-neutral-dark font-normal">{title}</h3>
+      <p class="py-2 text-sm text-center text-neutral-dark font-normal">{title}</p>
       <div
         id={id}
         class="px-4 flex flex-col relative"

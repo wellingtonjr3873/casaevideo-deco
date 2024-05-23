@@ -99,9 +99,9 @@ export default function FooterItems(
               >
                 <Icon id="ChevronTop" size={16} fill="white" />
               </a>
-              <h2 class="small-bold mb-[24px] text-brand-secondary-900 text-center mt-[32px]">
+              <p class="small-bold mb-[24px] text-brand-secondary-900 text-center mt-[32px]">
                 {sectionAtendimento?.label}
-              </h2>
+              </p>
 
               <ul class="flex flex-col items-center justify-center gap-[16px] mb-[32px]">
                 {sectionAtendimento?.items.map((item) => {

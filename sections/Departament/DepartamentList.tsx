@@ -20,28 +20,28 @@ export interface Props {
 
 function ButtonsDepartamentSlider() {
   return (<>
-      <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
-        <Slider.PrevButton class="btn btn-circle border-none shadow-none right-1/2 absolute top-[-30px]">
-          <Icon
-            class="text-base-100"
-            size={33}
-            id="SliderArrowLeft"
-            strokeWidth={3}
-          />
-        </Slider.PrevButton>
-      </div>
-      <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
-        <Slider.NextButton class="btn btn-circle border-none shadow-none left-1/2 absolute top-[-30px]">
-          <Icon
-            class="text-base-100"
-            size={33}
-            id="SliderArrowRight"
-            strokeWidth={3}
-          />
-        </Slider.NextButton>
-      </div>
-    
-    </>
+    <div class="hidden relative sm:block z-10 col-start-1 row-start-3">
+      <Slider.PrevButton class="btn btn-circle border-none shadow-none right-1/2 absolute top-[-30px]">
+        <Icon
+          class="text-base-100"
+          size={33}
+          id="SliderArrowLeft"
+          strokeWidth={3}
+        />
+      </Slider.PrevButton>
+    </div>
+    <div class="hidden relative sm:block z-10 col-start-3 row-start-3">
+      <Slider.NextButton class="btn btn-circle border-none shadow-none left-1/2 absolute top-[-30px]">
+        <Icon
+          class="text-base-100"
+          size={33}
+          id="SliderArrowRight"
+          strokeWidth={3}
+        />
+      </Slider.NextButton>
+    </div>
+
+  </>
   );
 }
 
@@ -87,16 +87,16 @@ function DepartamentList(props: Props) {
                   )}
                 {description &&
                   (
-                    <span class="text-base-content text-center small-regular">
+                    <p lang="pt-BR" class="text-base-content text-center small-regular break-words text-xs md:text-sm hyphens-auto">
                       {description}
-                    </span>
+                    </p>
                   )}
               </a>
             </Slider.Item>
           ))}
         </Slider>
-          <ButtonsDepartamentSlider />
-          <SliderJS rootId={id} />
+        <ButtonsDepartamentSlider />
+        <SliderJS rootId={id} />
       </div>
     </div>
   );

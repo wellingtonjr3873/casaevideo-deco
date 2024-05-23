@@ -27,7 +27,7 @@ function Container({ children }: Props) {
   }
 
   return (
-    <div class="container">
+    <div class="container lg:w-11/12 px-4 lg:px-0 py-10">
       <children.Component {...children.props} />
     </div>
   );

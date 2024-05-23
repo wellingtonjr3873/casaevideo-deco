@@ -15,9 +15,12 @@ interface PropertyValue {
 
 function ProductBasicInfo({ product, tags }: Props) {
   const {
-    gtin,
+    // gtin,
     isVariantOf,
   } = product;
+
+  const refIdObject = product?.additionalProperty?.find(obj => obj.name === "RefId");
+  const refIdValue = refIdObject ? refIdObject.value : null;
 
   const description = product.description?.replaceAll("<br />", "") ||
     isVariantOf?.description?.replaceAll("<br />", "");
@@ -51,9 +54,9 @@ function ProductBasicInfo({ product, tags }: Props) {
       </h1>
 
       <div>
-        {gtin && (
+        {refIdValue && (
           <span class="x-small-regular text-base-300 flex gap-2">
-            <span>(Código: {gtin})</span>
+            <span>(Código: {refIdValue})</span>
             <span>
               Marca:{" "}
               <span class="text-brand-primary-600 underline">

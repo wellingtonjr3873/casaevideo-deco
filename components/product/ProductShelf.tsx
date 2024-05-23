@@ -15,6 +15,8 @@ export interface Props {
   title?: string;
   cardLayout?: cardLayout;
   /** *@hide */
+  dataVanPlacement?: string;
+  /** *@hide */
   device: "mobile" | "desktop" | "tablet";
 }
 
@@ -23,6 +25,7 @@ function ProductShelf({
   title,
   cardLayout,
   device,
+  dataVanPlacement,
 }: SectionProps<typeof loader>) {
   const id = useId();
   const platform = "vtex"
@@ -34,7 +37,7 @@ function ProductShelf({
     return(
       <>
         <div class="w-full container pl-4 sm:pl-0 py-6 flex flex-col gap-2 lg:py-6 max-w-[1280px] md:px-6 xl-b:px-0">
-          <h5 class="h5-bold text-[#272E35] w-full">{title}</h5>
+          <h2 class="h5-bold text-[#272E35] w-full">{title}</h2>
 
             <ul class="flex overflow-x-scroll gap-4 col-span-full row-start-2 row-end-5  max-w-none">
               {products?.map((product, index) => (
@@ -48,6 +51,7 @@ function ProductShelf({
                     platform={platform}
                     index={index}
                     device={device}
+                    dataVanPlacement={dataVanPlacement}
                   />
                 </li>
               ))}
@@ -75,7 +79,7 @@ function ProductShelf({
   }
   return (
     <div class="w-full container pl-4 sm:pl-0 pt-6 pb-12 flex flex-col gap-2  max-w-[1280px] md:px-6 xl-b:px-0">
-      <h5 class="h5-bold text-[#272E35] w-full">{title}</h5>
+      <h2 class="h5-bold text-[#272E35] w-full">{title}</h2>
 
       <div
         id={id}

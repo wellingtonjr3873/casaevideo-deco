@@ -27,31 +27,38 @@ export interface Props {
 interface DotsProps {
   images: ImageObject[];
   aspectRatio: string;
+  altText?: string;
 }
 
 function Dots({
   images,
   aspectRatio,
+  altText,
 }: DotsProps) {
   return (
     <div class="relative">
       <div class="w-full px-10">
         <Slider.Dots class="carousel carousel-center sm:carousel-end col-span-full row-start-2 row-end-5 gap-4 w-full flex justify-start align-center">
-          {images.map((img, index) => (
-            <Slider.Dot
-              index={index}
-              class="carousel-item relative w-14 flex justify-center align-center"
-            >
-              <Image
-                style={{ aspectRatio }}
-                class="group-disabled:border-brand-primary-700 group-disabled:border-2 border rounded border-neutral-400"
-                width={57}
-                height={57}
-                src={img.url!}
-                alt={img.alternateName}
-              />
-            </Slider.Dot>
-          ))}
+          {images.map((img, index) => {
+            const titleImage = img.url?.split("/")[6].replaceAll("-"," ").split(".")[0];
+
+            return(
+              <Slider.Dot
+                index={index}
+                class="carousel-item relative w-14 flex justify-center align-center"
+                >
+                <Image
+                  style={{ aspectRatio }}
+                  class="group-disabled:border-brand-primary-700 group-disabled:border-2 border rounded border-neutral-400"
+                  width={57}
+                  height={57}
+                  src={img.url!}
+                  alt={altText}
+                  title={titleImage}
+                  />
+              </Slider.Dot>
+            )
+          })}
         </Slider.Dots>
       </div>
 
@@ -80,10 +87,13 @@ export default function GallerySlider(props: Props) {
   }
 
   const {
-    page: { product: { image: images = [] } },
+    page: { product: { name, image: images = [] } },
     layout: { width, height },
   } = props;
   const aspectRatio = `${width} / ${height}`;
+  const [front] = images ?? [];
+
+  const titleImage = front.url?.split("/")[6].replaceAll("-"," ").split(".")[0];
 
   return (
     <div id={id} class="flex flex-col">
@@ -96,8 +106,9 @@ export default function GallerySlider(props: Props) {
               class="carousel-item w-full"
             >
               <ImageZoom
-                url={img.url}
-                alternateName={img.alternateName}
+                url={img.url ? img.url : ""}
+                alternateName={name ? name : ""}
+                title={titleImage}
                 width={width}
                 height={height}
                 index={index}
@@ -115,7 +126,7 @@ export default function GallerySlider(props: Props) {
         </div> */}
       </div>
 
-      <Dots images={images} aspectRatio={aspectRatio} />
+      <Dots altText={name} images={images} aspectRatio={aspectRatio} />
 
       <SliderJS rootId={id} />
     </div>
