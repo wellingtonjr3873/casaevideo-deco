@@ -11,23 +11,23 @@ export const SendEventOnClick = <E extends AnalyticsEvent>({ event, id }: {
 }) => {
 
   useEffect(() => {
-    scriptAsDataURI(
-      (id: string, event: AnalyticsEvent) => {
-        const elem = document.getElementById(id);
+    const elem = document.getElementById(id);
 
-        if (!elem) {
-          return console.warn(
-            `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
-          );
-        }
-
-        elem.addEventListener("click", () => {
-          window.DECO.events.dispatch(event);
-        });
-      },
-      id,
-      event,
-    );
+    if (!elem) {
+      return console.warn(
+        `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
+      );
+    }
+    elem.addEventListener("click", () => {
+      window.DECO.events.dispatch(event);
+    });
+    // scriptAsDataURI(
+    //   (id: string, event: AnalyticsEvent) => {
+        
+    //   },
+    //   id,
+    //   event,  
+    // );
   }, []);
 
   return <></>;
@@ -38,30 +38,26 @@ export const SendEventOnView = <E extends AnalyticsEvent>(
 ) => {
 
   useEffect(() => {
-    scriptAsDataURI(
-      (id: string, event: E) => {
-        const elem = document.getElementById(id);
 
-        if (!elem) {
-          return console.warn(
-            `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
-          );
-        }
+    const elem = document.getElementById(id);
 
-        const observer = new IntersectionObserver((items) => {
-          for (const item of items) {
-            if (!item.isIntersecting) continue;
+    if (!elem) {
+      return console.warn(
+        `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
+      );
+    }
 
-            window.DECO.events.dispatch(event);
-            observer.unobserve(elem);
-          }
-        });
+    const observer = new IntersectionObserver((items) => {
+      for (const item of items) {
+        if (!item.isIntersecting) continue;
 
-        observer.observe(elem);
-      },
-      id,
-      event,
-    );
+        window.DECO.events.dispatch(event);
+        observer.unobserve(elem);
+      }
+    });
+
+    observer.observe(elem);
+    
   }, []);
 
   return <></>;
