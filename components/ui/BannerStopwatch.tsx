@@ -107,11 +107,15 @@ export interface Props  {
      * @title Cor de fundo do cronometro
      * */
     backgroundColor: string;
+    /**
+     * @hide
+     */
+    isMobile: boolean
 }
 
 
 
-const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor, textColor, labelColor}: Props) => {
+const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor, textColor, labelColor, isMobile}: Props) => {
     const endAt = new Date(endDateAt!)
     const [finalDate, setFinalDate] = useState<Date | null>(null)
     
@@ -137,8 +141,8 @@ const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor,
     const seconds = String(finalDate?.getSeconds()).padStart(2, '0') 
 
     return <div style={{
-        left: true ? position?.xCoordenate : position?.xCoordenateDesktop,
-        bottom: true ? position?.xCoordenate : position?.yCoordenateDesktop
+        left: isMobile ? position?.xCoordenate : position?.xCoordenateDesktop,
+        bottom: isMobile ? position?.yCoordenate : position?.yCoordenateDesktop
     }} class={`absolute flex ${positionDictionary[position?.key  as keyof typeof positionDictionary || "base-right"]}`}>
         {mobile && desktop && <div class="flex">
             <Picture preload={false}>

@@ -75,6 +75,10 @@ export interface Props {
    * @description Tempo (em segundos) para iniciar a reprodução automática do carrossel.
    */
   interval?: number;
+    /**
+   * @hide
+   */
+  isMobile: boolean;
 }
 
 function getCurrentDateTime() {
@@ -84,7 +88,7 @@ function getCurrentDateTime() {
 }
 
 function BannerItem(
-  { image, lcp, id }: { image: Banner; lcp?: boolean; id: string },
+  { image, lcp, id, isMobile }: { image: Banner; lcp?: boolean; id: string, isMobile: boolean },
 ) {
   const {
     alt,
@@ -103,7 +107,7 @@ function BannerItem(
       title={title}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
-      {isStopwatch?.value && <BannerStopWatch {...isStopwatch.value as BannerStopWatchPropsComponent} endDateAt={dateEndAt!} />}
+      {isStopwatch?.value && <BannerStopWatch {...isStopwatch.value as BannerStopWatchPropsComponent} endDateAt={dateEndAt!} isMobile={isMobile} />}
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
@@ -208,7 +212,7 @@ function Buttons() {
 function BannerCarousel(props: Props) {
   const id = useId();
 
-
+  console.log(props.isMobile)
   const { bannerImages, interval, arrows } = { ...props };
 
   const currentDateTime = getCurrentDateTime();
@@ -235,6 +239,7 @@ function BannerCarousel(props: Props) {
                   //LCP Refactor: antes pegava-se index 0 oque acarretava em erros, pois os banners cadastrados no painel que usam exibição/tempo continuam no map de imagens e isso faz com que essa logica de preload não se aplique a imagem LCP, pois o banner LCP poderá ter index 1 visto que o banner de index 0 expirou e não é mais exibido na tela.
                   lcp={image.preload}
                   id={`${id}::${index}`}
+                  isMobile={props.isMobile}
                 />
                 <SendEventOnClick
                   id={`${id}::${index}`}
