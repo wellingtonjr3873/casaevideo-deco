@@ -109,45 +109,53 @@ const OursStoresModal = ({handleCloseModal, product} : OursStoresModalProps) => 
         if(address.postalCode || address.geoCoordinates)  handleGetStores(address)
     }, [address])
 
-    return createPortal(<div class="fixed inset-0 flex items-center justify-center z-[19] bg-[rgba(255,255,255,0.75)]">
-        <div class="fixed inset-0 flex flex-col bg-brand-secondary-50 z-20 w-full md:max-w-[496px] p-4 md:rounded-lg md:relative min-h-[264px] transition-all">
-            <h2 class="h5-bold mb-4">Disponibilidade em lojas fisicas</h2>
-            <span class="x-small-regular text-neutral-700 p-1 bg-neutral-50 rounded-sm w-fit mb-3">Estoque sujeito a disponibilidade ao longo do dia</span>
-            <span class="x-small-regular text-neutral-700 p-1 bg-neutral-50 rounded-sm w-fit mb-4">Preço do site pode ser diferente da loja fisica</span>
-            <button 
-                onClick={getCoordenades}
-            class="flex h-10 py-[10px] border border-brand-secondary-400 gap-2 items-center justify-center rounded-md bg-neutral-50 text-neutral-900">
-            <Icon id="PickupPoint" size={24} class="text-neutral-50"/>
-                Usar minha localização
-            </button>
-            
-            <div class="flex gap-2 items-center justify-center mt-2">
-                <span class="small-regular text-neutral-900">Ou pesquise pelo CEP</span>
-               {userCep.value && <span class="small-underline text-brand-primary-1 cursor-pointer" onClick={handleResetUserCep}>Alterar</span>}
+    return createPortal(
+        <div 
+            class="fixed inset-0 flex items-center justify-center z-[19] bg-[rgba(255,255,255,0.75)]"
+            onClick={handleCloseModal}
+        >
+            <div 
+                class="fixed inset-0 flex flex-col bg-brand-secondary-50 z-20 w-full md:max-w-[496px] p-4 md:rounded-lg md:relative min-h-[264px] transition-all"
+                onClick={(e) => e.stopPropagation()}
+            >
+                <h2 class="h5-bold mb-4">Disponibilidade em lojas fisicas</h2>
+                <span class="x-small-regular text-neutral-700 p-1 bg-neutral-50 rounded-sm w-fit mb-3">Estoque sujeito a disponibilidade ao longo do dia</span>
+                <span class="x-small-regular text-neutral-700 p-1 bg-neutral-50 rounded-sm w-fit mb-4">Preço do site pode ser diferente da loja fisica</span>
+                <button 
+                    onClick={getCoordenades}
+                class="flex h-10 py-[10px] border border-brand-secondary-400 gap-2 items-center justify-center rounded-md bg-neutral-50 text-neutral-900">
+                <Icon id="PickupPoint" size={24} class="text-neutral-50"/>
+                    Usar minha localização
+                </button>
+                
+                <div class="flex gap-2 items-center justify-center mt-2">
+                    <span class="small-regular text-neutral-900">Ou pesquise pelo CEP</span>
+                {userCep.value && <span class="small-underline text-brand-primary-1 cursor-pointer" onClick={handleResetUserCep}>Alterar</span>}
+                </div>
+
+                {userCep.value ? <p class="small-bold m-0 text-center mt-4"><strong>{userCep.value!.logradouro} - {userCep.value!.city} - {userCep.value!.state} - {userCep.value?.cep}</strong></p>: <form class="flex gap-2 mt-2" onSubmit={(e) => { e.preventDefault(); getPostalCode()}}>
+                    <input ref={cepRef} placeholder="CEP"  class="h-10 rounded-md border border-neutral-200 py-2 px-4 w-full"/> 
+                    <button class="h-10 rounded-md text-neutral-50 flex items-center justify-center bg-brand-primary-1 text-neultra-50 py-[10px] px-3">Calcular</button>
+                </form>}
+
+                <ul class="gap-4 flex flex-col lg:max-h-[560px] overflow-y-auto custom-scroll pr-2 mt-2 lg:mt-9">
+                {!loadingStores.value ? 
+                    (stores.value.length ? (stores.value.map((item) => {
+                    return <StoreItem {...item} />
+                    })) : 
+                    (userAlreadySearch.value ? <p>Não existem pontos de retirada para esse endereço</p> : <></>))
+                :   (<div class="flex items-center justify-center mt-4">
+                    <span class="loading loading-spinner w-16" />
+                    </div> )
+                }
+                </ul>
+
+                <button class="border-2 border-black rounded-full w-6 h-6 absolute right-[18px] flex items-center justify-center" onClick={handleCloseModal}>
+                    <Icon id="Close" size={16} stroke-width={2} />
+                </button>
             </div>
-
-            {userCep.value ? <p class="small-bold m-0 text-center mt-4"><strong>{userCep.value!.logradouro} - {userCep.value!.city} - {userCep.value!.state} - {userCep.value?.cep}</strong></p>: <form class="flex gap-2 mt-2" onSubmit={(e) => { e.preventDefault(); getPostalCode()}}>
-                <input ref={cepRef} placeholder="CEP"  class="h-10 rounded-md border border-neutral-200 py-2 px-4 w-full"/> 
-                <button class="h-10 rounded-md text-neutral-50 flex items-center justify-center bg-brand-primary-1 text-neultra-50 py-[10px] px-3">Calcular</button>
-            </form>}
-
-            <ul class="gap-4 flex flex-col lg:max-h-[560px] overflow-y-auto custom-scroll pr-2 mt-2 lg:mt-9">
-            {!loadingStores.value ? 
-                (stores.value.length ? (stores.value.map((item) => {
-                  return <StoreItem {...item} />
-                })) : 
-                (userAlreadySearch.value ? <p>Não existem pontos de retirada para esse endereço</p> : <></>))
-            :   (<div class="flex items-center justify-center mt-4">
-                 <span class="loading loading-spinner w-16" />
-                </div> )
-            }
-            </ul>
-
-            <button class="border-2 border-black rounded-full w-6 h-6 absolute right-[18px] flex items-center justify-center" onClick={handleCloseModal}>
-                <Icon id="Close" size={16} stroke-width={2} />
-            </button>
         </div>
-    </div>, document.body)
+    , document.body)
 }
 const OursStores = ({product}: Props) => {
 

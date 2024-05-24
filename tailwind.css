@@ -476,7 +476,7 @@
   width: 100%;
   overflow-y: auto;
   visibility: hidden;
-
+  max-width: max-content;
 }
 
 .navbar-submenu.open {

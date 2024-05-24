@@ -74,7 +74,7 @@ function Drawers({ menu, children, platform, minicartProps }: Props) {
             displaySearchDrawer.value = false;
           }}
           iconTitle={<Icon id="User" size={24} strokeWidth={2} />}
-          title={"Olá Usuário"}
+          title={"Olá usuário"}
           style="w-full grid-rows-[48px_max-content]"
         >
           {displayMenu.value && <Menu {...menu} />}
