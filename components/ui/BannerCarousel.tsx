@@ -18,11 +18,6 @@ import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
    * @hide
    */
 interface NotBannerStopWatch  {
-  /**
-   * @hide
-   * @default false
-   */
-  value?: unknown
 };
 
   /**
