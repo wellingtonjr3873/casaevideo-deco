@@ -11,7 +11,7 @@ export interface Props  {
     desktop?: ImageWidget;
     /** @title Imagem do logo Mobile */
     mobile?: ImageWidget;
-    position: "base-left" | "top-left" | "top-right" | "base-center" | "base-right",
+    position?: "base-left" | "top-left" | "top-right" | "base-center" | "base-right",
     /** 
      * @format color 
      * @title Cor do texto
