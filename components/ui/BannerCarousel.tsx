@@ -22,7 +22,7 @@ interface NotBannerStopWatch  {
    * @hide
    * @default false
    */
-  value?: false
+  value?: unknown
 };
 
   /**
