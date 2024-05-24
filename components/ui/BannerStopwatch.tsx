@@ -1,6 +1,5 @@
 import { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { Device } from "deco/utils/userAgent.ts";
 import { useEffect, useState } from "preact/hooks";
 
 
@@ -84,12 +83,6 @@ export interface Props  {
     desktop?: ImageWidget;
     /** @title Imagem do logo Mobile */
     mobile?: ImageWidget;
-
-    /**
-   * @format dynamic-options
-   * @options {{{names}}}
-   */
-
     position?: BaseLeft | TopLeft | TopRight | BaseCenter | BaseRight,
     /** 
      * @format color 

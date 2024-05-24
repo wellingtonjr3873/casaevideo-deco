@@ -64,7 +64,7 @@ export interface Banner {
    /**
    * @title É um banner tipo cronometro?
    */
-  isStopwatch: NotBannerStopWatch | BannerStopWatchProps;
+  isStopwatch?: NotBannerStopWatch | BannerStopWatchProps;
 }
 
 export interface Props {
