@@ -1,6 +1,5 @@
 import { ImageWidget } from "apps/admin/widgets.ts";
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { Device } from "deco/utils/userAgent.ts";
 import { useEffect, useState } from "preact/hooks";
 
 
