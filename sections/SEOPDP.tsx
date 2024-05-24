@@ -181,8 +181,8 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
 
   const offersList = [];
   const [baseOffer] = jsonLD.product.offers.offers;
-  const highPriceInSpecification = baseOffer.priceSpecification.find(item => item.priceType === HIGH_PRICE_SPECIFICATION_LABEL);
-  const lowPriceSpecificationLabel = baseOffer.priceSpecification.find(item => item.priceType === LOW_PRICE_SPECIFICATION_LABEL);
+  const highPriceInSpecification = baseOffer.priceSpecification.find((item: { priceType: string; }) => item.priceType === HIGH_PRICE_SPECIFICATION_LABEL);
+  const lowPriceSpecificationLabel = baseOffer.priceSpecification.find((item: { priceType: string; }) => item.priceType === LOW_PRICE_SPECIFICATION_LABEL);
 
   const lowPriceWithDiscountPix = getPixDiscountValue(baseOffer.teasers, lowPriceSpecificationLabel.price);
 
@@ -216,8 +216,9 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
   })();
 
   
-  
-  const { reviews } = originalJsonLD; 
+  // deno-lint-ignore ban-ts-comment
+  //@ts-ignore
+  const { reviews } = originalJsonLD;
   const ratingExist = reviews && reviews.Element;
   let reviewProperties = {}
   if(ratingExist){
