@@ -103,7 +103,7 @@ function BannerItem(
       title={title}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
-      {isStopwatch?.value && <BannerStopWatch {...isStopwatch.value} endDateAt={dateEndAt!} />}
+      {isStopwatch?.value && <BannerStopWatch {...isStopwatch.value as BannerStopWatchPropsComponent} endDateAt={dateEndAt!} />}
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
