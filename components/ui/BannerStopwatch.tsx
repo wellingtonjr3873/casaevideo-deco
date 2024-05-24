@@ -84,12 +84,6 @@ export interface Props  {
     desktop?: ImageWidget;
     /** @title Imagem do logo Mobile */
     mobile?: ImageWidget;
-
-    /**
-   * @format dynamic-options
-   * @options {{{names}}}
-   */
-
     position?: BaseLeft | TopLeft | TopRight | BaseCenter | BaseRight,
     /** 
      * @format color 
