@@ -6,22 +6,22 @@ export interface Props  {
     /**
     * @hide
      */
-    endDateAt?: string
+    endDateAt: string
     /** @title Imagem do logo Desktop */
     desktop?: ImageWidget;
     /** @title Imagem do logo Mobile */
     mobile?: ImageWidget;
-    position?: "base-left" | "top-left" | "top-right" | "base-center" | "base-right",
+    position: "base-left" | "top-left" | "top-right" | "base-center" | "base-right",
     /** 
      * @format color 
      * @title Cor do texto
      * */
-    textColor?: string;
+    textColor: string;
     /** 
      * @format color 
      * @title Cor de fundo do cronometro
      * */
-    backgroundColor?: string;
+    backgroundColor: string;
 }
 
 const BannerStopWatch = ({endDateAt, desktop, mobile, position, backgroundColor, textColor}: Props) => {

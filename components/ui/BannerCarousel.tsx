@@ -2,18 +2,37 @@ import {
   SendEventOnClick,
   SendEventOnView,
 } from "deco-sites/casaevideo/islands/Analytics.tsx";
-import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-// import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { Head } from "$fresh/runtime.ts";
-
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { Props as BannerStopWatchProps } from "$store/components/ui/BannerStopwatch.tsx";
+import { Props as BannerStopWatchPropsComponent } from "$store/components/ui/BannerStopwatch.tsx";
 import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
+
+
+
+ /**
+   * @title Banner tipo imagem
+   * @hide
+   */
+interface NotBannerStopWatch  {
+  /**
+   * @hide
+   * @default false
+   */
+  value?: false
+};
+
+  /**
+   * @title Banner tipo cronometro
+   */
+interface BannerStopWatchProps  {
+  value: BannerStopWatchPropsComponent
+}
+
+
 /**
  * @titleBy alt
  */
@@ -42,11 +61,10 @@ export interface Banner {
   title?: string;
   /** @description Link da imagem */
   href: string;
-    /**
-   * @format boolean
+   /**
    * @title É um banner tipo cronometro?
    */
-  isStopwatch?: BannerStopWatchProps;
+  isStopwatch: NotBannerStopWatch | BannerStopWatchProps;
 }
 
 export interface Props {
@@ -85,7 +103,7 @@ function BannerItem(
       title={title}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
-      {isStopwatch && <BannerStopWatch {...isStopwatch} endDateAt={dateEndAt} />}
+      {isStopwatch?.value && <BannerStopWatch {...isStopwatch.value} endDateAt={dateEndAt!} />}
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
