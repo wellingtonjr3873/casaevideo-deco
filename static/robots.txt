@@ -1,35 +1,19 @@
-# Disallow all crawlers access to certain pages. 
- User-agent: * 
+User-agent: *	
 
- Sitemap: https://www.casaevideo.com.br/sitemap.xml
-
- Disallow: /img/* 
- Disallow: /account/* 
- Disallow: /login/* 
- Disallow: /checkout/* 
- Disallow: */sistema/*
- Disallow: /sistema/404
- Disallow: /sistema/500
- Disallow: /sistema/buscavazia
- Disallow: /sistema/checkout
- Disallow: /sistema/login 
- Disallow: /quick-view/* 
- Disallow: /espiar/* 
- Disallow: /*map=c,priceFrom
- Disallow: */productotherpaymentsystems/*
- Noindex: */productotherpaymentsystems/*
- Noindex: /buscapagina/*
- 
-User-agent: *
-Allow:
-User-agent: Googlebot
-Allow:
-User-agent: Googlebot-Image
-Allow:
-User-agent: Mediapartners-Google
-Allow:
-User-agent: Adsbot-Google
-Allow:
-
-User-agent: *
-allow: /
+Disallow: /img/*
+Disallow: /account/*
+Disallow: /login/*
+Disallow: /checkout/*
+Disallow: */sistema/*
+Disallow: /sistema/404
+Disallow: /sistema/500
+Disallow: /sistema/buscavazia
+Disallow: /sistema/checkout
+Disallow: /sistema/login
+Disallow: /quick-view/*
+Disallow: /espiar/*
+Disallow: /*map=c,priceFrom
+Disallow: */productotherpaymentsystems/*
+Disallow: */productotherpaymentsystems/*
+Disallow: /buscapagina/*
+Sitemap: https://www.casaevideo.com.br/sitemap.xml
