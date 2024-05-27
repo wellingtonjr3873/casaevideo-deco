@@ -1,3 +1,5 @@
+import * as Sentry from "@sentry/react";
+
 export interface Props {
   tableId: string;
   campaign: string;
@@ -37,6 +39,8 @@ const action = async (
     return response;
   } catch (err) {
     console.error(err);
+    Sentry.captureException(err);
+
     return null;
   }
 };
