@@ -14,6 +14,7 @@ import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
 import LoggedUserMobile from "$store/islands/Header/LoggedUserMobile.tsx";
 
 import { useUser } from "apps/vtex/hooks/useUser.ts";
+import SentryConfig from "deco-sites/casaevideo/islands/Header/SentryConfig.tsx";
 
 interface Categories {
   items: {
@@ -292,6 +293,8 @@ function Header({
         <div className="hidden lg:flex">
           <GeoLocationPointBar />
         </div>
+
+        <SentryConfig />
       </header>
 
     </>
