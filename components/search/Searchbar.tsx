@@ -8,7 +8,7 @@
  * Note that this is the most performatic way to perform a search, since
  * no JavaScript is shipped to the browser!
  */
-
+import { useSignal } from "@preact/signals";
 import ProductCard from "$store/components/product/ProductCard.tsx";
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
@@ -72,7 +72,7 @@ function Searchbar({
   const hasTerms = Boolean(searches.length);
 
 
-  const [searchValue, setSearchValue] = useState(currentSearchParam || "");
+  const searchValue = useSignal(currentSearchParam || "");
 
   return (
     <div class="w-full grid gap-8 overflow-y-hidden h-[40px]" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -105,8 +105,8 @@ function Searchbar({
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.currentTarget.value)}
+          value={searchValue.value}
+          onChange={(e) => searchValue.value = e.currentTarget.value}
         />
         <Button
           type="submit"

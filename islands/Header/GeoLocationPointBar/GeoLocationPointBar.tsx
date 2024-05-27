@@ -1,5 +1,5 @@
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
-import GeoLocationPoint from "./GeoLocationPoint.tsx";
+import GeoLocationPoint from "$store/islands/Header/GeoLocationPointBar/GeoLocationPoint.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 
 function GeoLocationPointBar() {

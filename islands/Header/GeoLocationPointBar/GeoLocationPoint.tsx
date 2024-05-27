@@ -1,27 +1,28 @@
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
+import { useSignal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 
 function GeoLocationPoint() {
     const { displayGeoLocationPointPopup } = useUI();
-    const [cep, setCep] = useState('')
-    const [cepForm, setCepForm] = useState({ value: '', open: false })
-    const [userCurrentCep, setUserCurrentCep] = useState({ value: '', loading: false })
+    const cep = useSignal('')
+    const cepForm = useSignal({ value: '', open: false })
+    const userCurrentCep = useSignal({ value: '', loading: false })
     const timeout = 1000;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let newCep = (e.target as HTMLInputElement).value;
         newCep = newCep.replace(/\D/g, '');
         newCep = newCep.replace(/^(\d{5})(\d)/, '$1-$2');
-        setCep(newCep);
-        setCepForm((prev) => ({ ...prev, value: newCep }))
+        cep.value = newCep;
+        cepForm.value =  { ...cepForm.value, value: newCep };
     };
 
     function submitCep(value: string) {
         if (value.length != 9) return
         const validCep = value.replace('-', '')
-        setUserCurrentCep((prev) => ({ ...prev, loading: true }))
+        userCurrentCep.value = { ...userCurrentCep.value, loading: true };
         fetch('/api/sessions', {
             method: 'PATCH',
             body: JSON.stringify({
@@ -41,9 +42,9 @@ function GeoLocationPoint() {
             .then((res) => res.json())
             .then(() => {
                 if (IS_BROWSER) {
-                    localStorage?.setItem("USER_CEP", value)
+                    localStorage.setItem("USER_CEP", value)
                 }
-                setUserCurrentCep(() => ({ value: value, loading: false }))
+                userCurrentCep.value  = { value: value, loading: false };
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false
                     location.reload();
@@ -54,7 +55,7 @@ function GeoLocationPoint() {
                 if (IS_BROWSER) {
                     localStorage?.setItem("USER_CEP", value)
                 }
-                setUserCurrentCep(() => ({ value: value, loading: false }))
+                userCurrentCep.value = { value: value, loading: false };
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false
                 }, timeout);
@@ -64,13 +65,13 @@ function GeoLocationPoint() {
 
     function submitedCep(e: Event) {
         e.preventDefault()
-        submitCep(cepForm.value)
+        submitCep(cepForm.value.value)
     }
 
     useEffect(() => {
         const currentCepIsExist = localStorage.getItem("USER_CEP")
         if (currentCepIsExist) {
-            setUserCurrentCep((prev) => ({ ...prev, value: currentCepIsExist }))
+            userCurrentCep.value = { ...userCurrentCep.value, value: currentCepIsExist };
         }
     }, [])
 
@@ -95,7 +96,7 @@ function GeoLocationPoint() {
                 >
                     <Icon width={24} height={24} id={"LocationPoint"} />
 
-                    {userCurrentCep.value.length == 9 ?
+                    {userCurrentCep.value.value.length == 9 ?
                         `Ofertas para: ${userCurrentCep.value}`
                         :
                         "Ver ofertas para a região"
@@ -117,14 +118,14 @@ function GeoLocationPoint() {
                                     <input
                                         class="bg-white border border-solid border-complementary-5 rounded-lg px-4 py-2 font-lato font-normal text-base leading-normal flex items-center text-gray-600 outline-none flex-1 w-[175px] lg:w-auto text-neutral-1"
                                         type="text"
-                                        value={cep}
+                                        value={cep.value}
                                         placeholder="00000-000"
                                         maxlength={9}
                                         onChange={handleChange}
                                     />
 
                                     <button class="bg-white border border-gray-800 rounded-lg px-4 py-2 w-full max-w-[105px] cursor-pointer font-lato font-semibold text-base leading-normal text-center text-black min-w-[78px] w-[78px] h-[42px]" type="submit">
-                                        {userCurrentCep.loading ?
+                                        {userCurrentCep.value.loading ?
                                             <div class="loading loading-spinner "></div>
                                             :
                                             "Salvar"
