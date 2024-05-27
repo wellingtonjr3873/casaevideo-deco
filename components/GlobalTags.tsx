@@ -7,9 +7,6 @@ export interface Props {
 function GlobalTags({ url }: Props) {
   return (
     <Head>
-      {/* Store favicon */}
-      <link rel="icon" href={"https://casaevideonewio.vteximg.com.br/arquivos/fav-icon-cev.png"} />
-
       {/* Enable View Transitions API */}
       <meta name="view-transition" content="same-origin" />
 
