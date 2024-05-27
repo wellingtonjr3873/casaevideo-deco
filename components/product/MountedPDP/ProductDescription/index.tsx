@@ -105,6 +105,9 @@ function ProductDescription(props: Props) {
     return acc;
   }, [] as ProductAdditionalProps[]);
 
+  const MAX_LENGTH_MOBILE = 780;
+  const MAX_LENGTH_DESKTOP = 1200;
+
   return (
     <div id="description" class="container px-4 md:px-0 mt-4">
       {product.description && product.description.length > 0 &&
@@ -115,7 +118,7 @@ function ProductDescription(props: Props) {
         </div>
         
         <div class="pdp-see-more collapse-content collapse collapse-arrow items-center border-t-2 border-brand-secondary-100 p-0 rounded-none">
-          {product.description.length > 780 &&
+          {product.description.length > MAX_LENGTH_MOBILE &&
             <>
               <input type="checkbox" name="my-accordion-2" class={"block lg:hidden input-description-see-more"}/> 
               <div class="description-see-more block lg:hidden min-h-20 collapse-title body-regular relative">
@@ -123,7 +126,7 @@ function ProductDescription(props: Props) {
               </div>
             </>
           }
-          {product.description.length > 1200 &&
+          {product.description.length > MAX_LENGTH_DESKTOP &&
             <>
               <input type="checkbox" name="my-accordion-2" class={"hidden lg:block input-description-see-more"}/> 
               <div class="description-see-more hidden lg:block min-h-20 collapse-title body-regular relative">
