@@ -8,7 +8,7 @@ const REGEX_QUERY_VALUE = /[?&]q=([^&]*)/;
 
 function getQueryValue(url: string){
     const match = url.match(REGEX_QUERY_VALUE);
-    const response = match ? decodeURIComponent(match[1]) : null;
+    const response = match ? decodeURIComponent(match[1]) : undefined;
     return response
 }
 export async function loader(props: Props, req: Request, ctx: AppContext){
