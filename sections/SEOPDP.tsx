@@ -136,18 +136,11 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
     jsonLD: originalJsonLD,
     omitVariants,
   } = props;
-
   const jsonLD = JSON.parse(JSON.stringify(originalJsonLD));
 
 
-  const title = renderTemplateString(
-    titleTemplate,
-    titleProp || jsonLD?.seo?.title || "",
-  );
-  const description = renderTemplateString(
-    descriptionTemplate,
-    descriptionProp || jsonLD?.seo?.description || "",
-  );
+  const title = titleProp || jsonLD?.seo?.title || "";
+  const description = descriptionProp || jsonLD?.seo?.description || "";
   const image = jsonLD?.product.image?.[0]?.url;
   const canonical = jsonLD?.seo?.canonical
     ? jsonLD?.seo?.canonical
@@ -181,6 +174,7 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
 
   const offersList = [];
   const [baseOffer] = jsonLD.product.offers.offers;
+  // deno-lint-ignore no-explicit-any
   const highPriceInSpecification = baseOffer.priceSpecification.find(item => item.priceType === HIGH_PRICE_SPECIFICATION_LABEL);
   const lowPriceSpecificationLabel = baseOffer.priceSpecification.find(item => item.priceType === LOW_PRICE_SPECIFICATION_LABEL);
 
