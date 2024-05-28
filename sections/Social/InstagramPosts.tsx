@@ -45,7 +45,7 @@ export async function loader(
 
   const { data } = (await fetch(url).then((r) => r.json()).catch((err) => {
     console.error("error fetching posts from instagram", err);
-    Sentry.captureException("error fetching posts from instagram", err);
+    Sentry.captureException(err);
 
     
     return { data: [] };
