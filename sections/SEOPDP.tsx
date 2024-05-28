@@ -136,18 +136,11 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
     jsonLD: originalJsonLD,
     omitVariants,
   } = props;
-
   const jsonLD = JSON.parse(JSON.stringify(originalJsonLD));
 
 
-  const title = renderTemplateString(
-    titleTemplate,
-    titleProp || jsonLD?.seo?.title || "",
-  );
-  const description = renderTemplateString(
-    descriptionTemplate,
-    descriptionProp || jsonLD?.seo?.description || "",
-  );
+  const title = titleProp || jsonLD.seo.title || jsonLD.product.name || "";
+  const description = descriptionProp || jsonLD.seo.description || jsonLD.product.description || "";
   const image = jsonLD?.product.image?.[0]?.url;
   const canonical = jsonLD?.seo?.canonical
     ? jsonLD?.seo?.canonical
@@ -222,7 +215,6 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
   let reviewProperties = {}
   if(ratingExist){
 
-    await Deno.writeTextFileSync('./review.json', JSON.stringify(reviews));
     const factoryReviewPropertie = factoryReviewJsonType(reviews);
     reviewProperties = factoryReviewPropertie
   };
