@@ -3,7 +3,6 @@
 A fully featured starter to help you customize and deploy an e-commerce website.
 In minutes
 
-<div style="display: flex; justify-content: center; width: 100%">
 
 ## Features
 
