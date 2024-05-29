@@ -1,6 +1,6 @@
 import { createGraphqlClient } from "apps/utils/graphql.ts";
 import { newslettterMutation } from "deco-sites/casaevideo/graphql/mutations/newsletter.ts";
-
+import * as Sentry from "@sentry/react";
 type Props = {
   email: string;
 };
@@ -25,6 +25,7 @@ const loader = async (props: Props): Promise<boolean | null> => {
     });
     return subscribeNewsletter;
   } catch (err) {
+    Sentry.captureException(err);
     console.error(err);
     return false;
   }

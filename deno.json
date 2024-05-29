@@ -2,7 +2,7 @@
   "imports": {
     "deco-sites/casaevideo/": "./",
     "$store/": "./",
-    "deco/": "https://denopkg.com/deco-cx/deco@1.66.13/",
+    "deco/": "https://denopkg.com/deco-cx/deco@1.67.1/",
     "apps/": "https://denopkg.com/LelabsTeam/deco-apps@1.62.7/",
     "$fresh/": "https://deno.land/x/fresh@1.6.8/",
     "preact": "https://esm.sh/preact@10.19.6",
@@ -12,7 +12,8 @@
     "@preact/signals-core": "https://esm.sh/*@preact/signals-core@1.5.1",
     "std/": "https://deno.land/std@0.190.0/",
     "partytown/": "https://denopkg.com/deco-cx/partytown@0.4.8/",
-    "daisyui": "npm:daisyui@4.4.19"
+    "daisyui": "npm:daisyui@4.4.19",
+    "@sentry/react": "npm:@sentry/react@8.4.0"
   },
   "tasks": {
     "start": "deno task bundle && deno run -A --env --config=deno.json $(deno eval 'console.log(import.meta.resolve(\"deco/hypervisor/main.ts\"))') --build-cmd 'deno task build' -- deno task dev",
