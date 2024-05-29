@@ -2,6 +2,7 @@ import { useSignal } from "@preact/signals";
 import { useRef } from "preact/hooks";
 import { invoke } from "deco-sites/casaevideo/runtime.ts";
 import Spinner from "deco-sites/casaevideo/components/ui/Spinner.tsx";
+import * as Sentry from "@sentry/react";
 
 export interface Props {
     campaing?: string;
@@ -63,7 +64,8 @@ function Form({ campaing = "NÃO DEFINIDO NO SITE EDITOR", tabelaMd = "LL" }: Pr
                 phone: phone,
             });
         } catch (err) {
-            console.error(err)
+            Sentry.captureException(err);
+
             resultMessage.value = "Erro ao se cadastrar"
             setTimeout(() => {
                 resultMessage.value = "Cadastrar"

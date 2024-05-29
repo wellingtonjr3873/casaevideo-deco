@@ -222,7 +222,7 @@ function BannerCarousel(props: Props) {
     <>
       <div
         id={id}
-        class="grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0 mt-0"
+        class="grid mt-6 md:mt-12 grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0 mt-0"
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
           {filteredImages?.map((image, index) => {

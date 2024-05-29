@@ -6,6 +6,7 @@ import { formatPrice } from "$store/sdk/format.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
 import { useCallback, useState, useEffect  } from "preact/hooks";
+import * as Sentry from "@sentry/react";
 
 export interface Item {
   image: {
@@ -56,6 +57,7 @@ function CartItem(
         setVoltagemResult(result);
       } catch (error) {
         console.error("Erro ao buscar voltagem:", error);
+        Sentry.captureException("Erro ao buscar voltagem:", error);
       }
     }
 

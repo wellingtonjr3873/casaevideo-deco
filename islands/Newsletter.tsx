@@ -3,6 +3,7 @@ import { useRef } from "preact/hooks";
 import { invoke } from "deco-sites/casaevideo/runtime.ts";
 import { useSignal } from "@preact/signals";
 import Spinner from "deco-sites/casaevideo/components/ui/Spinner.tsx";
+import * as Sentry from "@sentry/react";
 
 type Props = {
   buttonText: string
@@ -42,6 +43,8 @@ function Newsletter(props: Props) {
         result.value = res
     }catch(err){
       console.error(err)
+      Sentry.captureException(err);
+
       result.value = false
     }finally{
       loading.value = false
