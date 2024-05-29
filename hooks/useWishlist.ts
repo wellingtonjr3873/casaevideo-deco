@@ -2,6 +2,7 @@ import { invoke } from "../runtime.ts";
 import { useSignal } from "@preact/signals";
 import { useUser } from "apps/vtex/hooks/useUser.ts";
 import { useEffect } from "preact/hooks";
+import * as Sentry from "@sentry/react";
 
 type AddItemProps = {
   sku: string;
@@ -42,6 +43,7 @@ export const useWishlist = () => {
       });
     } catch (err) {
       console.error(err);
+      Sentry.captureException(err);
     }
   };
 
@@ -55,6 +57,7 @@ export const useWishlist = () => {
       // const res = await invoke['deco-sites/casaevideo'].loaders.Wishlist.get();
     } catch (err) {
       console.error(err);
+      Sentry.captureException(err);
     }
   };
 

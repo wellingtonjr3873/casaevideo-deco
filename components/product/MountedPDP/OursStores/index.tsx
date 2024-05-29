@@ -3,7 +3,7 @@ import { useSignal } from "@preact/signals";
 import { createPortal, useEffect, useState, useRef } from 'preact/compat';
 import { useCart } from "apps/vtex/hooks/useCart.ts";
 import { PickupPoint } from "apps/vtex/utils/types.ts";
-
+import * as Sentry from "@sentry/react";
 
 export type Props = {
     product: {
@@ -59,6 +59,7 @@ const OursStoresModal = ({ handleCloseModal, product }: OursStoresModalProps) =>
 
         } catch (err) {
             console.error(err)
+            Sentry.captureException(err);
         } finally {
             loadingStores.value = false
             userAlreadySearch.value = true
