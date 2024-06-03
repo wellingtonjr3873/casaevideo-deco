@@ -105,25 +105,41 @@ function ProductDescription(props: Props) {
     return acc;
   }, [] as ProductAdditionalProps[]);
 
+  const MAX_LENGTH_MOBILE = 780;
+  const MAX_LENGTH_DESKTOP = 1200;
+
   return (
     <div id="description" class="container px-4 md:px-0 mt-4">
       {product.description && product.description.length > 0 &&
-      <div class="pdp-description collapse collapse-arrow bg-neutral-50 px-2 rounded-none rounded-t-lg md:rounded-lg border border-brand-secondary-100 transition-none">
+      <div class="pdp-description grid-cols-1 collapse collapse-arrow bg-neutral-50 px-2 rounded-none rounded-t-lg md:rounded-lg border border-brand-secondary-100 transition-none">
         <input type="checkbox" name="my-accordion-3" checked /> 
         <div class="collapse-title body-bold p-4">
           Descrição do produto
         </div>
         
         <div class="pdp-see-more collapse-content collapse collapse-arrow items-center border-t-2 border-brand-secondary-100 p-0 rounded-none">
-          <input type="checkbox" name="my-accordion-2"/> 
-          <div class="collapse-title body-regular">
-            Ver Mais
-          </div>
+          {product.description.length > MAX_LENGTH_MOBILE &&
+            <>
+              <input type="checkbox" name="my-accordion-2" class={"block lg:hidden input-description-see-more"}/> 
+              <div class="description-see-more block lg:hidden min-h-20 collapse-title body-regular relative">
+                Ver Mais
+              </div>
+            </>
+          }
+          {product.description.length > MAX_LENGTH_DESKTOP &&
+            <>
+              <input type="checkbox" name="my-accordion-2" class={"hidden lg:block input-description-see-more"}/> 
+              <div class="description-see-more hidden lg:block min-h-20 collapse-title body-regular relative">
+                Ver Mais
+              </div>
+            </>
+          }
+          
         
           {product.description && (
             <div class="collapse-content px-0"> 
               <div
-                class="x-small-regular py-4 md:p-4 flex flex-col gap-4 items-stretch justify-stretch pb-8"
+                class="x-small-regular lg:body-regular py-4 md:p-4 flex flex-col gap-4 items-stretch justify-stretch mb-8"
                 dangerouslySetInnerHTML={{ __html: product.description }}
               />
             </div>
