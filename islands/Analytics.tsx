@@ -1,6 +1,7 @@
 import type { AnalyticsEvent } from "apps/commerce/types.ts";
 import { scriptAsDataURI } from "apps/utils/dataURI.ts";
 import { useEffect } from "preact/hooks";
+import * as Sentry from "@sentry/react";
 
 /**
  * This function is usefull for sending events on click. Works with both Server and Islands components
@@ -16,9 +17,15 @@ export const SendEventOnClick = <E extends AnalyticsEvent>({ event, id }: {
         const elem = document.getElementById(id);
 
         if (!elem) {
+          Sentry.withScope((scope) => {
+            scope.setExtra('id', id);
+            Sentry.captureException("Could not find element. Click event will not be send. This will cause loss in analytics")
+          });
+
           return console.warn(
             `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
           );
+
         }
 
         elem.addEventListener("click", () => {
@@ -43,6 +50,11 @@ export const SendEventOnView = <E extends AnalyticsEvent>(
         const elem = document.getElementById(id);
 
         if (!elem) {
+          Sentry.withScope((scope) => {
+            scope.setExtra('id', id);
+            Sentry.captureException("Could not find element. Click event will not be send. This will cause loss in analytics")
+          });
+
           return console.warn(
             `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
           );

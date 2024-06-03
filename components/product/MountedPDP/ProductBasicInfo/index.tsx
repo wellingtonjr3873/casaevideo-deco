@@ -1,5 +1,11 @@
 import { Product } from "apps/commerce/types.ts";
 import type { tagsProps } from "../../MountedPDP/index.tsx"
+
+
+import { JSDOM } from "jsdom";
+import DOMPurify from "dompurify";
+
+
 interface Props {
   product: Product;
   tags?: tagsProps[];
@@ -14,11 +20,15 @@ interface PropertyValue {
 }
 
 function ProductBasicInfo({ product, tags }: Props) {
+  
+  const window = new JSDOM("").window;
+  const DOMPurifyServer = DOMPurify(window);
   const {
     // gtin,
     isVariantOf,
   } = product;
-
+  
+  
   const refIdObject = product?.additionalProperty?.find(obj => obj.name === "RefId");
   const refIdValue = refIdObject ? refIdObject.value : null;
 
@@ -39,13 +49,13 @@ function ProductBasicInfo({ product, tags }: Props) {
       {/* tags */}
       <div class="flex gap-2">
         {tags && tags?.map((tag) => {
-            return filteredCluesters && filteredCluesters?.map((clusterId) => (
-              clusterId == tag?.id &&
-              <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-2 items-center" style={{ backgroundColor: tag?.bgColor }}>
-                <img src={tag?.icon?.[0]} />
-                {tag?.text}
-              </div>
-            ))
+          return filteredCluesters && filteredCluesters?.map((clusterId) => (
+            clusterId == tag?.id &&
+            <div class="h-[24px] gap-1 small-regular rounded-md flex text-neutral-50 justify-between px-2 items-center" style={{ backgroundColor: tag?.bgColor }}>
+              <img src={tag?.icon?.[0]} />
+              {tag?.text}
+            </div>
+          ))
         })}
       </div>
 
@@ -57,12 +67,14 @@ function ProductBasicInfo({ product, tags }: Props) {
         {refIdValue && (
           <span class="x-small-regular text-base-300 flex gap-2">
             <span>(Código: {refIdValue})</span>
-            <span>
-              Marca:{" "}
-              <span class="text-brand-primary-600 underline">
-                {product.brand?.name}
+            <a href={`/${product.brand?.name}`}>
+              <span>
+                Marca:{" "}
+                <span class="text-brand-primary-600 underline">
+                  {product.brand?.name}
+                </span>
               </span>
-            </span>
+            </a>
           </span>
         )}
       </div>
@@ -71,7 +83,7 @@ function ProductBasicInfo({ product, tags }: Props) {
         {description && (
           <div
             class="h-14 overflow-hidden"
-            dangerouslySetInnerHTML={{ __html: description }}
+            dangerouslySetInnerHTML={{ __html: DOMPurifyServer.sanitize(description) }}
           />
         )}
         <a

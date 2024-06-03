@@ -1,4 +1,5 @@
 import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
+import * as Sentry from "@sentry/react";
 export interface Props {
   productId: string;
   userId: string;
@@ -38,6 +39,7 @@ const loader = async (
     });
     return await res.json();
   } catch (err) {
+    Sentry.captureException(err);
     console.error(err);
     return false;
   }

@@ -10,6 +10,9 @@ import type { App as A, AppContext as AC } from "deco/mod.ts";
 import { rgb24 } from "std/fmt/colors.ts";
 import manifest, { Manifest } from "../manifest.gen.ts";
 import { Secret } from "apps/website/loaders/secret.ts";
+import { sentryConfig } from "deco-sites/casaevideo/utils/sentry-config.ts";
+
+sentryConfig();
 
 export type Props = {
   /**

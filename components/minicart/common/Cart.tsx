@@ -10,6 +10,8 @@ import ProductShelfMinicart from "$store/components/minicart/ProductShelfMinicar
 import { invoke } from "$store/runtime.ts";
 import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
+import * as Sentry from "@sentry/react";
+
 interface Props {
   items: Item[];
   loading: boolean;
@@ -53,7 +55,8 @@ function Cart({
       });
       shelfProducts = result;
     }catch{
-      console.error("Erro ao exibir vitrine de produtos.")
+      console.error("Erro ao exibir vitrine de produtos.");
+      Sentry.captureException("Erro ao exibir vitrine de produtos.");
     }
     if(shelfProducts){
       productMinicartShelf.value = shelfProducts;
@@ -74,6 +77,7 @@ function Cart({
         product = result;
       }catch{
         console.error("Erro ao exibir vitrine de produtos.")
+        Sentry.captureException("Erro ao exibir vitrine de produtos.");
       }
       if(product){
         voltageName = product[0].additionalProperty?.find(property => property.name == "Voltagem");

@@ -6,6 +6,7 @@ import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
 import type { ProductListingPage } from "apps/commerce/types.ts";
 import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
+import FilstersMobile from "deco-sites/casaevideo/components/search/FiltersMobile.tsx";
 
 export type Props =
   & Pick<ProductListingPage, "filters" | "sortOptions">
@@ -25,17 +26,18 @@ function SearchControls({ filters, displayFilter, sortOptions, productQnt }: Pro
       onClose={() => open.value = false}
       aside={
         <>
-          <div class="bg-base-100 flex flex-col h-full divide-y overflow-y-hidden">
-            <div class="flex justify-between items-center">
-              <span class="px-4 py-3">
-                <span class="font-medium text-2xl">Filtrar</span>
-              </span>
-              <Button class="btn btn-ghost" onClick={() => open.value = false}>
+          <div class="bg-brand-secondary-50 flex flex-col h-full divide-y overflow-y-hidden w-full">
+            <div class="flex justify-between items-center py-3 bg-brand-terciary-1 px-4">
+              <h1 class=" flex gap-1">
+                <Icon id="FilterButtonMob" size={24}/>
+                <span class="small-regular text-neutral-900">Filtrar por</span>
+              </h1>
+              <button onClick={() => open.value = false}>
                 <Icon id="XMark" size={24} strokeWidth={2} />
-              </Button>
+              </button>
             </div>
-            <div class="flex-grow overflow-auto">
-              <Filters filters={filters} />
+            <div class="flex-grow overflow-auto p-4">
+              <FilstersMobile filters={filters} sortOptions={sortOptions} />
             </div>
           </div>
         </>

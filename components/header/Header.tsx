@@ -14,6 +14,7 @@ import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
 import LoggedUserMobile from "$store/islands/Header/LoggedUserMobile.tsx";
 
 import { useUser } from "apps/vtex/hooks/useUser.ts";
+import SentryConfig from "deco-sites/casaevideo/islands/Header/SentryConfig.tsx";
 
 interface Categories {
   items: {
@@ -23,7 +24,7 @@ interface Categories {
   }[];
 }
 
-interface TopBanner{
+interface TopBanner {
   src?: ImageWidget;
   alt?: string;
   altura?: number;
@@ -101,8 +102,6 @@ function Header({
   device
 }: Props) {
 
-  // const {loading, user } = useUser();
-
   const platform = usePlatform();
   const { user } = useUser();
   if (device === "mobile") {
@@ -142,24 +141,26 @@ function Header({
                     minicartProps={minicartProps}
                   />}
                 </span>
-                {logo && (
-                  <Picture>
-                    <Source
-                      media="(max-width: 768px)"
-                      src={logo.mobile.src}
-                      width={140}
-                      height={24}
-                    />
-                    <Source
-                      media="(min-width: 768px)"
-                      src={logo.desktop.src}
-                      width={240}
-                      height={40}
-                    />
+                <a href="/" title="Link de retorno para página inicial">
+                  {logo && (
+                    <Picture>
+                      <Source
+                        media="(max-width: 768px)"
+                        src={logo.mobile.src}
+                        width={140}
+                        height={24}
+                      />
+                      <Source
+                        media="(min-width: 768px)"
+                        src={logo.desktop.src}
+                        width={240}
+                        height={40}
+                      />
 
-                    <img src={logo?.desktop.src} />
-                  </Picture>
-                )}
+                      <img src={logo?.desktop.src} />
+                    </Picture>
+                  )}
+                </a>
               </div>
               <div className="flex items-center justify-end">
                 <LoggedUserMobile />
@@ -241,7 +242,7 @@ function Header({
               {!isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile }} />}
             </div>
             <div class="flex items-center gap-2">
-               <LoggedUser />
+              <LoggedUser />
               {/* cart */}
               {platform === "vtex" && (
                 <CartButtonVTEX>
@@ -261,8 +262,7 @@ function Header({
               <ul class="w-full flex items-center justify-between">
                 <li class="flex items-center">
 
-                  <span class="flex">
-
+                  <span class="flex w-8 h-8 md:w-auto md:h-auto">
                     <MenuButton />
                     {!isMobile && <Drawers
                       menu={{ items: navItems }}
@@ -270,9 +270,6 @@ function Header({
                       minicartProps={minicartProps}
                     />}
 
-                  </span>
-                  <span class="small-bold hover:underline-offset-1">
-                    Categorias
                   </span>
                 </li>
                 {categories?.items?.map((item) => {
@@ -292,6 +289,8 @@ function Header({
         <div className="hidden lg:flex">
           <GeoLocationPointBar />
         </div>
+
+        <SentryConfig />
       </header>
 
     </>

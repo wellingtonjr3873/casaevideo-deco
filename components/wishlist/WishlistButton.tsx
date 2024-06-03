@@ -21,7 +21,7 @@ function WishlistButton({
   absolute = false,
 }: Props) {
   const { user } = useUser();
-  const { toastSucess, toastError, toastMessage } = useToast();
+  const { toastSucess, toastError, toastMessage, toastInfo } = useToast();
   const localLoad = useSignal(false);
 
   const { loading, wishlistListProducts, wishlistListId } = useWishlist();
@@ -81,7 +81,7 @@ function WishlistButton({
           e.preventDefault();
 
           if (!isUserLoggedIn) {
-            toastError.value = true;
+            toastInfo.value = true;
             toastMessage.value = "Por favor, entre na sua conta para adicionar produtos aos favoritos.";
             return;
           }
@@ -104,10 +104,12 @@ function WishlistButton({
       >
         <Icon
           id="Wishlist"
-          size={24}
+          size={32}
           strokeWidth={2}
           style={{
-            color: inWishlist ? "text-brand-secondary-900" : "white"
+            color: inWishlist ? "text-brand-secondary-900" : "white",
+            minWidth: "32px",
+            minHeight: "32px"
           }}
         />
         {variant === "icon" ? null : inWishlist ? "Remover" : "Favoritar"}
@@ -115,6 +117,7 @@ function WishlistButton({
       <>
         <ToastSucess className={`top-[100px] left-4`} />
         <ToastError className={`top-[200px] left-4`} />
+        <ToastInfo className={`top-[200px] left-4`} />
       </>
     </>
   );

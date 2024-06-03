@@ -2,6 +2,7 @@ import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
 import { useEffect, useState } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import * as Sentry from "@sentry/react";
 
 function GeoLocationPoint() {
     const { displayGeoLocationPointPopup } = useUI();
@@ -50,6 +51,7 @@ function GeoLocationPoint() {
                 }, timeout);
             })
             .catch((err) => {
+                Sentry.captureException(err);
                 console.error('ocorreu um erro', err)
                 if (IS_BROWSER) {
                     localStorage?.setItem("USER_CEP", value)
