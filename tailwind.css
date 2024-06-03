@@ -547,6 +547,16 @@
     animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1 both;
 }
 
+.checkbox-warning{
+  --chkbg: oklch(var(--brand-terciary-1));
+  --chkfg: var(--fallback-wac,oklch(var(--wac)/1));
+  --tw-border-opacity: 1;
+}
+
+.checkbox-warning:checked, .checkbox-warning[checked="true"], .checkbox-warning[aria-checked="true"]{
+  border: none;
+}
+
 @-webkit-keyframes slide-right {
   0% {
     -webkit-transform: translateX(-100px);

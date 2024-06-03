@@ -87,7 +87,8 @@ function Result({
   miniBannerCarousel,
   questions,
   startingPage = 0,
-  cardHorizontal
+  cardHorizontal,
+
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
@@ -224,9 +225,21 @@ function Result({
   );
 }
 
+
+const NOT_FOUND_SEARCH_TEXT = "<h2>OOPS!</h2><h3><strong>Nenhum resultado encontrado :(</strong></h3><p>Que tal tentar outra combinação ?</p>"
 function SearchResult({ page, ...props }: Props) {
-  if (!page || page.products.length == 0) {
-    return <NotFoundPage {...props.notFoundPage} />;
+  if (!page || page && !page.products.length) {
+
+    const defaultProps = page && !page.products.length ? {
+      ...props.notFoundPage,
+      text: NOT_FOUND_SEARCH_TEXT,
+      ctaText: "Editar filtros",
+      ctaStyles: {
+        backgroundColor: 'bg-brand-primary-1', 
+        color: 'text-[white]'
+      }
+    } : props.notFoundPage
+    return <NotFoundPage {...defaultProps} />;
   }
 
   return <Result {...props} page={page} />;
