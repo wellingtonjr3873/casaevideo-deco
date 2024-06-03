@@ -2,8 +2,8 @@
   "imports": {
     "deco-sites/casaevideo/": "./",
     "$store/": "./",
-    "deco/": "https://denopkg.com/deco-cx/deco@1.67.1/",
-    "apps/": "https://denopkg.com/LelabsTeam/deco-apps@1.62.7/",
+    "apps/": "https://denopkg.com/LelabsTeam/deco-apps@1.62.9/",
+    "deco/": "https://denopkg.com/deco-cx/deco@1.70.6/",
     "$fresh/": "https://deno.land/x/fresh@1.6.8/",
     "preact": "https://esm.sh/preact@10.19.6",
     "preact/": "https://esm.sh/preact@10.19.6/",
@@ -13,6 +13,8 @@
     "std/": "https://deno.land/std@0.190.0/",
     "partytown/": "https://denopkg.com/deco-cx/partytown@0.4.8/",
     "daisyui": "npm:daisyui@4.4.19",
+    "jsdom": "https://esm.sh/jsdom@24.1.0",
+    "dompurify": "https://esm.sh/dompurify@3.1.4",
     "@sentry/react": "npm:@sentry/react@8.4.0"
   },
   "tasks": {

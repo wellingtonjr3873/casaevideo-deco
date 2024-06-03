@@ -25,18 +25,25 @@ type ModalProps = {
 }
 
 const Modal = ({ handleCloseModal, children }: ModalProps) => {
-    return createPortal(<div class="fixed inset-0 flex items-center justify-center z-[19] bg-[rgba(255,255,255,0.75)]">
-        <div class="fixed inset-0 flex flex-col bg-brand-secondary-50 z-20 w-full md:max-w-[496px] p-4 md:rounded-lg md:relative md:min-h-[575px] transition-all">
+    return createPortal(
+        <div
+            class="fixed inset-0 flex items-center justify-center z-[19] bg-[rgba(255,255,255,0.75)]"
+            onClick={() => handleCloseModal(false)}
+        >
+            <div 
+                class="fixed inset-0 flex flex-col bg-brand-secondary-50 z-20 w-full md:max-w-[496px] p-4 md:rounded-lg md:relative md:min-h-[575px] transition-all"
+                onClick={(e) => e.stopPropagation()}
+            >
 
-            <h2 class="h5-bold mb-4">Consulte mais formas de pagamento</h2>
-                {children}
+                <h2 class="h5-bold mb-4">Consulte mais formas de pagamento</h2>
+                    {children}
 
-            <button class="border-2 border-black rounded-full w-6 h-6 absolute right-[18px] flex items-center justify-center" onClick={() => handleCloseModal(false)}>
-                <Icon id="Close" size={16} stroke-width={2} />
-            </button>
+                <button class="border-2 border-black rounded-full w-6 h-6 absolute right-[18px] flex items-center justify-center" onClick={() => handleCloseModal(false)}>
+                    <Icon id="Close" size={16} stroke-width={2} />
+                </button>
+            </div>
         </div>
-    </div>,
-        document.body)
+    ,document.body);
 }
 
 const Installments = ({ installments }: Props) => {

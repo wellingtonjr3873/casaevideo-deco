@@ -1178,7 +1178,7 @@
 
 	<symbol fill="none" viewBox="0 0 24 24" id="ArrowAccordion"
 		xmlns="http://www.w3.org/2000/svg">
-		<path d="m8 20 8-8-8-8" stroke="#D5351D" stroke-width="1.5" stroke-linecap="round"
+		<path d="m8 20 8-8-8-8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
 			stroke-linejoin="round" />
 	</symbol>
 	<symbol fill="none" viewBox="0 0 24 24" id="ArrowBack" xmlns="http://www.w3.org/2000/svg">

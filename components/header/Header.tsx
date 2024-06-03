@@ -102,8 +102,6 @@ function Header({
   device
 }: Props) {
 
-  // const {loading, user } = useUser();
-
   const platform = usePlatform();
   const { user } = useUser();
   if (device === "mobile") {
