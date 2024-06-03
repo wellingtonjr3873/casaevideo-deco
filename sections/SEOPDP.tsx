@@ -223,7 +223,6 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
   let reviewProperties = {}
   if(ratingExist){
 
-    await Deno.writeTextFileSync('./review.json', JSON.stringify(reviews));
     const factoryReviewPropertie = factoryReviewJsonType(reviews);
     reviewProperties = factoryReviewPropertie
   };
