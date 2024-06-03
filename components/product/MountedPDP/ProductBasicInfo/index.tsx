@@ -67,12 +67,14 @@ function ProductBasicInfo({ product, tags }: Props) {
         {refIdValue && (
           <span class="x-small-regular text-base-300 flex gap-2">
             <span>(Código: {refIdValue})</span>
-            <span>
-              Marca:{" "}
-              <span class="text-brand-primary-600 underline">
-                {product.brand?.name}
+            <a href={`/${product.brand?.name}`}>
+              <span>
+                Marca:{" "}
+                <span class="text-brand-primary-600 underline">
+                  {product.brand?.name}
+                </span>
               </span>
-            </span>
+            </a>
           </span>
         )}
       </div>
