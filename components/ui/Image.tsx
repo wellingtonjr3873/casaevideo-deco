@@ -1,6 +1,7 @@
 import { Head } from "$fresh/runtime.ts";
 import type { JSX } from "preact";
 import { forwardRef } from "preact/compat";
+import * as Sentry from "@sentry/react";
 
 export type Props =
   & Omit<
@@ -26,6 +27,11 @@ const Image = forwardRef<HTMLImageElement, Props>((props, ref) => {
     console.warn(
       `Missing height. This image will NOT be optimized: ${props.src}`,
     );
+
+    Sentry.withScope((scope) => {
+      scope.setExtra('scrollLeft', props.src);
+      Sentry.captureException("Missing height. This image will NOT be optimized")
+    });
   }
 
   const linkProps = {
