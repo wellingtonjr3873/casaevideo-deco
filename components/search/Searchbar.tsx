@@ -180,7 +180,7 @@ function Searchbar({
                       /> 
                     </div>
                     :
-                  <a href={product.url} class="flex gap-2">
+                  <a href={product.url?.split("?")[0]} class="flex gap-2">
                       <picture>
                         <img src={productFrontImage.url} alt="" class="h-16 w-16 max-w-none"/>
                       </picture>
