@@ -1,6 +1,5 @@
 import Seo from "apps/website/components/Seo.tsx";
 import {
-  renderTemplateString,
   SEOSection,
 } from "apps/website/components/Seo.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
@@ -124,7 +123,7 @@ export interface Props {
 }
 
 /** @title Product details */
-export async function loader(props: Props, _req: Request, ctx: AppContext) {
+export  function loader(props: Props, _req: Request, ctx: AppContext) {
   const {
     titleTemplate = "",
     descriptionTemplate = "",
@@ -137,10 +136,8 @@ export async function loader(props: Props, _req: Request, ctx: AppContext) {
     omitVariants,
   } = props;
   const jsonLD = JSON.parse(JSON.stringify(originalJsonLD));
-
-
-  const title = titleProp || jsonLD.seo.title || jsonLD.product.name || "";
-  const description = descriptionProp || jsonLD.seo.description || jsonLD.product.description || "";
+  const title = titleProp || jsonLD.seo.legacyProductTitle || jsonLD.seo.title || jsonLD.product.name || "";
+  const description = descriptionProp || jsonLD.seo.legacyDescritionMetaTag || jsonLD.seo.description || jsonLD.product.description || "";
   const image = jsonLD?.product.image?.[0]?.url;
   const canonical = jsonLD?.seo?.canonical
     ? jsonLD?.seo?.canonical
