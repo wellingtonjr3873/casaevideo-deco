@@ -1,5 +1,6 @@
 import { useBuyTogether } from "deco-sites/casaevideo/sdk/useBuyTogether.ts";
 import { BuyTogetherProduct } from "deco-sites/casaevideo/types/buyTogether.ts";
+import { formatPrice } from "deco-sites/casaevideo/sdk/format.ts";
 
 export interface Props {
   buyTogether: BuyTogetherProduct[];
@@ -16,7 +17,7 @@ function BuyTogetherTotal(props: Props) {
   return (
     <div class="flex md:flex-col items-center justify-center order-1">
       <span class="h5-bold  pr-1 md:pr-0">
-        R$ {total.toFixed(2).replace(".", ",")}
+        {formatPrice(total, "BRL")}
       </span>
       <span class="body-regular">Valor Total</span>
     </div>

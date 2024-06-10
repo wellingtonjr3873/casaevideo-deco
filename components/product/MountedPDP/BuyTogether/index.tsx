@@ -6,6 +6,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import AddToCart from "deco-sites/casaevideo/islands/AddToCartButton/vtex-multiple.tsx";
 import BuyTogetherSelectButton from "deco-sites/casaevideo/islands/BuyTogetherSelectButton.tsx";
 import BuyTogetherTotal from "deco-sites/casaevideo/islands/BuyTogetherTotal.tsx";
+import { formatPrice } from "deco-sites/casaevideo/sdk/format.ts";
 
 type PageProps = ProductDetailsPage & BuyTogetherLoader;
 
@@ -65,11 +66,11 @@ function BuyTogether(props: Props) {
                 <span class="x-small-bold md:small-bold mb-2 md:mb-0">
                   {item.name}
                 </span>
-                <span class="x-small-regular md:xx-small-regular line-through">
-                  {item.listPrice > 0 ? `R$ ${item.listPrice.toFixed(2).replace(".", ",")}` : ""}
+                <span class="micro-regular md:micro-regular line-through">
+                  {item.listPrice > 0 ? `${formatPrice(item.listPrice, "BRL")}` : ""}
                 </span>
                 <span class="body-bold md:h6-bold">
-                  {item.price > 0 ? `R$ ${item.price.toFixed(2).replace(".", ",")}` : "Indisponível"}
+                  {item.price > 0 ? `${formatPrice(item.price, "BRL")}` : "Indisponível"}
                 </span>
                 <span class="xx-small-regular line-through hidden md:block">
                   {item.installments}
