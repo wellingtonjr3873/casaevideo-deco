@@ -72,7 +72,7 @@ function BuyTogether(props: Props) {
                 <span class="body-bold md:h6-bold text-[#393939]">
                   {item?.price > 0 ? `${formatPrice(item?.price, "BRL")}` : "Indisponível"}
                 </span>
-                <span class="xx-small-regular line-through hidden md:block text-[#393939]">
+                <span class="xx-small-regular hidden md:block text-[#393939]">
                   {item?.installments}
                 </span>
               </div>
