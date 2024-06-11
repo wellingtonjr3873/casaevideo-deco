@@ -14,7 +14,6 @@ import WishlistButton from "deco-sites/casaevideo/islands/WishlistButton.tsx";
 import ProductVisualization from "deco-sites/casaevideo/islands/ProductVisualization.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 import OursStores from "deco-sites/casaevideo/islands/OursStores.tsx";
-
 export interface tagsProps {
   active?: boolean;
   id?: string;
@@ -28,8 +27,8 @@ export interface Props {
   tags?: tagsProps[];
 }
 
-function MountedPDP({ 
-  page, 
+function MountedPDP({
+  page,
   tags
 }: Props) {
   const platform = usePlatform();
@@ -62,7 +61,7 @@ function MountedPDP({
       <div class="p-4 md:px-0">
         <Breadcrumb itemListElement={breadcrumb.itemListElement} homeName="Casa&Video" />
       </div>
-      <div class="flex flex-col md:flex-row gap-3" id={id}>
+      <div class="flex flex-col md:flex-row gap-3 md:max-h-[750px]" id={id}>
         <div class="md:bg-neutral-50 w-full md:w-2/3 flex flex-col md:flex-row gap-4 rounded-lg min-h-[520px] h-min md:py-4  md:border md:border-brand-secondary-100">
           {/* Product Image */}
           <div class="w-full md:w-1/2 flex flex-col relative gap-4">

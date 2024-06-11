@@ -16,10 +16,14 @@ export interface Props {
 }
 export interface BuyTogetherLoader {
   buyTogether: BuyTogetherProduct[];
+  showTogether: BuyTogetherProduct[];
 }
 
 interface BuyTogetherApi extends VTEXCommerceStable {
   "GET /core/v1/produtos/api/showcase/who-bought-also-bought/:productId": {
+    response: Promise<{ productId: string }[]>;
+  };
+  "GET /api/catalog_system/pub/products/crossselling/showtogether/:productId": {
     response: Promise<{ productId: string }[]>;
   };
 }
@@ -70,6 +74,18 @@ export default function productDetailsPage(
     // @ts-ignore
     const account = ctx.account || ctx.commerce.account || "casaevideonewio";
 
+    const showTogetherApi = createHttpClient<BuyTogetherApi>({
+      base: `https://${account}.vtexcommercestable.com.br`,
+      fetcher: fetchSafe,
+      headers: withSegmentCookie(
+        segment,
+        new Headers({
+          "content-type": "application/json",
+          accept: "application/json",
+        }),
+      ),
+    });
+
     const vtexApi = createHttpClient<VTEXCommerceStableFull>({
       base: `https://${account}.vtexcommercestable.com.br`,
       fetcher: fetchSafe,
@@ -90,7 +106,23 @@ export default function productDetailsPage(
       return data[0];
     };
 
+    const getShowTogether = async (
+      productId: string,
+    ) => {
+      const response = await showTogetherApi
+        ["GET /api/catalog_system/pub/products/crossselling/showtogether/:productId"](
+          {
+            productId,
+          },
+        );
+
+      const data = await response.json();
+
+      return data[0];
+    };
+
     const getSkuFromProductId = async (productId: string) => {
+      if (!productId) return;
       const response = await vtexApi
         ["GET /api/catalog_system/pub/products/search"]({
           fq: `productId:${productId}`,
@@ -102,12 +134,21 @@ export default function productDetailsPage(
     };
 
     const buyTogether = await getWhoBoughtAlsoBought(productID);
-    const product = productDetailsPage.product;
+    const showTogether = await getShowTogether(productID);
+    const product = productDetailsPage?.product;
+
     const buyTogetherFullProduct = await getSkuFromProductId(
-      productId || buyTogether.productId,
+      productId || buyTogether?.productId,
     );
     const buyTogetherFullProductSeller = getDefaultVtexSeller(
       buyTogetherFullProduct?.items?.[0]?.sellers || [],
+    );
+
+    const showTogetherFullProduct = await getSkuFromProductId(
+      productId || showTogether?.productId,
+    );
+    const showTogetherFullProductSeller = getDefaultVtexSeller(
+      showTogetherFullProduct?.items?.[0]?.sellers || [],
     );
 
     const {
@@ -135,21 +176,58 @@ export default function productDetailsPage(
           price,
           availability,
         },
+        ...(buyTogetherFullProduct?.items?.[0]?.itemId
+          ? [{
+            productID: buyTogetherFullProduct?.items[0].itemId,
+            name: buyTogetherFullProduct?.productName,
+            seller: buyTogetherFullProductSeller?.sellerId,
+            quantity: 1,
+            image: buyTogetherFullProduct?.items[0]?.images.map((image) => ({
+              url: image.imageUrl,
+              alt: image.imageText,
+            }))[0],
+            listPrice: buyTogetherFullProductSeller?.commertialOffer.ListPrice,
+            installments: "",
+            price: buyTogetherFullProductSeller?.commertialOffer.Price,
+            availability:
+              buyTogetherFullProductSeller?.commertialOffer?.IsAvailable ||
+              false,
+          }]
+          : []),
+      ],
+      showTogether: [
         {
-          productID: buyTogetherFullProduct?.items[0].itemId,
-          name: buyTogetherFullProduct.productName,
-          seller: buyTogetherFullProductSeller?.sellerId,
+          productID: product.productID,
+          name: product.name,
+          seller,
           quantity: 1,
-          image: buyTogetherFullProduct?.items[0].images.map((image) => ({
-            url: image.imageUrl,
-            alt: image.imageText,
+          image: product?.image?.map((image) => ({
+            url: image.url,
+            alt: image.alternateName,
           }))[0],
-          listPrice: buyTogetherFullProductSeller?.commertialOffer.ListPrice,
-          installments: "",
-          price: buyTogetherFullProductSeller?.commertialOffer.Price,
-          availability:
-            buyTogetherFullProductSeller?.commertialOffer?.IsAvailable || false,
+          listPrice,
+          installments,
+          price,
+          availability,
         },
+        ...(showTogetherFullProduct?.items?.[0]?.itemId
+          ? [{
+            productID: showTogetherFullProduct?.items[0].itemId,
+            name: showTogetherFullProduct?.productName,
+            seller: showTogetherFullProductSeller?.sellerId,
+            quantity: 1,
+            image: showTogetherFullProduct?.items[0]?.images.map((image) => ({
+              url: image?.imageUrl,
+              alt: image?.imageText,
+            }))[0],
+            listPrice: showTogetherFullProductSeller?.commertialOffer.ListPrice,
+            installments: "",
+            price: showTogetherFullProductSeller?.commertialOffer.Price,
+            availability:
+              showTogetherFullProductSeller?.commertialOffer?.IsAvailable ||
+              false,
+          }]
+          : []),
       ],
     };
   };

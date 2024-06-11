@@ -10,16 +10,16 @@ function BuyTogetherTotal(props: Props) {
   const { buyTogether } = props;
   const { addToCartState } = useBuyTogether();
   const total = buyTogether.reduce((acc, cur, idx) => {
-    if (addToCartState.value[idx]) return acc + cur.price;
+    if (addToCartState.value[idx]) return acc + cur?.price;
     return acc;
   }, 0);
 
   return (
     <div class="flex md:flex-col items-center justify-center order-1">
-      <span class="h5-bold  pr-1 md:pr-0">
+      <span class="h5-bold  pr-1 md:pr-0 text-[#393939]">
         {formatPrice(total, "BRL")}
       </span>
-      <span class="body-regular">Valor Total</span>
+      <span class="body-regular text-[#393939]">Valor Total</span>
     </div>
   );
 }

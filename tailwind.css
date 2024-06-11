@@ -192,7 +192,7 @@
   }
 
   .micro-regular {
-    @apply color-[red] text-[10px] font-normal leading-[140%]
+    @apply text-[#393939] text-[10px] font-normal leading-[140%]
   }
 
   .x-small-underline {
