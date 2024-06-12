@@ -73,7 +73,7 @@ export interface Props {
     /**
    * @hide
    */
-  isMobile: boolean;
+  isMobile?: boolean;
 }
 
 function getCurrentDateTime() {
@@ -83,7 +83,7 @@ function getCurrentDateTime() {
 }
 
 function BannerItem(
-  { image, lcp, id, isMobile }: { image: Banner; lcp?: boolean; id: string, isMobile: boolean },
+  { image, lcp, id, isMobile = false }: { image: Banner; lcp?: boolean; id: string, isMobile?: boolean },
 ) {
   const {
     alt,
@@ -102,7 +102,7 @@ function BannerItem(
       title={title}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
-      {isStopwatch?.value && <BannerStopWatch {...isStopwatch.value as BannerStopWatchPropsComponent} endDateAt={dateEndAt!} isMobile={isMobile} />}
+      {isStopwatch && <BannerStopWatch {...(isStopwatch as BannerStopWatchProps).value } endDateAt={dateEndAt!} isMobile={isMobile} />}
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
@@ -206,8 +206,6 @@ function Buttons() {
 
 function BannerCarousel(props: Props) {
   const id = useId();
-
-  console.log(props.isMobile)
   const { bannerImages, interval, arrows } = { ...props };
 
   const currentDateTime = getCurrentDateTime();
