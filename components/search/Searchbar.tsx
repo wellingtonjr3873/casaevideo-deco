@@ -17,7 +17,7 @@ import { useId } from "$store/sdk/useId.ts";
 import { useSuggestions } from "$store/sdk/useSuggestions.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 import { Resolved } from "deco/engine/core/resolver.ts";
-import {  useRef } from "preact/compat";
+import {  useRef, useState } from "preact/compat";
 import type { Platform } from "$store/apps/site.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
@@ -50,16 +50,18 @@ export interface Props {
   loader: Resolved<IntelligenseSearch | null>;
 
   platform: Platform;
-  isMobile?: boolean
+  isMobile?: boolean;
+
+  currentSearchParam?: string;
 }
 
 function Searchbar({
-  placeholder = "Buscar por produto ou marca...",
   action = "/s",
   name = "q",
   loader,
   platform,
-  isMobile
+  isMobile,
+  currentSearchParam
 }: Props) {
   const id = useId();
   const { displaySearchPopup } = useUI();
@@ -68,6 +70,9 @@ function Searchbar({
   const { products = [], searches = [] } = payload.value ?? {};
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
+
+
+  const [searchValue, setSearchValue] = useState(currentSearchParam || "");
 
   return (
     <div class="w-full grid gap-8 overflow-y-hidden h-[40px]" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -100,6 +105,8 @@ function Searchbar({
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
+          value={searchValue}
+          onChange={(e) => setSearchValue(e.currentTarget.value)}
         />
         <Button
           type="submit"
