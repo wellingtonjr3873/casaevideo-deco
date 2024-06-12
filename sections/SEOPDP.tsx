@@ -233,6 +233,10 @@ export  function loader(props: Props, _req: Request, ctx: AppContext) {
     ...reviewProperties
   };
 
+  const tratedJsonLDBreadcrumb ={
+    '@type': 'BreadcrumbList',
+    itemListElement: jsonLD.breadcrumbList.itemListElement,
+  }
   return {
     ...seoSiteProps,
     title,
@@ -240,7 +244,7 @@ export  function loader(props: Props, _req: Request, ctx: AppContext) {
     image,
     canonical,
     noIndexing,
-    jsonLDs: [tratedJsonLD]
+    jsonLDs: [tratedJsonLD, tratedJsonLDBreadcrumb]
   };
 }
 
