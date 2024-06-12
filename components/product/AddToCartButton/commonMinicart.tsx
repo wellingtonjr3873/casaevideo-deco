@@ -4,6 +4,7 @@ import { useUI } from "$store/sdk/useUI.ts";
 import { AddToCartParams } from "apps/commerce/types.ts";
 import { useState } from "preact/hooks";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
+import * as Sentry from "@sentry/react";
 
 export interface Props {
   /** @description: sku name */
@@ -37,6 +38,7 @@ const useAddToCart = ({ eventParams, onAddItem, callback }: Props) => {
       displayCart.value = true;
     } catch (error) {
       console.error(error)
+      Sentry.captureException(error);
     } finally {
       setLoading(false);
     }

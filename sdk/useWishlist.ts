@@ -5,6 +5,7 @@ import { signal } from "@preact/signals";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { invoke } from "deco-sites/casaevideo/runtime.ts";
 import { DEFAULT_WISHLIST_LIST_NAME } from "deco-sites/casaevideo/constants.tsx";
+import * as Sentry from "@sentry/react";
 
 const wishlistListId = signal<string | null>(null);
 const wishlistListProducts = signal<string[]>([]);
@@ -51,7 +52,10 @@ function load() {
       );
       wishlistListProducts.value = tratedId;
     })
-    .catch(console.error)
+    .catch((err) => {
+      console.error(err);
+      Sentry.captureException(err);
+    })
     .finally(() => loading.value = false);
 }
 

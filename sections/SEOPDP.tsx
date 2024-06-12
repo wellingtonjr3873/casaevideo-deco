@@ -1,6 +1,5 @@
 import Seo from "apps/website/components/Seo.tsx";
 import {
-  renderTemplateString,
   SEOSection,
 } from "apps/website/components/Seo.tsx";
 import { ProductDetailsPage } from "apps/commerce/types.ts";
@@ -66,6 +65,7 @@ type AggregateRatingSchema = {
 const factoryReviewJsonType = (review: ReviewResponse) => {
   const ratingValue = review.Element.Rating;
 
+  const bestRating = review.Element.RatingHistogram.RatingList[0].Rate
     const ratingCount = review.Element.Recommend.TotalReviews;
 
 
@@ -77,7 +77,7 @@ const factoryReviewJsonType = (review: ReviewResponse) => {
         reviewRating: {
           "@type": "Rating",
           ratingValue: item.Rating,
-          bestRating: ratingValue
+          bestRating: bestRating
         },
         author: {
           "@type": "Person",
@@ -123,7 +123,7 @@ export interface Props {
 }
 
 /** @title Product details */
-export function loader(props: Props, _req: Request, ctx: AppContext) {
+export  function loader(props: Props, _req: Request, ctx: AppContext) {
   const {
     titleTemplate = "",
     descriptionTemplate = "",
@@ -135,18 +135,9 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
     jsonLD: originalJsonLD,
     omitVariants,
   } = props;
-
   const jsonLD = JSON.parse(JSON.stringify(originalJsonLD));
-
-
-  const title = renderTemplateString(
-    titleTemplate,
-    titleProp || jsonLD?.seo?.title || "",
-  );
-  const description = renderTemplateString(
-    descriptionTemplate,
-    descriptionProp || jsonLD?.seo?.description || "",
-  );
+  const title = titleProp || jsonLD.seo.legacyProductTitle || jsonLD.seo.title || jsonLD.product.name || "";
+  const description = descriptionProp || jsonLD.seo.legacyDescritionMetaTag || jsonLD.seo.description || jsonLD.product.description || "";
   const image = jsonLD?.product.image?.[0]?.url;
   const canonical = jsonLD?.seo?.canonical
     ? jsonLD?.seo?.canonical
@@ -180,8 +171,8 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
 
   const offersList = [];
   const [baseOffer] = jsonLD.product.offers.offers;
-  const highPriceInSpecification = baseOffer.priceSpecification.find(item => item.priceType === HIGH_PRICE_SPECIFICATION_LABEL);
-  const lowPriceSpecificationLabel = baseOffer.priceSpecification.find(item => item.priceType === LOW_PRICE_SPECIFICATION_LABEL);
+  const highPriceInSpecification = baseOffer.priceSpecification.find((item: { priceType: string; }) => item.priceType === HIGH_PRICE_SPECIFICATION_LABEL);
+  const lowPriceSpecificationLabel = baseOffer.priceSpecification.find((item: { priceType: string; }) => item.priceType === LOW_PRICE_SPECIFICATION_LABEL);
 
   const lowPriceWithDiscountPix = getPixDiscountValue(baseOffer.teasers, lowPriceSpecificationLabel.price);
 
@@ -215,11 +206,13 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
   })();
 
   
-  
-  const { reviews } = originalJsonLD; 
+  // deno-lint-ignore ban-ts-comment
+  //@ts-ignore
+  const { reviews } = originalJsonLD;
   const ratingExist = reviews && reviews.Element;
   let reviewProperties = {}
   if(ratingExist){
+
     const factoryReviewPropertie = factoryReviewJsonType(reviews);
     reviewProperties = factoryReviewPropertie
   };
@@ -240,6 +233,10 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
     ...reviewProperties
   };
 
+  const tratedJsonLDBreadcrumb ={
+    '@type': 'BreadcrumbList',
+    itemListElement: jsonLD.breadcrumbList.itemListElement,
+  }
   return {
     ...seoSiteProps,
     title,
@@ -247,7 +244,7 @@ export function loader(props: Props, _req: Request, ctx: AppContext) {
     image,
     canonical,
     noIndexing,
-    jsonLDs: [tratedJsonLD]
+    jsonLDs: [tratedJsonLD, tratedJsonLDBreadcrumb]
   };
 }
 

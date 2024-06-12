@@ -1,6 +1,7 @@
 import type { SectionProps } from "deco/mod.ts";
 import Image from "apps/website/components/Image.tsx";
 import Header from "$store/components/ui/SectionHeader.tsx";
+import * as Sentry from "@sentry/react";
 
 export interface layout {
   headerAlignment?: "center" | "left";
@@ -44,6 +45,9 @@ export async function loader(
 
   const { data } = (await fetch(url).then((r) => r.json()).catch((err) => {
     console.error("error fetching posts from instagram", err);
+    Sentry.captureException(err);
+
+    
     return { data: [] };
   })) as {
     data: Data[];

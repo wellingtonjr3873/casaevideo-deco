@@ -263,6 +263,27 @@
     filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(243deg) brightness(102%) contrast(104%);
   }
 
+  .description-see-more{
+    font-size: 0;
+  }
+  
+  .description-see-more::before{
+    content: "Ver Mais";
+    position: absolute;
+    font-size: 16px;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  
+  .input-description-see-more:checked ~ .description-see-more::before{
+    content: "Ver Menos";
+  }
+
+  .description-see-more::after{
+    top: 40px !important;
+  }
+
   .pdp-description {
     min-height: 58px;
     justify-content: flex-start;
@@ -476,7 +497,7 @@
   width: 100%;
   overflow-y: auto;
   visibility: hidden;
-
+  max-width: max-content;
 }
 
 .navbar-submenu.open {
@@ -545,6 +566,16 @@
 .toast-slide{
     -webkit-animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1 both;
     animation: slide-right 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) 1 both;
+}
+
+.checkbox-warning{
+  --chkbg: oklch(var(--brand-terciary-1));
+  --chkfg: var(--fallback-wac,oklch(var(--wac)/1));
+  --tw-border-opacity: 1;
+}
+
+.checkbox-warning:checked, .checkbox-warning[checked="true"], .checkbox-warning[aria-checked="true"]{
+  border: none;
 }
 
 @-webkit-keyframes slide-right {

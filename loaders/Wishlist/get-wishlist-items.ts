@@ -1,5 +1,6 @@
 import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
 import { Product } from "apps/vtex/utils/types.ts";
+import * as Sentry from "@sentry/react";
 export interface Props {
   userId: string;
   listId: string;
@@ -37,6 +38,7 @@ const loader = async (
     const res = await fetch(url, { headers, method: "GET" });
     return res.json();
   } catch (err) {
+    Sentry.captureException(err);
     console.error("err", err);
     return false;
   }
