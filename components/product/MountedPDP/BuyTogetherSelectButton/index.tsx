@@ -16,7 +16,7 @@ function BuyTogetherSelectButton(props: Props) {
   }
 
   return (
-    <div class="buytogether-checkbox md:absolute top-4 right-5 border-1">
+    <div class="buytogether-checkbox md:absolute top-4 right-5 border-1 mr-3 md:mr-0">
       <input 
         type="checkbox"
         class="flex cursor-pointer"
