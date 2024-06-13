@@ -34,7 +34,7 @@ import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SentryConfig from "./islands/Header/SentryConfig.tsx";
 import * as $ImageZoom from "./islands/ImageZoom.tsx";
 import * as $Installments from "./islands/Installments.tsx";
-import * as $MiniBannerCarousel from "./islands/MiniBannerCarousel.tsx";
+import * as $MiniBannerCarousel from "./islands/MiniBannerCarousel.tsx""
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OursStores from "./islands/OursStores.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";

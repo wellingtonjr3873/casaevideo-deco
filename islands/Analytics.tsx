@@ -12,29 +12,23 @@ export const SendEventOnClick = <E extends AnalyticsEvent>({ event, id }: {
 }) => {
 
   useEffect(() => {
-    scriptAsDataURI(
-      (id: string, event: AnalyticsEvent) => {
-        const elem = document.getElementById(id);
-
-        if (!elem) {
-          Sentry.withScope((scope) => {
-            scope.setExtra('id', id);
-            Sentry.captureException("Could not find element. Click event will not be send. This will cause loss in analytics")
-          });
-
-          return console.warn(
-            `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
-          );
-
-        }
-
-        elem.addEventListener("click", () => {
-          window.DECO.events.dispatch(event);
-        });
-      },
-      id,
-      event,
-    );
+    const elem = document.getElementById(id);
+    if (!elem) {
+      return console.warn(
+        `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
+      );
+    }
+    elem.addEventListener("click", () => {
+        
+      window.DECO.events.dispatch(event);
+    });
+    // scriptAsDataURI(
+    //   (id: string, event: AnalyticsEvent) => {
+        
+    //   },
+    //   id,
+    //   event,  
+    // );
   }, []);
 
   return <></>;
@@ -45,35 +39,26 @@ export const SendEventOnView = <E extends AnalyticsEvent>(
 ) => {
 
   useEffect(() => {
-    scriptAsDataURI(
-      (id: string, event: E) => {
-        const elem = document.getElementById(id);
 
-        if (!elem) {
-          Sentry.withScope((scope) => {
-            scope.setExtra('id', id);
-            Sentry.captureException("Could not find element. Click event will not be send. This will cause loss in analytics")
-          });
+    const elem = document.getElementById(id);
 
-          return console.warn(
-            `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
-          );
-        }
+    if (!elem) {
+      return console.warn(
+        `Could not find element ${id}. Click event will not be send. This will cause loss in analytics`,
+      );
+    }
 
-        const observer = new IntersectionObserver((items) => {
-          for (const item of items) {
-            if (!item.isIntersecting) continue;
+    const observer = new IntersectionObserver((items) => {
+      for (const item of items) {
+        if (!item.isIntersecting) continue;
 
-            window.DECO.events.dispatch(event);
-            observer.unobserve(elem);
-          }
-        });
+        window.DECO.events.dispatch(event);
+        observer.unobserve(elem);
+      }
+    });
 
-        observer.observe(elem);
-      },
-      id,
-      event,
-    );
+    observer.observe(elem);
+    
   }, []);
 
   return <></>;

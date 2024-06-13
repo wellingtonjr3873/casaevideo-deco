@@ -62,6 +62,10 @@ export interface Props {
   categories?: Categories;
   isMobile: boolean,
   minicartProps: MinicartProps;
+  /** 
+  * @hide
+  */
+  currentSearchParam?: string;
   /** *@hide */
   device: "mobile" | "desktop" | "tablet";
 }
@@ -99,7 +103,8 @@ function Header({
   navItems,
   isMobile,
   minicartProps,
-  device
+  device,
+  currentSearchParam
 }: Props) {
 
   const platform = usePlatform();
@@ -176,7 +181,7 @@ function Header({
               </div>
             </div>
             <div>
-              {isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile }} />}
+              {isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile, currentSearchParam }} />}
             </div>
           </div>
           <div className="lg:hidden">
@@ -239,7 +244,7 @@ function Header({
               </figure>
             </a>
             <div class="w-full">
-              {!isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile }} />}
+              {!isMobile && <Searchbar searchbar={{ ...searchbar, platform, isMobile, currentSearchParam }} />}
             </div>
             <div class="flex items-center gap-2">
               <LoggedUser />
