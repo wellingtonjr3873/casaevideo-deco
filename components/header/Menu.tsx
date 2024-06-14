@@ -82,7 +82,7 @@ function MenuItem(
     displaySubMenu.value = !displaySubMenu.value;
     setClassDrawer(`${DEFAULT_NAVBAR_CLASS} open`)
   }
-  console.log(item, 'item aqui')
+ 
   return (
     <div class="menu-content">
       <button
