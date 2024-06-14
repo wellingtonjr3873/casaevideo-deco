@@ -70,7 +70,7 @@ function ProductReviews(props: Props) {
   );
 
   return (
-    <div class="container flex p-4 md:px-0">
+    <div class="container flex p-4 pt-0 md:px-0">
       <div class="collapse collapse-arrow collapse-open flex flex-col border border-brand-secondary-100 bg-neutral-50 rounded-2xl w-full px-2 md:px-6 py-4">
         <strong class="collapse-title text-neutral-900 body-bold md:mb-5 border-b border-brand-secondary-100">
           Avaliações dos clientes
