@@ -16,21 +16,21 @@ interface Props {
 function BuyTogether(props: Props) {
   const { page } = props;
   const correctPage = page as PageProps;
+  if (correctPage === null) {
+    return
+  }
+
+  if (correctPage.product?.productID === null || correctPage.buyTogether?.length === 0) {
+    return
+  }
+  if (correctPage.buyTogether?.length === 1) return <></>;
   const {
     buyTogether,
     product,
     breadcrumbList
   } = correctPage;
 
-  if (correctPage === null) {
-    throw new Error("Missing Product Details Page Info");
-  }
 
-  if (product.productID === null || buyTogether.length === 0) {
-    throw new Error("Missing Product Details Info");
-  }
-
-  if (buyTogether.length === 1) return <></>;
 
   const eventItem = mapProductToAnalyticsItem({
     product,
@@ -49,7 +49,7 @@ function BuyTogether(props: Props) {
 
         <div class="flex gap-6 w-full flex-col md:flex-row">
           {availableProducts.map((item, idx) => (
-            <div 
+            <div
               class={
                 `flex md:flex-col items-center md:items-start relative w-full md:max-w-[242px] border border-brand-secondary-100 rounded-lg p-4 bg-neutral-50 order-${(idx * 2) + 1}`
               }
@@ -83,7 +83,7 @@ function BuyTogether(props: Props) {
               <Icon width={16} height={16} id="Plus" />
             </div>
           )}
-        
+
           <div class="flex flex-col items-center justify-center w-full md:w-1/3 gap-1 order-last">
             <div class="order-1 md:order-3 w-full">
               <AddToCart
