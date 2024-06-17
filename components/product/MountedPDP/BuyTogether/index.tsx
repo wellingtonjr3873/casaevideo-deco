@@ -17,22 +17,20 @@ interface Props {
 function BuyTogether(props: Props) {
   const { page } = props;
   const correctPage = page as PageProps;
+  if (correctPage === null) {
+    return
+  }
+
+  if (correctPage.product?.productID === null || correctPage.buyTogether?.length === 0) {
+    return
+  }
+  if (correctPage.buyTogether?.length === 1) return <></>;
   const {
     showTogether,
     product,
     breadcrumbList
   } = correctPage;
-
-  if (correctPage === null) {
-    throw new Error("Missing Product Details Page Info");
-  }
-
-  if (product?.productID === null || showTogether?.length === 0) {
-    throw new Error("Missing Product Details Info");
-  }
-
-  if (showTogether.length === 1) return <></>;
-
+  
   const eventItem = mapProductToAnalyticsItem({
     product,
     breadcrumbList,
@@ -84,7 +82,7 @@ function BuyTogether(props: Props) {
               <Icon width={16} height={16} id="Plus" />
             </div>
           )}
-        
+
           <div class="flex flex-col items-center justify-center w-full md:w-1/3 gap-1 order-last">
             <div class="order-1 md:order-3 w-full">
               <AddToCart

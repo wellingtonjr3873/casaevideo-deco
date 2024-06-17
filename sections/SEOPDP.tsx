@@ -135,6 +135,9 @@ export  function loader(props: Props, _req: Request, ctx: AppContext) {
     jsonLD: originalJsonLD,
     omitVariants,
   } = props;
+
+  if(!props.jsonLD) return;
+
   const jsonLD = JSON.parse(JSON.stringify(originalJsonLD));
   const title = titleProp || jsonLD.seo.legacyProductTitle || jsonLD.seo.title || jsonLD.product.name || "";
   const description = descriptionProp || jsonLD.seo.legacyDescritionMetaTag || jsonLD.seo.description || jsonLD.product.description || "";
@@ -233,10 +236,6 @@ export  function loader(props: Props, _req: Request, ctx: AppContext) {
     ...reviewProperties
   };
 
-  const tratedJsonLDBreadcrumb ={
-    '@type': 'BreadcrumbList',
-    itemListElement: jsonLD.breadcrumbList.itemListElement,
-  }
   return {
     ...seoSiteProps,
     title,
@@ -244,7 +243,7 @@ export  function loader(props: Props, _req: Request, ctx: AppContext) {
     image,
     canonical,
     noIndexing,
-    jsonLDs: [tratedJsonLD, tratedJsonLDBreadcrumb]
+    jsonLDs: [tratedJsonLD]
   };
 }
 
