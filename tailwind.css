@@ -191,6 +191,9 @@
     @apply text-black text-xs font-normal leading-[140%]
   }
 
+  .micro-regular {
+    @apply text-[#393939] text-[10px] font-normal leading-[140%]
+  }
 
   .x-small-underline {
     @apply text-black text-xs font-normal leading-[140%] underline
@@ -245,9 +248,9 @@
   }
 
   .buytogether-checkbox input:checked:after {
-    content: "✔";
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="21" viewBox="0 0 20 21" fill="none"><g id="Frame 43"><rect id="Rectangle 2" x="2" y="2.72998" width="16" height="16" rx="4" fill="%23FFF100"/><path id="Vector" d="M7 10.73L9 12.73L13 8.72998" stroke="%23393939" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></g></svg>');
     width: 13px;
-    height: 13px;
+    height: 16px;
     cursor: pointer;
     font-size: 10px;
     font-weight: 700;
@@ -256,11 +259,6 @@
     justify-content: center;
     align-items: center;
     z-index: 2;
-    transform: rotate(5deg);
-    color: #fff;
-    font-weight: lighter;
-    color: white;
-    filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(243deg) brightness(102%) contrast(104%);
   }
 
   .description-see-more{

@@ -6,6 +6,7 @@ import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalytic
 import AddToCart from "deco-sites/casaevideo/islands/AddToCartButton/vtex-multiple.tsx";
 import BuyTogetherSelectButton from "deco-sites/casaevideo/islands/BuyTogetherSelectButton.tsx";
 import BuyTogetherTotal from "deco-sites/casaevideo/islands/BuyTogetherTotal.tsx";
+import { formatPrice } from "deco-sites/casaevideo/sdk/format.ts";
 
 type PageProps = ProductDetailsPage & BuyTogetherLoader;
 
@@ -25,21 +26,19 @@ function BuyTogether(props: Props) {
   }
   if (correctPage.buyTogether?.length === 1) return <></>;
   const {
-    buyTogether,
+    showTogether,
     product,
     breadcrumbList
   } = correctPage;
-
-
-
+  
   const eventItem = mapProductToAnalyticsItem({
     product,
     breadcrumbList,
-    price: buyTogether[0].price,
-    listPrice: buyTogether[0].listPrice,
+    price: showTogether?.[0]?.price,
+    listPrice: showTogether?.[0]?.listPrice,
   });
 
-  const availableProducts = buyTogether.filter(product => product.price > 0);
+  const availableProducts = showTogether?.filter(product => product?.price > 0);
 
   return (
     <div class="container p-4 md:p-0 md:mt-[-170px]">
@@ -48,31 +47,31 @@ function BuyTogether(props: Props) {
         <strong class="body-regular my-4 block md:hidden">Compre junto</strong>
 
         <div class="flex gap-6 w-full flex-col md:flex-row">
-          {availableProducts.map((item, idx) => (
-            <div
+          {availableProducts?.map((item, idx) => (
+            <div 
               class={
                 `flex md:flex-col items-center md:items-start relative w-full md:max-w-[242px] border border-brand-secondary-100 rounded-lg p-4 bg-neutral-50 order-${(idx * 2) + 1}`
               }
-              key={item.productID}
+              key={item?.productID}
             >
               <BuyTogetherSelectButton index={idx} />
 
               <div class="w-[150px] md:w-[210px]">
-                <Image src={item.image.url} alt={item.image.alt} width={210} height={210} />
+                <Image src={item?.image?.url} alt={item?.image?.alt} width={210} height={210} />
               </div>
 
               <div class="flex flex-col">
-                <span class="x-small-bold md:small-bold mb-2 md:mb-0">
-                  {item.name}
+                <span class="text-[#393939] x-small-bold md:small-bold mb-2 md:mb-0">
+                  {item?.name}
                 </span>
-                <span class="x-small-regular md:xx-small-regular line-through">
-                  {item.listPrice > 0 ? `R$ ${item.listPrice.toFixed(2).replace(".", ",")}` : ""}
+                <span class="micro-regular md:micro-regular line-through text-[#393939]">
+                  {item?.listPrice > 0 ? `${formatPrice(item?.listPrice, "BRL")}` : ""}
                 </span>
-                <span class="body-bold md:h6-bold">
-                  {item.price > 0 ? `R$ ${item.price.toFixed(2).replace(".", ",")}` : "Indisponível"}
+                <span class="body-bold md:h6-bold text-[#393939]">
+                  {item?.price > 0 ? `${formatPrice(item?.price, "BRL")}` : "Indisponível"}
                 </span>
-                <span class="xx-small-regular line-through hidden md:block">
-                  {item.installments}
+                <span class="xx-small-regular hidden md:block text-[#393939]">
+                  {item?.installments}
                 </span>
               </div>
             </div>
@@ -87,12 +86,11 @@ function BuyTogether(props: Props) {
           <div class="flex flex-col items-center justify-center w-full md:w-1/3 gap-1 order-last">
             <div class="order-1 md:order-3 w-full">
               <AddToCart
-                items={buyTogether}
+                items={showTogether}
                 eventParams={{ items: [eventItem] }}
               />
             </div>
-
-            <BuyTogetherTotal buyTogether={buyTogether} />
+            <BuyTogetherTotal buyTogether={showTogether} />
           </div>
         </div>
       </div>
