@@ -16,14 +16,9 @@ interface Props {
 function BuyTogether(props: Props) {
   const { page } = props;
   const correctPage = page as PageProps;
-  if (correctPage === null) {
-    return
-  }
+  
+  if (!correctPage || (correctPage.product?.productID === null || correctPage.buyTogether?.length === 0) || (correctPage.buyTogether?.length === 1)) return <></>
 
-  if (correctPage.product?.productID === null || correctPage.buyTogether?.length === 0) {
-    return
-  }
-  if (correctPage.buyTogether?.length === 1) return <></>;
   const {
     buyTogether,
     product,

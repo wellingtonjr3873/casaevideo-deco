@@ -139,8 +139,8 @@ export  function loader(props: Props, _req: Request, ctx: AppContext) {
   if(!props.jsonLD) return;
 
   const jsonLD = JSON.parse(JSON.stringify(originalJsonLD));
-  const title = titleProp || jsonLD.seo.legacyProductTitle || jsonLD.seo.title || jsonLD.product.name || "";
-  const description = descriptionProp || jsonLD.seo.legacyDescritionMetaTag || jsonLD.seo.description || jsonLD.product.description || "";
+  const title = titleProp ||  props.jsonLD?.seo ? jsonLD.seo?.legacyProductTitle || jsonLD?.seo.title || jsonLD.product.name : "";
+  const description = descriptionProp || props.jsonLD?.seo ? jsonLD.seo?.legacyDescritionMetaTag || jsonLD.seo.description || jsonLD.product.description : "";
   const image = jsonLD?.product.image?.[0]?.url;
   const canonical = jsonLD?.seo?.canonical
     ? jsonLD?.seo?.canonical
@@ -152,21 +152,6 @@ export  function loader(props: Props, _req: Request, ctx: AppContext) {
   if (omitVariants && jsonLD?.product.isVariantOf?.hasVariant) {
     jsonLD.product.isVariantOf.hasVariant = [];
   }
-
-  // if(jsonLD){
-  //   // jsonLD.product.additionalProperty = []
-  //   // jsonLD.product.isVariantOf?.hasVariant.forEach((variant) => {
-  //   //     variant.additionalProperty = []
-  //   //     variant.offers?.offers.map((offer) => {
-  //   //       offer.priceSpecification = []
-  //   //     })
-  //   //   })
-  //   //   jsonLD.product.offers?.offers.map((offer) => {
-  //   //     offer.priceSpecification = []
-  //   //   })
-  //   }
-
-
   delete jsonLD.product.brand["@id"];
 
   const HIGH_PRICE_SPECIFICATION_LABEL = "https://schema.org/ListPrice";
