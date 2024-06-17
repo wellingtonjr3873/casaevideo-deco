@@ -2,18 +2,32 @@ import {
   SendEventOnClick,
   SendEventOnView,
 } from "deco-sites/casaevideo/islands/Analytics.tsx";
-import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
 import { useId } from "$store/sdk/useId.ts";
 import type { ImageWidget } from "apps/admin/widgets.ts";
-// import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { Head } from "$fresh/runtime.ts";
-
 import { Picture, Source } from "apps/website/components/Picture.tsx";
-import { Props as BannerStopWatchProps } from "$store/components/ui/BannerStopwatch.tsx";
+import { Props as BannerStopWatchPropsComponent } from "$store/components/ui/BannerStopwatch.tsx";
 import BannerStopWatch from "$store/islands/BannerStopWatch.tsx";
+
+
+
+ /**
+   * @title Banner tipo imagem
+   * @hide
+   */
+interface NotBannerStopWatch  {
+};
+
+  /**
+   * @title Banner tipo cronometro
+   */
+interface BannerStopWatchProps  {
+  value: BannerStopWatchPropsComponent
+}
+
+
 /**
  * @titleBy alt
  */
@@ -42,11 +56,10 @@ export interface Banner {
   title?: string;
   /** @description Link da imagem */
   href: string;
-    /**
-   * @format boolean
+   /**
    * @title É um banner tipo cronometro?
    */
-  isStopwatch?: BannerStopWatchProps;
+  isStopwatch?: NotBannerStopWatch | BannerStopWatchProps;
 }
 
 export interface Props {
@@ -57,6 +70,10 @@ export interface Props {
    * @description Tempo (em segundos) para iniciar a reprodução automática do carrossel.
    */
   interval?: number;
+    /**
+   * @hide
+   */
+  isMobile?: boolean;
 }
 
 function getCurrentDateTime() {
@@ -66,7 +83,7 @@ function getCurrentDateTime() {
 }
 
 function BannerItem(
-  { image, lcp, id }: { image: Banner; lcp?: boolean; id: string },
+  { image, lcp, id, isMobile = false }: { image: Banner; lcp?: boolean; id: string, isMobile?: boolean },
 ) {
   const {
     alt,
@@ -85,7 +102,7 @@ function BannerItem(
       title={title}
       class="relative h-[280px] overflow-y-hidden w-full max-[768px]:h-[auto]"
     >
-      {isStopwatch && <BannerStopWatch {...isStopwatch} endDateAt={dateEndAt} />}
+      {(isStopwatch as BannerStopWatchProps)?.value && <BannerStopWatch {...(isStopwatch as BannerStopWatchProps).value } endDateAt={dateEndAt!} isMobile={isMobile} />}
       <Picture preload={lcp}>
         <Source
           media="(max-width: 767px)"
@@ -189,8 +206,6 @@ function Buttons() {
 
 function BannerCarousel(props: Props) {
   const id = useId();
-
-
   const { bannerImages, interval, arrows } = { ...props };
 
   const currentDateTime = getCurrentDateTime();
@@ -205,7 +220,7 @@ function BannerCarousel(props: Props) {
     <>
       <div
         id={id}
-        class="grid grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0 mt-0"
+        class="grid mt-6 md:mt-12 grid-cols-[42px_1fr_42px] sm:grid-cols-[120px_1fr_120px] grid-rows-[1fr_48px_1fr_64px] max-w-[1280px] my-[48px] mx-[auto] relative max-[768px]:h-[auto] md:px-6 xl-b:px-0 mt-0"
       >
         <Slider class="carousel carousel-center w-full col-span-full row-span-full gap-6">
           {filteredImages?.map((image, index) => {
@@ -217,6 +232,7 @@ function BannerCarousel(props: Props) {
                   //LCP Refactor: antes pegava-se index 0 oque acarretava em erros, pois os banners cadastrados no painel que usam exibição/tempo continuam no map de imagens e isso faz com que essa logica de preload não se aplique a imagem LCP, pois o banner LCP poderá ter index 1 visto que o banner de index 0 expirou e não é mais exibido na tela.
                   lcp={image.preload}
                   id={`${id}::${index}`}
+                  isMobile={props.isMobile}
                 />
                 <SendEventOnClick
                   id={`${id}::${index}`}

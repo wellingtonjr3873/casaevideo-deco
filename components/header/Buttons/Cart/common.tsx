@@ -14,7 +14,9 @@ interface Props {
 
 function CartButton({ loading, currency, total, items, children }: Props) {
   const { displayCart } = useUI();
-  const totalItems = items.length;
+  const totalItems = items.reduce((acumulator, item) => {
+    return acumulator += item.quantity
+  }, 0);
   const onClick = () => {
     sendEvent({
       name: "view_cart",

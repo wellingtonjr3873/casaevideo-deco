@@ -3,6 +3,7 @@ import type { Resolved } from "deco/engine/core/resolver.ts";
 import { useCallback } from "preact/compat";
 import { invoke } from "../runtime.ts";
 import { IntelligenseSearch } from "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts";
+import * as Sentry from "@sentry/react";
 const payload = signal<IntelligenseSearch | null>(null);
 const loading = signal<boolean>(false);
 
@@ -35,6 +36,8 @@ const doFetch = async (
       "Something went wrong while fetching IntelligenseSearchs \n",
       error,
     );
+
+    Sentry.captureException(error);
   } finally {
     loading.value = false;
   }

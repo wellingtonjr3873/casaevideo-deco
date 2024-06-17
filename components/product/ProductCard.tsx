@@ -178,7 +178,7 @@ function ProductCard(
   return (
     <a
       id={id}
-      href={url && relative(url)}
+      href={url && relative(url.split("?")[0])}
       class={`card gap-2 card-compact md:max-w-[242px] md:max-h-[435px] group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 rounded-lg ${align === "center" ? "text-center" : "text-start"
         } 
         ${layout?.onMouseOver?.card === "Move up" &&

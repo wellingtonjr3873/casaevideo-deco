@@ -1,4 +1,5 @@
 import { useEffect } from "preact/hooks";
+import * as Sentry from "@sentry/react";
 
 export interface Props {
   rootId: string;
@@ -67,6 +68,14 @@ const   setup = ({ rootId, scroll, interval, infinite }: Props) => {
       { root, slider, items, rootId },
     );
 
+    Sentry.withScope((scope) => {
+      scope.setExtra('root', root);
+      scope.setExtra('slider', slider);
+      scope.setExtra('items', items);
+      scope.setExtra('rootId', rootId);
+      Sentry.captureException("Element at index is not an html element. Skipping carousel")
+    });
+
     return;
   }
 
@@ -79,6 +88,11 @@ const   setup = ({ rootId, scroll, interval, infinite }: Props) => {
       console.warn(
         `Dot at index ${index} is not an html element.`,
       );
+
+      Sentry.withScope((scope) => {
+        scope.setExtra('index', index);
+        Sentry.captureException("Dot at index is not an html element")
+      });
 
       return;
     }
@@ -124,6 +138,11 @@ const   setup = ({ rootId, scroll, interval, infinite }: Props) => {
       console.warn(
         `Element at index ${index} is not an html element. Skipping carousel`,
       );
+
+      Sentry.withScope((scope) => {
+        scope.setExtra('index', index);
+        Sentry.captureException("Element at index is not an html element. Skipping carousel")
+      });
 
       return;
     }

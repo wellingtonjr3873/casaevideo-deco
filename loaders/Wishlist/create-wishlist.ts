@@ -7,6 +7,7 @@ export interface Props {
 import { DEFAULT_WISHLIST_LIST_NAME } from "deco-sites/casaevideo/constants.tsx";
 
 import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
+import * as Sentry from "@sentry/react";
 
 const loader = async (
   props: Props,
@@ -48,6 +49,7 @@ const loader = async (
     const tratedResponse = await res.json();
     return !!tratedResponse.data.products.length;
   } catch (err) {
+    Sentry.captureException(err);
     console.error(err);
     return false;
   }
