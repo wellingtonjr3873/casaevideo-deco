@@ -67,8 +67,6 @@ export default function productDetailsPage(
       ),
     });
 
-  
-
     // deno-lint-ignore ban-ts-comment
     // @ts-ignore
     const account = ctx.account || ctx.commerce.account || "casaevideonewio";

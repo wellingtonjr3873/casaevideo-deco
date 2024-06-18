@@ -15,7 +15,6 @@ import { logger } from "deco/observability/otel/config.ts";
 
 import { AppContext as LegacyAppContext } from "apps/vtex/mod.ts";
 
-
 import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
 
 export interface Props {
