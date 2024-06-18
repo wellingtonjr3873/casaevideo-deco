@@ -21,6 +21,8 @@ import NotFoundPage from "$store/sections/Product/NotFound.tsx"
 import { Props as NotFoundProps } from "$store/sections/Product/NotFound.tsx"
 import Faq, { Question } from "deco-sites/casaevideo/sections/Content/Faq.tsx";
 
+
+const PAGE_REGEX = /page([1-9]\d*)/;
 export interface Layout {
   /**
    * @description Use drawer for mobile like behavior on desktop. Aside for rendering the filters alongside the products
@@ -90,7 +92,7 @@ function Result({
   cardHorizontal,
 
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
-  const { products, filters, breadcrumb, pageInfo, sortOptions } = page;
+  const { products, filters, breadcrumb, pageInfo, sortOptions, } = page;
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
   const perPage = pageInfo.recordPerPage || products.length;
 
@@ -98,6 +100,15 @@ function Result({
 
   const zeroIndexedOffsetPage = pageInfo.currentPage - startingPage;
   const offset = zeroIndexedOffsetPage * perPage;
+
+  const beforeDots = pageInfo.pagination.before.slice(0, 2).map(item => {
+    return new URLSearchParams(item.proxyUrl).get("page")
+  })
+
+
+  const afterDots = pageInfo.pagination.after.slice(0, 2).map(item => {
+    return new URLSearchParams(item.proxyUrl).get("page")
+  })
 
   return (
     <>
@@ -177,17 +188,23 @@ function Result({
             />
             <div class="flex justify-center my-4">
               <div class="join">
-                <a
+              {pageInfo.previousPage &&                <a
                   aria-label="previous page link"
                   rel="prev"
                   href={pageInfo.previousPage ?? "#"}
                   class="btn btn-ghost join-item"
                 >
                   <Icon id="SliderArrowLeft" size={24} strokeWidth={2} />
-                </a>
-                <span class="btn btn-ghost join-item">
+                </a>}
+                {beforeDots.map(item => {
+                  return <a class="btn btn-ghost join-item" href={pageInfo.previousPage!.replace(PAGE_REGEX, "page" + item)}>{item}</a>
+                })}
+                <span class="btn btn-ghost join-item underline">
                   {zeroIndexedOffsetPage + 1}
                 </span>
+                {afterDots.map((item) => {
+                  return <a  class="btn btn-ghost join-item" href={pageInfo.nextPage!.replace(PAGE_REGEX, "page" + item)}>{item}</a>
+                })}
                 <a
                   aria-label="next page link"
                   rel="next"
