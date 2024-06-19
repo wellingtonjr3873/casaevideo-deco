@@ -39,7 +39,7 @@ function ProductAdditionalInfo({
 
   return (
     <div
-      class="collapse collapse-arrow min-h-14 bg-neutral-50 rounded-none last:rounded-b-lg md:rounded-lg border border-t-0 md:border-t border-brand-secondary-100 transition-none h-max"
+      class="collapse collapse-arrow min-h-14 bg-neutral-50 rounded-none last:rounded-b-lg md:rounded-lg border border-t-0 md:border-t border-brand-secondary-100 transition-none h-max mb-5"
     >
       <input type="checkbox" name="my-accordion-3" checked /> 
       <div class="collapse-title body-bold p-4">
@@ -64,7 +64,7 @@ function ProductDescription(props: Props) {
   const { page } = props;
 
   if (page === null) {
-    throw new Error("Missing Product Details Page Info");
+    return;
   }
 
   const {
@@ -106,7 +106,7 @@ function ProductDescription(props: Props) {
   }, [] as ProductAdditionalProps[]);
 
   const MAX_LENGTH_MOBILE = 780;
-  const MAX_LENGTH_DESKTOP = 1200;
+  const MAX_LENGTH_DESKTOP = 900;
 
   return (
     <div id="description" class="container px-4 md:px-0 mt-4">

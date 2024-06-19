@@ -139,7 +139,7 @@ function Buttons() {
 
   return (
     <>
-      <div class="absolute left-0 top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden xl-b:left-[-40px]">
+      <div class="absolute left-0 top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden xl-b:left-[-40px] flex">
         <Slider.PrevButton class="">
           <Icon
             class="text-base-100"
@@ -149,7 +149,7 @@ function Buttons() {
           />
         </Slider.PrevButton>
       </div>
-      <div class="absolute right-0 top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden xl-b:right-[-40px]">
+      <div class="absolute right-0 top-[50%] translate-x-[0] translate-y-[-50%] max-[768px]:hidden xl-b:right-[-40px] flex">
         <Slider.NextButton class="">
           <Icon
             class="text-base-100"
@@ -165,7 +165,7 @@ function Buttons() {
 
 function MiniBannerCarousel(props: Props) {
   const id = useId();
-  const { miniBannerImages, spacesCss = "max-[768px]:px-0 md:px-6 xl-b:px-0 my-[8px] mx-[auto]", arrows = true } = { ...IMAGES_PROPS, ...props };
+  const { miniBannerImages, spacesCss = "max-[768px]:px-0 md:px-6 xl-b:px-0 my-[8px] mx-[auto] max-[768px]:pl-3", arrows = true } = { ...IMAGES_PROPS, ...props };
 
   return (
     <>
@@ -173,7 +173,7 @@ function MiniBannerCarousel(props: Props) {
         id={id}
         class={`relative max-[768px]:h-[auto] ${spacesCss} container w-full px-4 mx-auto max-w-[1280px] md:px-6 xl-b:px-0`}
       >
-        <Slider class="carousel flex flex-row items-center justify-around carousel-center w-full col-span-full row-span-full gap-5 max-w-[1280px]">
+        <Slider class="carousel flex flex-row items-center justify-around carousel-center w-full col-span-full row-span-full gap-5 max-w-[1280px] pl-">
           {miniBannerImages?.map((image, index) => {
             const params = { promotion_name: image.alt };
             const dateEndtAt = getCurrentDateTime() >= image.dateStartAt &&

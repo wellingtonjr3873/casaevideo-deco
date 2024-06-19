@@ -36,6 +36,7 @@ import * as $Header_SentryConfig from "./islands/Header/SentryConfig.tsx";
 import * as $ImageZoom from "./islands/ImageZoom.tsx";
 import * as $Installments from "./islands/Installments.tsx";
 import * as $Live from "./islands/Live.tsx";
+import * as $MiniBannerCarousel from "./islands/MiniBannerCarousel.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OursStores from "./islands/OursStores.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
@@ -95,6 +96,7 @@ const manifest = {
     "./islands/ImageZoom.tsx": $ImageZoom,
     "./islands/Installments.tsx": $Installments,
     "./islands/Live.tsx": $Live,
+    "./islands/MiniBannerCarousel.tsx": $MiniBannerCarousel,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OursStores.tsx": $OursStores,
     "./islands/OutOfStock.tsx": $OutOfStock,

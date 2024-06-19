@@ -104,7 +104,7 @@ ${layout?.onMouseOver?.card === "Move up" &&
 
   const cta = (
     <a
-      href={url && relative(url)}
+      href={url && relative(url.split("?")[0])}
       aria-label="view product"
       class="btn btn-block"
     >
@@ -190,7 +190,7 @@ ${layout?.onMouseOver?.card === "Move up" &&
   return (
     <a
       id={id}
-      href={url && relative(url)}
+      href={url && relative(url.split("?")[0])}
       class={listLayout}
       data-deco="view-product"
       {...(advertisement?.adId && { "data-van-aid": advertisement.adId })}

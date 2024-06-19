@@ -29,6 +29,8 @@ export interface Props {
 function SubMenuItem(
   { menu, parentIndex }: { menu: CategoryChildren; parentIndex: number },
 ) {
+
+  
   return (
     <div class="collapse collapse-plus rounded-none border-none grid-rows-[48px_0fr] ">
       <input type="checkbox" />
@@ -50,9 +52,12 @@ function SubMenuItem(
                   </a>
             </li>
           ))}
+            
         </ul>
       </div>
     </div>
+
+        
   );
 }
 
@@ -77,7 +82,7 @@ function MenuItem(
     displaySubMenu.value = !displaySubMenu.value;
     setClassDrawer(`${DEFAULT_NAVBAR_CLASS} open`)
   }
-
+ 
   return (
     <div class="menu-content">
       <button
@@ -132,7 +137,13 @@ function MenuItem(
                       )}
                   </>
                 ))}
-          
+                <div class="collapse collapse-plus rounded-none border-none grid-rows-[48px_0fr] ">
+                  <div class="flex justify-between items-center absolute py-[14px] px-[24px] w-[100%] bg-neutral-50 small-regular text-neutral-900">
+                    <span class="small-regular flex justify-between items-center text-left w-full text-neutral-900">
+                      <a class={`w-full`} href={item.url.replace("https://portal.vtexcommercestable.com.br","").replace("https://casaevideonewio.vtexcommercestable.com.br","")}> Ver Tudo</a>
+                    </span>
+                  </div>
+                </div>
               </div>
               <div class="static mt-auto bg-brand-secondary-50 mb-8 h-[118px]">
                   <FooterMenu />
@@ -170,7 +181,7 @@ function Menu({ items }: Props) {
     <div class="flex flex-col h-full px-[7px] py-[16px] overflow-auto bg-brand-secondary-50">
       <div class="flex flex-col h-full">
         <ul class="flex flex-col gap-[2px] pb-[16px] bg-brand-secondary-50">
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="/account/#/orders"
@@ -181,7 +192,7 @@ function Menu({ items }: Props) {
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="/cupom-de-desconto"
@@ -192,7 +203,7 @@ function Menu({ items }: Props) {
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="https://api.whatsapp.com/send?1=pt_BR&phone=5521991043269"
@@ -203,7 +214,7 @@ function Menu({ items }: Props) {
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="tel:+552140023535"
@@ -246,7 +257,7 @@ function Menu({ items }: Props) {
         </ul>
 
         <ul class="flex flex-col pt-[16px] gap-[2px] bg-brand-secondary-50">
-          {/* <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+          {/* <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="/wishlist"
@@ -257,7 +268,7 @@ function Menu({ items }: Props) {
               </span>
             </a>
           </li> */}
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="/cartaocasaevideo"
@@ -268,7 +279,7 @@ function Menu({ items }: Props) {
               </span>
             </a>
           </li>
-          <li class="flex justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
               href="/nossas-lojas"

@@ -9,7 +9,20 @@ export interface Props{
 function Cart({minicartProps}: Props) {
   const { cart, loading, updateItems, addCouponsToCart } = useCart();
   const { items, totalizers } = cart.value ?? { items: [] };
-  const total = totalizers?.find((item) => item.id === "Items")?.value || 0;
+
+  let total = 0;
+
+  if (totalizers?.length === 0 && items?.length === 0) {
+    total = 0;
+  } else if (totalizers?.length > 0) {
+    total = totalizers?.find((item) => item.id === "Items")?.value ?? 0;
+  } else if (items?.length > 0 && totalizers?.length === 0) {
+    total = items.reduce((acc, item) => acc + item.price, 0);
+  }
+
+  // const total = totalizers?.find((item) => item.id === "Items")?.value || 0;
+
+
   const discounts =
     totalizers?.find((item) => item.id === "Discounts")?.value || 0;
   const locale = cart.value?.clientPreferencesData.locale ?? "pt-BR";
