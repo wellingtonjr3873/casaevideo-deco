@@ -15,32 +15,7 @@ const LoggedUser = () => {
 
   return  !loading.value ? <>{!user.value ?
     <>
-      <a
-        class="flex items-center justify-center gap-1"
-        href="/login"
-        aria-label="Log in"
-      >
-        {/* <Icon
-          id="User"
-          size={32}
-          class="text-neutral-900 "
-          alt="Acesse sua conta agora"
-        /> */}
-
-        <MyAccountButton/>
-        <div class="flex flex-col">
-          <span class="small-regular">Bem vindo!</span>
-          <span class="x-small-underline">Entre ou cadastre-se</span>
-        </div>
-        {/* meus pedidos */}
-        <a href="/account/#/orders" aria-label="Meus pedidos">
-          <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui" />
-        </a>
-        {/* wishlist */}
-        <a href="/account/#/wishlist" aria-label="Meus favoritos">
-          <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
-        </a>
-      </a>
+      <MyAccountButton/>
     </> :
     <div class="flex items-center justify-center gap-1">
       <button class="flex items-center justify-start center gap-1 cursor-pointer w-[154px]" onClick={handleSetVisibblePopUp}>
