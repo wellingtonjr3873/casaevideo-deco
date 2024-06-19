@@ -14,6 +14,7 @@ import WishlistButton from "deco-sites/casaevideo/islands/WishlistButton.tsx";
 import ProductVisualization from "deco-sites/casaevideo/islands/ProductVisualization.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 import OursStores from "deco-sites/casaevideo/islands/OursStores.tsx";
+import DemoUpButton from "deco-sites/casaevideo/islands/DemoUpButton.tsx";
 
 export interface tagsProps {
   active?: boolean;
@@ -68,6 +69,7 @@ function MountedPDP({
           <div class="w-full md:w-1/2 flex flex-col relative gap-4">
             <div class="flex gap-2 px-4">
               <ProductVisualization product={product} />
+              <DemoUpButton />
               <WishlistButton
                 variant="icon"
                 productID={productID}
