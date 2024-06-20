@@ -2,8 +2,7 @@ import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
 import Icon from "$store/components/ui/Icon.tsx";
 
 const MyAccountButton = () => {
-  const { vtexIdScriptsLoaded } =
-    useUI();
+  const { vtexIdScriptsLoaded } = useUI();
 
   return (
       <a

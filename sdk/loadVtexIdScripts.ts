@@ -230,7 +230,7 @@ export const loadVtexIdScripts = (callback: () => void) => {
               justify-content: space-between;
           }
 
-          #vtexIdContainer .vtexIdUI .vtexId-link, .vtexIdUI a{
+          #vtexIdContainer .vtexIdUI .vtexId-link, #vtexIdContainer .vtexIdUI a{
               color: #B10200;
           }
 
@@ -243,8 +243,26 @@ export const loadVtexIdScripts = (callback: () => void) => {
               min-height: 40px;
           }
 
-          .vtexIdUI .modal-footer:before, .vtexIdUI .modal-footer:after{
+          #vtexIdContainer .vtexIdUI .modal-footer:before, #vtexIdContainer .vtexIdUI .modal-footer:after{
               display: none;
+          }
+
+          #vtexIdContainer .vtexIdUI #vtexIdUI-google-plus:hover{
+              box-shadow: unset;
+          }
+
+          .vtexIdUI #vtexIdUI-google-plus::after{
+              content: "";
+              width: 16px;
+              height: 16px;
+              position: absolute;
+              background: url("/arquivos/google-icon-wl.png") no-repeat;
+              top: 10px;
+              left: 80px;
+          }
+
+          #vtexIdContainer .vtexIdUI .vtexIdUI-auth-code input{
+              font-size: 26px;
           }
     `,
   );
