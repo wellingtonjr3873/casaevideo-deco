@@ -69,7 +69,6 @@ function MountedPDP({
           <div class="w-full md:w-1/2 flex flex-col relative gap-4">
             <div class="flex gap-2 px-4">
               <ProductVisualization product={product} />
-              <DemoUpButton />
               <WishlistButton
                 variant="icon"
                 productID={productID}

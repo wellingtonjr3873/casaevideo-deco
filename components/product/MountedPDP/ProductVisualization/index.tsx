@@ -30,7 +30,7 @@ function ProductVisualization({ product }: Props) {
 
   const product3D = isVariantOf?.additionalProperty.find(property => property.name === "produto3D")?.value
 
-  const hasVideo = productVideo !== undefined;
+  const hasVideo = true || productVideo !== undefined;
   const has3D = product3D !== undefined;
 
   const options = [
