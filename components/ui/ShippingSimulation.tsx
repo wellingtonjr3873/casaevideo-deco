@@ -1,5 +1,5 @@
 import { Signal, useSignal } from "@preact/signals";
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
@@ -8,6 +8,28 @@ import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 export interface Props {
   items: Array<SKU>;
+}
+
+interface DeliveryMethod {
+  id: string;
+  deliveryChannel: 'delivery' | 'pickup-in-point';
+  name: string;
+  deliveryIds: {
+    courierId: string;
+    warehouseId: string;
+    dockId: string;
+    courierName: string;
+    quantity: number;
+  }[];  
+  pickupStoreInfo: {
+    friendlyName: string;
+  };  
+  shippingEstimate: string;
+  shippingEstimateDate: Date | null;
+  transitTime: string;
+  price: number;
+  listPrice: number;
+  tax: number;
 }
 
 const formatShippingEstimate = (estimate: string) => {
@@ -28,19 +50,6 @@ function ShippingContent({ simulation }: {
     [] as Sla[],
   ) ?? [];
 
-  let pickupInPointCount = 0;
-  let deliveryCount = 0;
-
-  const filteredDelivery = methods.filter((item) => {
-    if (item.deliveryChannel === "pickup-in-point" && pickupInPointCount < 1) {
-      pickupInPointCount++;
-      return true;
-    } else if (item.deliveryChannel === "delivery" && deliveryCount < 2) {
-      deliveryCount++;
-      return true;
-    }
-    return false;
-  });
 
   const locale = cart.value?.clientPreferencesData.locale || "pt-BR";
   const currencyCode = cart.value?.storePreferencesData.currencyCode || "BRL";
@@ -57,10 +66,52 @@ function ShippingContent({ simulation }: {
     );
   }
 
+  const getBestDeliveryOptions = (methods: DeliveryMethod[]): DeliveryMethod[] => {
+    
+    const filteredMethods = methods.filter(method => method.deliveryChannel === 'pickup-in-point' || method.deliveryChannel === 'delivery');
+  
+    const sortByPriceAndTime = (a: DeliveryMethod, b: DeliveryMethod): number => {
+      if (a.listPrice !== b.listPrice) {
+        return a.listPrice - b.listPrice;
+      } else {
+        const timeA = parseTimeEstimate(a.shippingEstimate);
+        const timeB = parseTimeEstimate(b.shippingEstimate);
+        return timeA - timeB;
+      }
+    };
+  
+    const parseTimeEstimate = (estimate: string): number => {
+      if (estimate.includes('h')) {
+        return parseFloat(estimate.replace('h', '')) * 60;
+      } else if (estimate.includes('bd')) {
+        return parseFloat(estimate.replace('bd', '')) * 1440;
+      } else {
+        return Infinity;
+      }
+    };
+  
+    const bestPickupInPointH = filteredMethods
+      .filter(method => method.deliveryChannel === 'pickup-in-point' && method.shippingEstimate.includes('h'))
+      .sort(sortByPriceAndTime)[0];
+  
+    const bestPickupInPointBD = filteredMethods
+      .filter(method => method.deliveryChannel === 'pickup-in-point' && method.shippingEstimate.includes('bd'))
+      .sort(sortByPriceAndTime)[0];
+  
+    const bestDeliveryBD = filteredMethods
+      .filter(method => method.deliveryChannel === 'delivery' && method.shippingEstimate.includes('bd'))
+      .sort(sortByPriceAndTime)[0];
+  
+    return [bestPickupInPointH, bestPickupInPointBD, bestDeliveryBD].filter(option => option !== undefined && option !== null) as DeliveryMethod[];
+  };
+
+  // deno-lint-ignore no-explicit-any
+  const bestOptions = getBestDeliveryOptions(methods as any);
+
   return (
     <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 lg:rounded-lg w-full ">
-      {filteredDelivery.map((method) => (
-        <li class={`${method.price === 0 && "-order-1"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
+      {bestOptions.map((method, idx: number) => (
+        <li class={`${idx === 0 && "faster-pickup"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
           <div class="flex flex-col">
             <span class="text-button text-left small-regular">
               {method.deliveryChannel === "pickup-in-point" ?
