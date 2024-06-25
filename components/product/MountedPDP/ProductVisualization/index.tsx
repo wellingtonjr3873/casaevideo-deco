@@ -24,13 +24,12 @@ function ProductVisualization({ product }: Props) {
   } = product;
 
 
-
-
   const productVideo = isVariantOf?.additionalProperty.find(property => property.name === "video")?.value
 
   const product3D = isVariantOf?.additionalProperty.find(property => property.name === "produto3D")?.value
 
-  const hasVideo = true || productVideo !== undefined;
+  // TODO: remove this product after
+  const hasVideo = productVideo !== undefined || isVariantOf?.productGroupID === '2525862';
   const has3D = product3D !== undefined;
 
   const options = [
