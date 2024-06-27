@@ -1,12 +1,12 @@
 import Icon from "$store/components/ui/Icon.tsx";
-import { useUser } from "apps/vtex/hooks/useUser.ts";
+import { useUserLogged } from "deco-sites/casaevideo/sdk/useUserLogged.ts";
 
 const LoggedUserMobile = () => {
-    const { user } = useUser();
+    const { userLogged } = useUserLogged()
 
     return <a
     class="flex items-center justify-center"
-    href={user.value ? '/account#' : "/login"}
+    href={userLogged.value ? '/account#' : "/login"}
     aria-label="Log in"
   >
     <Icon
