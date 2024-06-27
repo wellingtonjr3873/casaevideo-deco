@@ -4,62 +4,11 @@ import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
-import type { SimulationOrderForm, SKU } from "apps/vtex/utils/types.ts";
+import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
 import { IS_BROWSER } from "$fresh/runtime.ts";
-
 export interface Props {
   items: Array<SKU>;
 }
-
-interface DeliveryMethod {
-  id: string;
-  deliveryChannel: 'delivery' | 'pickup-in-point';
-  name: string;
-  deliveryIds: {
-    courierId: string;
-    warehouseId: string;
-    dockId: string;
-    courierName: string;
-    quantity: number;
-  }[];  
-  pickupStoreInfo: {
-    friendlyName: string;
-  };  
-  shippingEstimate: string;
-  shippingEstimateDate: Date | null;
-  transitTime: string;
-  price: number;
-  listPrice: number;
-  tax: number;
-}
-
-interface Sla {
-  pickupStoreInfo: {
-    friendlyName: string | null;
-  };
-  shippingEstimate: string;
-  price: number;
-  listPrice: number;
-  tax: number;
-}
-
-const convertSlaToDeliveryMethod = (sla: Sla): DeliveryMethod => {
-  return {
-    id: sla.pickupStoreInfo.friendlyName || '',
-    deliveryChannel: sla.pickupStoreInfo.friendlyName ? 'pickup-in-point' : 'delivery',
-    name: sla.pickupStoreInfo.friendlyName || 'Delivery',
-    deliveryIds: [],
-    pickupStoreInfo: {
-      friendlyName: sla.pickupStoreInfo.friendlyName || ''
-    },
-    shippingEstimate: sla.shippingEstimate,
-    shippingEstimateDate: null,
-    transitTime: '',
-    price: sla.price,
-    listPrice: sla.listPrice,
-    tax: sla.tax,
-  };
-};
 
 const formatShippingEstimate = (estimate: string) => {
   const [, time, type] = estimate.split(/(\d+)/);
@@ -74,10 +23,50 @@ function ShippingContent({ simulation }: {
 }) {
   const { cart } = useCart();
 
-  const methods: (DeliveryMethod | Sla)[] = simulation.value?.logisticsInfo?.reduce(
+  const methods = simulation.value?.logisticsInfo?.reduce(
     (initial, { slas }) => [...initial, ...slas],
     [] as Sla[],
   ) ?? [];
+  
+  const sortMethods = () => {
+
+    const convertShippingEstimateToMinutes = (estimate: string): number => {
+      if (estimate.endsWith('bd')) {
+        return parseInt(estimate) * 24 * 60;
+      } else if (estimate.endsWith('h')) {
+        return parseInt(estimate) * 60; 
+      }
+      return 0;
+    };
+  
+    methods.sort((a, b) => {
+      const timeA = convertShippingEstimateToMinutes(a.shippingEstimate);
+      const timeB = convertShippingEstimateToMinutes(b.shippingEstimate);
+  
+      if (timeA !== timeB) {
+        return timeA - timeB; 
+      } else {
+        return a.listPrice - b.listPrice; 
+      }
+    });
+  
+    const pickupMethods = methods.filter(method => method.deliveryChannel === 'pickup-in-point');
+    const deliveryMethods = methods.filter(method => method.deliveryChannel === 'delivery');
+  
+    const fastestPickup = pickupMethods.length > 0 ? pickupMethods[0] : null;
+  
+    const fastestDelivery = deliveryMethods.slice(0, 2);
+  
+    const resultArray = [];
+    if (fastestPickup) {
+      resultArray.push(fastestPickup);
+    }
+    resultArray.push(...fastestDelivery);
+  
+    return resultArray;
+  };
+  
+  const topMethods = sortMethods();
 
   const locale = cart.value?.clientPreferencesData.locale || "pt-BR";
   const currencyCode = cart.value?.storePreferencesData.currencyCode || "BRL";
@@ -94,58 +83,9 @@ function ShippingContent({ simulation }: {
     );
   }
 
-  const getBestDeliveryOptions = (methods: (Sla)[]): DeliveryMethod[]  => {
-
-    const convertedMethods = methods.map(method => {
-      if ((method as Sla).pickupStoreInfo) {
-        return convertSlaToDeliveryMethod(method as Sla);
-      } else {
-        return method as DeliveryMethod;
-      }
-    });
-    
-    const filteredMethods = convertedMethods.filter(method => method.deliveryChannel === 'pickup-in-point' || method.deliveryChannel === 'delivery');
-  
-    const sortByPriceAndTime = (a: DeliveryMethod, b: DeliveryMethod): number => {
-      if (a.listPrice !== b.listPrice) {
-        return a.listPrice - b.listPrice;
-      } else {
-        const timeA = parseTimeEstimate(a.shippingEstimate);
-        const timeB = parseTimeEstimate(b.shippingEstimate);
-        return timeA - timeB;
-      }
-    };
-  
-    const parseTimeEstimate = (estimate: string): number => {
-      if (estimate.includes('h')) {
-        return parseFloat(estimate.replace('h', '')) * 60;
-      } else if (estimate.includes('bd')) {
-        return parseFloat(estimate.replace('bd', '')) * 1440;
-      } else {
-        return Infinity;
-      }
-    };
-  
-    const bestPickupInPointH = filteredMethods
-      .filter(method => method.deliveryChannel === 'pickup-in-point' && method.shippingEstimate.includes('h'))
-      .sort(sortByPriceAndTime)[0];
-  
-    const bestPickupInPointBD = filteredMethods
-      .filter(method => method.deliveryChannel === 'pickup-in-point' && method.shippingEstimate.includes('bd'))
-      .sort(sortByPriceAndTime)[0];
-  
-    const bestDeliveryBD = filteredMethods
-      .filter(method => method.deliveryChannel === 'delivery' && method.shippingEstimate.includes('bd'))
-      .sort(sortByPriceAndTime)[0];
-  
-    return [bestPickupInPointH, bestPickupInPointBD, bestDeliveryBD].filter(option => option !== undefined && option !== null) as DeliveryMethod[];
-  };
-
-  const bestOptions: DeliveryMethod[] = getBestDeliveryOptions(methods);
-
   return (
     <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 lg:rounded-lg w-full ">
-      {bestOptions.map((method, idx: number) => (
+      {topMethods.map((method, idx) => (
         <li class={`${idx === 0 && "faster-pickup"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
           <div class="flex flex-col">
             <span class="text-button text-left small-regular">
