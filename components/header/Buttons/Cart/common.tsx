@@ -13,7 +13,7 @@ interface Props {
 }
 
 function CartButton({ loading, currency, total, items, children }: Props) {
-  const { displayCart } = useUI();
+  const { displayCart, displayCartAlready } = useUI();
   const totalItems = items.reduce((acumulator, item) => {
     return acumulator += item.quantity
   }, 0);
@@ -23,6 +23,7 @@ function CartButton({ loading, currency, total, items, children }: Props) {
       params: { currency, value: total, items },
     });
     displayCart.value = true;
+    displayCartAlready.value = true;
   };
   return (
     <div class="indicator">
