@@ -17,11 +17,12 @@ import { useId } from "$store/sdk/useId.ts";
 import { useSuggestions } from "$store/sdk/useSuggestions.ts";
 import { useUI } from "$store/sdk/useUI.ts";
 import { Resolved } from "deco/engine/core/resolver.ts";
-import {  useRef, useState } from "preact/compat";
 import type { Platform } from "$store/apps/site.ts";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useOffer } from "$store/sdk/useOffer.ts";
 import { IntelligenseSearch } from "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts";
+
+import { useSignal } from "@preact/signals";
 // Editable props
 export interface Props {
   /**
@@ -63,16 +64,13 @@ function Searchbar({
   isMobile,
   currentSearchParam
 }: Props) {
+  const searchValue = useSignal(currentSearchParam || "");
   const id = useId();
   const { displaySearchPopup } = useUI();
-  const searchInputRef = useRef<HTMLInputElement>(null);
   const { setQuery, payload, loading } = useSuggestions(loader);
   const { products = [], searches = [] } = payload.value ?? {};
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
-
-
-  const [searchValue, setSearchValue] = useState(currentSearchParam || "");
 
   return (
     <div class="w-full grid gap-8 overflow-y-hidden h-[40px]" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
@@ -83,14 +81,19 @@ function Searchbar({
         class="flex bg-[white] rounded-[4px] shadow-[0px_2px_8px_0px_rgba(57, 57, 57, 0.08)] overflow-hidden"
       >
         <input
-          ref={searchInputRef}
           id="search-input"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no"
           class="flex-grow bg-[#FFF] h-[40px] pl-[8px] pt-[8px] pb-[8px] outline-none small-regular text-brand-secondary-900 placeholder:text-brand-secondary-900 placeholder:font-[var(--font-family)]"
           name={name}
-          onInput={(e) => {
+          placeholder={"Buscar por produto ou marca..."}
+          role="combobox"
+          aria-controls="search-suggestion"
+          autocomplete="off"
+          value={searchValue}
+           onInput={(e) => {
             const value = e.currentTarget.value;
-
+            searchValue.value = value
+            
             if (value) {
               displaySearchPopup.value = true
               sendEvent({
@@ -98,15 +101,8 @@ function Searchbar({
                 params: { search_term: value },
               });
             }
-
             setQuery(value);
           }}
-          placeholder={"Buscar por produto ou marca..."}
-          role="combobox"
-          aria-controls="search-suggestion"
-          autocomplete="off"
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.currentTarget.value)}
         />
         <Button
           type="submit"
