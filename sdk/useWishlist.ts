@@ -11,6 +11,11 @@ const wishlistListId = signal<string | null>(null);
 const wishlistListProducts = signal<string[]>([]);
 const loading = signal(true);
 
+const ERRORS = {
+  "USER_NOT_LOGGED": "User not logged",
+  "LIST_NOT_EXIST": "List not exist"
+}
+
 type GetWishlistRes = {
   data: {
     id: string;
@@ -28,15 +33,16 @@ type GetWishlistItemRes = {
 
 function load() {
   let userId = "";
-  invoke.vtex.loaders.user().then((res) => {
+  invoke.vtex.loaders.user()
+  .then((res) => {
     if (res) {
       userId = res.email!;
       return invoke["deco-sites/casaevideo"].loaders.Wishlist
         ["get-wishlist-list"]({ userId: res.email });
     }
-    throw new Error("User not logged");
+     throw new Error(ERRORS.USER_NOT_LOGGED);
   })
-    .then((res: GetWishlistRes) => {
+  .then((res: GetWishlistRes) => {
       const list = res.data.find((item) =>
         item.title === DEFAULT_WISHLIST_LIST_NAME
       );
@@ -45,18 +51,22 @@ function load() {
         return invoke["deco-sites/casaevideo"].loaders.Wishlist
           ["get-wishlist-items"]({ listId: list.id, userId });
       }
-      throw new Error("List not exist");
-    }).then((res: GetWishlistItemRes) => {
+      throw new Error(ERRORS.LIST_NOT_EXIST);
+    })
+  .then((res: GetWishlistItemRes) => {
       const tratedId = res.data.products.map((item) =>
         item._meta.wishlist.itemIds[0]
       );
       wishlistListProducts.value = tratedId;
     })
-    .catch((err) => {
-      console.error(err);
+  .catch((err) => {
+    if(!Object.values(ERRORS).includes(err.message)){
       Sentry.captureException(err);
+    }
+    console.warn(err);
+
     })
-    .finally(() => loading.value = false);
+  .finally(() => loading.value = false);
 }
 
 if (IS_BROWSER) load();

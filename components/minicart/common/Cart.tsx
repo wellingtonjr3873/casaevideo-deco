@@ -74,7 +74,6 @@ function Cart({
       shelfProducts = result;
     } catch {
       console.error("Erro ao exibir vitrine de produtos.");
-      Sentry.captureException("Erro ao exibir vitrine de produtos.");
     }
     if (shelfProducts) {
       productMinicartShelf.value = shelfProducts;
@@ -95,7 +94,6 @@ function Cart({
       setNewItems(result)
     } catch {
       console.error("Erro ao exibir vitrine de produtos.")
-      Sentry.captureException("Erro ao exibir vitrine de produtos.");
       return null
     }
   }
@@ -105,6 +103,25 @@ function Cart({
     handleProductsEnrichedInfo()
   }, [])
 
+
+    async function handleVoltage(item: Item){
+      let voltageProduct, voltageName;
+      let product;
+      try {
+        const result = await invoke.vtex.loaders.intelligentSearch.productList({
+          "props": { "ids": [item.productID || ""] }
+        });
+        product = result;
+      }catch{
+        console.error("Erro ao exibir vitrine de produtos.")
+      }
+      if(product){
+        voltageName = product[0].additionalProperty?.find(property => property.name == "Voltagem");
+        voltageProduct = voltageName?.value;
+      }
+  
+      return voltageProduct;
+      }
   return (
     <>
       <div
