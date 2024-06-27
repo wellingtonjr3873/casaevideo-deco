@@ -7,10 +7,11 @@ import CartItem, { Item, Props as ItemProps } from "./CartItem.tsx";
 import { Props as CouponProps } from "./Coupon.tsx";
 import ProductShelfMinicart from "$store/components/minicart/ProductShelfMinicart.tsx"
 import { invoke } from "$store/runtime.ts";
+import type { Product } from "apps/commerce/types.ts";
 import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import * as Sentry from "@sentry/react";
-import { useEffect } from "preact/hooks";
+import { useEffect, useState } from "preact/hooks";
 interface Props {
   items: Item[];
   loading: boolean;
@@ -45,6 +46,24 @@ function Cart({
 
   const { productMinicartShelf } = useUI();
   const isEmpty = items.length === 0;
+  const [newItems, setNewItems] = useState<Product[] | null>(null)
+
+  function handleVoltage(item: Item) {
+    if (!newItems) return undefined;
+  
+    for (const product of newItems) {
+      if (!product) continue;
+  
+      if (product.productID === item.productID) {
+        const voltageProperty = product.additionalProperty?.find((prop) => prop.name === 'Voltagem');
+        if (voltageProperty) {
+          const voltage = voltageProperty.value; 
+          return voltage;
+        }
+      }
+    }
+    return undefined;
+  }
 
   async function handleShelf() {
     let shelfProducts;
@@ -64,32 +83,27 @@ function Cart({
     return shelfProducts;
   }
 
-  useEffect(() => {
-    handleShelf()
-  }, [])
+  async function handleProductsEnrichedInfo() {
+    const productIDs = items.map((item) => `${item.productID}`);
+    if (!productIDs) return;
 
-
-
-
-  async function handleVoltage(item: Item) {
-    let voltageProduct, voltageName;
-    let product;
     try {
       const result = await invoke.vtex.loaders.intelligentSearch.productList({
-        "props": { "ids": [item.productID || ""] }
+        "props": { "ids": productIDs }
       });
-      product = result;
+      if(!result) return
+      setNewItems(result)
     } catch {
       console.error("Erro ao exibir vitrine de produtos.")
       Sentry.captureException("Erro ao exibir vitrine de produtos.");
+      return null
     }
-    if (product) {
-      voltageName = product[0].additionalProperty?.find(property => property.name == "Voltagem");
-      voltageProduct = voltageName?.value;
-    }
-
-    return voltageProduct;
   }
+
+  useEffect(() => {
+    handleShelf()
+    handleProductsEnrichedInfo()
+  }, [])
 
   return (
     <>
