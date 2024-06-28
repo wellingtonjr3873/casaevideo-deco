@@ -1,11 +1,12 @@
 
 // import { useState } from "preact/hooks";
-import { Signal, useSignal } from "@preact/signals";
+import { Signal } from "@preact/signals";
 
 import type { VideoWidget } from "apps/admin/widgets.ts";
 import Modal from "deco-sites/casaevideo/components/ui/Modal.tsx";
 import { useId } from "deco-sites/casaevideo/sdk/useId.ts";
 import { OpenModalType } from "deco-sites/casaevideo/components/product/ProductImageZoom.tsx";
+import DemoUpButton from "deco-sites/casaevideo/components/product/DemoUpButton/index.tsx";
 
 
 export interface ModalVideoProps {
@@ -15,7 +16,7 @@ export interface ModalVideoProps {
 }
 
 export default function ModalVideo( props: ModalVideoProps ) {
-  const { srcDesktop, open } = props;
+  const { open } = props;
   const id = useId();
 
   return (
@@ -28,11 +29,10 @@ export default function ModalVideo( props: ModalVideoProps ) {
         <div className="fixed inset-0 bg-gray-600 bg-opacity-50 overflow-y-auto h-full w-full">
           <div className="relative w-full h-[564px] md:w-[795px] top-20 mx-auto p-4 border-0 md:border shadow-lg rounded-md bg-neutral-50">
             <div className="text-center flex flex-col items-center">
-              <h2 className="mb-4 md:mb-8 h6-bold">Nome do Produto</h2>  
-              <video className="rounded-lg w-[296px] md:w-[599px] h-[351px] md:h-[337px]" controls>
-                <source src={srcDesktop} type="video/mp4" />
-                
-              </video>
+              {/* <h2 className="mb-4 md:mb-8 h6-bold">Nome do Produto</h2>   */}
+              
+              <DemoUpButton />
+
               <div className="mt-8 flex-col-reverse md:flex-row flex gap-2.5">
                 <button
                   className="w-[296px] md:w-[180px] h-[44px] md:h-[48px] border-[1px] rounded-md border-neutral-400"

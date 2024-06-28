@@ -7,6 +7,7 @@ export interface Props {
 }
 function CartButton({ children }: Props) {
   const { loading, cart } = useCart();
+  console.log(cart)
   const {
     totalizers = [],
     items = [],
