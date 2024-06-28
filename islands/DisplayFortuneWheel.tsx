@@ -1,0 +1,1 @@
+export { default } from 'deco-sites/casaevideo/components/ui/DisplayFortuneWheel.tsx';
