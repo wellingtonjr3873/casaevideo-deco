@@ -28,8 +28,12 @@ function ProductVisualization({ product }: Props) {
 
   const product3D = isVariantOf?.additionalProperty.find(property => property.name === "produto3D")?.value
 
+  console.log('isVariantOf?.productGroupID', isVariantOf?.productGroupID, product.url?.includes("/smartwatch-samsung-galaxy-smr390-fit-3/p"))
   // TODO: remove this product after
-  const hasVideo = productVideo !== undefined || isVariantOf?.productGroupID === '2525862';
+  const hasVideo = productVideo !== undefined 
+    || isVariantOf?.productGroupID === '2525862'
+    || product.url?.includes("/smartwatch-samsung-galaxy-smr390-fit-3/p");
+
   const has3D = product3D !== undefined;
 
   const options = [
