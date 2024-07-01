@@ -30,9 +30,7 @@ import * as $Header_Drawers from "./islands/Header/Drawers.tsx";
 import * as $Header_GeoLocationPointBar_GeoLocationPoint from "./islands/Header/GeoLocationPointBar/GeoLocationPoint.tsx";
 import * as $Header_GeoLocationPointBar_GeoLocationPointBar from "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import * as $Header_LoggedUser from "./islands/Header/LoggedUser.tsx";
-import * as $Header_LoggedUserCopy from "./islands/Header/LoggedUserCopy.tsx";
 import * as $Header_LoggedUserMobile from "./islands/Header/LoggedUserMobile.tsx";
-import * as $Header_LoggedUserMobileCopy from "./islands/Header/LoggedUserMobileCopy.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SentryConfig from "./islands/Header/SentryConfig.tsx";
 import * as $ImageZoom from "./islands/ImageZoom.tsx";
@@ -93,9 +91,7 @@ const manifest = {
     "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx":
       $Header_GeoLocationPointBar_GeoLocationPointBar,
     "./islands/Header/LoggedUser.tsx": $Header_LoggedUser,
-    "./islands/Header/LoggedUserCopy.tsx": $Header_LoggedUserCopy,
     "./islands/Header/LoggedUserMobile.tsx": $Header_LoggedUserMobile,
-    "./islands/Header/LoggedUserMobileCopy.tsx": $Header_LoggedUserMobileCopy,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Header/SentryConfig.tsx": $Header_SentryConfig,
     "./islands/ImageZoom.tsx": $ImageZoom,
