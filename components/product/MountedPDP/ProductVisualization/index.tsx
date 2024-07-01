@@ -31,7 +31,7 @@ function ProductVisualization({ product }: Props) {
   // TODO: remove this product after
   const hasVideo = productVideo !== undefined 
     || isVariantOf?.productGroupID === '2525862'
-    || product.url?.includes("/smartwatch-samsung-galaxy-smr390-fit-3/p");
+    || product?.url?.includes("/smartwatch-samsung-galaxy-smr390-fit-3/p");
 
   const has3D = product3D !== undefined;
 
