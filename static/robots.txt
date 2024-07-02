@@ -1,5 +1,8 @@
-User-agent: *	
+User-agent: *
+Disallow: /
 
+User-agent: Googlebot
+Allow: /
 Disallow: /img/*
 Disallow: /api/*
 Disallow: /login/*
@@ -19,4 +22,5 @@ Disallow: /*map=c,priceFrom
 Disallow: */productotherpaymentsystems/*
 Disallow: */productotherpaymentsystems/*
 Disallow: /buscapagina/*
+
 Sitemap: https://www.casaevideo.com.br/sitemap.xml
