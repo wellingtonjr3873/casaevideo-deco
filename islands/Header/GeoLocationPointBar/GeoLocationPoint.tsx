@@ -1,22 +1,23 @@
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
-import { useEffect, useState } from "preact/hooks";
+import { useEffect } from "preact/hooks";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import * as Sentry from "@sentry/react";
+import { useSignal } from "@preact/signals";
 
 function GeoLocationPoint() {
     const { displayGeoLocationPointPopup } = useUI();
-    const [cep, setCep] = useState('')
-    const [cepForm, setCepForm] = useState({ value: '', open: false })
-    const [userCurrentCep, setUserCurrentCep] = useState({ value: '', loading: false })
+    const cep = useSignal('')
+    const cepForm = useSignal({ value: '', open: false })
+    const userCurrentCep = useSignal({ value: '', loading: false })
     const timeout = 1000;
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         let newCep = (e.target as HTMLInputElement).value;
         newCep = newCep.replace(/\D/g, '');
         newCep = newCep.replace(/^(\d{5})(\d)/, '$1-$2');
-        setCep(newCep);
-        setCepForm((prev) => ({ ...prev, value: newCep }))
+        cep.value = newCep;
+        cepForm.value = { ...cepForm.value, value: newCep };
     };
 
     function submitCep(value: string) {
@@ -66,13 +67,13 @@ function GeoLocationPoint() {
 
     function submitedCep(e: Event) {
         e.preventDefault()
-        submitCep(cepForm.value)
+        submitCep(cepForm.value.value)
     }
 
     useEffect(() => {
         const currentCepIsExist = localStorage.getItem("USER_CEP")
         if (currentCepIsExist) {
-            setUserCurrentCep((prev) => ({ ...prev, value: currentCepIsExist }))
+            userCurrentCep.value = { ...userCurrentCep.value, value: currentCepIsExist };
         }
     }, [])
 
@@ -97,7 +98,7 @@ function GeoLocationPoint() {
                 >
                     <Icon width={24} height={24} id={"LocationPoint"} />
 
-                    {userCurrentCep.value.length == 9 ?
+                    {userCurrentCep.value.value.length == 9 ?
                         `Ofertas para: ${userCurrentCep.value}`
                         :
                         "Ver ofertas para a região"
@@ -126,7 +127,7 @@ function GeoLocationPoint() {
                                     />
 
                                     <button class="bg-white border border-gray-800 rounded-lg px-4 py-2 w-full max-w-[105px] cursor-pointer font-lato font-semibold text-base leading-normal text-center text-black min-w-[78px] w-[78px] h-[42px]" type="submit">
-                                        {userCurrentCep.loading ?
+                                        {userCurrentCep.value.loading ?
                                             <div class="loading loading-spinner "></div>
                                             :
                                             "Salvar"
