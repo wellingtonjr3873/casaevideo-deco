@@ -1,4 +1,5 @@
 const URL_HOST = "https://localhost:3000";
+
 type Props = {
   email: string;
 };
@@ -7,11 +8,13 @@ type Res = {
     error: boolean;
   };
 };
+
 async function action(
   props: Props,
   _req: Request,
 ): Promise<Res | undefined> {
   const url = `${URL_HOST}/roleta-black-friday/check_user`;
+
   const requestOptions = {
     method: "POST",
     headers: {
@@ -27,10 +30,9 @@ async function action(
     const response = await fetch(url, requestOptions);
     const data = await response.json();
 
-    console.log(data, `seeee`);
     return data;
   } catch (error) {
-    console.log(`erropr`, error);
+    console.log(`error`, error);
     console.error("Error fetching data:", error);
   }
 }

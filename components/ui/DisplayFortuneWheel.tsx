@@ -12,7 +12,7 @@ export interface Props {
 const DisplayFortuneWheel = (props: Props) => {
     const {displayRoullete} = useRoullete();
 
-    return  <div class="max-w-[124px] mx-auto">
+    return  <div class="max-w-[124px] mx-auto cursor-pointer">
         <Picture onClick={() => displayRoullete.value = true}>
             <Source
             media="(max-width: 767px)"
