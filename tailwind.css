@@ -597,3 +597,17 @@
   }
 }
 
+.faster-pickup{
+  border: 1px solid #FFF100;
+  position: relative;
+}
+
+.faster-pickup::after{
+  content: url("/image/faster-tag.png");
+  width: 88px;
+  height: 20px;
+  display: block;
+  position: absolute;
+  top: -15px;
+  right: -5px;
+}

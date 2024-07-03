@@ -1,5 +1,5 @@
 import { Signal, useSignal } from "@preact/signals";
-import { useCallback, useEffect, useState } from "preact/hooks";
+import { useCallback, useEffect } from "preact/hooks";
 import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
@@ -27,20 +27,46 @@ function ShippingContent({ simulation }: {
     (initial, { slas }) => [...initial, ...slas],
     [] as Sla[],
   ) ?? [];
+  
+  const sortMethods = () => {
 
-  let pickupInPointCount = 0;
-  let deliveryCount = 0;
-
-  const filteredDelivery = methods.filter((item) => {
-    if (item.deliveryChannel === "pickup-in-point" && pickupInPointCount < 1) {
-      pickupInPointCount++;
-      return true;
-    } else if (item.deliveryChannel === "delivery" && deliveryCount < 2) {
-      deliveryCount++;
-      return true;
+    const convertShippingEstimateToMinutes = (estimate: string): number => {
+      if (estimate.endsWith('bd')) {
+        return parseInt(estimate) * 24 * 60;
+      } else if (estimate.endsWith('h')) {
+        return parseInt(estimate) * 60; 
+      }
+      return 0;
+    };
+  
+    methods.sort((a, b) => {
+      const timeA = convertShippingEstimateToMinutes(a.shippingEstimate);
+      const timeB = convertShippingEstimateToMinutes(b.shippingEstimate);
+  
+      if (timeA !== timeB) {
+        return timeA - timeB; 
+      } else {
+        return a.listPrice - b.listPrice; 
+      }
+    });
+  
+    const pickupMethods = methods.filter(method => method.deliveryChannel === 'pickup-in-point');
+    const deliveryMethods = methods.filter(method => method.deliveryChannel === 'delivery');
+  
+    const fastestPickup = pickupMethods.length > 0 ? pickupMethods[0] : null;
+  
+    const fastestDelivery = deliveryMethods.slice(0, 2);
+  
+    const resultArray = [];
+    if (fastestPickup) {
+      resultArray.push(fastestPickup);
     }
-    return false;
-  });
+    resultArray.push(...fastestDelivery);
+  
+    return resultArray;
+  };
+  
+  const topMethods = sortMethods();
 
   const locale = cart.value?.clientPreferencesData.locale || "pt-BR";
   const currencyCode = cart.value?.storePreferencesData.currencyCode || "BRL";
@@ -59,8 +85,8 @@ function ShippingContent({ simulation }: {
 
   return (
     <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 lg:rounded-lg w-full ">
-      {filteredDelivery.map((method) => (
-        <li class={`${method.price === 0 && "-order-1"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
+      {topMethods.map((method, idx) => (
+        <li class={`${idx === 0 && "faster-pickup"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
           <div class="flex flex-col">
             <span class="text-button text-left small-regular">
               {method.deliveryChannel === "pickup-in-point" ?

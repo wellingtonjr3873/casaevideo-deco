@@ -17,6 +17,7 @@ import * as $Analytics from "./islands/Analytics.tsx";
 import * as $BannerStopWatch from "./islands/BannerStopWatch.tsx";
 import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
 import * as $BuyTogetherTotal from "./islands/BuyTogetherTotal.tsx";
+import * as $DemoUpButton from "./islands/DemoUpButton.tsx";
 import * as $Form from "./islands/Form.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
@@ -36,6 +37,7 @@ import * as $ImageZoom from "./islands/ImageZoom.tsx";
 import * as $Installments from "./islands/Installments.tsx";
 import * as $Live from "./islands/Live.tsx";
 import * as $MiniBannerCarousel from "./islands/MiniBannerCarousel.tsx";
+import * as $MyAccountButton from "./islands/MyAccountButton.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OursStores from "./islands/OursStores.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
@@ -74,6 +76,7 @@ const manifest = {
     "./islands/BannerStopWatch.tsx": $BannerStopWatch,
     "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
     "./islands/BuyTogetherTotal.tsx": $BuyTogetherTotal,
+    "./islands/DemoUpButton.tsx": $DemoUpButton,
     "./islands/Form.tsx": $Form,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
@@ -95,6 +98,7 @@ const manifest = {
     "./islands/Installments.tsx": $Installments,
     "./islands/Live.tsx": $Live,
     "./islands/MiniBannerCarousel.tsx": $MiniBannerCarousel,
+    "./islands/MyAccountButton.tsx": $MyAccountButton,
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OursStores.tsx": $OursStores,
     "./islands/OutOfStock.tsx": $OutOfStock,

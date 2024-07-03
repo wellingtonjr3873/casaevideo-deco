@@ -14,6 +14,9 @@ const displaySearchDrawer = signal(false);
 const displayGeoLocationPointPopup = signal(false);
 const layoutSelected = signal("grid");
 const productMinicartShelf = signal<Product[] | null>(null);
+const vtexIdScriptsLoaded = signal(false);
+const displayModalLogin = signal(false);
+const displayOverlayServiceMenu = signal(false);
 
 const state = {
   displayCart,
@@ -25,6 +28,9 @@ const state = {
   displayGeoLocationPointPopup,
   layoutSelected,
   productMinicartShelf,
+  vtexIdScriptsLoaded,
+  displayModalLogin,
+  displayOverlayServiceMenu,
 };
 
 // Keyboard event listeners
