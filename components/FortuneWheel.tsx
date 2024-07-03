@@ -77,7 +77,7 @@ const FortuneWheel = ({
     localStorage.setItem(USER_ALREADY_GO__TO_LOGIN_KEY, JSON.stringify({
       expire: new Date().getTime() + TWO_MINUTES
     }))
-    window.location.replace('href="/login?returnUrl=%2F"')
+    window.location.replace('/login?returnUrl=%2F')
   }
 
   useEffect(() => {
