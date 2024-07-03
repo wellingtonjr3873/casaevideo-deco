@@ -1,9 +1,10 @@
 import { useUser } from "apps/vtex/hooks/useUser.ts";
 import { useSignal } from "@preact/signals";
 import { useEffect  } from "preact/hooks";
-import { invoke } from "deco-sites/casaevideo/runtime.ts";
 import { useRoullete } from "deco-sites/casaevideo/sdk/display-roullete.ts";
-import { USER_ALREADY_GO__TO_LOGIN_KEY } from "deco-sites/casaevideo/constants.tsx";
+import { ROLETA_API_URL, USER_ALREADY_GO__TO_LOGIN_KEY } from "deco-sites/casaevideo/constants.tsx";
+import { logger } from "deco/observability/otel/config.ts";
+import { Res } from "deco-sites/casaevideo/types/api-roleta.d.ts";
 
 type FortuneWheelProps = {
   activeWheel: boolean;
@@ -21,6 +22,61 @@ const ROTATION_DEG = {
 
 const TWO_SPIN_DEG = 720
 const TWO_MINUTES = 120000;
+
+async function checkUser(email: string): Promise<Res<{userCanSpin: boolean}>>{
+  const url = `${ROLETA_API_URL}/roleta-black-friday/check_user`;
+
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Cache-Control": "no-cache",
+      "Content-Type": "application/json",
+      "x-provider": "casaevideo", //MUDE O VENDOR
+    },
+    body: JSON.stringify({ email }),
+  }
+
+  try {
+    const response = await fetch(url, requestOptions);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    logger.error(error.message)
+    return {
+      error: true,
+      message: error.message
+    }
+  }
+}
+
+
+async function spinUser(email: string): Promise<Res<{clusterWinned: string}>>{
+
+  const url = `${ROLETA_API_URL}/roleta-black-friday/spin`;
+  const requestOptions = {
+    method: "POST",
+    headers: {
+      Accept: "application/json",
+      "Cache-Control": "no-cache",
+      "Content-Type": "application/json",
+      "x-provider": "lebiscuit", //MUDE O VENDOR
+    },
+    body: JSON.stringify({ email }),
+  };
+
+  try {
+    const response = await fetch(url, requestOptions);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    logger.error(error.message)
+    return {
+      error: true,
+      message: error.message
+    }
+  }
+}
 
 const FortuneWheel = ({
   activeWheel,
@@ -45,7 +101,7 @@ const FortuneWheel = ({
     spinning.value = true;
   
     try{
-     const spin =  await invoke["deco-sites/casaevideo"].actions['spin']({email: user.value!.email});
+     const spin =  await spinUser(user.value!.email!);
 
     if (spin.error) {
       const rotationDegValue = ROTATION_DEG["tente-outra-vez"];
@@ -89,7 +145,9 @@ const FortuneWheel = ({
         return
       }
 
-      invoke["deco-sites/casaevideo"].actions["can-spin"]({email: user.value?.email})
+
+
+      checkUser(user.value?.email)
       .then((res) => {
         error.value = res.error;
         if(res.error) throw new Error(res.message);
