@@ -255,5 +255,7 @@ export const TOTAL_PRIZES = [
   "frete-gratis"
 ]
 
+export const ROLETA_API_URL = "";
+
 export const USER_ALREADY_GO__TO_LOGIN_KEY = "USER_ALREADY_MAKE_LOGIN";
 export const DEFAULT_WISHLIST_LIST_NAME = "Meus favoritos"

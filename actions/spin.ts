@@ -1,5 +1,6 @@
-const URL_HOST = "https://1f2a-201-46-19-64.ngrok-free.app";
+
 import { logger } from "deco/observability/otel/config.ts";
+import { ROLETA_API_URL } from "deco-sites/casaevideo/constants.tsx";
 type Props = {
   email: string;
 };
@@ -14,7 +15,7 @@ async function action(
   props: Props,
   _req: Request,
 ): Promise<Res> {
-  const url = `${URL_HOST}/roleta-black-friday/spin`;
+  const url = `${ROLETA_API_URL}/roleta-black-friday/spin`;
   const requestOptions = {
     method: "POST",
     headers: {
