@@ -56,6 +56,8 @@ const FortuneWheel = ({
         error.value = true;
         spinning.value = false;
       }, FIVE_SECONDS);
+
+      return;
     } 
 
       const rotationDegValue = ROTATION_DEG[spin.value!.clusterWinned as keyof typeof ROTATION_DEG]
@@ -81,6 +83,7 @@ const FortuneWheel = ({
   }
 
   useEffect(() => {
+      console.log(user.value?.email, 'see value')
       if(!user.value?.email){
         loading.value = false;
         return
