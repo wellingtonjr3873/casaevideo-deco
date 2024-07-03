@@ -2,11 +2,9 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $$$$$$$$$0 from "./actions/can-spin-mock.ts";
-import * as $$$$$$$$$1 from "./actions/can-spin.ts";
-import * as $$$$$$$$$2 from "./actions/spin-mock.ts";
-import * as $$$$$$$$$3 from "./actions/spin.ts";
-import * as $$$$$$$$$4 from "./actions/tableMasterdata.ts";
+import * as $$$$$$$$$0 from "./actions/can-spin.ts";
+import * as $$$$$$$$$1 from "./actions/spin.ts";
+import * as $$$$$$$$$2 from "./actions/tableMasterdata.ts";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
@@ -157,11 +155,9 @@ const manifest = {
     "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$56,
   },
   "actions": {
-    "deco-sites/casaevideo/actions/can-spin-mock.ts": $$$$$$$$$0,
-    "deco-sites/casaevideo/actions/can-spin.ts": $$$$$$$$$1,
-    "deco-sites/casaevideo/actions/spin-mock.ts": $$$$$$$$$2,
-    "deco-sites/casaevideo/actions/spin.ts": $$$$$$$$$3,
-    "deco-sites/casaevideo/actions/tableMasterdata.ts": $$$$$$$$$4,
+    "deco-sites/casaevideo/actions/can-spin.ts": $$$$$$$$$0,
+    "deco-sites/casaevideo/actions/spin.ts": $$$$$$$$$1,
+    "deco-sites/casaevideo/actions/tableMasterdata.ts": $$$$$$$$$2,
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,
