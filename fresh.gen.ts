@@ -18,7 +18,9 @@ import * as $BannerStopWatch from "./islands/BannerStopWatch.tsx";
 import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
 import * as $BuyTogetherTotal from "./islands/BuyTogetherTotal.tsx";
 import * as $DemoUpButton from "./islands/DemoUpButton.tsx";
+import * as $DisplayFortuneWheel from "./islands/DisplayFortuneWheel.tsx";
 import * as $Form from "./islands/Form.tsx";
+import * as $FortuneWheel from "./islands/FortuneWheel.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
 import * as $Header_Cart_nuvemshop from "./islands/Header/Cart/nuvemshop.tsx";
@@ -77,7 +79,9 @@ const manifest = {
     "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
     "./islands/BuyTogetherTotal.tsx": $BuyTogetherTotal,
     "./islands/DemoUpButton.tsx": $DemoUpButton,
+    "./islands/DisplayFortuneWheel.tsx": $DisplayFortuneWheel,
     "./islands/Form.tsx": $Form,
+    "./islands/FortuneWheel.tsx": $FortuneWheel,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
     "./islands/Header/Cart/nuvemshop.tsx": $Header_Cart_nuvemshop,
