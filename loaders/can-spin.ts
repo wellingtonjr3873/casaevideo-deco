@@ -20,7 +20,7 @@ async function action(
       Accept: "application/json",
       "Cache-Control": "no-cache",
       "Content-Type": "application/json",
-      "x-provider": "casaevideonewio", //MUDE O VENDOR
+      "x-provider": "casaevideo", //MUDE O VENDOR
     },
     body: JSON.stringify({ email: props.email }),
   };
