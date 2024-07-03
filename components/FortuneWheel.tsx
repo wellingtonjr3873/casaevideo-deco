@@ -1,8 +1,9 @@
 import { useUser } from "apps/vtex/hooks/useUser.ts";
 import { useSignal } from "@preact/signals";
-import { useEffect, useRef  } from "preact/hooks";
+import { useEffect  } from "preact/hooks";
 import { invoke } from "deco-sites/casaevideo/runtime.ts";
 import { useRoullete } from "deco-sites/casaevideo/sdk/display-roullete.ts";
+import { USER_ALREADY_GO__TO_LOGIN_KEY } from "deco-sites/casaevideo/constants.tsx";
 
 type FortuneWheelProps = {
   activeWheel: boolean;
@@ -19,7 +20,7 @@ const ROTATION_DEG = {
 }
 
 const TWO_SPIN_DEG = 720
-const USER_EMAIL = "wellingtonjr53@outlook.com.br";
+const TWO_MINUTES = 120000;
 
 const FortuneWheel = ({
   activeWheel,
@@ -44,9 +45,9 @@ const FortuneWheel = ({
     spinning.value = true;
   
     try{
-    const spin =  await invoke["deco-sites/casaevideo"].actions['spin-mock']({email: USER_EMAIL});
+     const spin =  await invoke["deco-sites/casaevideo"].actions['spin']({email: user.value!.email});
 
-    if (spin?.error) {
+    if (spin.error) {
       const rotationDegValue = ROTATION_DEG["tente-outra-vez"];
 
       degreesRotate.value = rotationDegValue[Math.floor(Math.random() * (1 + (rotationDegValue.length  - 1 ) - 0)) + 0] + TWO_SPIN_DEG
@@ -57,7 +58,7 @@ const FortuneWheel = ({
       }, FIVE_SECONDS);
     } 
 
-      const rotationDegValue = ROTATION_DEG[spin?.value.clusterWinned as keyof typeof ROTATION_DEG]
+      const rotationDegValue = ROTATION_DEG[spin.value!.clusterWinned as keyof typeof ROTATION_DEG]
       degreesRotate.value = rotationDegValue[Math.floor(Math.random() * (1 + (rotationDegValue.length  - 1 ) - 0)) + 0] + TWO_SPIN_DEG
 
       setTimeout(() => {
@@ -72,21 +73,30 @@ const FortuneWheel = ({
     }
   };
 
+  const goToLogin = () => {
+    localStorage.setItem(USER_ALREADY_GO__TO_LOGIN_KEY, JSON.stringify({
+      expire: new Date().getTime() + TWO_MINUTES
+    }))
+    window.location.replace('href="/login?returnUrl=%2F"')
+  }
+
   useEffect(() => {
-      if(!USER_EMAIL){
+      if(!user.value?.email){
         loading.value = false;
         return
       }
 
-      invoke["deco-sites/casaevideo"].actions["can-spin-mock"]({email: USER_EMAIL})
+      invoke["deco-sites/casaevideo"].actions["can-spin"]({email: user.value?.email})
       .then((res) => {
-        error.value = res.error
+        error.value = res.error;
+        if(res.error) throw new Error(res.message);
       })
       .catch(console.error)
       .finally(() => {
         loading.value = false;
       });
-  }, [])
+  }, [user.value])
+  
 
   return (
     <>
@@ -170,7 +180,7 @@ const FortuneWheel = ({
                   </>
                 ) : (
                   <>
-                    {USER_EMAIL ? (
+                    {user.value?.email ? (
                       <>
                         {prizeResult.value ? (
                           <span className={"messageSorted"}>
@@ -190,11 +200,11 @@ const FortuneWheel = ({
                         <span className={"messageSorted"}> 
                           Você precisa entrar na sua conta para girar a roda!
                         </span>
-                        <a
-                          href="/login?returnUrl=%2F"
+                        <button
+                          onClick={goToLogin}
                           className={`wheelButton wheelButtonLogin`}>
                           Entrar na conta
-                        </a>
+                        </button>
                       </>
                     )}
                   </>

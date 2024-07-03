@@ -1,12 +1,19 @@
-const URL_HOST = "https://localhost:3000";
-
+const URL_HOST = "https://1f2a-201-46-19-64.ngrok-free.app";
+import { logger } from "deco/observability/otel/config.ts";
 type Props = {
   email: string;
 };
+type Res = {
+  error: boolean;
+  value?: {
+    clusterWinned: string
+  }
+  message?: string;
+}
 async function action(
   props: Props,
   _req: Request,
-) {
+): Promise<Res> {
   const url = `${URL_HOST}/roleta-black-friday/spin`;
   const requestOptions = {
     method: "POST",
@@ -21,10 +28,14 @@ async function action(
 
   try {
     const response = await fetch(url, requestOptions);
-    const data = await response.json();
+    const data: Res = await response.json();
     return data;
   } catch (error) {
-    console.error("Error fetching data:", error);
+    logger.error(error.message)
+    return {
+      error: true,
+      message: error.message
+    }
   }
 }
 
