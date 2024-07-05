@@ -138,7 +138,7 @@ function ShippingSimulation({ items }: Props) {
   const handleSimulation = useCallback(async () => {
     const cepNumbers = postalCode.value.replace(/-/g, '');
     if (cepNumbers.length !== 8) {
-      return; // Se o CEP não tiver o tamanho esperado, apenas retorna sem fazer nada.
+      return;
     }
   
     try {
