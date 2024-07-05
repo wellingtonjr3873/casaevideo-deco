@@ -29,573 +29,241 @@ export const loadVtexIdScripts = (callback: () => void) => {
   handleLoadCss(
     `
     /*LOGIN ESTILIZADO:*/
-          .vtexIdUI * {
-            font-family: "Lato" !important; }
-          
-          .vtexIdUI-show-app {
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-            -webkit-border-radius: 0px !important;
-            border-radius: 0px !important;
-            -webkit-border-radius: none !important;
-            border-radius: none !important; }
-
-            html #vtexIdContainer {
-              position: fixed !important;
-              z-index: 999999 !important;
-            }
-
-          #vtexIdUI-global-loader {
-            z-index: 9999 !important;
-            // background: white url(https://aviator.vteximg.com.br/arquivos/loading-aviator.gif) no-repeat center center !important;
-            // opacity: 0.77 !important;
-            background: rgba(0, 0, 0, .8) !important;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+          h4.vtexIdUI-heading {
+              color: transparent;
+              margin: 0;
+              line-height: 1;
+              width: 100%;
+              position: relative;
+              height: 10px;
+          }
+          h4.vtexIdUI-heading::after {
+              content: "Escolha uma opção para entrar";
+              color: #393939;
+              font-family: var(--font-family);
+              font-size: 16px;
+              font-weight: 700;
+              display: flex;
+              justify-content: center;
+              position: absolute;
+              top: 0;
+              width: 100%;
+              margin: 0 auto;
           }
 
-          #vtexIdUI-global-loader::before {
-            content: '';
-            width: 50px;
-            height: 50px;
-            border: 3px solid #f5f5f5;
-            border-radius: 100%;
-            border-top-color: #5881CA;
-            animation: spin .5s infinite linear;
+
+          #vtexIdContainer .vtexIdUI .modal-header {
+              background: #FFFFFF;
+              border: unset;
+              padding: 32px 16px 16px;
           }
 
-          @keyframes spin{to{transform:rotate(360deg)}}
-          
-          .vtexIdUI-providers-list .btn {
-            font-family: 'Lato';
-            letter-spacing: .7px !important; }
-          
-          .vtexIdUI .alert {
-            background-color: transparent !important;
-            border: 0 !important;
-            color: #dc0505 !important;
-            font-family: Nunito, sans-serif;
-            text-align: center; }
-          
-          .vtexIdUI .modal-header .close {
-            color: #cecdcd !important;
-            font-family: 'Lato', sans-serif !important;
-            font-weight: 400 !important;
-            outline: none !important; }
+          .vtexIdUI.ng-scope.vtexIdUI-show-app {
+              width: 364px;
+              border-radius: 8px;
+              box-shadow: unset;
+              border: unset;
+              font-family: 'Lato';
+              height: 340px !important;
+          }
 
-            .vtexIdUI .btn {
-              border-radius: 0 !important;
-            }
-          
-          .vtexIdUI {
-            width: 90% !important;
-            max-width: 600px;
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-            -webkit-border-radius: 0px !important;
-            border-radius: 0px !important;
-            top: 0 !important;
-            left: 0 !important;
-            right: 0;
-            bottom: 0;
-            margin: auto !important; }
-            .vtexIdUI .btn-success {
-              background: #0030a0 !important;
-              -webkit-border-radius: 0px !important;
-              border-radius: 0px !important;
-              padding: 10px 45px;
-              margin-right: 40px !important;
-              font-size: 11px;
-              letter-spacing: 1px; }
-            .vtexIdUI .vtexIdUI-auth-code .btn {
-              font-size: 11px !important; }
-            .vtexIdUI input {
-              height: 34px !important;
-              font-size: 12px !important;
-              letter-spacing: .5px;
-              margin-bottom: 5px !important;
-              color: #505050 !important;
-              font-weight: 500 !important;
-              padding-left: 12px !important;
-              border: 1px solid #505050 !important;
-              -webkit-border-radius: 0 !important;
-              border-radius: 6px !important;
-              -webkit-box-shadow: none !important;
-              box-shadow: none !important;
-              font-family: Nunito, sans-serif; }
-          
-          #vtexIdContainer .vtexIdUI .modal-body {
-            padding: 5px 55px 30px; }
-            @media (max-width: 1024px) {
-              #vtexIdContainer .vtexIdUI .modal-body {
-                padding: 5px 15px 30px; } }
-          
-          .vtexIdUI .modal-header,
-          .vtexIdUI .modal-footer {
-            background: white !important;
-            border: 0 !important; }
-          
-          .vtexIdUI .modal-header .close {
-            background: transparent !important;
-            color: grey !important;
-            -webkit-transform: scale(2) !important;
-            -ms-transform: scale(2) !important;
-            transform: scale(2) !important;
-            position: absolute !important;
-            top: 10px !important;
-            right: 10px !important; }
-          
-          .vtexIdUI h4 {
-            font-family: 'Lato';
-            text-align: center !important;
-            margin-top: 18px !important;
-            margin-bottom: 6px !important;
-            padding: 0; }
-          
+          div#vtexIdUI-global-loader {
+              display: none !important;
+          }
+
+          #vtexIdContainer button.close.vtexIdUI-close {
+              background: #FFF;
+              color: #000;
+              font-size: 30px;
+          }
+
+          .vtexIdUI .modal-header .close:hover{
+              background: unset;
+          }
+
+          #vtexIdContainer .vtexIdUI .vtexIdUI-providers-list {
+              display: flex;
+              flex-direction: column;
+              gap: 16px;
+          }
+
+          #vtexIdContainer .vtexIdUI .vtexIdUI-providers-list li, .vtexIdUI .account-list li {
+              margin-bottom: 0;
+          }
+
+          #vtexIdContainer .vtexIdUI .btn-block {
+              border-radius: 6px;
+              height: 40px;
+              background: #fff !important;
+              border: 1px solid #9B9B9B !important;
+              color: #393939;
+              font-size: 14px;
+              text-shadow: unset;
+              box-shadow: unset;
+              padding: 0;
+              min-height: 40px;
+              font-weight: 400;
+          }
+
+          .vtexIdUI .vtexIdUI-providers-list .btn i, .vtexIdUI .account-list .btn i {
+              display: none;
+          }
+
           .vtexIdUI .vtexid-icon-lock.bottom-icon {
-            display: none !important; }
-          
-          h4.vtexIdUI-heading span {
-            font-size: 0 !important; }
-          
-          h4.vtexIdUI-heading span::before {
-            content: 'Faça seu login:' !important;
-            font-size: 20px !important;
-            font-weight: bold;
-            color: #000 !important;
-            letter-spacing: 1px !important;
-            font-family: 'Lato'; }
-          
-          .vtexIdUI .btn-large {
-            padding: 9px 19px;
-            height: 38px !important;
-            text-transform: none;
-            color: white !important;
-            font-weight: normal !important;
-            font-size: 14px !important;
-            border: 0 !important; }
-            .vtexIdUI .btn-large i::before {
-              display: none; }
-          
-          .vtexIdUI .vtexIdUI-send-email::before {
-            content: 'Entrar apenas com e-mail' !important;
-            font-size: 14px !important;
-            position: absolute;
-            left: 50%;
-            -webkit-transform: translateX(-50%);
-            -ms-transform: translateX(-50%);
-            transform: translateX(-50%); }
-          
-          @media all and (max-width: 768px) {
-            .vtexIdUI .vtexIdUI-send-email::before {
-              font-size: 11px !important; } }
-          
-          .vtexIdUI .btn-large > span:nth-child(2) {
-            font-size: 0px !important; }
-          
-          .vtexIdUI .btn-large > span {
-            font-size: 14px !important; }
-          
-          .vtexIdUI .vtexIdUI-send-email::before {
-            font-size: 14px !important; }
-          
-          .vtexIdUI .btn {
-            -webkit-box-shadow: none !important;
-            box-shadow: none !important;
-            text-shadow: none !important; }
-          
-          .vtexIdUI .vtexIdUI-providers-list {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: flex;
-            -webkit-box-orient: vertical;
-            -webkit-box-direction: normal;
-            -webkit-flex-direction: column;
-            -moz-box-orient: vertical;
-            -moz-box-direction: normal;
-            -ms-flex-direction: column;
-            flex-direction: column; }
-            @media (max-width: 1024px) {
-              .vtexIdUI .vtexIdUI-providers-list .btn {
-                padding-left: 15px; } }
-          
-          .vtexIdUI .vtexIdUI-providers-list li:nth-child(1) {
-            -webkit-box-ordinal-group: 2;
-            -webkit-order: 1;
-            -moz-box-ordinal-group: 2;
-            -ms-flex-order: 1;
-            order: 1; }
-          
-          .vtexIdUI .vtexIdUI-providers-list li:nth-child(2) {
-            -webkit-box-ordinal-group: 4;
-            -webkit-order: 3;
-            -moz-box-ordinal-group: 4;
-            -ms-flex-order: 3;
-            order: 3; }
-          
-          .vtexIdUI .vtexIdUI-providers-list li:nth-child(3) {
-            -webkit-box-ordinal-group: 3;
-            -webkit-order: 2;
-            -moz-box-ordinal-group: 3;
-            -ms-flex-order: 2;
-            order: 2; }
-          
-          .vtexIdUI .vtexIdUI-providers-list li:nth-child(4) {
-            -webkit-box-ordinal-group: 5;
-            -webkit-order: 4;
-            -moz-box-ordinal-group: 5;
-            -ms-flex-order: 4;
-            order: 4; }
-          
-          #vtexIdUI-google-plus {
-            background: #E8453C !important; }
-          
-          button#loginWithUserAndPasswordBtn {
-            background: black !important; }
-          
-          button#loginWithAccessKeyBtn {
-            background: #6B6B6B !important; }
-          
-          #vtexIdUI-facebook {
-            background: #4B639A !important; }
-          
-          text-t .vtexIdUI .vtexIdUI-providers-list .btn i {
-            display: none !important; }
-          
-          button#loginWithAccessKeyBtn::after {
-            content: '';
-            display: block;
-            background: url("https://aviator.vteximg.com.br/arquivos/mail.png") no-repeat;
-            display: block;
-            height: 20px;
-            width: 35px;
-            position: absolute;
-            top: 25%;
-            right: 0%; }
-          
-          .vtexIdUI #vtexIdUI-google-plus::after {
-            content: '';
-            display: block;
-            background: url("https://aviator.vteximg.com.br/arquivos/gplus.png") no-repeat;
-            display: block;
-            height: 30px;
-            width: 39px;
-            position: absolute;
-            top: 14%;
-            right: 0%; }
-          
-          .vtexIdUI #vtexIdUI-facebook::after {
-            content: '';
-            display: block;
-            background: url("https://aviator.vteximg.com.br/arquivos/facebookicon.png") no-repeat;
-            display: block;
-            height: 30px;
-            width: 30px;
-            position: absolute;
-            top: 15%;
-            right: 0%;
-            -webkit-transform: scaleY(0.89);
-            -ms-transform: scaleY(0.89);
-            transform: scaleY(0.89); }
-          
-          button#loginWithUserAndPasswordBtn::after {
-            content: '';
-            display: block;
-            background: url("https://aviator.vteximg.com.br/arquivos/lock.png") no-repeat;
-            height: 30px;
-            width: 39px;
-            position: absolute;
-            top: 21%;
-            right: -2%; }
-          
-          .vtexIdUI-heading {
-            font-size: 0 !important; }
-            @media all and (min-width: 1024px) {
-              .vtexIdUI-heading {
-                padding-bottom: 4px !important; } }
-          
-          .vtexIdUI-confirm-email .vtexIdUI-heading::before {
-            font-size: 20px !important;
-            font-family: 'Lato';
-            font-weight: bold !important;
-            color: black !important;
-            letter-spacing: 1px !important;
-            content: 'Por favor, informe seu E-mail' !important; }
-          
-          .vtexIdUI .modal-footer {
-            border: 0 !important;
-            padding: 0px 15px 30px !important; }
-          
-          .vtexIdUI-back-link.pull-left.dead-link span {
-            color: #505050;
-            font-family: 'Lato', sans-serif !important;
-            font-weight: 700 !important;
-            font-size: 11px !important;
-            display: inline-block !important;
-            margin-top: 0 !important;
-            margin-left: 3px !important;
-            letter-spacing: .5px !important; }
-          
-          .vtexIdUI-back-link .vtexid-icon-arrow-left {
-            color: grey;
-            background: url(https://aviator.vteximg.com.br/arquivos/arrow-left.png) no-repeat;
-            -webkit-background-size: cover;
-            background-size: cover;
-            height: 26px;
-            width: 26px;
-            display: inline-block !important; }
-          
-          .vtexIdUI-back-link .vtexid-icon-arrow-left:before {
-            content: '' !important; }
-          
-          .vtexIdUI-confirm-email .modal-footer .pull-right {
-            background: #0030a0 !important;
-            -webkit-border-radius: 50px !important;
-            border-radius: 50px !important;
-            padding: 8px 45px !important;
-            margin-right: 40px !important;
-            font-size: 14px !important;
-            letter-spacing: 1px !important;
-            font-weight: 700; }
-          
-          .vtexIdUI-confirm-email .modal-footer button {
-            background: #0030a0 !important;
-            -webkit-border-radius: 0px !important;
-            border-radius: 0px !important;
-            padding: 10px 30px !important;
-            margin-right: 40px !important;
-            font-size: 11px !important;
-            letter-spacing: 1px !important; }
-          
-          .vtexIdUI-classic-login h4 .vtexIdUI-heading {
-            font-size: 20px !important;
-            font-weight: bold;
-            font-family: 'Lato', serif !important;
-            color: black !important;
-            letter-spacing: 1px !important; }
-          
-          .vtexIdUI-classic-login h4 .vtexIdUI-heading::after {
-            content: ':' !important;
-            display: inline-block !important; }
-          
-          #vtexIdUI-form-classic-login > div.modal-body > div.control-group.vtexIdUI-classic-login-control.email-model > label > span,
-          #vtexIdUI-form-classic-login > div.modal-body > div:nth-child(2) > label > span {
-            display: none !important; }
-          
-          .vtexIdUI-classic-login .control-label span {
-            display: none !important; }
-          
-          .vtexIdUI .vtexIdUI-back-link.pull-left.dead-link {
-            margin: 5px 40px !important;
-            display: -webkit-box !important;
-            display: -webkit-flex !important;
-            display: -moz-box !important;
-            display: -ms-flexbox !important;
-            display: flex !important;
-            -webkit-box-align: center;
-            -webkit-align-items: center;
-            -moz-box-align: center;
-            -ms-flex-align: center;
-            align-items: center; }
-          
-          .vtexIdUI .vtexIdUI-back-link.pull-left.dead-link:hover {
-            text-decoration: none;
-            color: black; }
-          
-          #appendedInputButton {
-            outline: 0 !important;
-            height: 38px !important;
-            min-height: auto !important; }
-          
-          #vtexIdUI-global-loader {
-            opacity: 0.77 !important; }
-          
-          #classicLoginBtn {
-            background: #0030a0 !important;
-            -webkit-border-radius: 50px !important;
-            border-radius: 50px !important;
-            padding: 8px 45px !important;
-            margin-right: 40px !important;
-            font-size: 14px !important;
-            letter-spacing: 1px !important;
-            font-weight: 700; }
-          
-          #vtexIdUI-form-classic-login .dead-link.pull-right {
-            /* esqueci minha senha */
-            display: block;
-            margin-bottom: 14px !important;
-            float: none !important;
-            color: #505050 !important;
-            font-family: 'Lato', sans-serif;
-            font-weight: 500;
-            font-size: 12px !important;
-            text-align: right; }
-          
-          @media all and (max-width: 480px) {
-            .vtexIdUI .vtexIdUI-back-link.pull-left.dead-link {
-              margin: 0 !important;
-              margin-top: 4px !important; }
-            #classicLoginBtn,
-            #sendAccessKeyBtn {
-              margin-right: 0px !important; } }
-          
-          .vtexIdUI-auth-code .modal-body {
-            margin-top: -30px !important; }
-          
-          .vtexIdUI-auth-code .modal-body::before {
-            content: 'Informar chave de acesso';
-            font-weight: bold;
-            font-size: 20px !important;
-            font-family: "Lato" !important;
-            color: #000 !important;
-            letter-spacing: 1px !important;
-            margin-bottom: 20px;
-            display: block;
-            text-align: center !important; }
-          
-          .vtexid-instruction {
-            margin: 0 !important; }
-          
-          .vtexIdUI-auth-code .info-code {
-            font-weight: bold !important;
-            font-family: 'Lato' !important;
-            font-size: 16px !important; }
-          
-          .vtexIdUI-auth-code .info-code span {
-            font-weight: normal !important;
-            line-height: 24px !important; }
-          
-          .vtexIdUI-auth-code .vtexIdUI-code-field {
-            max-width: 305px !important; }
-          
-          .vtexIdUI-auth-code input {
-            height: 38px !important;
-            -webkit-border-radius: 0px !important;
-            border-radius: 6px !important;
-            border-color: black !important;
-            margin: 20px 0 !important; }
-          
-          #confirmLoginAccessKeyBtn {
-            background: #0030a0 !important;
-            -webkit-border-radius: 50px !important;
-            border-radius: 50px !important;
-            padding: 8px 45px !important;
-            margin-right: 40px !important;
-            font-size: 14px !important;
-            letter-spacing: 1px !important;
-            font-weight: 700; }
-          
-          #vtexIdUI-change-pswd .modal-header .vtexIdUI-header {
-            display: none; }
-          
-          #vtexIdUI-change-pswd .modal-header h4:before {
-            content: 'Cadastrar nova senha:';
-            font-size: 20px !important;
-            font-family: "Lato" !important;
-            font-weight: bold !important;
-            color: #000 !important;
-            letter-spacing: 1px !important; }
-          
-          #vtexIdUI-change-pswd .modal-header .vtexid-icon-user {
-            display: none !important; }
-          
-          #vtexIdUI-change-pswd .modal-body {
-            position: relative !important; }
-          
-          #vtexIdUI-change-pswd .modal-body .vtexid-icon-lock {
-            display: none !important; }
-          
-          #vtexIdUI-change-pswd .modal-body .info-why {
-            position: absolute !important;
-            right: 60px !important;
-            font-weight: bold !important;
-            font-size: 15px !important; }
-          
-          #tryChangePswdBtn {
-            background: #0030a0 !important;
-            -webkit-border-radius: 50px !important;
-            border-radius: 50px !important;
-            padding: 8px 45px !important;
-            margin-right: 40px !important;
-            font-size: 0 !important;
-            letter-spacing: 1px !important;
-            font-weight: 700; }
-          
-          #tryChangePswdBtn::before {
-            font-size: 14px !important;
-            content: 'Cadastrar';
-            display: block; }
-          
-          .vtexid-password-requirements {
-            color: black !important;
-            font-weight: bold !important;
-            line-height: 18px !important;
-            font-size: 13px !important;
-            letter-spacing: 0.5px !important; }
-          
-          .vtexid-password-requirements-list {
-            margin: 0 !important;
-            font-family: Nunito, helvetica, sans-serif;
-            font-size: 12px;
-            font-weight: 600; }
-          
-          #vtexIdUI-change-pswd .modal-body .control-group label {
-            font-size: 12px;
-            color: #000000;
-            font-family: Nunito, helvetica, sans-serif;
-            font-weight: 700; }
-          
-          #vtexIdUI-change-pswd .vtexIdUI-user {
-            display: -webkit-box !important;
-            display: -webkit-flex !important;
-            display: -moz-box !important;
-            display: -ms-flexbox !important;
-            display: flex !important;
-            -webkit-box-pack: center;
-            -webkit-justify-content: center;
-            -moz-box-pack: center;
-            -ms-flex-pack: center;
-            justify-content: center;
-            margin-top: 18px !important; }
-          
-          button#loginWithAccessKeyBtn {
-            /* padding-left: 60px !important; */ }
-          
-          #vtexIdUI-change-pswd form {
-            padding-top: 18px !important; }
-          
-          .vtexIdUI-auth-code .modal-footer {
-            margin-top: 20px !important; }
-          
-          #vtexIdUI-form-classic-login > div.modal-body > div:nth-child(2) > a {
-            margin-top: 0px !important; }
-          
-          @media all and (max-width: 480px) {
-            #vtexIdUI-change-pswd .modal-body .info-why {
-              position: relative !important;
-              margin-top: 0 !important;
-              right: unset !important;
-              font-size: 14px !important; }
-            #vtexIdUI-change-pswd form {
-              padding-top: 9px !important; }
-            #vtexIdUI-change-pswd .modal-body .control-group label {
-              margin-bottom: 0 !important;
-              margin-top: 4px !important; }
-            #tryChangePswdBtn,
-            #sendAccessKeyBtn,
-            #classicLoginBtn,
-            #confirmLoginAccessKeyBtn {
-              margin-right: 0 !important; } }
-          
-          @media all and (min-width: 1279px) and (max-width: 1281px) {
-            #vtexIdUI-change-pswd .modal-body .info-why {
-              font-size: 13px !important; } }
-          
-          #bannerEbit {
-            margin-bottom: 20px; }
+              display: none;
+          }
+
+          .vtexIdUI-confirm-email.vtexIdUI-page.ng-scope.vtexIdUI-page-active::after, .vtexIdUI-auth-code.vtexIdUI-page.ng-scope.vtexIdUI-page-active::after, .vtexIdUI-classic-login.vtexIdUI-page.ng-scope.vtexIdUI-page-active::after {
+              display: none;
+          }
+
+          .vtexIdUI-page.ng-scope.vtexIdUI-page-active::after{
+              content: "Ao acessar, você está de acordo com os Termos de Uso e a Política de privacidade";
+              display: block;
+              width: 100%;
+              height: 40px;
+              color: #444444;
+              position: absolute;
+              font-size: 14px;
+              bottom: -15px;
+              left: 0;
+              padding: 0 50px;
+              text-align: center;
+          }
+
+          div#vtexIdContainer {
+              width: 0;
+              height: 0;
+              left: unset;
+              top: 120px;
+              right: clamp(15.75rem, -10.25rem + 39.0625vi, 57.25rem);
+          }
+          #vtexIdContainer::after{
+              content: "";
+              display: block;
+              width: 20px;
+              height: 20px;
+              background: #fff;
+              position: absolute;
+              z-index: 99999;
+              top: -10px;
+              right: -100px;
+              transform: rotate(45deg);
+          }
+          .vtexIdUI .vtexIdUI-heading[data-i18n="vtexid.getEmailTitle"]{
+              font-size: 0;
+              width: 100%;
+          }
+          .vtexIdUI .vtexIdUI-heading[data-i18n="vtexid.getEmailTitle"]::after{
+              content: "Digite seu e-mail para receber  o código de acesso";
+              display: block;
+              font-size: 16px;
+              width: 100%;
+              text-align: center;
+              color: #393939;
+              font-weight: 700;
+              font-family: 'Lato';
+              padding: 0px 54px;
+              line-height: 22.4px;
+          }
+
+          .vtexIdUI .vtexIdUI-heading[data-i18n="vtexid.accessTokenTitle"]{
+              font-size: 0;
+              width: 100%;
+          }
+          .vtexIdUI .vtexIdUI-heading[data-i18n="vtexid.accessTokenTitle"]::after{
+              content: "Digite o código enviado para o seu e-mail";
+              display: block;
+              font-size: 16px;
+              width: 100%;
+              text-align: center;
+              color: #393939;
+              font-weight: 700;
+              font-family: 'Lato';
+              padding: 0px 54px;
+              line-height: 22.4px;
+          }
+
+          .vtexIdUI .vtexIdUI-heading[data-i18n="vtexid.classicAuthText"]{
+              font-size: 0;
+              width: 100%;
+          }
+          .vtexIdUI .vtexIdUI-heading[data-i18n="vtexid.classicAuthText"]::after{
+              content: "Entrar com e-mail e senha";
+              display: block;
+              font-size: 16px;
+              width: 100%;
+              text-align: center;
+              color: #393939;
+              font-weight: 700;
+              font-family: 'Lato';
+              padding: 0px 54px;
+              line-height: 22.4px;
+          }
+
+          #vtexIdContainer .vtexIdUI h4 {
+              line-height: 1;
+              height: 20px;
+              display: flex;
+              margin: 0 0 10px;
+          }
+
+          .vtexIdUI input[type="text"]:focus, .vtexIdUI input[type="password"]:focus, .vtexIdUI input[type="email"]:focus{
+              border-color: #B10200 !important;
+              box-shadow: unset;
+          }
+
+          .vtexIdUI input[type="text"], .vtexIdUI input[type="password"], .vtexIdUI input[type="email"]{
+              border-color: #C6C6C6
+          }
+          .vtexIdUI input.input-block-level::placeholder{
+              content: "teste";
+          }
+
+          #vtexIdContainer .vtexIdUI .modal-footer{
+              background: #FFF;
+              border: unset;
+              padding: 0 16px;
+              display: flex;
+              width: 100%;
+              align-items: center;
+              justify-content: space-between;
+          }
+
+          #vtexIdContainer .vtexIdUI .vtexId-link, #vtexIdContainer .vtexIdUI a{
+              color: #B10200;
+          }
+
+          #vtexIdContainer .vtexIdUI .btn-success{
+              background: #B10200;
+              border-radius: 6px;
+              box-shadow: unset;
+              border: unset;
+              height: 40px;
+              min-height: 40px;
+          }
+
+          #vtexIdContainer .vtexIdUI .modal-footer:before, #vtexIdContainer .vtexIdUI .modal-footer:after{
+              display: none;
+          }
+
+          #vtexIdContainer .vtexIdUI #vtexIdUI-google-plus:hover{
+              box-shadow: unset;
+          }
+
+          .vtexIdUI #vtexIdUI-google-plus::after{
+              content: "";
+              width: 16px;
+              height: 16px;
+              position: absolute;
+              background: url("/arquivos/google-icon-wl.png") no-repeat;
+              top: 10px;
+              left: 80px;
+          }
+
+          #vtexIdContainer .vtexIdUI .vtexIdUI-auth-code input{
+              font-size: 26px;
+          }
     `,
   );
   handleLoadScript(

@@ -9,11 +9,8 @@ import GeoLocationPointBar from "../../islands/Header/GeoLocationPointBar/GeoLoc
 import { MenuButton } from "$store/islands/Header/Buttons.tsx";
 import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
-
 import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
 import LoggedUserMobile from "$store/islands/Header/LoggedUserMobile.tsx";
-
-import { useUser } from "apps/vtex/hooks/useUser.ts";
 import SentryConfig from "deco-sites/casaevideo/islands/Header/SentryConfig.tsx";
 
 interface Categories {
@@ -108,7 +105,6 @@ function Header({
 }: Props) {
 
   const platform = usePlatform();
-  const { user } = useUser();
   if (device === "mobile") {
     return (
       <>

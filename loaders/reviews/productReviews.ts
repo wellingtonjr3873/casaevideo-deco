@@ -1,4 +1,3 @@
-import { AppContext } from "apps/vtex/mod.ts";
 import { createHttpClient } from "apps/utils/http.ts";
 import { fetchSafe } from "apps/vtex/utils/fetchVTEX.ts";
 import { getSegmentFromBag } from "apps/vtex/utils/segment.ts";
@@ -13,6 +12,10 @@ import {
 import { ProductDetailsPage } from "apps/commerce/types.ts";
 import { ExtensionOf } from "apps/website/loaders/extension.ts";
 import { logger } from "deco/observability/otel/config.ts";
+
+import { AppContext as LegacyAppContext } from "apps/vtex/mod.ts";
+
+import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
 
 export interface Props {
   productId: string;
@@ -70,9 +73,10 @@ export default function productDetailsPage(
       return null;
     }
 
+    const apiKey = ctx.GatewayApiKey.get();
     const productID = productDetailsPage.product.inProductGroupWithID || "";
 
-    const segment = getSegmentFromBag(ctx);
+    const segment = getSegmentFromBag(ctx as unknown as LegacyAppContext);
 
     const reviewsApi = createHttpClient<ProductReviewsApi>({
       base: `https://api-cev-gateway.lebiscuit.io`,
@@ -83,7 +87,7 @@ export default function productDetailsPage(
           "content-type": "application/json",
           accept: "application/json",
           deviceId: "site",
-          "X-Api-Key": "6A799190-9DBC-4E8A-836B-269FA2DBF5D6",
+          "X-Api-Key": apiKey!,
         }),
       ),
     });

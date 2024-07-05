@@ -56,7 +56,6 @@ function Cart({
       shelfProducts = result;
     }catch{
       console.error("Erro ao exibir vitrine de produtos.");
-      Sentry.captureException("Erro ao exibir vitrine de produtos.");
     }
     if(shelfProducts){
       productMinicartShelf.value = shelfProducts;
@@ -77,7 +76,6 @@ function Cart({
         product = result;
       }catch{
         console.error("Erro ao exibir vitrine de produtos.")
-        Sentry.captureException("Erro ao exibir vitrine de produtos.");
       }
       if(product){
         voltageName = product[0].additionalProperty?.find(property => property.name == "Voltagem");

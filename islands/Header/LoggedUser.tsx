@@ -1,43 +1,18 @@
 import Icon from "$store/components/ui/Icon.tsx";
 import { useSignal } from "@preact/signals";
-import { useUser } from "apps/vtex/hooks/useUser.ts";
-
+import MyAccountButton from "$store/islands/MyAccountButton.tsx";
+import { useUserLogged } from "deco-sites/casaevideo/sdk/useUserLogged.ts";
 
 const LoggedUser = () => {
 
-  const { user, loading } = useUser();
- 
+  const { userLogged, userLoading, userEmail, userFirstName } = useUserLogged()
+
   const visiblePopup = useSignal(false);
   const handleSetVisibblePopUp = () => visiblePopup.value = !visiblePopup.value
 
-
-
-  return  !loading.value ? <>{!user.value ?
+  return !userLoading.value ? <>{!userLogged.value ?
     <>
-      <a
-        class="flex items-center justify-center gap-1"
-        href="/login"
-        aria-label="Log in"
-      >
-        <Icon
-          id="User"
-          size={32}
-          class="text-neutral-900 "
-          alt="Acesse sua conta agora"
-        />
-        <div class="flex flex-col">
-          <span class="small-regular">Bem vindo!</span>
-          <span class="x-small-underline">Entre ou cadastre-se</span>
-        </div>
-        {/* meus pedidos */}
-        <a href="/account/#/orders" aria-label="Meus pedidos">
-          <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui" />
-        </a>
-        {/* wishlist */}
-        <a href="/account/#/wishlist" aria-label="Meus favoritos">
-          <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
-        </a>
-      </a>
+      <MyAccountButton />
     </> :
     <div class="flex items-center justify-center gap-1">
       <button class="flex items-center justify-start center gap-1 cursor-pointer w-[154px]" onClick={handleSetVisibblePopUp}>
@@ -77,7 +52,7 @@ const LoggedUser = () => {
 
         <div class="flex flex-col gap-1 items-start">
           <span class="x-small-regular text-neutral-900">Olá,</span>
-          <h3 class="small-bold text-neutral-900 max-w-[108px] truncate ...">{user.value.givenName || user.value.email}</h3>
+          <h3 class="small-bold text-neutral-900 max-w-[108px] truncate ...">{userFirstName.value || userEmail.value}</h3>
         </div>
       </button>
       {/* meus pedidos */}
@@ -88,7 +63,7 @@ const LoggedUser = () => {
       <a href="/account/#/wishlist" aria-label="Meus favoritos">
         <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
       </a>
-    </div>}</> : <div class="w-[216px] h-[35px] flex items-center justify-center"><div class="loading loading-spinner w-5"/></div>
+    </div>}</> : <div class="w-[216px] h-[35px] flex items-center justify-center"><div class="loading loading-spinner w-5" /></div>
 }
 
 export default LoggedUser
