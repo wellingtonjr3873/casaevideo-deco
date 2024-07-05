@@ -13,8 +13,11 @@ async function action(
   userCanSpin: boolean
 }>> {
   const url = `${ROLETA_API_URL}/roleta-black-friday/check_user`;
+  const controller = new AbortController();
+  const signal = controller.signal;
 
   const requestOptions = {
+    signal,
     method: "POST",
     headers: {
       Accept: "application/json",
