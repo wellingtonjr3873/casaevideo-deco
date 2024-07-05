@@ -1,12 +1,22 @@
 import { itemToAnalyticsItem, useCart } from "apps/vtex/hooks/useCart.ts";
 import Button from "./common.tsx";
 import { h as types } from "preact";
-
+import { useUserLogged } from "deco-sites/casaevideo/sdk/useUserLogged.ts";
 export interface Props {
   children?: types.JSX.Element;
 }
 function CartButton({ children }: Props) {
   const { loading, cart } = useCart();
+  const { userLogged, userLoading, userEmail, userFirstName } = useUserLogged();
+
+  userLoading.value = loading.value;
+
+  if(cart.value?.loggedIn){
+    userLogged.value = true;
+    userEmail.value = cart.value.clientProfileData?.email || "";
+    userFirstName.value = cart.value.clientProfileData?.firstName || "";
+  }
+
   const {
     totalizers = [],
     items = [],

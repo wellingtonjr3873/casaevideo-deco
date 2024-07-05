@@ -14,6 +14,8 @@ import WishlistButton from "deco-sites/casaevideo/islands/WishlistButton.tsx";
 import ProductVisualization from "deco-sites/casaevideo/islands/ProductVisualization.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 import OursStores from "deco-sites/casaevideo/islands/OursStores.tsx";
+import DemoUpButton from "deco-sites/casaevideo/islands/DemoUpButton.tsx";
+
 export interface tagsProps {
   active?: boolean;
   id?: string;

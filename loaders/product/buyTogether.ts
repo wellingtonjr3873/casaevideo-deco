@@ -1,4 +1,4 @@
-import { AppContext } from "apps/vtex/mod.ts";
+import { AppContext } from "deco-sites/casaevideo/apps/site.ts";
 import { createHttpClient } from "apps/utils/http.ts";
 import { fetchSafe } from "apps/vtex/utils/fetchVTEX.ts";
 import { getSegmentFromBag } from "apps/vtex/utils/segment.ts";
@@ -10,7 +10,7 @@ import { ProductVtexRest } from "deco-sites/casaevideo/types/vtexRestApi.ts";
 import { useOffer } from "deco-sites/casaevideo/sdk/useOffer.ts";
 import { getDefaultVtexSeller } from "deco-sites/casaevideo/utils/getDefaultVtexSeller.ts";
 import { BuyTogetherProduct } from "deco-sites/casaevideo/types/buyTogether.ts";
-
+import { AppContext as LegacyAppContext } from "apps/vtex/mod.ts";
 export interface Props {
   productId: string;
 }
@@ -54,8 +54,9 @@ export default function productDetailsPage(
     }
 
     const productID = productDetailsPage.product.inProductGroupWithID || "";
-    const segment = getSegmentFromBag(ctx);
+    const segment = getSegmentFromBag(ctx as unknown as LegacyAppContext);
 
+    const apiKey = ctx.GatewayApiKey.get();
     const buyTogetherApi = createHttpClient<BuyTogetherApi>({
       base: `https://api-cev-gateway.lebiscuit.io`,
       fetcher: fetchSafe,
@@ -65,7 +66,7 @@ export default function productDetailsPage(
           "content-type": "application/json",
           accept: "application/json",
           deviceId: "site",
-          "X-Api-Key": "6A799190-9DBC-4E8A-836B-269FA2DBF5D6",
+          "X-Api-Key": apiKey!,
         }),
       ),
     });
@@ -102,7 +103,6 @@ export default function productDetailsPage(
         );
 
       const data = await response.json();
-
       return data[0];
     };
 
@@ -133,23 +133,23 @@ export default function productDetailsPage(
       return data[0];
     };
 
-    const buyTogether = await getWhoBoughtAlsoBought(productID);
     const showTogether = await getShowTogether(productID);
     const product = productDetailsPage?.product;
-
-    const buyTogetherFullProduct = await getSkuFromProductId(
-      productId || buyTogether?.productId,
-    );
-    const buyTogetherFullProductSeller = getDefaultVtexSeller(
-      buyTogetherFullProduct?.items?.[0]?.sellers || [],
-    );
-
+    
     const showTogetherFullProduct = await getSkuFromProductId(
       productId || showTogether?.productId,
     );
     const showTogetherFullProductSeller = getDefaultVtexSeller(
       showTogetherFullProduct?.items?.[0]?.sellers || [],
     );
+
+    // const buyTogether = await getWhoBoughtAlsoBought(productID);
+    // const buyTogetherFullProduct = await getSkuFromProductId(
+    //   productId || buyTogether?.productId,
+    // );
+    // const buyTogetherFullProductSeller = getDefaultVtexSeller(
+    //   buyTogetherFullProduct?.items?.[0]?.sellers || [],
+    // );
 
     const {
       seller,
@@ -161,40 +161,6 @@ export default function productDetailsPage(
 
     return {
       ...productDetailsPage,
-      buyTogether: [
-        {
-          productID: product.productID,
-          name: product.name,
-          seller,
-          quantity: 1,
-          image: product?.image?.map((image) => ({
-            url: image.url,
-            alt: image.alternateName,
-          }))[0],
-          listPrice,
-          installments,
-          price,
-          availability,
-        },
-        ...(buyTogetherFullProduct?.items?.[0]?.itemId
-          ? [{
-            productID: buyTogetherFullProduct?.items[0].itemId,
-            name: buyTogetherFullProduct?.productName,
-            seller: buyTogetherFullProductSeller?.sellerId,
-            quantity: 1,
-            image: buyTogetherFullProduct?.items[0]?.images.map((image) => ({
-              url: image.imageUrl,
-              alt: image.imageText,
-            }))[0],
-            listPrice: buyTogetherFullProductSeller?.commertialOffer.ListPrice,
-            installments: "",
-            price: buyTogetherFullProductSeller?.commertialOffer.Price,
-            availability:
-              buyTogetherFullProductSeller?.commertialOffer?.IsAvailable ||
-              false,
-          }]
-          : []),
-      ],
       showTogether: [
         {
           productID: product.productID,

@@ -17,7 +17,10 @@ import * as $Analytics from "./islands/Analytics.tsx";
 import * as $BannerStopWatch from "./islands/BannerStopWatch.tsx";
 import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
 import * as $BuyTogetherTotal from "./islands/BuyTogetherTotal.tsx";
+import * as $DemoUpButton from "./islands/DemoUpButton.tsx";
+import * as $DisplayFortuneWheel from "./islands/DisplayFortuneWheel.tsx";
 import * as $Form from "./islands/Form.tsx";
+import * as $FortuneWheel from "./islands/FortuneWheel.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
 import * as $Header_Cart_nuvemshop from "./islands/Header/Cart/nuvemshop.tsx";
@@ -29,9 +32,7 @@ import * as $Header_Drawers from "./islands/Header/Drawers.tsx";
 import * as $Header_GeoLocationPointBar_GeoLocationPoint from "./islands/Header/GeoLocationPointBar/GeoLocationPoint.tsx";
 import * as $Header_GeoLocationPointBar_GeoLocationPointBar from "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx";
 import * as $Header_LoggedUser from "./islands/Header/LoggedUser.tsx";
-import * as $Header_LoggedUserCopy from "./islands/Header/LoggedUserCopy.tsx";
 import * as $Header_LoggedUserMobile from "./islands/Header/LoggedUserMobile.tsx";
-import * as $Header_LoggedUserMobileCopy from "./islands/Header/LoggedUserMobileCopy.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SentryConfig from "./islands/Header/SentryConfig.tsx";
 import * as $ImageZoom from "./islands/ImageZoom.tsx";
@@ -77,7 +78,10 @@ const manifest = {
     "./islands/BannerStopWatch.tsx": $BannerStopWatch,
     "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
     "./islands/BuyTogetherTotal.tsx": $BuyTogetherTotal,
+    "./islands/DemoUpButton.tsx": $DemoUpButton,
+    "./islands/DisplayFortuneWheel.tsx": $DisplayFortuneWheel,
     "./islands/Form.tsx": $Form,
+    "./islands/FortuneWheel.tsx": $FortuneWheel,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
     "./islands/Header/Cart/nuvemshop.tsx": $Header_Cart_nuvemshop,
@@ -91,9 +95,7 @@ const manifest = {
     "./islands/Header/GeoLocationPointBar/GeoLocationPointBar.tsx":
       $Header_GeoLocationPointBar_GeoLocationPointBar,
     "./islands/Header/LoggedUser.tsx": $Header_LoggedUser,
-    "./islands/Header/LoggedUserCopy.tsx": $Header_LoggedUserCopy,
     "./islands/Header/LoggedUserMobile.tsx": $Header_LoggedUserMobile,
-    "./islands/Header/LoggedUserMobileCopy.tsx": $Header_LoggedUserMobileCopy,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Header/SentryConfig.tsx": $Header_SentryConfig,
     "./islands/ImageZoom.tsx": $ImageZoom,

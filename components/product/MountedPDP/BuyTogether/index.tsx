@@ -18,7 +18,7 @@ function BuyTogether(props: Props) {
   const { page } = props;
   const correctPage = page as PageProps;
   
-  if (!correctPage || (correctPage.product?.productID === null || correctPage.buyTogether?.length === 0) || (correctPage.buyTogether?.length === 1 )) return <></>
+  if (!correctPage || (correctPage.product?.productID === null || correctPage.showTogether?.length === 0) || (correctPage.showTogether?.length === 1)) return <></>
 
   const {
     showTogether,
