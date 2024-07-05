@@ -6,6 +6,7 @@ import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
 import { IS_BROWSER } from "$fresh/runtime.ts";
+import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
 export interface Props {
   items: Array<SKU>;
 }
@@ -22,6 +23,7 @@ function ShippingContent({ simulation }: {
   simulation: Signal<SimulationOrderForm | null>;
 }) {
   const { cart } = useCart();
+  const { simulationState } = useUI();
 
   const methods = simulation.value?.logisticsInfo?.reduce(
     (initial, { slas }) => [...initial, ...slas],
@@ -75,7 +77,15 @@ function ShippingContent({ simulation }: {
     return null;
   }
 
-  if (methods.length === 0) {
+  if (simulationState.value == "cannotBeDelivered" ) {
+    return (
+      <div class="p-2">
+        <span>Não existe um frete disponível para o CEP informado</span>
+      </div>
+    );
+  }
+
+  if (simulationState.value == "withoutStock" ) {
     return (
       <div class="p-2">
         <span>CEP inválido</span>
@@ -113,10 +123,11 @@ function ShippingContent({ simulation }: {
 
 function ShippingSimulation({ items }: Props) {
   const postalCode = useSignal("");
-  const loading = useSignal(false);
+  const loading = useSignal(false);  
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
   const { simulate, cart } = useCart();
   const currentCepIsExist = IS_BROWSER ? localStorage?.getItem("USER_CEP") : undefined
+  const { simulationState } = useUI();
 
   const formatarCEP = (cep: string) => {
     cep = cep.replace(/\D/g, '');
@@ -125,18 +136,24 @@ function ShippingSimulation({ items }: Props) {
   };
 
   const handleSimulation = useCallback(async () => {
-    const cepNumbers = postalCode.value.replace(/-/g, '')
+    const cepNumbers = postalCode.value.replace(/-/g, '');
     if (cepNumbers.length !== 8) {
-      return;
+      return; // Se o CEP não tiver o tamanho esperado, apenas retorna sem fazer nada.
     }
-
+  
     try {
       loading.value = true;
-      simulateResult.value = await simulate({
+      const result = await simulate({
         items: items,
         postalCode: cepNumbers,
         country: cart.value?.storePreferencesData.countryCode || "BRA",
       });
+  
+      simulateResult.value = result;
+      if(result) {
+        simulationState.value = result?.messages?.[0]?.code || ""
+      }
+      return result; 
     } finally {
       loading.value = false;
     }

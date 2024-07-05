@@ -17,6 +17,7 @@ const productMinicartShelf = signal<Product[] | null>(null);
 const vtexIdScriptsLoaded = signal(false);
 const displayModalLogin = signal(false);
 const displayOverlayServiceMenu = signal(false);
+const simulationState = signal("");
 
 const state = {
   displayCart,
@@ -31,6 +32,7 @@ const state = {
   vtexIdScriptsLoaded,
   displayModalLogin,
   displayOverlayServiceMenu,
+  simulationState,
 };
 
 // Keyboard event listeners
