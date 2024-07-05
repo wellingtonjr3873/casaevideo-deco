@@ -76,7 +76,7 @@ export default function productDetailsPage(
     const account = ctx.account || ctx.commerce.account || "casaevideonewio";
 
     const showTogetherApi = createHttpClient<BuyTogetherApi>({
-      base: `https://${account}.vtexcommercestable.com.br`,
+      base: `https://secure.${account}.com.br`,
       fetcher: fetchSafe,
       headers: withSegmentCookie(
         segment,
@@ -88,7 +88,7 @@ export default function productDetailsPage(
     });
 
     const vtexApi = createHttpClient<VTEXCommerceStableFull>({
-      base: `https://${account}.vtexcommercestable.com.br`,
+      base: `https://secure.${account}.com.br`,
       fetcher: fetchSafe,
     });
 
