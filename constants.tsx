@@ -256,6 +256,7 @@ export const TOTAL_PRIZES = [
 ]
 
 export const ROLETA_API_URL = "https://api-roleta.lebiscuit.io";
+export const DEFAULT_PROVIDER = "casaevideo";
 
 export const USER_ALREADY_GO__TO_LOGIN_KEY = "USER_ALREADY_MAKE_LOGIN";
 export const DEFAULT_WISHLIST_LIST_NAME = "Meus favoritos"
