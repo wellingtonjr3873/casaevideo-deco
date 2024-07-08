@@ -50,10 +50,8 @@ const FortuneWheel = ({
 
     if (spin.error) {
       const rotationDegValue = ROTATION_DEG["tente-outra-vez"];
-
-      degreesRotate.value = rotationDegValue[Math.floor(Math.random() * (1 + (rotationDegValue.length  - 1 ) - 0)) + 0] + TWO_SPIN_DEG
-    
       setTimeout(() => {
+        degreesRotate.value = rotationDegValue[Math.floor(Math.random() * (1 + (rotationDegValue.length  - 1 ) - 0)) + 0] + TWO_SPIN_DEG
         error.value = true;
         spinning.value = false;
       }, FIVE_SECONDS);
@@ -84,24 +82,21 @@ const FortuneWheel = ({
   }
 
   useEffect(() => {
-      console.log(user.value?.email, 'see value')
-      if(!user.value?.email){
-        loading.value = false;
+      if(user.value?.email){
+        invoke["deco-sites/casaevideo"].loaders["can-spin"]({email: user.value?.email})
+        .then((res) => {
+          error.value = res.error;
+          if(res.error) throw new Error(res.message);
+        })
+        .catch(console.error)
+        .finally(() => {
+          loading.value = false;
+        });
         return
       }
-
-
-
-      invoke["deco-sites/casaevideo"].loaders["can-spin"]({email: user.value?.email})
-      .then((res) => {
-        error.value = res.error;
-        if(res.error) throw new Error(res.message);
-      })
-      .catch(console.error)
-      .finally(() => {
-        loading.value = false;
-      });
-  }, [user.value])
+        loading.value = false
+      
+  }, [])
   
 
   return (
