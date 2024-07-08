@@ -202,7 +202,9 @@
 
 <body>
     <header>
-        <img src="./images/logo.png" alt="Casa & Video">
+        <a href="/">
+            <img src="./images/logo.png" alt="Casa & Video">
+        </a>
     </header>
     <main>
         <form id="mdForm" action="submit_form.php" method="post">
@@ -225,8 +227,8 @@
                     <input type="date" id="date" name="date" required>
                 </div>
                 <div class="form-label oneThird">
-                    <label for="tel">Celular</label>
-                    <input type="tel" id="tel" name="tel" placeholder="(99) 99999-9999">
+                    <label for="phone">Celular</label>
+                    <input type="phone" id="phone" name="phone" placeholder="(99) 99999-9999">
                 </div>
             </div>
 
@@ -320,9 +322,9 @@
                 sendData('/api/dataentities/CF/documents', data)
                     .then(response => {
                         if (response.ok) {
-                            console.log("Dados enviados com sucesso!");
+                            alert("Dados enviados com sucesso!");
                         } else {
-                            console.error("Erro ao enviar os dados.");
+                            alert("Erro ao enviar os dados.");
                         }
                     })
                     .catch(error => {
