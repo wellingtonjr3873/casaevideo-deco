@@ -54,23 +54,22 @@ const FortuneWheel = ({
         degreesRotate.value = rotationDegValue[Math.floor(Math.random() * (1 + (rotationDegValue.length  - 1 ) - 0)) + 0] + TWO_SPIN_DEG
         error.value = true;
         spinning.value = false;
+        loading.value = false;
       }, FIVE_SECONDS);
 
       return;
     } 
-
       const rotationDegValue = ROTATION_DEG[spin.value!.clusterWinned as keyof typeof ROTATION_DEG]
-      degreesRotate.value = rotationDegValue[Math.floor(Math.random() * (1 + (rotationDegValue.length  - 1 ) - 0)) + 0] + TWO_SPIN_DEG
-
+      
       setTimeout(() => {
+        degreesRotate.value = rotationDegValue[Math.floor(Math.random() * (1 + (rotationDegValue.length  - 1 ) - 0)) + 0] + TWO_SPIN_DEG
         prizeResult.value = true;
         spinning.value = false;
+        loading.value = false
       }, FIVE_SECONDS);
 
     }catch(err){
       console.error(err)
-    }finally{
-      loading.value = false
     }
   };
 
