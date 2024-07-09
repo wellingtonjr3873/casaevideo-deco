@@ -102,26 +102,7 @@ function Cart({
     handleShelf()
     handleProductsEnrichedInfo()
   }, [])
-
-
-    async function handleVoltage(item: Item){
-      let voltageProduct, voltageName;
-      let product;
-      try {
-        const result = await invoke.vtex.loaders.intelligentSearch.productList({
-          "props": { "ids": [item.productID || ""] }
-        });
-        product = result;
-      }catch{
-        console.error("Erro ao exibir vitrine de produtos.")
-      }
-      if(product){
-        voltageName = product[0].additionalProperty?.find(property => property.name == "Voltagem");
-        voltageProduct = voltageName?.value;
-      }
   
-      return voltageProduct;
-      }
   return (
     <>
       <div
