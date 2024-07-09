@@ -11,7 +11,7 @@
     "editor.defaultFormatter": "DavidAnson.vscode-markdownlint"
   },
   "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "editor.defaultFormatter": "dayan.vscode-deno-html-tools"
   },
   "[css]": {
     "editor.defaultFormatter": "vscode.css-language-features"
