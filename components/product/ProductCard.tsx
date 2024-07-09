@@ -74,24 +74,34 @@ function ProductCard(
     productID,
     name,
     image: images,
-    offers,
     isVariantOf,
     // Until deco accepts the PR from typagen on their repository, this property advertisement will remain complaining.
     advertisement,
   } = product;
     
   const allProduct = product
+  const hasVariant = allProduct.isVariantOf.hasVariant
 
-  const lowPrice = allProduct?.offers?.lowPrice
 
+  const variantWithStock = hasVariant?.find((variant: any) => {
+    const available = variant.offers.offers.find((offer) => offer.availability === "https://schema.org/InStock")
+    
+    return available;
+  });
+
+
+  const inStock = !!variantWithStock;
+  const offers = variantWithStock?.offers;
 
   const id = `product-card-${productID}`;
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
   const titleImage = front.url?.split("/")[6].replaceAll("-"," ").split(".")[0];
 
-  const { listPrice, price, pixPrice, installments, availability } = useOffer(offers);
 
+  const { listPrice, price, pixPrice, installments, availability } = useOffer(offers);
+  
+ 
   const productClusters = product.additionalProperty && product.additionalProperty;
 
 
@@ -132,7 +142,11 @@ function ProductCard(
         <div class="min-h-[24px] w-full pb-2 pt-1">
 
         </div>
-        {layout?.hide?.allPrices ? "" : availability === "https://schema.org/InStock" ? (
+        {layout?.hide?.allPrices ? "" :
+
+        availability === "https://schema.org/InStock" ?
+    
+         (
           <div class="flex flex-col">
             <div
               class={`flex flex-col gap-0 ${layout?.basics?.oldPriceSize === "Normal"
@@ -152,14 +166,14 @@ function ProductCard(
                   (
                     <div class="bg-success gap-1 h-4 sm:h-5 md:h-5 flex px-1 justify-center items-center text-neutral-50 rounded">
                       <Icon id="ArrowDown" width={16} height={16} />
-                      {listPrice && lowPrice &&
-                       `${(((listPrice- lowPrice)/listPrice) * 100).toFixed(0)}%`
+                      {listPrice && pixPrice &&
+                       `${(((listPrice- pixPrice)/listPrice) * 100).toFixed(0)}%`
                       }
                     </div>
                   )}
               </div>
               <div class="body-bold md:h6-bold-20 text-neutral-dark">
-                {formatPrice(lowPrice, offers?.priceCurrency)} no PIX
+                {formatPrice(pixPrice, offers?.priceCurrency)} no PIX
               </div>
             </div>
             {layout?.hide?.installments
@@ -170,7 +184,53 @@ function ProductCard(
                 </div>
               )}
           </div>
-        ) : <button class="w-full py-2 border border-brand-secondary-400 small-regular rounded-md mt-auto text-neutral-900">Indisponivel</button>}
+        )
+
+        :
+        inStock ? 
+
+        (
+          <div class="flex flex-col">
+            <div
+              class={`flex flex-col gap-0 ${layout?.basics?.oldPriceSize === "Normal"
+                ? "lg:flex-row lg:gap-2"
+                : ""
+                } ${align === "center" ? "justify-center" : "justify-start"}`}
+            >
+              <div
+                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2 ${layout?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
+                  }`}
+              >
+                <span class="line-through">
+                  {formatPrice(listPrice, offers?.priceCurrency)}
+                </span>
+
+                {(price && listPrice && price !== listPrice) &&
+                  (
+                    <div class="bg-success gap-1 h-4 sm:h-5 md:h-5 flex px-1 justify-center items-center text-neutral-50 rounded">
+                      <Icon id="ArrowDown" width={16} height={16} />
+                      {listPrice && pixPrice &&
+                       `${(((listPrice- pixPrice)/listPrice) * 100).toFixed(0)}%`
+                      }
+                    </div>
+                  )}
+              </div>
+              <div class="body-bold md:h6-bold-20 text-neutral-dark">
+                {formatPrice(pixPrice, offers?.priceCurrency)} no PIX
+              </div>
+            </div>
+            {layout?.hide?.installments
+              ? ""
+              : (
+                <div class="text-brand-secondary-900 x-small-regular truncate">
+                  ou {formatPrice(price, offers?.priceCurrency)} em até {installments}
+                </div>
+              )}
+          </div>
+        )
+        :
+
+         <button class="w-full py-2 border border-brand-secondary-400 small-regular rounded-md mt-auto text-neutral-900">Indisponivel</button>}
       </div>
     </>
   );
