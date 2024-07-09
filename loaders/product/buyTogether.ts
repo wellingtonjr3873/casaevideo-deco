@@ -54,7 +54,7 @@ export default function productDetailsPage(
     }
 
     const productID = productDetailsPage.product.inProductGroupWithID || "";
-    const segment = getSegmentFromBag(ctx as LegacyAppContext);
+    const segment = getSegmentFromBag(ctx as unknown as LegacyAppContext);
 
     const apiKey = ctx.GatewayApiKey.get();
     const buyTogetherApi = createHttpClient<BuyTogetherApi>({
@@ -76,7 +76,7 @@ export default function productDetailsPage(
     const account = ctx.account || ctx.commerce.account || "casaevideonewio";
 
     const showTogetherApi = createHttpClient<BuyTogetherApi>({
-      base: `https://${account}.vtexcommercestable.com.br`,
+      base: `https://secure.${account}.com.br`,
       fetcher: fetchSafe,
       headers: withSegmentCookie(
         segment,
@@ -88,7 +88,7 @@ export default function productDetailsPage(
     });
 
     const vtexApi = createHttpClient<VTEXCommerceStableFull>({
-      base: `https://${account}.vtexcommercestable.com.br`,
+      base: `https://secure.${account}.com.br`,
       fetcher: fetchSafe,
     });
 
@@ -133,23 +133,23 @@ export default function productDetailsPage(
       return data[0];
     };
 
-    const buyTogether = await getWhoBoughtAlsoBought(productID);
     const showTogether = await getShowTogether(productID);
     const product = productDetailsPage?.product;
-
-    const buyTogetherFullProduct = await getSkuFromProductId(
-      productId || buyTogether?.productId,
-    );
-    const buyTogetherFullProductSeller = getDefaultVtexSeller(
-      buyTogetherFullProduct?.items?.[0]?.sellers || [],
-    );
-
+    
     const showTogetherFullProduct = await getSkuFromProductId(
       productId || showTogether?.productId,
     );
     const showTogetherFullProductSeller = getDefaultVtexSeller(
       showTogetherFullProduct?.items?.[0]?.sellers || [],
     );
+
+    // const buyTogether = await getWhoBoughtAlsoBought(productID);
+    // const buyTogetherFullProduct = await getSkuFromProductId(
+    //   productId || buyTogether?.productId,
+    // );
+    // const buyTogetherFullProductSeller = getDefaultVtexSeller(
+    //   buyTogetherFullProduct?.items?.[0]?.sellers || [],
+    // );
 
     const {
       seller,
@@ -161,40 +161,6 @@ export default function productDetailsPage(
 
     return {
       ...productDetailsPage,
-      buyTogether: [
-        {
-          productID: product.productID,
-          name: product.name,
-          seller,
-          quantity: 1,
-          image: product?.image?.map((image) => ({
-            url: image.url,
-            alt: image.alternateName,
-          }))[0],
-          listPrice,
-          installments,
-          price,
-          availability,
-        },
-        ...(buyTogetherFullProduct?.items?.[0]?.itemId
-          ? [{
-            productID: buyTogetherFullProduct?.items[0].itemId,
-            name: buyTogetherFullProduct?.productName,
-            seller: buyTogetherFullProductSeller?.sellerId,
-            quantity: 1,
-            image: buyTogetherFullProduct?.items[0]?.images.map((image) => ({
-              url: image.imageUrl,
-              alt: image.imageText,
-            }))[0],
-            listPrice: buyTogetherFullProductSeller?.commertialOffer.ListPrice,
-            installments: "",
-            price: buyTogetherFullProductSeller?.commertialOffer.Price,
-            availability:
-              buyTogetherFullProductSeller?.commertialOffer?.IsAvailable ||
-              false,
-          }]
-          : []),
-      ],
       showTogether: [
         {
           productID: product.productID,
