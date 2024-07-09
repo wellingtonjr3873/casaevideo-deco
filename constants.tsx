@@ -247,4 +247,16 @@ export const flex = {
 };
 
 
+export const TOTAL_PRIZES = [
+  "50-reais",
+  "tente-outra-vez",
+  "150-reais",
+  "100-reais",
+  "frete-gratis"
+]
+
+export const ROLETA_API_URL = "https://api-roleta.lebiscuit.io";
+export const DEFAULT_PROVIDER = "casaevideo";
+
+export const USER_ALREADY_GO__TO_LOGIN_KEY = "USER_ALREADY_MAKE_LOGIN";
 export const DEFAULT_WISHLIST_LIST_NAME = "Meus favoritos"
