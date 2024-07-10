@@ -6,6 +6,7 @@ import type { Product } from "apps/commerce/types.ts";
 import { signal } from "@preact/signals";
 
 const displayCart = signal(false);
+const displayCartAlready = signal(false);
 const displayMenu = signal(false);
 const displaySubMenu = signal(false);
 const displaySubMenuIndex = signal(-1);
@@ -20,6 +21,7 @@ const displayOverlayServiceMenu = signal(false);
 
 const state = {
   displayCart,
+  displayCartAlready,
   displayMenu,
   displaySubMenu,
   displaySubMenuIndex,
