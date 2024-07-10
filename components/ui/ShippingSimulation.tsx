@@ -77,18 +77,10 @@ function ShippingContent({ simulation }: {
     return null;
   }
 
-  if (simulationState.value == "cannotBeDelivered" ) {
+  if (simulationState.value == "error" ) {
     return (
       <div class="p-2">
         <span>Não existe um frete disponível para o CEP informado</span>
-      </div>
-    );
-  }
-
-  if (simulationState.value == "withoutStock" ) {
-    return (
-      <div class="p-2">
-        <span>CEP inválido</span>
       </div>
     );
   }
@@ -151,7 +143,7 @@ function ShippingSimulation({ items }: Props) {
   
       simulateResult.value = result;
       if(result) {
-        simulationState.value = result?.messages?.[0]?.code || ""
+        simulationState.value = result?.messages?.[0]?.status || ""
       }
       return result; 
     } finally {
