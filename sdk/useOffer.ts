@@ -63,6 +63,17 @@ function getPixPrice(offer: Offer, listPrice: number) {
 }
 
 export const useOffer = (aggregateOffer?: AggregateOffer) => {
+
+  if (!aggregateOffer?.offers) return {
+    price: 0,
+    listPrice: 0,
+    pixPrice:  0,
+    seller: "1",
+    sellerName: "",
+    availability: "https://schema.org/OutOfStock",
+    installments: null,
+  }
+
   const offer = aggregateOffer?.offers[0];
 
   const listPrice = offer?.priceSpecification.find((spec) =>
