@@ -73,10 +73,10 @@ export default function productDetailsPage(
 
     // deno-lint-ignore ban-ts-comment
     // @ts-ignore
-    const account = ctx.account || ctx.commerce.account || "casaevideonewio";
+    // const account = ctx.account || ctx.commerce.account || "casaevideonewio";
 
     const showTogetherApi = createHttpClient<BuyTogetherApi>({
-      base: `https://secure.${account}.com.br`,
+      base: `https://secure.casaevideo.com.br`,
       fetcher: fetchSafe,
       headers: withSegmentCookie(
         segment,
@@ -88,7 +88,7 @@ export default function productDetailsPage(
     });
 
     const vtexApi = createHttpClient<VTEXCommerceStableFull>({
-      base: `https://secure.${account}.com.br`,
+      base: `https://secure.casaevideo.com.br`,
       fetcher: fetchSafe,
     });
 
