@@ -65,6 +65,7 @@ function Searchbar({
   currentSearchParam
 }: Props) {
   const searchValue = useSignal(currentSearchParam || "");
+  const searchValueWithCorrectedSpace = searchValue.value.replaceAll("+"," ")
   const id = useId();
   const { displaySearchPopup } = useUI();
   const { setQuery, payload, loading } = useSuggestions(loader);
@@ -89,7 +90,7 @@ function Searchbar({
           role="combobox"
           aria-controls="search-suggestion"
           autocomplete="off"
-          value={searchValue}
+          value={searchValueWithCorrectedSpace}
            onInput={(e) => {
             const value = e.currentTarget.value;
             searchValue.value = value

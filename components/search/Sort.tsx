@@ -7,7 +7,7 @@ const SORT_QUERY_PARAM = "sort";
 const useSort = () =>
   useMemo(() => {
     const urlSearchParams = new URLSearchParams(window.location?.search);
-    return urlSearchParams.get(SORT_QUERY_PARAM) ?? "";
+    return urlSearchParams.get(SORT_QUERY_PARAM) ?? "orders:desc";
   }, []);
 
 // TODO: Replace with "search utils"
@@ -34,27 +34,26 @@ const portugueseMappings = {
 
 function Sort({ sortOptions }: Props) {
   const sort = useSort();
-
   return (
     <div class="md:flex items-center">
       <span class="h6-regular text-neutral-900 hidden md:flex">Ordernar por:</span>
       <select
-      id="sort"
-      name="sort"
-      onInput={applySort}
-      class="bg-[unset] w-min h-[41px] px-1 rounded m-2 text-base-content cursor-pointer outline-none small-regular md:h6-regular text-neutral-900 max-w-[120px]"
-    >
-      {sortOptions.map(({ value, label }) => ({
-        value,
-        label: portugueseMappings[label as keyof typeof portugueseMappings] ??
-          label,
-      })).filter(({ label }) => label !== 'name:desc' && label !== 'name:asc').map(({ value, label }) => (
-  
-        <option key={value} value={value} selected={value === sort}>
-          <span class="text-sm">{label}</span>
-        </option>
-      ))}
-    </select>
+        id="sort"
+        name="sort"
+        onInput={applySort}
+        class="bg-[unset] w-min h-[41px] px-1 rounded m-2 text-base-content cursor-pointer outline-none small-regular md:h6-regular text-neutral-900 max-w-[120px]"
+      >
+        {sortOptions.map(({ value, label }) => ({
+          value,
+          label: portugueseMappings[label as keyof typeof portugueseMappings] ??
+            label,
+        })).filter(({ label }) => label !== 'name:desc' && label !== 'name:asc').map(({ value, label }) => (
+
+          <option key={value} value={value} selected={value === sort}>
+            <span class="text-sm">{label}</span>
+          </option>
+        ))}
+      </select>
     </div>
   );
 }
