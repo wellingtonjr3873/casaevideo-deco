@@ -73,8 +73,6 @@ function Searchbar({
   const hasProducts = Boolean(products.length);
   const hasTerms = Boolean(searches.length);
 
-  console.log(searchValueWithCorrectedSpace)
-
   return (
     <div class="w-full grid gap-8 overflow-y-hidden h-[40px]" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
       <form
