@@ -5,7 +5,7 @@ import { sendEvent } from "$store/sdk/analytics.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { AnalyticsItem } from "apps/commerce/types.ts";
 import Image from "apps/website/components/Image.tsx";
-import { useCallback, useState, useEffect  } from "preact/hooks";
+import { useCallback, useState, useEffect } from "preact/hooks";
 import * as Sentry from "@sentry/react";
 
 export interface Item {
@@ -26,7 +26,7 @@ export interface Item {
 export interface Props {
   item: Item;
   index: number;
-  voltagem?: Promise<string | undefined>;
+  voltagem?: string;
   locale: string;
   currency: string;
 
@@ -92,7 +92,7 @@ function CartItem(
           <div class={`flex flex-col gap-2`}>
             <span class={`font-bold text-neutral-dark text-xs h-8 textTruncate`}>{name}</span>
             {voltagemResult !== undefined && (
-                <span className="font-normal text-neutral-dark text-xs">Voltagem: {voltagemResult}</span>
+              <span className="font-normal text-neutral-dark text-xs">Voltagem: {voltagemResult}</span>
             )}
             <span class={`font-bold text-brand-primary-1 text-xs`}>{brand}</span>
           </div>
