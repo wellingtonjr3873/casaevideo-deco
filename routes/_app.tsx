@@ -1,6 +1,7 @@
 import { AppProps } from "$fresh/server.ts";
 import GlobalTags from "$store/components/GlobalTags.tsx";
 import Theme from "$store/sections/Theme/Theme.tsx";
+import { PmWeb } from "deco-sites/casaevideo/islands/PmWeb.tsx";
 
 const sw = () =>
   addEventListener("load", () =>
@@ -19,6 +20,9 @@ function App(props: AppProps) {
 
       {/* Rest of Preact tree */}
       <props.Component />
+
+      {/* PMWeb */}
+      <PmWeb key="PM-N929DLT" />
 
       {/* Include service worker */}
       <script
