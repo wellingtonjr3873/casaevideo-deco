@@ -8,7 +8,6 @@ const sw = () =>
     navigator.serviceWorker.register("/sw.js"));
 
 function App(props: AppProps) {
-  const urlCanonical = props.url.origin.replace("http", "https") + props.url.pathname;
 
   return (
     <>
@@ -16,7 +15,7 @@ function App(props: AppProps) {
       <Theme />
 
       {/* Include Icons and manifest */}
-      <GlobalTags url={urlCanonical}/>
+      <GlobalTags/>
 
       {/* Rest of Preact tree */}
       <props.Component />
