@@ -830,7 +830,7 @@
 }
 
 .faster-pickup{
-  border: 1px solid #fff200;
+  border: 1px solid #007652;
   animation: pulseBorder 0.8s ease-in-out infinite alternate;
   position: relative;
 }
@@ -841,7 +841,8 @@
   width: auto;
   height: 20px;
   display: flex;
-  background: #fff100;
+  background: #007652;
+  color: white;
   justify-content: center;
   align-items: center;
   border-radius: 7px;

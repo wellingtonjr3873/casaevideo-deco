@@ -4,9 +4,30 @@ import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
-import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
+import type { SimulationOrderForm, SKU, SelectedSla, SelectedDeliveryChannel, DeliveryID, AvailableDeliveryWindow, PickupStoreInfo, Sla } from "apps/vtex/utils/types.ts";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
+
+export interface SlaComponent {
+  id: SelectedSla;
+  deliveryChannel: SelectedDeliveryChannel;
+  name: SelectedSla;
+  deliveryIds: DeliveryID[];
+  shippingEstimate: string;
+  shippingEstimateDate: null;
+  lockTTL: null;
+  availableDeliveryWindows: AvailableDeliveryWindow[];
+  deliveryWindow: null;
+  price: number;
+  listPrice: number;
+  tax: number;
+  pickupStoreInfo: PickupStoreInfo;
+  pickupPointId: null | string;
+  pickupDistance: number | null;
+  polygonName: string;
+  transitTime: string;
+  isFaster: boolean;
+}
 export interface Props {
   items: Array<SKU>;
 }
@@ -26,8 +47,13 @@ function ShippingContent({ simulation }: {
   const { simulationState } = useUI();
 
   const methods = simulation.value?.logisticsInfo?.reduce(
-    (initial, { slas }) => [...initial, ...slas],
-    [] as Sla[],
+    (initial: SlaComponent[], { slas }) => {
+      if (slas) {
+        return [...initial, ...slas.map((sla: Sla) => ({ ...sla, isFaster: false }))];
+      }
+      return initial;
+    },
+    [] as SlaComponent[]
   ) ?? [];
   
   const sortMethods = () => {
@@ -65,7 +91,6 @@ function ShippingContent({ simulation }: {
     }
     resultArray.push(...fastestDelivery);
   
-    // Adicionar a prop isFaster
     let fastestTime = Infinity;
     resultArray.forEach(method => {
       const methodTime = convertShippingEstimateToMinutes(method.shippingEstimate);
@@ -82,7 +107,6 @@ function ShippingContent({ simulation }: {
   };
   
   const topMethods = sortMethods();
-  console.log('aqui - topMethods', topMethods)
 
   const locale = cart.value?.clientPreferencesData.locale || "pt-BR";
   const currencyCode = cart.value?.storePreferencesData.currencyCode || "BRL";
@@ -101,14 +125,14 @@ function ShippingContent({ simulation }: {
 
   return (
     <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 lg:rounded-lg w-full ">
-      {topMethods.map((method, _idx) => (
+      {topMethods.map((method, idx) => (
         <li class={`${method.isFaster && "faster-pickup"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
           <div class="flex flex-col">
             <span class="text-button text-left small-regular">
               {method.deliveryChannel === "pickup-in-point" ?
                 `Retirada ${method?.pickupStoreInfo?.friendlyName?.split("-")?.[1]?.trim()}`
                 :
-                `Entrega ${method.name}`
+                `Transportadora ${idx}`
               }
             </span>
             <span class={`flex gap-1 text-button small-regular ${method.isFaster && "faster-pickup-info"} bold`}>
