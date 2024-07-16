@@ -65,10 +65,24 @@ function ShippingContent({ simulation }: {
     }
     resultArray.push(...fastestDelivery);
   
+    // Adicionar a prop isFaster
+    let fastestTime = Infinity;
+    resultArray.forEach(method => {
+      const methodTime = convertShippingEstimateToMinutes(method.shippingEstimate);
+      if (methodTime < fastestTime) {
+        fastestTime = methodTime;
+      }
+    });
+  
+    resultArray.forEach(method => {
+      method.isFaster = convertShippingEstimateToMinutes(method.shippingEstimate) === fastestTime;
+    });
+  
     return resultArray;
   };
   
   const topMethods = sortMethods();
+  console.log('aqui - topMethods', topMethods)
 
   const locale = cart.value?.clientPreferencesData.locale || "pt-BR";
   const currencyCode = cart.value?.storePreferencesData.currencyCode || "BRL";
@@ -87,8 +101,8 @@ function ShippingContent({ simulation }: {
 
   return (
     <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 lg:rounded-lg w-full ">
-      {topMethods.map((method, idx) => (
-        <li class={`${idx === 0 && "faster-pickup"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
+      {topMethods.map((method, _idx) => (
+        <li class={`${method.isFaster && "faster-pickup"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
           <div class="flex flex-col">
             <span class="text-button text-left small-regular">
               {method.deliveryChannel === "pickup-in-point" ?
@@ -97,7 +111,7 @@ function ShippingContent({ simulation }: {
                 `Entrega ${method.name}`
               }
             </span>
-            <span class="text-button small-regular">
+            <span class={`flex gap-1 text-button small-regular ${method.isFaster && "faster-pickup-info"} bold`}>
               até {formatShippingEstimate(method.shippingEstimate)}
             </span>
           </div>
