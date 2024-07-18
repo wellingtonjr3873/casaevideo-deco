@@ -78,6 +78,8 @@ export interface Props {
   startingPage?: 0 | 1;
   /** @title FAQ */
   questions?: Question[];
+  /** *@hide */
+  device: "mobile" | "desktop" | "tablet";
 }
 
 function Result({
@@ -90,7 +92,7 @@ function Result({
   questions,
   startingPage = 0,
   cardHorizontal,
-
+  device
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
   const { products, filters, breadcrumb, pageInfo, sortOptions, } = page;
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
@@ -169,13 +171,10 @@ function Result({
               </div>
             }
 
-
-            <div class="flex md:hidden gap-[10px] text-left mt-[32px]">
-              <span class="body-bold">{pageName && pageName} </span>
-              ({pageInfo?.records && pageInfo?.records <= 1 ? `${pageInfo?.records} Produto` : `${pageInfo?.records} Produtos`})
-            </div>
-
             <SearchControls
+              device={device}
+              records={pageInfo?.records}
+              pageName={pageName}
               sortOptions={sortOptions}
               filters={filters}
               productQnt={pageInfo?.records}
@@ -184,11 +183,11 @@ function Result({
             <ProductGalleryIsland
               products={products}
               offset={offset}
-              layout={{ card: cardLayout, columns: layout?.columns, cardHorizontal  }}
+              layout={{ card: cardLayout, columns: layout?.columns, cardHorizontal }}
             />
             <div class="flex justify-center my-4">
               <div class="join">
-              {pageInfo.previousPage &&                <a
+                {pageInfo.previousPage && <a
                   aria-label="previous page link"
                   rel="prev"
                   href={pageInfo.previousPage ?? "#"}
@@ -203,7 +202,7 @@ function Result({
                   {zeroIndexedOffsetPage + 1}
                 </span>
                 {afterDots.map((item) => {
-                  return <a  class="btn btn-ghost join-item" href={pageInfo.nextPage!.replace(PAGE_REGEX, "page" + item)}>{item}</a>
+                  return <a class="btn btn-ghost join-item" href={pageInfo.nextPage!.replace(PAGE_REGEX, "page" + item)}>{item}</a>
                 })}
                 <a
                   aria-label="next page link"
@@ -252,7 +251,7 @@ function SearchResult({ page, ...props }: Props) {
       text: NOT_FOUND_SEARCH_TEXT,
       ctaText: "Editar filtros",
       ctaStyles: {
-        backgroundColor: 'bg-brand-primary-1', 
+        backgroundColor: 'bg-brand-primary-1',
         color: 'text-[white]'
       }
     } : props.notFoundPage
