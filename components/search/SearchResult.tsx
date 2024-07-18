@@ -110,6 +110,17 @@ function Result({
     return new URLSearchParams(item.proxyUrl).get("page")
   })
 
+  const currentPageNumber = Number(new URLSearchParams(pageInfo.pagination.current.proxyUrl).get("page")) || 0;
+  const beforeDisabledDots = pageInfo.pagination.before.length && currentPageNumber >= 4 ? new Array(pageInfo.pagination.before[0].index - (pageInfo.pagination.first.index + 1)).fill(0).map((_, index) => {
+    const currentPageNumber = new URLSearchParams(pageInfo.pagination.before[0].proxyUrl).get("page");
+    return pageInfo.previousPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) - (index + 1)))
+  }) : []
+  
+  const afterDisabledDots = pageInfo.pagination.after.length  && pageInfo.pagination.last.index >= 3? new Array(pageInfo.pagination.last.index - pageInfo.pagination.after[1].index).fill(0).map((_, index) => {
+    const currentPageNumber = new URLSearchParams(pageInfo.pagination.after[1].proxyUrl).get("page");
+    return pageInfo.nextPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) + (index + 1)))
+  }) : []
+  
   return (
     <>
       <div class="container px-4 sm:py-10">
@@ -122,7 +133,7 @@ function Result({
         <div class="flex flex-row gap-5">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[264px]">
-              <Filters filters={filters} />
+              <Filters filters={filters}/>
             </aside>
           )}
           <div class="flex-grow w-full" id={id}>
@@ -188,6 +199,9 @@ function Result({
             />
             <div class="flex justify-center my-4">
               <div class="join">
+                <div class='hidden'>
+                    {beforeDisabledDots.map(item => <a href={item} /> )}
+                </div>
               {pageInfo.previousPage &&                <a
                   aria-label="previous page link"
                   rel="prev"
@@ -213,6 +227,9 @@ function Result({
                 >
                   <Icon id="SliderArrowRight" size={24} strokeWidth={2} />
                 </a>
+                <div class='hidden'>
+                    {afterDisabledDots.map(item => <a href={item} /> )}
+                </div>
               </div>
             </div>
             {questions && <Faq questions={questions} />}
