@@ -19,7 +19,6 @@ export type Props =
   };
 
 function SearchControls({ filters, displayFilter, records, device, pageName, sortOptions, productQnt }: Props,) {
-  console.log('aqui - SearchControls - device', device)
   const open = useSignal(false);
   const { layoutSelected } = useUI();
 
