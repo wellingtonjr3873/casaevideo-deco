@@ -21,8 +21,6 @@ export const SendEventOnClick = <E extends AnalyticsEvent>({ event, id }: {
       );
     }
     elem.addEventListener("click", () => {
-        
-      emitPMWebEvent(event);
       sendEvent(event)
       // window.DECO.events.dispatch(event); // erro SERVICE_ENDPOINT
     });
@@ -55,8 +53,6 @@ export const SendEventOnView = <E extends AnalyticsEvent>(
     const observer = new IntersectionObserver((items) => {
       for (const item of items) {
         if (!item.isIntersecting) continue;
-
-        emitPMWebEvent(event);
         sendEvent(event)
         // window.DECO.events.dispatch(event); // erro SERVICE_ENDPOINT
         observer.unobserve(elem);
