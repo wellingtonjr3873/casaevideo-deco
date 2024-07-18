@@ -57,7 +57,8 @@ const Aside = (
 );
 
 function Drawers({ menu, children, platform, minicartProps }: Props) {
-  const { displayCart, displayMenu, displaySearchDrawer } = useUI();
+
+  const { displayCart, displayCartAlready, displayMenu, displaySearchDrawer } = useUI();
 
   return (
     <>
@@ -93,7 +94,7 @@ function Drawers({ menu, children, platform, minicartProps }: Props) {
             onClose={() => displayCart.value = false}
             style="w-[85%] grid-rows-[48px] lg:max-w-[404px]"
           >
-            <Cart platform={platform} minicartProps={minicartProps} />
+            {displayCart.value || displayCartAlready.value ? <Cart platform={platform} minicartProps={minicartProps} /> : <></>}
           </Aside>
         }
       >
