@@ -111,12 +111,12 @@ function Result({
   })
 
   const currentPageNumber = Number(new URLSearchParams(pageInfo.pagination.current.proxyUrl).get("page")) || 0;
-  const beforeDisabledDots = pageInfo.pagination.before.length && currentPageNumber >= 4 ? new Array(pageInfo.pagination.before[0].index - (pageInfo.pagination.first.index + 1)).fill(0).map((_, index) => {
+  const beforeDisabledDots = pageInfo.pagination.before.length && currentPageNumber >= 4 ? new Array(pageInfo.pagination.before[0].index - (pageInfo.pagination.first.index)).fill(0).map((_, index) => {
     const currentPageNumber = new URLSearchParams(pageInfo.pagination.before[0].proxyUrl).get("page");
     return pageInfo.previousPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) - (index + 1)))
   }) : []
   
-  const afterDisabledDots = pageInfo.pagination.after.length  && pageInfo.pagination.last.index >= 3? new Array(pageInfo.pagination.last.index - pageInfo.pagination.after[1].index).fill(0).map((_, index) => {
+  const afterDisabledDots = pageInfo.pagination.after.length ? new Array(pageInfo.pagination.last.index - pageInfo.pagination.after[1].index).fill(0).map((_, index) => {
     const currentPageNumber = new URLSearchParams(pageInfo.pagination.after[1].proxyUrl).get("page");
     return pageInfo.nextPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) + (index + 1)))
   }) : []
