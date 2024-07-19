@@ -3,6 +3,7 @@ import {
   RemoveFromCartEvent, SelectItemEvent, ViewItemEvent,
   ViewItemListEvent, LoginEvent,
 } from "apps/commerce/types.ts";
+import { useUser } from "apps/vtex/hooks/useUser.ts";
 
 function productViewEvent(event: ViewItemEvent) {
   const product = event.params.items?.[0] as AnalyticsItem;
@@ -115,20 +116,21 @@ function productClick(event: SelectItemEvent) {
   }
 }
 
-function userData(event: LoginEvent) {
-  const email = event.name; // TODO: implementar
+function userData() {
+  const { user } = useUser();
+  const email = user?.value?.email;
 
-  return email;
+  if (!email) return;
 
-  // try {
-  //   window.pm({
-  //     match: {
-  //       email
-  //     }
-  //   });
-  // } catch (e) {
-  //   console.error(e);
-  // }
+  try {
+    window.pm({
+      match: {
+        email
+      }
+    });
+  } catch (e) {
+    console.error(e);
+  }
 }
 
 
@@ -152,7 +154,7 @@ export function emitPMWebEvent<E extends AnalyticsEvent>(event: E) {
       productClick(event);
       return;
     case "login":
-      userData(event);
+      userData();
       return;
   }
 }
