@@ -94,6 +94,7 @@ function Result({
   cardHorizontal,
   device
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
+  console.log('aqui - device', device)
   const { products, filters, breadcrumb, pageInfo, sortOptions, } = page;
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
   const perPage = pageInfo.recordPerPage || products.length;
