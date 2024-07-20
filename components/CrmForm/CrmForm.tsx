@@ -38,7 +38,7 @@ function LeadForm() {
 
     if (form) {
       const formData = new FormData(form);
-      const data: { [key: string]: string | number | boolean } = {}; // Atualizado para aceitar string, number, boolean
+      const data: { [key: string]: string | number | boolean } = {};
 
       formData.forEach((value, key) => {
         if (key === "interest") {
@@ -56,7 +56,7 @@ function LeadForm() {
 
 
   return (
-    <section class="bg-[url('https://casaevideonewio.vteximg.com.br/arquivos/bg-form-crm.png')] h-[100vh]">
+    <section class="bg-[url('https://casaevideonewio.vteximg.com.br/arquivos/bg-form-crm.png')] h-[100%] md:h-[100vh]">
       <header class="h-[76px] flex items-center justify-center bg-white">
         <a href="/">
           <img src="https://casaevideonewio.vteximg.com.br/arquivos/form-crm-logo.png" alt="Casa & Video" />
@@ -69,7 +69,7 @@ function LeadForm() {
             e.preventDefault();
             _submitForm();
           }}
-          class="mt-[51px] w-full max-w-[956px] p-4 bg-[#FFF] flex gap-8 flex-wrap rounded-[16px] mb-[30px]"
+          class="mx-[10px] my-[50px] md:mt-[51px] w-full max-w-[956px] p-4 bg-[#FFF] flex gap-8 flex-wrap rounded-[16px] md:mb-[30px]"
         >
           <div class="bg-[#F3F3F3] flex justify-center items-center flex-col p-4 gap-1 w-full">
             <h2 class="text-[#393939] text-[20px] font-bold m-0">Te conhecer faz toda a diferença!</h2>
@@ -79,7 +79,7 @@ function LeadForm() {
             <label for="name">Nome completo <span class="text-[#B10200]">*</span></label>
             <input type="text" id="name" name="name" placeholder="Seu nome" required class="w-full border border-[#C6C6C6] bg-white h-[40px] px-4 text-[#5E5E5E] text-[14px] font-normal leading-[140%] cursor-pointer rounded-[6px]" />
           </div>
-          <div class="flex gap-8 w-full">
+          <div class="flex gap-8 w-full flex-col md:flex-row">
             <div class="flex flex-col gap-1 items-start w-full">
               <label for="email">E-mail <span class="text-[#B10200]">*</span></label>
               <input type="email" id="email" name="email" placeholder="exemplo@mail.com" required class="w-full border border-[#C6C6C6] bg-white h-[40px] px-4 text-[#5E5E5E] text-[14px] font-normal leading-[140%] cursor-pointer rounded-[6px]" />
@@ -93,7 +93,7 @@ function LeadForm() {
               <input type="phone" id="phone" name="phone" placeholder="(99) 99999-9999" required class="w-full border border-[#C6C6C6] bg-white h-[40px] px-4 text-[#5E5E5E] text-[14px] font-normal leading-[140%] cursor-pointer rounded-[6px]" />
             </div>
           </div>
-          <div class="flex gap-8 w-full">
+          <div class="flex gap-8 w-full flex-col md:flex-row">
             <div class="flex flex-col gap-1 items-start w-full">
               <label for="state">Estado</label>
               <select id="state" name="state" class="w-full border border-[#C6C6C6] bg-white h-[40px] px-4 text-[#5E5E5E] text-[14px] font-normal leading-[140%] cursor-pointer rounded-[6px]">
@@ -115,7 +115,7 @@ function LeadForm() {
           </div>
           <div>
             <label class="flex">Áreas de Interesse <span class="text-[#B10200] mb-[15px] flex">*</span></label>
-            <div class="flex w-full gap-[100px]">
+            <div class="flex w-full md:gap-[100px] flex-col md:flex-row">
               <div class="flex flex-col gap-0.5">
                 <label class="flex items-center gap-1 text-[#393939] text-[14px] font-normal cursor-pointer"><input type="checkbox" name="interest" value="Ar e Ventilação" class="appearance-none w-[20px] h-[20px] cursor-pointer border-2 border-[#C6C6C6] rounded-[4px] flex items-center justify-center p-0" /><span></span>Ar e Ventilação</label>
                 <label class="flex items-center gap-1 text-[#393939] text-[14px] font-normal cursor-pointer"><input type="checkbox" name="interest" value="Automotivo" class="appearance-none w-[20px] h-[20px] cursor-pointer border-2 border-[#C6C6C6] rounded-[4px] flex items-center justify-center p-0" />Automotivo</label>

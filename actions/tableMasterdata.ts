@@ -24,8 +24,8 @@ const action = async (
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        ...restProps, // Usa restProps sem tableId
-        "cnpj": "Não informado", // Adiciona ou modifica propriedades conforme necessário
+        ...restProps, 
+        "cnpj": "Não informado",
       }),
     });
     const response = await res.json();
