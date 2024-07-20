@@ -2,15 +2,19 @@
 // This file SHOULD be checked into source version control.
 // This file is automatically updated during development when running `dev.ts`.
 
-import * as $$$$$$$$$0 from "./actions/tableMasterdata.ts";
+import * as $$$$$$$$$0 from "./actions/can-spin.ts";
+import * as $$$$$$$$$1 from "./actions/spin.ts";
+import * as $$$$$$$$$2 from "./actions/tableMasterdata.ts";
 import * as $$$$$$$$$$$0 from "./apps/decohub.ts";
 import * as $$$$$$$$$$$1 from "./apps/site.ts";
+import * as $$$7 from "./loaders/can-spin.ts";
 import * as $$$0 from "./loaders/Layouts/ProductCard.tsx";
 import * as $$$1 from "./loaders/List/Sections.tsx";
-import * as $$$7 from "./loaders/newslettter.ts";
-import * as $$$8 from "./loaders/product/buyTogether.ts";
-import * as $$$9 from "./loaders/reviews/productReviews.ts";
-import * as $$$10 from "./loaders/search/intelligenseSearch.ts";
+import * as $$$8 from "./loaders/newslettter.ts";
+import * as $$$9 from "./loaders/product/buyTogether.ts";
+import * as $$$10 from "./loaders/reviews/productReviews.ts";
+import * as $$$11 from "./loaders/search/intelligenseSearch.ts";
+import * as $$$12 from "./loaders/spin.ts";
 import * as $$$2 from "./loaders/Wishlist/add-wishlist-item.ts";
 import * as $$$3 from "./loaders/Wishlist/create-wishlist.ts";
 import * as $$$4 from "./loaders/Wishlist/get-wishlist-items.ts";
@@ -71,16 +75,18 @@ import * as $$$$$$50 from "./sections/SEOPDP.tsx";
 import * as $$$$$$52 from "./sections/Social/InstagramPosts.tsx";
 import * as $$$$$$53 from "./sections/Social/WhatsApp.tsx";
 import * as $$$$$$54 from "./sections/Theme/Theme.tsx";
-import * as $$$$$$55 from "./sections/UtilLinks/UtilLinks.tsx";
+import * as $$$$$$55 from "./sections/UtilLinks/UtilLinks.tsx"
 
 const manifest = {
   "loaders": {
+    "deco-sites/casaevideo/loaders/can-spin.ts": $$$7,
     "deco-sites/casaevideo/loaders/Layouts/ProductCard.tsx": $$$0,
     "deco-sites/casaevideo/loaders/List/Sections.tsx": $$$1,
-    "deco-sites/casaevideo/loaders/newslettter.ts": $$$7,
-    "deco-sites/casaevideo/loaders/product/buyTogether.ts": $$$8,
-    "deco-sites/casaevideo/loaders/reviews/productReviews.ts": $$$9,
-    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$10,
+    "deco-sites/casaevideo/loaders/newslettter.ts": $$$8,
+    "deco-sites/casaevideo/loaders/product/buyTogether.ts": $$$9,
+    "deco-sites/casaevideo/loaders/reviews/productReviews.ts": $$$10,
+    "deco-sites/casaevideo/loaders/search/intelligenseSearch.ts": $$$11,
+    "deco-sites/casaevideo/loaders/spin.ts": $$$12,
     "deco-sites/casaevideo/loaders/Wishlist/add-wishlist-item.ts": $$$2,
     "deco-sites/casaevideo/loaders/Wishlist/create-wishlist.ts": $$$3,
     "deco-sites/casaevideo/loaders/Wishlist/get-wishlist-items.ts": $$$4,
@@ -151,7 +157,9 @@ const manifest = {
     "deco-sites/casaevideo/sections/UtilLinks/UtilLinks.tsx": $$$$$$55,
   },
   "actions": {
-    "deco-sites/casaevideo/actions/tableMasterdata.ts": $$$$$$$$$0,
+    "deco-sites/casaevideo/actions/can-spin.ts": $$$$$$$$$0,
+    "deco-sites/casaevideo/actions/spin.ts": $$$$$$$$$1,
+    "deco-sites/casaevideo/actions/tableMasterdata.ts": $$$$$$$$$2,
   },
   "apps": {
     "deco-sites/casaevideo/apps/decohub.ts": $$$$$$$$$$$0,

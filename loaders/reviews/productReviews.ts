@@ -69,7 +69,6 @@ export default function productDetailsPage(
 
   return async (productDetailsPage: ProductDetailsPage | null) => {
     if (!productDetailsPage) {
-      logger.error(`product not found in url: ${_req?.url}`);
       return null;
     }
 
