@@ -1,81 +1,32 @@
-import { useEffect, useRef } from "preact/hooks";
-
-export interface Props {
-  src: string;
-  minHeight: number;
-}
-
-const Iframe = ({ src, minHeight }: Props) => {
-  const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  const handleResize = () => {
-    const iframe = iframeRef.current;
-    if (iframe) {
-      iframe.style.height = `${
-        iframe.contentWindow!.document.documentElement.scrollHeight
-      }px`;
-    }
-  };
-
-  const handleMessage = (event: MessageEvent) => {
-    if (event.data === "iframeResize") {
-      handleResize();
-    }
-  };
-
-  const observeIframeChanges = () => {
-    const observer = new MutationObserver(handleResize);
-    observer.observe(iframeRef.current!.contentDocument!.documentElement, {
-      attributes: true,
-      childList: true,
-      subtree: true,
-    });
-    return observer;
-  };
-
-  const verificarURL = (interval: number) => {
-    const isAboutBlank =
-      iframeRef.current!.contentWindow!.document.location.href ===
-        "about:blank";
-    const isTheSamePath =
-      iframeRef.current?.contentWindow?.document.location.href !== src;
-
-    if (!isAboutBlank && isTheSamePath) {
-      window.location.href =
-        iframeRef.current!.contentWindow!.document.location.href;
-      clearInterval(interval);
-    }
-  };
-
-  useEffect(() => {
-    const iframe = iframeRef.current;
-
-    const interval = setInterval(() => verificarURL(interval), 100);
-
-    iframe?.addEventListener("load", () => {
-      handleResize();
-      observeIframeChanges();
-      iframe.contentWindow?.addEventListener("resize", handleResize);
-      iframe.contentWindow?.addEventListener("message", handleMessage);
-    });
-
-    return () => {
-      clearInterval(interval);
-      iframe?.contentWindow?.removeEventListener("resize", handleResize);
-      iframe?.contentWindow?.removeEventListener("message", handleMessage);
+// deno-lint-ignore-file
+interface Props {
+    src?: string;
+  }
+  
+  const runOnMount = () => {
+    window.onload = () => {
+      const iFrame = document.getElementById(
+        "proxy-loader",
+      ) as HTMLIFrameElement;
+      if (!iFrame) {
+        return console.error("Couldn't find iframe");
+      }
+      iFrame.height = `${iFrame.contentWindow?.document.body.scrollHeight}`;
     };
-  }, [src]);
-
-  return (
-    <iframe
-      title="Iframe"
-      src={src}
-      ref={iframeRef}
-      frameBorder="0"
-      style={{ width: "100%", border: "none", minHeight }}
-      allowFullScreen
-    />
-  );
-};
-
-export default Iframe;
+  };
+  
+  export default function ProxyIframe({ src }: Props) {
+    return (
+      <>
+        <script dangerouslySetInnerHTML={{ __html: `(${runOnMount})();` }}>
+        </script>
+        <iframe
+          id="proxy-loader"
+          style="width:100%;border:none;overflow:hidden;min-height:950px;"
+          src={src}
+        >
+        </iframe>
+      </>
+    );
+  }
+  
