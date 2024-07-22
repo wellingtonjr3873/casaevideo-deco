@@ -35,6 +35,7 @@ import * as $Header_LoggedUser from "./islands/Header/LoggedUser.tsx";
 import * as $Header_LoggedUserMobile from "./islands/Header/LoggedUserMobile.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SentryConfig from "./islands/Header/SentryConfig.tsx";
+import * as $Iframe from "./islands/Iframe.tsx";
 import * as $ImageZoom from "./islands/ImageZoom.tsx";
 import * as $Installments from "./islands/Installments.tsx";
 import * as $Live from "./islands/Live.tsx";
@@ -98,6 +99,7 @@ const manifest = {
     "./islands/Header/LoggedUserMobile.tsx": $Header_LoggedUserMobile,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Header/SentryConfig.tsx": $Header_SentryConfig,
+    "./islands/Iframe.tsx": $Iframe,
     "./islands/ImageZoom.tsx": $ImageZoom,
     "./islands/Installments.tsx": $Installments,
     "./islands/Live.tsx": $Live,
