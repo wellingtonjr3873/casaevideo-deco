@@ -826,3 +826,11 @@
   right: -5px;
 }
 
+.crm-form input[type="checkbox"]:checked::before {
+  content: '';
+  background: url('https://casaevideonewio.vteximg.com.br/arquivos/checked-form-crm.png');
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  display: block;
+}
