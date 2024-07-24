@@ -9,6 +9,7 @@ declare global {
   interface Window {
     pm: pmfn;
     PMTagObject: string;
+    dataLayer: unknown[];
   }
 }
 

@@ -4,6 +4,6 @@ import { emitPMWebEvent } from "deco-sites/casaevideo/utils/pmweb/events.ts";
 export const sendEvent = <E extends AnalyticsEvent>(event: E) => {
   // console.log(JSON.stringify(event, null, 2));
 
-  emitPMWebEvent(event);
   window.DECO.events.dispatch(event);
+  emitPMWebEvent(event);
 };

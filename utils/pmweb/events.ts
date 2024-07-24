@@ -156,5 +156,7 @@ export function emitPMWebEvent<E extends AnalyticsEvent>(event: E) {
     case "login":
       userData();
       return;
+    default:
+      return;
   }
 }

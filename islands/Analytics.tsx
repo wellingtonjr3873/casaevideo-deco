@@ -1,9 +1,6 @@
 import type { AnalyticsEvent } from "apps/commerce/types.ts";
-import { scriptAsDataURI } from "apps/utils/dataURI.ts";
 import { useEffect } from "preact/hooks";
-import * as Sentry from "@sentry/react";
 import { sendEvent } from "deco-sites/casaevideo/sdk/analytics.tsx";
-import { emitPMWebEvent } from "deco-sites/casaevideo/utils/pmweb/events.ts";
 
 /**
  * This function is usefull for sending events on click. Works with both Server and Islands components
@@ -61,6 +58,30 @@ export const SendEventOnView = <E extends AnalyticsEvent>(
 
     observer.observe(elem);
     
+  }, []);
+
+  return <></>;
+}
+
+export const SendPageViewEvent = () => {
+  useEffect(() => {
+    const eventId = window?.dataLayer?.[window.dataLayer.length - 1];
+
+    const event = {
+      event: "pageView",
+      "gtm.uniqueEventId": eventId,
+      location: window.location.origin,
+      originalLocation: window.location.origin,
+      originalReferrer: "",
+      page: window.location.pathname,
+      referrer: "",
+      title: document.title,
+    } as unknown as AnalyticsEvent;
+
+    globalThis.addEventListener("load", () => {
+      window.dataLayer.push(event)
+      // sendEvent(event) deco apps does not send page view correclty to dataLake
+    });
   }, []);
 
   return <></>;
