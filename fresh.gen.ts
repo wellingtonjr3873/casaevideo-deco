@@ -17,6 +17,7 @@ import * as $Analytics from "./islands/Analytics.tsx";
 import * as $BannerStopWatch from "./islands/BannerStopWatch.tsx";
 import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
 import * as $BuyTogetherTotal from "./islands/BuyTogetherTotal.tsx";
+import * as $CrmForm from "./islands/CrmForm.tsx";
 import * as $DemoUpButton from "./islands/DemoUpButton.tsx";
 import * as $DisplayFortuneWheel from "./islands/DisplayFortuneWheel.tsx";
 import * as $Form from "./islands/Form.tsx";
@@ -79,6 +80,7 @@ const manifest = {
     "./islands/BannerStopWatch.tsx": $BannerStopWatch,
     "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
     "./islands/BuyTogetherTotal.tsx": $BuyTogetherTotal,
+    "./islands/CrmForm.tsx": $CrmForm,
     "./islands/DemoUpButton.tsx": $DemoUpButton,
     "./islands/DisplayFortuneWheel.tsx": $DisplayFortuneWheel,
     "./islands/Form.tsx": $Form,
