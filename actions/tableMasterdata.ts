@@ -1,14 +1,6 @@
 import * as Sentry from "@sentry/react";
 
-export interface Props {
-  tableId: string;
-  campaign: string;
-  name: string;
-  email: string;
-  phone: string;
-  cpf: string;
-}
-
+export type Props = Record<string, string | number | boolean>;
 export type Res = {
   product: number;
 };
@@ -17,22 +9,23 @@ const action = async (
   props: Props,
   _req: Request,
 ): Promise<Res | null> => {
-  const { tableId, name, email, phone, cpf, campaign } = props;
   const controller = new AbortController();
   const signal = controller.signal;
+  
+  const { tableId, ...restProps } = props;
 
   try {
-    const res = await fetch(`/api/dataentities/${tableId}/documents`, {
+    const res = await fetch(`https://casaevideonewio.myvtex.com/api/dataentities/${tableId}/documents`, {
       signal,
       method: "POST",
-      mode: "no-cors",
+      headers: {
+        "Accept": "application/json",
+        "Cache-Control": "no-cache",
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
-        "campaign": campaign,
+        ...restProps, 
         "cnpj": "Não informado",
-        "cpf": cpf,
-        "email": email,
-        "name": name,
-        "phone": phone,
       }),
     });
     const response = await res.json();
