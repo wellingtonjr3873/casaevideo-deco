@@ -65,20 +65,20 @@ export const SendEventOnView = <E extends AnalyticsEvent>(
 
 export const SendPageViewEvent = () => {
   useEffect(() => {
-    const eventId = window?.dataLayer?.[window.dataLayer.length - 1];
-
-    const event = {
-      event: "pageView",
-      "gtm.uniqueEventId": eventId,
-      location: window.location.origin,
-      originalLocation: window.location.origin,
-      originalReferrer: "",
-      page: window.location.pathname,
-      referrer: "",
-      title: document.title,
-    } as unknown as AnalyticsEvent;
-
     globalThis.addEventListener("load", () => {
+      const eventId = window?.dataLayer?.[window.dataLayer.length - 1];
+
+      const event = {
+        event: "pageView",
+        "gtm.uniqueEventId": eventId,
+        location: window.location.origin,
+        originalLocation: window.location.origin,
+        originalReferrer: "",
+        page: window.location.pathname,
+        referrer: "",
+        title: document.title,
+      } as unknown as AnalyticsEvent;
+      
       window.dataLayer.push(event)
       // sendEvent(event) deco apps does not send page view correclty to dataLake
     });
