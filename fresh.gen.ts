@@ -18,7 +18,9 @@ import * as $BannerStopWatch from "./islands/BannerStopWatch.tsx";
 import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
 import * as $BuyTogetherTotal from "./islands/BuyTogetherTotal.tsx";
 import * as $DemoUpButton from "./islands/DemoUpButton.tsx";
+import * as $DisplayFortuneWheel from "./islands/DisplayFortuneWheel.tsx";
 import * as $Form from "./islands/Form.tsx";
+import * as $FortuneWheel from "./islands/FortuneWheel.tsx";
 import * as $Header_Buttons from "./islands/Header/Buttons.tsx";
 import * as $Header_Cart_linx from "./islands/Header/Cart/linx.tsx";
 import * as $Header_Cart_nuvemshop from "./islands/Header/Cart/nuvemshop.tsx";
@@ -33,6 +35,7 @@ import * as $Header_LoggedUser from "./islands/Header/LoggedUser.tsx";
 import * as $Header_LoggedUserMobile from "./islands/Header/LoggedUserMobile.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SentryConfig from "./islands/Header/SentryConfig.tsx";
+import * as $Iframe from "./islands/Iframe.tsx";
 import * as $ImageZoom from "./islands/ImageZoom.tsx";
 import * as $Installments from "./islands/Installments.tsx";
 import * as $Live from "./islands/Live.tsx";
@@ -77,7 +80,9 @@ const manifest = {
     "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
     "./islands/BuyTogetherTotal.tsx": $BuyTogetherTotal,
     "./islands/DemoUpButton.tsx": $DemoUpButton,
+    "./islands/DisplayFortuneWheel.tsx": $DisplayFortuneWheel,
     "./islands/Form.tsx": $Form,
+    "./islands/FortuneWheel.tsx": $FortuneWheel,
     "./islands/Header/Buttons.tsx": $Header_Buttons,
     "./islands/Header/Cart/linx.tsx": $Header_Cart_linx,
     "./islands/Header/Cart/nuvemshop.tsx": $Header_Cart_nuvemshop,
@@ -94,6 +99,7 @@ const manifest = {
     "./islands/Header/LoggedUserMobile.tsx": $Header_LoggedUserMobile,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Header/SentryConfig.tsx": $Header_SentryConfig,
+    "./islands/Iframe.tsx": $Iframe,
     "./islands/ImageZoom.tsx": $ImageZoom,
     "./islands/Installments.tsx": $Installments,
     "./islands/Live.tsx": $Live,
