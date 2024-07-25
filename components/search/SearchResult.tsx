@@ -92,7 +92,8 @@ function Result({
   cardHorizontal,
 
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
-  const { products, filters, breadcrumb, pageInfo, sortOptions, } = page;
+  const { products, filters, breadcrumb, pageInfo, sortOptions, seo} = page;
+  const getPagePath = new URL(seo?.canonical ?? "").pathname;
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
   const perPage = pageInfo.recordPerPage || products.length;
 
@@ -135,7 +136,7 @@ function Result({
         <div class="flex flex-row gap-5">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[264px]">
-              <Filters filters={filters}/>
+              <Filters filters={filters} urlPath={getPagePath ?? ""}/>
             </aside>
           )}
           <div class="flex-grow w-full" id={id}>
