@@ -194,6 +194,7 @@ function Result({
               filters={filters}
               productQnt={pageInfo?.records}
               displayFilter={layout?.variant === "drawer"}
+              urlPath={getPagePath ?? ""}
             />
             <ProductGalleryIsland
               products={products}
