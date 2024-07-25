@@ -18,12 +18,14 @@ function GeoLocationPoint() {
         newCep = newCep.replace(/^(\d{5})(\d)/, '$1-$2');
         cep.value = newCep;
         cepForm.value = { ...cepForm.value, value: newCep };
+				console.log('seeee')
     };
 
     function submitCep(value: string) {
         if (value.length != 9) return
+				alert('seee')
         const validCep = value.replace('-', '')
-        setUserCurrentCep((prev) => ({ ...prev, loading: true }))
+        userCurrentCep.value = { ...userCurrentCep.value, loading: true };
         fetch('/api/sessions', {
             method: 'PATCH',
             body: JSON.stringify({
@@ -45,7 +47,7 @@ function GeoLocationPoint() {
                 if (IS_BROWSER) {
                     localStorage?.setItem("USER_CEP", value)
                 }
-                setUserCurrentCep(() => ({ value: value, loading: false }))
+								userCurrentCep.value = { value: value, loading: false }
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false
                     location.reload();
@@ -57,7 +59,7 @@ function GeoLocationPoint() {
                 if (IS_BROWSER) {
                     localStorage?.setItem("USER_CEP", value)
                 }
-                setUserCurrentCep(() => ({ value: value, loading: false }))
+                userCurrentCep.value = { value: value, loading: false };
                 setTimeout(() => {
                     displayGeoLocationPointPopup.value = false
                 }, timeout);
@@ -66,6 +68,7 @@ function GeoLocationPoint() {
 
 
     function submitedCep(e: Event) {
+			console.log('pato')
         e.preventDefault()
         submitCep(cepForm.value.value)
     }
@@ -99,7 +102,7 @@ function GeoLocationPoint() {
                     <Icon width={24} height={24} id={"LocationPoint"} />
 
                     {userCurrentCep.value.value.length == 9 ?
-                        `Ofertas para: ${userCurrentCep.value}`
+                        `Ofertas para: ${userCurrentCep.value.value}`
                         :
                         "Ver ofertas para a região"
                     }
