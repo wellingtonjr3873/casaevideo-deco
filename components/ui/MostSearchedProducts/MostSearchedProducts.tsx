@@ -1,9 +1,9 @@
 export interface Props {
   titleComponent: string;
-  searchedProducts?: [{
+  searchedProducts?: {
     alt: string;
     link: string;
-  }];
+  }[];
 }
 
 function MostSearchedProducts({
