@@ -1,0 +1,29 @@
+{
+  "appclips": {
+    "apps": [
+      "CP2F74A9P7.com.mobfiq.casaevideo.Clip"
+    ]
+  },
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "CP2F74A9P7.com.mobfiq.casaevideo",
+        "components": [
+          {
+            "/": "/"
+          },
+          {
+            "/": "/*/p"
+          },
+          {
+            "/": "/*",
+            "?": {
+              "map": "productClusterIds"
+            }
+          }
+        ]
+      }
+    ]
+  }
+}

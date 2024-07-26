@@ -19,6 +19,7 @@ export type Props =
   };
 
 function SearchControls({ filters, displayFilter, records, device, pageName, sortOptions, productQnt }: Props,) {
+
   const open = useSignal(false);
   const { layoutSelected } = useUI();
 
@@ -40,7 +41,7 @@ function SearchControls({ filters, displayFilter, records, device, pageName, sor
               </button>
             </div>
             <div class="flex-grow overflow-auto p-4">
-              <FilstersMobile filters={filters} sortOptions={sortOptions} />
+              <FilstersMobile filters={filters} sortOptions={sortOptions} urlPath={urlPath ?? ""}/>
             </div>
           </div>
         </>

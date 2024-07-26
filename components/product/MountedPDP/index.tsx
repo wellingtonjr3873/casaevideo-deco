@@ -1,6 +1,6 @@
 import { useId } from "$store/sdk/useId.ts";
 import { usePlatform } from "$store/sdk/usePlatform.tsx";
-import { ProductDetailsPage, PropertyValue } from "apps/commerce/types.ts";
+import { ProductDetailsPage } from "apps/commerce/types.ts";
 import Breadcrumb from "deco-sites/casaevideo/components/ui/Breadcrumb.tsx";
 import ProductBasicInfo from "deco-sites/casaevideo/components/product/MountedPDP/ProductBasicInfo/index.tsx";
 import GallerySlider from "deco-sites/casaevideo/components/product/Gallery/ImageSlider.tsx";
@@ -14,7 +14,8 @@ import WishlistButton from "deco-sites/casaevideo/islands/WishlistButton.tsx";
 import ProductVisualization from "deco-sites/casaevideo/islands/ProductVisualization.tsx";
 import { ImageWidget } from "apps/admin/widgets.ts";
 import OursStores from "deco-sites/casaevideo/islands/OursStores.tsx";
-import DemoUpButton from "deco-sites/casaevideo/islands/DemoUpButton.tsx";
+import { SendEventOnLoad } from "deco-sites/casaevideo/islands/Analytics.tsx";
+import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
 
 export interface tagsProps {
   active?: boolean;
@@ -46,7 +47,9 @@ function MountedPDP({
   } = page;
 
   const {
-    seller
+    seller,
+    listPrice,
+    price,
   } = useOffer(product.offers);
   const { productID, isVariantOf } = product;
   const productGroupID = isVariantOf?.productGroupID ?? "";
@@ -56,6 +59,13 @@ function MountedPDP({
     itemListElement: breadcrumbList?.itemListElement.slice(0, -1),
     numberOfItems: breadcrumbList.numberOfItems - 1,
   };
+
+  const eventItem = mapProductToAnalyticsItem({
+    product,
+    breadcrumbList: breadcrumb,
+    price,
+    listPrice,
+  });
 
 
   return (
@@ -111,6 +121,17 @@ function MountedPDP({
           </div>
         </div>
       </div>
+
+      <SendEventOnLoad
+         event={{
+           name: "view_item",
+           params: {
+             item_list_id: "product",
+             item_list_name: "Product",
+             items: [eventItem],
+           },
+         }}
+      />
     </div>
   );
 }

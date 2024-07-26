@@ -94,8 +94,9 @@ function Result({
   cardHorizontal,
   device
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
-  console.log('aqui - device', device)
-  const { products, filters, breadcrumb, pageInfo, sortOptions, } = page;
+
+  const { products, filters, breadcrumb, pageInfo, sortOptions, seo} = page;
+  const getPagePath = new URL(seo?.canonical ?? "").pathname;
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
   const perPage = pageInfo.recordPerPage || products.length;
 
@@ -113,14 +114,16 @@ function Result({
     return new URLSearchParams(item.proxyUrl).get("page")
   })
 
+
   const currentPageNumber = Number(new URLSearchParams(pageInfo.pagination.current.proxyUrl).get("page")) || 0;
   const beforeDisabledDots = pageInfo.pagination.before.length && currentPageNumber >= 4 ? new Array(pageInfo.pagination.before[0].index - (pageInfo.pagination.first.index)).fill(0).map((_, index) => {
     const currentPageNumber = new URLSearchParams(pageInfo.pagination.before[0].proxyUrl).get("page");
     return pageInfo.previousPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) - (index + 1)))
   }) : []
-  
-  const afterDisabledDots = pageInfo.pagination.after.length ? new Array(pageInfo.pagination.last.index - pageInfo.pagination.after[1].index).fill(0).map((_, index) => {
-    const currentPageNumber = new URLSearchParams(pageInfo.pagination.after[1].proxyUrl).get("page");
+
+  const lastIndex = pageInfo.pagination.after.pop()
+  const afterDisabledDots = pageInfo.pagination.after.length && pageInfo.pagination.last.index > lastIndex!.index || 0 ? new Array(pageInfo.pagination.last.index - lastIndex!.index || 0).fill(0).map((_, index) => {
+    const currentPageNumber = new URLSearchParams(lastIndex!.proxyUrl).get("page");
     return pageInfo.nextPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) + (index + 1)))
   }) : []
   
@@ -136,7 +139,7 @@ function Result({
         <div class="flex flex-row gap-5">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[264px]">
-              <Filters filters={filters}/>
+              <Filters filters={filters} urlPath={getPagePath ?? ""}/>
             </aside>
           )}
           <div class="flex-grow w-full" id={id}>
@@ -191,6 +194,7 @@ function Result({
               filters={filters}
               productQnt={pageInfo?.records}
               displayFilter={layout?.variant === "drawer"}
+              urlPath={getPagePath ?? ""}
             />
             <ProductGalleryIsland
               products={products}

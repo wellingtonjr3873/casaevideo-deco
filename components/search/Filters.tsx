@@ -13,15 +13,26 @@ import RangePrice from "deco-sites/casaevideo/islands/RangePrice.tsx";
 
 interface Props {
   filters: ProductListingPage["filters"];
+  urlPath: string;
+}
+
+interface FilterToggleValuePath extends FilterToggleValue {
+  urlPath: string;
+}
+
+interface FilterTogglePath extends FilterToggle {
+  urlPath: string;
 }
 
 const isToggle = (filter: Filter): filter is FilterToggle =>
   filter["@type"] === "FilterToggle";
 
-function ValueItem({ url, selected, label, quantity }: FilterToggleValue) {
+  
+
+function ValueItem({ url, selected, label, urlPath }: FilterToggleValuePath) {
   return (
     <li className="py-2 w-full">
-      <a href={url} rel="nofollow" className="flex items-center gap-2">
+      <a href={urlPath + url} rel="nofollow" className="flex items-center gap-2">
         <div aria-checked={selected} className="checkbox checkbox-warning w-4 h-4 rounded-sm border-brand-secondary-200" />
         <span className="text-sm text-neutral-900 w-full break-words max-w-40">{label}</span>
       </a>
@@ -29,7 +40,7 @@ function ValueItem({ url, selected, label, quantity }: FilterToggleValue) {
   );
 }
 
-function FilterListSelected({ values }: FilterToggle) {
+function FilterListSelected({ values, urlPath }: FilterTogglePath) {
   return (
     <>
       {
@@ -37,7 +48,7 @@ function FilterListSelected({ values }: FilterToggle) {
           const { selected } = item;
           return selected && (
             <li key={`selected-item-${index}`} className="">
-              <a href={item.url} rel="nofollow" className="flex items-center justify-center gap-2 w-fit rounded-md border border-brand-secondary-400 bg-brand-terciary-1 p-2">
+              <a href={urlPath + item.url} rel="nofollow" className="flex items-center justify-center gap-2 w-fit rounded-md border border-brand-secondary-400 bg-brand-terciary-1 p-2">
                 <div aria-checked={selected} className="border rounded-full font-normal text-sm p-1">
                   <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
                 </div>
@@ -52,7 +63,7 @@ function FilterListSelected({ values }: FilterToggle) {
   )
 }
 
-function FilterValues({ key, values }: FilterToggle) {
+function FilterValues({ key, values, urlPath }: FilterTogglePath) {
   const flexDirection = ["tamanho"].includes(key) ? "flex-row" : "flex-col";
 
   return (
@@ -63,14 +74,14 @@ function FilterValues({ key, values }: FilterToggle) {
         if (key === "tamanho") {
           return (
             <li key={index}>
-              <a href={url} rel="nofollow">
+              <a href={urlPath + url} rel="nofollow">
                 <Avatar content={value} variant={selected ? "active" : "default"} />
               </a>
             </li>
           );
         }
 
-        return <ValueItem key={index} {...item} />;
+        return <ValueItem key={index} {...item} urlPath={urlPath}/>;
       })}
 
       {values.length > 6 && (
@@ -89,7 +100,7 @@ function FilterValues({ key, values }: FilterToggle) {
                       </li>
                     );
                   }
-                  return <ValueItem key={index} {...item} />;
+                  return <ValueItem key={index} {...item}  urlPath={urlPath}/>;
                 })}
               </ul>
             </div>
@@ -104,7 +115,7 @@ function FilterValues({ key, values }: FilterToggle) {
   );
 }
 
-function Filters({ filters }: Props) {
+function Filters({ filters, urlPath }: Props) {
 
   //verifica se há pelo menos 1 filtro ativo
   const hasFilterActive = filters.filter(isToggle).some(filter => filter.values.some(value => value.selected));
@@ -120,11 +131,11 @@ function Filters({ filters }: Props) {
             <ul className="flex flex-wrap justify-start items-center gap-2 px-4 py-2">
               {
                 filters.filter(isToggle).map((filter) => {
-                  return <FilterListSelected  {...filter} />
+                  return <FilterListSelected  {...filter} urlPath={urlPath}/>
                 })
               }
             </ul>
-            <a href="?" className="block w-full text-right py-2 px-4 text-base font-bold">Limpar Filtros</a>
+            <a href={urlPath} className="block w-full text-right py-2 px-4 text-base font-bold">Limpar Filtros</a>
           </div>
         )
       }
@@ -144,7 +155,7 @@ function Filters({ filters }: Props) {
                       </span>
                     </span>
                   </summary>
-                  <FilterValues {...filter} />
+                  <FilterValues {...filter}  urlPath={urlPath}/>
                 </details>
               </li>
               :
