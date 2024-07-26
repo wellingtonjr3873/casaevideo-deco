@@ -11,51 +11,17 @@ import { Tags } from "deco-sites/casaevideo/components/types/TagsProps.ts";
 import { clusterFilter } from "deco-sites/casaevideo/components/utils/clusterFilter.ts";
 
 
-
-export interface Layout {
-  tag?: Tags;
-  basics?: {
-    contentAlignment?: "Left" | "Center";
-    oldPriceSize?: "Small" | "Normal";
-    ctaText?: string;
-  };
-  elementsPositions?: {
-    skuSelector?: "Top" | "Bottom";
-    favoriteIcon?: "Top right" | "Top left";
-  };
-  hide?: {
-    productName?: boolean;
-    productDescription?: boolean;
-    allPrices?: boolean;
-    installments?: boolean;
-    skuSelector?: boolean;
-    cta?: boolean;
-  };
-  onMouseOver?: {
-    image?: "Change image" | "Zoom image";
-    card?: "None" | "Move up";
-    showFavoriteIcon?: boolean;
-    showSkuSelector?: boolean;
-    showCardShadow?: boolean;
-    showCta?: boolean;
-  };
-}
 interface Props {
   /** *@hide */
   dataVanPlacement?: string;
+    /** *@hide */
+  itemListName?: string;
+  index: number;
   product: Product;
   /** Preload card image */
   preload?: boolean;
-
-  /** @description used for analytics event */
-  itemListName?: string;
-
-  /** @description index of the product card in the list */
-  index?: number;
-
-  layout?: Layout;
-  platform?: Platform;
   device?: "mobile" | "desktop" | "tablet";
+  tag?: Tags
 }
 
 const relative = (url: string) => {
@@ -67,7 +33,7 @@ const WIDTH = 210;
 const HEIGHT = 210;
 
 function ProductCard(
-  { product, preload, itemListName, layout, platform, index, device, dataVanPlacement }: Props,
+  { product, preload, device, dataVanPlacement, tag, itemListName, index }: Props,
 ) {
   const {
     url,
@@ -79,13 +45,9 @@ function ProductCard(
     advertisement,
   } = product;
     
-  const allProduct = product
-  const hasVariant = allProduct.isVariantOf.hasVariant
-
-
-  const variantWithStock = hasVariant?.find((variant: any) => {
-    const available = variant.offers.offers.find((offer) => offer.availability === "https://schema.org/InStock")
-    
+  const hasVariant = product.isVariantOf && product.isVariantOf.hasVariant || []
+  const variantWithStock = hasVariant.find((variant) => {
+    const available = variant!.offers!.offers.find((offer) => offer.availability === "https://schema.org/InStock")
     return available;
   });
 
@@ -97,8 +59,6 @@ function ProductCard(
   const productGroupID = isVariantOf?.productGroupID;
   const [front, back] = images ?? [];
   const titleImage = front.url?.split("/")[6].replaceAll("-"," ").split(".")[0];
-
-
   const { listPrice, price, pixPrice, installments, availability } = useOffer(offers);
   
  
@@ -107,17 +67,12 @@ function ProductCard(
 
   const filteredCluesters = productClusters && clusterFilter(productClusters);
 
-  const tag  = layout?.tag;
   const clusterIdtag = tag?.id;
   const clusterActiveTag = tag?.active;
   const clusterTagBgColor = tag?.bgColor;
   const iconPathTag = tag?.icon?.[0];
   const textTag = tag?.text;
 
-  const align =
-    !layout?.basics?.contentAlignment || layout?.basics?.contentAlignment == "Left"
-      ? "left"
-      : "center";
 
   const productCardPrice = (
     <>
@@ -127,36 +82,24 @@ function ProductCard(
       </div>
       {/* Prices & Name */}
       <div class="flex-auto flex flex-col">
-        {layout?.hide?.productName && layout?.hide?.productDescription
-          ? ""
-          : (
             <div class="flex flex-col gap-0 xs-small-regular md:body-regular">
-              {layout?.hide?.productName ? "" : (
                 <h3
                   class="truncate text-[#393939] x-small-bold md:body-bold line-clamp-2 whitespace-break-spaces"
                 >{name ?? ""}</h3>
-              )}
             </div>
-          )}
         {/* IMPLEMENTAR ESTRELAS YOURVIEWS AQUI */}
         <div class="min-h-[24px] w-full pb-2 pt-1">
 
         </div>
-        {layout?.hide?.allPrices ? "" :
-
-        availability === "https://schema.org/InStock" ?
+        {availability === "https://schema.org/InStock" ?
     
          (
           <div class="flex flex-col">
             <div
-              class={`flex flex-col gap-0 ${layout?.basics?.oldPriceSize === "Normal"
-                ? "lg:flex-row lg:gap-2"
-                : ""
-                } ${align === "center" ? "justify-center" : "justify-start"}`}
+              class={`flex flex-col gap-0 justify-start`}
             >
               <div
-                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2 ${layout?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                  }`}
+                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2 `}
               >
                 <span class="line-through">
                   {formatPrice(listPrice, offers?.priceCurrency)}
@@ -176,13 +119,9 @@ function ProductCard(
                 {formatPrice(pixPrice, offers?.priceCurrency)} no PIX
               </div>
             </div>
-            {layout?.hide?.installments
-              ? ""
-              : (
                 <div class="text-brand-secondary-900 x-small-regular truncate">
                   ou {formatPrice(price, offers?.priceCurrency)} em até {installments}
                 </div>
-              )}
           </div>
         )
 
@@ -192,14 +131,10 @@ function ProductCard(
         (
           <div class="flex flex-col">
             <div
-              class={`flex flex-col gap-0 ${layout?.basics?.oldPriceSize === "Normal"
-                ? "lg:flex-row lg:gap-2"
-                : ""
-                } ${align === "center" ? "justify-center" : "justify-start"}`}
+              class={`flex flex-col gap-0 justify-start`}
             >
               <div
-                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2 ${layout?.basics?.oldPriceSize === "Normal" ? "lg:text-xl" : ""
-                  }`}
+                class={`text-base-300 xx-small-regular md:small-regular flex align-center gap-2`}
               >
                 <span class="line-through">
                   {formatPrice(listPrice, offers?.priceCurrency)}
@@ -219,13 +154,9 @@ function ProductCard(
                 {formatPrice(pixPrice, offers?.priceCurrency)} no PIX
               </div>
             </div>
-            {layout?.hide?.installments
-              ? ""
-              : (
-                <div class="text-brand-secondary-900 x-small-regular truncate">
+              <div class="text-brand-secondary-900 x-small-regular truncate">
                   ou {formatPrice(price, offers?.priceCurrency)} em até {installments}
                 </div>
-              )}
           </div>
         )
         :
@@ -239,12 +170,7 @@ function ProductCard(
     <a
       id={id}
       href={url && relative(url.split("?")[0])}
-      class={`card gap-2 card-compact md:max-w-[242px] md:max-h-[435px] group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 rounded-lg ${align === "center" ? "text-center" : "text-start"
-        } 
-        ${layout?.onMouseOver?.card === "Move up" &&
-        "duration-500 transition-translate ease-in-out lg:hover:-translate-y-2"
-        }
-      `}
+      class={`card gap-2 card-compact md:max-w-[242px] md:max-h-[435px] group w-full bg-neutral-50 p-2 md:py-4 card-bordered border-brand-secondary-100 rounded-lg text-start`}
       data-deco="view-product"
       {...(advertisement?.adId && { "data-van-aid": advertisement.adId })}
       {...(advertisement?.adResponseId && { "data-van-res-id": advertisement.adResponseId })}
@@ -284,12 +210,10 @@ function ProductCard(
               }
             </div>
           </>
-          {platform === "vtex" && (
             <WishlistButton
               productGroupID={productGroupID}
               productID={productID}
             />
-          )}
         </div>
         {/* Product Images */}
         <div
@@ -302,17 +226,13 @@ function ProductCard(
             alt={name}
             width={WIDTH}
             height={HEIGHT}
-            class={`bg-base-100 col-span-full row-span-full rounded w-full ${layout?.onMouseOver?.image == "Zoom image"
-              ? "duration-100 transition-scale scale-100 lg:group-hover:scale-125"
-              : ""
-              }`}
+            class={`bg-base-100 col-span-full row-span-full rounded w-full`}
             sizes="(max-width: 640px) 50vw, 20vw"
             preload={preload}
             loading={preload ? "eager" : "lazy"}
             decoding="async"
           />
-          {(!layout?.onMouseOver?.image ||
-            layout?.onMouseOver?.image == "Change image") && device == "desktop" && (
+          {device == "desktop" && (
               <Image
                 src={back?.url ?? front.url!}
                 title={titleImage}

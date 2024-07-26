@@ -1,5 +1,5 @@
 import { SendEventOnView } from "deco-sites/casaevideo/islands/Analytics.tsx";
-import ProductCard, {Layout as cardLayout} from "$store/components/product/ProductCard.tsx";
+import ProductCard from "$store/components/product/ProductCard.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
 import Slider from "$store/components/ui/Slider.tsx";
 import SliderJS from "$store/islands/SliderJS.tsx";
@@ -13,22 +13,23 @@ import type { SectionProps } from "deco/types.ts";
 export interface Props {
   products: Product[] | null;
   title?: string;
-  cardLayout?: cardLayout;
-  /** *@hide */
+  /** 
+  * @hide
+  */
   dataVanPlacement?: string;
-  /** *@hide */
+  /** 
+  * @hide
+  * @default mobile
+  */
   device: "mobile" | "desktop" | "tablet";
 }
-
 function ProductShelf({
   products,
   title,
-  cardLayout,
   device,
   dataVanPlacement,
 }: SectionProps<typeof loader>) {
   const id = useId();
-  const platform = "vtex"
   if (!products || products.length === 0) {
     return null;
   }
@@ -47,8 +48,6 @@ function ProductShelf({
                   <ProductCard
                     product={product}
                     itemListName={title}
-                    layout={cardLayout}
-                    platform={platform}
                     index={index}
                     device={device}
                     dataVanPlacement={dataVanPlacement}
@@ -94,8 +93,6 @@ function ProductShelf({
               <ProductCard
                 product={product}
                 itemListName={title}
-                layout={cardLayout}
-                platform={platform}
                 index={index}
                 device={device}
               />
@@ -137,8 +134,11 @@ function ProductShelf({
   );
 }
 
+/**
+ * @title Shelf de produtos
+ */
 export const loader = (props: Props, _req: Request, ctx: AppContext) => {
   return { ...props, device: ctx.device };
 };
 
-export default ProductShelf;
+export default  ProductShelf;
