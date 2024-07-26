@@ -1,9 +1,19 @@
+
+
+    /**
+   * @titleBy alt
+   */
+interface SearchedProductsProps {
+  alt: string;
+  link: string;
+}
+
 export interface Props {
   titleComponent: string;
-  searchedProducts?: {
-    alt: string;
-    link: string;
-  }[];
+    /**
+   * @titleBy alt
+   */
+  searchedProducts?: SearchedProductsProps[];
 }
 
 function MostSearchedProducts({
