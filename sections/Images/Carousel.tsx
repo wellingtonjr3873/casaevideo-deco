@@ -2,6 +2,9 @@ import Component, {Props} from "$store/components/ui/BannerCarousel.tsx";
 import { AppContext } from "apps/commerce/mod.ts";
 
 
+/**
+ * @title Banner hero
+ */
  export function loader(props: Omit<Props, "isMobile">, _req: Request, ctx: AppContext){
     const mobileDevices = ["mobile", "tablet",];
     return {...props, isMobile: mobileDevices.includes(ctx.device)}
