@@ -79,7 +79,7 @@ export interface Props {
 function getCurrentDateTime() {
   const now = new Date();
 
-  return now.toISOString();
+  return now.getTime();
 }
 
 function BannerItem(
@@ -135,14 +135,6 @@ function BannerItem(
 
 function Dots({ bannerImages, interval = 0 }: Props) {
 
-  const filteredImages = bannerImages?.filter(image => {
-    const now = getCurrentDateTime();
-    if(!image?.dateEndAt) {
-      return now >= image.dateStartAt
-    }
-
-    return now >= image.dateStartAt && now <= image.dateEndAt;
-  });
 
   return (
     <>
@@ -158,7 +150,7 @@ function Dots({ bannerImages, interval = 0 }: Props) {
         }}
       />
       <ul class="carousel justify-center col-span-full gap-4 z-10 row-start-4 h-[11px] absolute bottom-[-18px] left-1/2 max-[768px]:transform -translate-x-1/2">
-        {filteredImages?.map((image, index) => {
+        {bannerImages?.map((_, index) => {
           return (
             <li class="carousel-item h-[11px] max-[768px]:h-[6px]">
               <Slider.Dot index={index}>
@@ -207,14 +199,16 @@ function Buttons() {
 function BannerCarousel(props: Props) {
   const id = useId();
   const { bannerImages, interval, arrows } = { ...props };
-
-  const currentDateTime = getCurrentDateTime();
   const filteredImages = bannerImages?.filter(image => {
-    if(!image?.dateEndAt) {
-      return currentDateTime >= image.dateStartAt
+    const now = getCurrentDateTime();
+    if(!image?.dateEndAt) {      
+      return now >= new Date(image.dateStartAt).getTime()
     }
-    return currentDateTime >= image.dateStartAt && currentDateTime <= image.dateEndAt!
-});
+    return now >= new Date(image.dateStartAt).getTime() && now <= new Date(image.dateEndAt).getTime();
+  });
+
+
+console.log(filteredImages, 'filteredImages')
   
   return (
     <>
