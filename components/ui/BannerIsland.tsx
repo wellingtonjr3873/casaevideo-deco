@@ -95,6 +95,9 @@ const DEFAULT_PROPS: Props = {
   isH1: false,
 };
 
+/**
+ * @title Banner island
+ */
 export default function BannnerIsland(props: Props) {
   const {
     title,
