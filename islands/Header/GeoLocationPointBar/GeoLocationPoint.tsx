@@ -18,7 +18,6 @@ function GeoLocationPoint() {
         newCep = newCep.replace(/^(\d{5})(\d)/, '$1-$2');
         cep.value = newCep;
         cepForm.value = { ...cepForm.value, value: newCep };
-				console.log('seeee')
     };
 
     function submitCep(value: string) {
@@ -68,7 +67,6 @@ function GeoLocationPoint() {
 
 
     function submitedCep(e: Event) {
-			console.log('pato')
         e.preventDefault()
         submitCep(cepForm.value.value)
     }

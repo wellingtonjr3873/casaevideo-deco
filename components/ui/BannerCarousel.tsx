@@ -206,9 +206,6 @@ function BannerCarousel(props: Props) {
     }
     return now >= new Date(image.dateStartAt).getTime() && now <= new Date(image.dateEndAt).getTime();
   });
-
-
-console.log(filteredImages, 'filteredImages')
   
   return (
     <>
