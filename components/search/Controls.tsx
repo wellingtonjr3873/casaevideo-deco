@@ -13,10 +13,13 @@ export type Props =
   & {
     displayFilter?: boolean;
     productQnt?: number;
-    urlPath?: string;
+    records?: number;
+    pageName?: string;
+    device?: string;
   };
 
-function SearchControls({ filters, displayFilter, sortOptions, productQnt, urlPath }: Props,) {
+function SearchControls({ filters, displayFilter, records, device, pageName, sortOptions, productQnt }: Props,) {
+
   const open = useSignal(false);
   const { layoutSelected } = useUI();
 
@@ -30,7 +33,7 @@ function SearchControls({ filters, displayFilter, sortOptions, productQnt, urlPa
           <div class="bg-brand-secondary-50 flex flex-col h-full divide-y overflow-y-hidden w-full">
             <div class="flex justify-between items-center py-3 bg-brand-terciary-1 px-4">
               <h1 class=" flex gap-1">
-                <Icon id="FilterButtonMob" size={24}/>
+                <Icon id="FilterButtonMob" size={24} />
                 <span class="small-regular text-neutral-900">Filtrar por</span>
               </h1>
               <button onClick={() => open.value = false}>
@@ -44,6 +47,27 @@ function SearchControls({ filters, displayFilter, sortOptions, productQnt, urlPa
         </>
       }
     >
+      <div class="flex md:hidden gap-[10px] text-left mt-[32px] mb-6">
+        {device === "mobile" || device === "tablet" ?
+          <div class="flex items-center justify-between w-full">
+            <span class="body-bold">{pageName && pageName} </span>
+            <Button
+              class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden min-h-0 max-h-5"} 
+              onClick={() => {
+                open.value = true;
+              }}
+            >
+              <Icon id="FilterButtonMob" width={20} height={20} />
+              <span class="small-regular">Filtrar</span>
+            </Button>
+          </div>
+          :
+          <>
+            <span class="body-bold">{pageName && pageName} </span>
+            ({records && records <= 1 ? `${records} Produto` : `${records} Produtos`})
+          </>
+        }
+      </div>
       <div class="flex flex-col justify-between p-0 md:p-4 sm:p-0 sm:gap-4 sm:flex-row sm:h-[53px] mb-6 md:mb-8">
         <div class="w-full flex flex-row items-center justify-betwee sm:gap-4 sm:border-none justify-between">
 
@@ -54,15 +78,19 @@ function SearchControls({ filters, displayFilter, sortOptions, productQnt, urlPa
           <div class="w-full md:w-4/5 flex items-center justify-between md:justify-end md:gap-10">
             {sortOptions.length > 0 && <Sort sortOptions={sortOptions} />}
 
-            <Button
-              class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
-              onClick={() => {
-                open.value = true;
-              }}
-            >
-              <Icon id="FilterButtonMob" width={24} height={24} />
-              <span class="small-regular">Filtrar por</span>
-            </Button>
+            {device === "mobile" || device === "tablet" ?
+              null
+              :
+              <Button
+                class={displayFilter ? "btn-ghost" : "btn-ghost sm:hidden"}
+                onClick={() => {
+                  open.value = true;
+                }}
+              >
+                <Icon id="FilterButtonMob" width={24} height={24} />
+                <span class="small-regular">Filtrar por</span>
+              </Button>
+            }
 
             <div>
               <Button
@@ -72,7 +100,7 @@ function SearchControls({ filters, displayFilter, sortOptions, productQnt, urlPa
                 }}
               >
                 <Icon id={layoutSelected.value === "grid" ? "ViewGridSelected" : "ViewGrid"} width={24} height={24} />
-                <span class="hidden md:block">Grade</span>
+                <span class="block">Grade</span>
               </Button>
 
               <Button
@@ -82,7 +110,7 @@ function SearchControls({ filters, displayFilter, sortOptions, productQnt, urlPa
                 }}
               >
                 <Icon id={layoutSelected.value === "list" ? "ViewListSelected" : "ViewList"} width={24} height={24} />
-                <span class="hidden md:block">Lista</span>
+                <span class="block">Lista</span>
               </Button>
             </div>
           </div>
