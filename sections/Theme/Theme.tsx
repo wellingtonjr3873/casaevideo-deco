@@ -28,15 +28,6 @@ const defaultColors = removeCharactersFromObjectKey(
 const darken = (color: string, percentage: number) =>
   new Color(color).darken(percentage);
 
-const isDark = (c: Color) =>
-  c.contrast("black", "WCAG21") < c.contrast("white", "WCAG21");
-
-const contrasted = (color: string, percentage = 0.8) => {
-  const c = new Color(color);
-
-  return isDark(c) ? c.mix("white", percentage) : c.mix("black", percentage);
-};
-
 const toVariables = (
   t: Theme,
 ): [string, string][] => {
@@ -84,6 +75,8 @@ function Section({
   brandColorsSecondary,
   brandColorsTerciary,
   colorScheme,
+  localColors,
+  neutralColors
 }: Props) {
   const theme = {
     ...defaultColors,
@@ -92,6 +85,8 @@ function Section({
     ...brandColorsPrimary,
     ...brandColorsSecondary,
     ...brandColorsTerciary,
+    ...localColors,
+    ...neutralColors
   };
 
   const variables = [

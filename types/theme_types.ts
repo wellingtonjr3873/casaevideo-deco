@@ -147,6 +147,11 @@ export interface Miscellaneous {
   "--tab-radius": string;
 }
 
+export interface LocalColors {
+  /** @format color */
+  "text-color-header"?: string;
+}
+
 export interface Props {
   brandColorsPrimary?: BrandColorsPrimary;
   brandColorsSecondary?: BrandColorsSecondary;
@@ -156,6 +161,7 @@ export interface Props {
   neutralColors?: NeutralColors;
   font?: Font;
   colorScheme?: "light" | "dark";
+  localColors: LocalColors
 }
 
 interface NeutralColors {
