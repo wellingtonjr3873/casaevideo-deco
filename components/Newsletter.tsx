@@ -31,9 +31,9 @@ const DEFAULT_PROPS: Props = {
 
 export default function Newsletter(props: Props) {
   const { title, description, form, icon } = { ...DEFAULT_PROPS, ...props };
-
-  return (<div class="flex flex-col lg:flex-row max-w-[1280px] mx-auto w-full items-center  gap-4 lg:gap-28 bg-neutral-50 lg:bg-transparent pt-3 px-6 pb-5 mt-6 lg:my-12 md:px-6 xl-b:px-0">
-
+  console.log('seeeing')
+  return (
+  <div class="flex flex-col lg:flex-row max-w-[1280px] mx-auto w-full items-center  gap-4 lg:gap-28 bg-neutral-50 lg:bg-transparent pt-3 px-6 pb-5 mt-6 lg:my-12 md:px-6 xl-b:px-0">
     <div class="flex gap-4 items-center">
       <figure class="hidden lg:block">
         <Image class="min-w-[72px]" width={72} height={72} src={`${icon}`} decoding="async" loading="lazy" preload={false} />

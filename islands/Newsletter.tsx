@@ -17,7 +17,6 @@ function Newsletter(props: Props) {
   const emailError = useSignal(false);
   const result = useSignal<null | boolean>(null);
 
-
   const validEmail = (value: string) => {
     const regex = /^[\w\.-]+@[a-zA-Z\d\.-]+\.[a-zA-Z]{2,}$/
     const validateEmail = regex.test(value);
