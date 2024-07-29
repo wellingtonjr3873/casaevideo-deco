@@ -1,6 +1,5 @@
 import Button from "$store/components/ui/Button.tsx";
 import Icon from "$store/components/ui/Icon.tsx";
-import Filters from "$store/components/search/Filters.tsx";
 import Sort from "$store/components/search/Sort.tsx";
 import Drawer from "$store/components/ui/Drawer.tsx";
 import { useSignal } from "@preact/signals";
@@ -16,9 +15,10 @@ export type Props =
     records?: number;
     pageName?: string;
     device?: string;
+    urlPath: string;
   };
 
-function SearchControls({ filters, displayFilter, records, device, pageName, sortOptions, productQnt }: Props,) {
+function SearchControls({ filters, displayFilter, records, device, pageName, sortOptions, productQnt, urlPath }: Props,) {
 
   const open = useSignal(false);
   const { layoutSelected } = useUI();
@@ -41,7 +41,7 @@ function SearchControls({ filters, displayFilter, records, device, pageName, sor
               </button>
             </div>
             <div class="flex-grow overflow-auto p-4">
-              <FilstersMobile filters={filters} sortOptions={sortOptions} urlPath={urlPath ?? ""}/>
+              <FilstersMobile filters={filters} sortOptions={sortOptions} urlPath={urlPath}/>
             </div>
           </div>
         </>

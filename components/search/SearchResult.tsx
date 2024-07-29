@@ -96,7 +96,8 @@ function Result({
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
 
   const { products, filters, breadcrumb, pageInfo, sortOptions, seo} = page;
-  const getPagePath = new URL(seo?.canonical ?? "").pathname;
+  const getPagePath = new URL(seo?.canonical ?? "").pathname || "";
+
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
   const perPage = pageInfo.recordPerPage || products.length;
 
@@ -105,24 +106,25 @@ function Result({
   const zeroIndexedOffsetPage = pageInfo.currentPage - startingPage;
   const offset = zeroIndexedOffsetPage * perPage;
 
-  const beforeDots = pageInfo.pagination.before.slice(0, 2).map(item => {
+  const beforeDots = pageInfo!.pagination!.before.slice(0, 2).map(item => {
     return new URLSearchParams(item.proxyUrl).get("page")
   })
 
 
-  const afterDots = pageInfo.pagination.after.slice(0, 2).map(item => {
+  const afterDots = pageInfo!.pagination!.after.slice(0, 2).map(item => {
     return new URLSearchParams(item.proxyUrl).get("page")
   })
 
-
-  const currentPageNumber = Number(new URLSearchParams(pageInfo.pagination.current.proxyUrl).get("page")) || 0;
-  const beforeDisabledDots = pageInfo.pagination.before.length && currentPageNumber >= 4 ? new Array(pageInfo.pagination.before[0].index - (pageInfo.pagination.first.index)).fill(0).map((_, index) => {
-    const currentPageNumber = new URLSearchParams(pageInfo.pagination.before[0].proxyUrl).get("page");
+  const pagination = pageInfo.pagination!;
+  
+  const currentPageNumber = Number(new URLSearchParams(pagination!.current.proxyUrl).get("page")) || 0;
+  const beforeDisabledDots = pagination.before.length && currentPageNumber >= 4 ? new Array(pagination.before[0].index - (pagination.first.index)).fill(0).map((_, index) => {
+    const currentPageNumber = new URLSearchParams(pagination.before[0].proxyUrl).get("page");
     return pageInfo.previousPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) - (index + 1)))
   }) : []
 
-  const lastIndex = pageInfo.pagination.after.pop()
-  const afterDisabledDots = pageInfo.pagination.after.length && pageInfo.pagination.last.index > lastIndex!.index || 0 ? new Array(pageInfo.pagination.last.index - lastIndex!.index || 0).fill(0).map((_, index) => {
+  const lastIndex = pagination.after.pop()
+  const afterDisabledDots = pagination.after.length && pagination.last.index > lastIndex!.index || 0 ? new Array(pagination.last.index - lastIndex!.index || 0).fill(0).map((_, index) => {
     const currentPageNumber = new URLSearchParams(lastIndex!.proxyUrl).get("page");
     return pageInfo.nextPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) + (index + 1)))
   }) : []
@@ -194,7 +196,7 @@ function Result({
               filters={filters}
               productQnt={pageInfo?.records}
               displayFilter={layout?.variant === "drawer"}
-              urlPath={getPagePath ?? ""}
+              urlPath={getPagePath}
             />
             <ProductGalleryIsland
               products={products}
@@ -204,6 +206,9 @@ function Result({
             <div class="flex justify-center my-4">
               <div class="join">
 
+               <div class='hidden'>
+                    {beforeDisabledDots.map(item => <a href={item} /> )}
+                </div>
                 {pageInfo.previousPage && <a
 
                   aria-label="previous page link"
