@@ -49,5 +49,5 @@ export const DEFAULT_PROPS = {
   "complementary-2": "#A310F2",
   "complementary-3": "#FFF",
   "complementary-4": "#FFF",
-  "text-color-header": "#FFF"
+  "color-header": "#FFF"
 };

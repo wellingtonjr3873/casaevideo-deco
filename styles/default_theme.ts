@@ -56,7 +56,7 @@ export const DEFAULT_THEME = {
   "--error-light": "#F2CBCC",
   "--error": "#CF040A",
 
-  "--text-color-header": "#FFF"
+  "--color-header": "#FFF"
 
 
 };

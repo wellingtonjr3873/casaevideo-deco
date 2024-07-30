@@ -33,20 +33,20 @@ const MyAccountButton = () => {
         <Icon
           id="User"
           size={32}
-          class="text-neutral-900 "
+          class="text-color-header"
           alt="Acesse sua conta agora"
         />
         <div class="flex flex-col">
-          <span class="small-regular">Bem vindo!</span>
-          <span class="x-small-underline">Entre ou cadastre-se</span>
+          <span class="small-regular text-color-header">Bem vindo!</span>
+          <span class="x-small-underline text-color-header">Entre ou cadastre-se</span>
         </div>
         {/* meus pedidos */}
         <a href="/account/#/orders" aria-label="Meus pedidos">
-          <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui" />
+          <Icon id="MyOrders" size={32} class="text-color-header" alt="Visualize seus pedidos aqui" />
         </a>
         {/* wishlist */}
         <a href="/account/#/wishlist" aria-label="Meus favoritos">
-          <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
+          <Icon id="Wishlist" size={32} class="text-color-header" alt="veja quais são seus produtos favoritos" />
         </a>
       </a>
   );

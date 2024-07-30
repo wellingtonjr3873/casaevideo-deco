@@ -24,7 +24,7 @@ const LoggedUser = () => {
           <Icon
             id="User"
             size={32}
-            class="text-neutral-900 "
+            class="text-color-header"
             alt="Acesse sua conta agora"
           />
           {
@@ -57,11 +57,11 @@ const LoggedUser = () => {
       </button>
       {/* meus pedidos */}
       <a href="/account/#/orders" aria-label="Meus pedidos">
-        <Icon id="MyOrders" size={32} class="text-neutral-900" alt="Visualize seus pedidos aqui" />
+        <Icon id="MyOrders" size={32} class="text-color-header" alt="Visualize seus pedidos aqui" />
       </a>
       {/* wishlist */}
       <a href="/account/#/wishlist" aria-label="Meus favoritos">
-        <Icon id="Wishlist" size={32} class="text-transparent" alt="veja quais são seus produtos favoritos" />
+        <Icon id="Wishlist" size={32} class="text-color-header" alt="veja quais são seus produtos favoritos" />
       </a>
     </div>}</> : <div class="w-[216px] h-[35px] flex items-center justify-center"><div class="loading loading-spinner w-5" /></div>
 }

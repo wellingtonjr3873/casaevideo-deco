@@ -149,7 +149,7 @@ export interface Miscellaneous {
 
 export interface LocalColors {
   /** @format color */
-  "text-color-header"?: string;
+  "color-header"?: string;
 }
 
 export interface Props {
@@ -159,9 +159,9 @@ export interface Props {
   statusColors?: StatusColors;
   complementaryColors?: ComplementaryColors;
   neutralColors?: NeutralColors;
+  localColors: LocalColors/
   font?: Font;
   colorScheme?: "light" | "dark";
-  localColors: LocalColors
 }
 
 interface NeutralColors {

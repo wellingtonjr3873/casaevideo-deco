@@ -17,9 +17,9 @@ export default function MenuButton() {
         id="Hamburguer"
         size={24}
         strokeWidth={0.01}
-        class="text-neutral-900"
+        class="text-color-header"
       />
-      <span class="small-bold hover:underline-offset-1 hidden md:block">
+      <span class="small-bold hover:underline-offset-1 hidden md:block text-color-header">
         Categorias
       </span>
     </Button>

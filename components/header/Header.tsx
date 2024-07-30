@@ -250,7 +250,7 @@ function Header({
                   <Icon
                     id="Cart"
                     size={32}
-                    class="fill-brand-secondary-900"
+                    class="text-color-header"
                     alt="veja os produtos que estão no seu carrinho de compras"
                   />
                 </CartButtonVTEX>
@@ -276,7 +276,7 @@ function Header({
                 {categories?.items?.map((item) => {
                   return (
                     <li
-                      class="hover:underline-offset-1 small-regular"
+                      class="hover:underline-offset-1 small-regular text-color-header"
                       key={item.label}
                     >
                       <a href={item.href}>{item.label}</a>

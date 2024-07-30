@@ -33,14 +33,14 @@ const Aside = (
   <div class={`${style} grid h-full divide-y bg-brand-secondary-50 w-full lg:max-w-[410px]`}>
     <div class="flex justify-between items-center bg-brand-terciary-1 lg:max-w-[410px] w-full">
       <p class="px-4 py-3">
-        <span class="small-regular items-center flex gap-2">
+        <span class="small-regular items-center flex gap-2 text-color-header">
           {iconTitle && iconTitle}
           {title}
         </span>
       </p>
       {onClose && (
         <Button class="btn btn-ghost" onClick={onClose}>
-          <Icon id="CvlbCross" size={24} strokeWidth={2} />
+          <Icon id="CvlbCross" size={24} strokeWidth={2} class="text-color-header"/>
         </Button>
       )}
     </div>
@@ -74,7 +74,7 @@ function Drawers({ menu, children, platform, minicartProps }: Props) {
             displayMenu.value = false;
             displaySearchDrawer.value = false;
           }}
-          iconTitle={<Icon id="User" size={24} strokeWidth={2} />}
+          iconTitle={<Icon id="User" size={24} strokeWidth={2} class="text-color-header"/>}
           title={"Olá usuário"}
           style="w-full grid-rows-[48px_max-content]"
         >

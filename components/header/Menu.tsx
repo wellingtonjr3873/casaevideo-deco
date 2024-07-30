@@ -119,7 +119,7 @@ function MenuItem(
                   class="btn btn-ghost max-h-[24px] min-h-[24px] p-0"
                   onClick={handleCloseDrawer}
                 >
-                  <Icon id="CvlbCross" size={24} strokeWidth={2} />
+                  <Icon id="CvlbCross" size={24} strokeWidth={2} class="text-color-header"/>
                 </Button>
               </div>
   
@@ -197,7 +197,7 @@ function Menu({ items }: Props) {
               class="flex items-center gap-[8px]"
               href="/cupom-de-desconto"
             >
-              <Icon id="MyCoupons" size={24} strokeWidth={2} />
+              <Icon id="MyCoupons" size={24} strokeWidth={2} class="text-brand-secondary-900" />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Pegue seu Cupom
               </span>
@@ -273,7 +273,7 @@ function Menu({ items }: Props) {
               class="flex items-center gap-[8px]"
               href="/cartaocasaevideo"
             >
-              <Icon id="CreditCard" size={24} strokeWidth={2} />
+              <Icon id="CreditCard" size={24} strokeWidth={1} />
               <span class="text-sm flex justify-between items-center text-left w-[100%]">
                 Cartão Casa&Video
               </span>
