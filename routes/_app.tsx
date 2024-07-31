@@ -2,10 +2,12 @@ import { AppProps } from "$fresh/server.ts";
 import GlobalTags from "$store/components/GlobalTags.tsx";
 import Theme from "$store/sections/Theme/Theme.tsx";
 
+import Account from '../context.tsx';
 const sw = () =>
   addEventListener("load", () =>
     navigator && navigator.serviceWorker &&
     navigator.serviceWorker.register("/sw.js"));
+
 
 function App(props: AppProps) {
 
@@ -18,7 +20,12 @@ function App(props: AppProps) {
       <GlobalTags/>
 
       {/* Rest of Preact tree */}
-      <props.Component />
+      <Account.Provider value={{
+        name: 'casaevideo'
+       }}>
+        <props.Component />
+
+      </Account.Provider>
 
       {/* Include service worker */}
       <script

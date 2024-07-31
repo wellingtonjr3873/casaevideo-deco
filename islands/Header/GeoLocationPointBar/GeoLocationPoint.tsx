@@ -22,7 +22,6 @@ function GeoLocationPoint() {
 
     function submitCep(value: string) {
         if (value.length != 9) return
-				alert('seee')
         const validCep = value.replace('-', '')
         userCurrentCep.value = { ...userCurrentCep.value, loading: true };
         fetch('/api/sessions', {

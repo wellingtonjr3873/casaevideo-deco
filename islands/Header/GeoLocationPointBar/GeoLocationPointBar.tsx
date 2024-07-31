@@ -1,12 +1,15 @@
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import GeoLocationPoint from "./GeoLocationPoint.tsx";
 import { useUI } from "$store/sdk/useUI.ts";
+import { useContext } from "preact/compat";
+import Account from '$home/context.tsx';
 
 function GeoLocationPointBar() {
+  const isCv = useContext(Account).name === "casaevideo"; 
   const { displayGeoLocationPointPopup } = useUI();
-
   return (
     <>
+    {isCv && 
       <a href="https://wa.me/5521991043269" target="_blank">
         <div class="flex items-center justify-center gap-10 w-full py-1 px-2 h-10 bg-brand-secondary-900 border-b border-neutral-200 flex-col lg:hidden">
           <div class="flex items-center self-stretch justify-between w-full gap-1 px-2 lg:px-0">
@@ -17,7 +20,7 @@ function GeoLocationPointBar() {
             <Icon width={16} height={16} id={"ArrowDirectionRight"} />
           </div>
         </div>
-      </a>
+      </a>}
 
       <div class="flex items-center w-full py-1 px-2 h-10 bg-brand-secondary-900">
         <div class="flex items-center justify-between w-full max-w-[1280px] mx-auto px-2 lg:px-0">
@@ -29,13 +32,13 @@ function GeoLocationPointBar() {
           {/* Televendas Links */}
           <div class="flex items-center gap-8 hidden lg:flex">
             <a class="flex gap-1 items-center text-neutral-50 small-underline" href="/televendas">
-              <Icon width={24} height={24} id={"Televenda"} />
+              <Icon width={24} height={24} id="Televenda" />
               Televendas: (21) 4002-3535
             </a>
-            <a class="flex gap-1 items-center text-neutral-50 small-underline" href="https://wa.me/5521991043269" target="_blank">
+            {isCv && <a class="flex gap-1 items-center text-neutral-50 small-underline" href="https://wa.me/5521991043269" target="_blank">
               <Icon width={24} height={24} id={"Whatsapp"} />
               Compre pelo WhatsApp: (21) 99104-3269
-            </a>
+            </a>}
           </div>
           <button
             class="lg:hidden"
