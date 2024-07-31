@@ -159,7 +159,7 @@ export interface Props {
   statusColors?: StatusColors;
   complementaryColors?: ComplementaryColors;
   neutralColors?: NeutralColors;
-  localColors: LocalColors/
+  localColors: LocalColors;
   font?: Font;
   colorScheme?: "light" | "dark";
 }
