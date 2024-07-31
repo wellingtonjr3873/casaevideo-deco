@@ -4,14 +4,38 @@ import Button from "$store/components/ui/Button.tsx";
 import { formatPrice } from "$store/sdk/format.ts";
 import { useCart } from "apps/vtex/hooks/useCart.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
-import type { SimulationOrderForm, SKU, Sla } from "apps/vtex/utils/types.ts";
+import type { SimulationOrderForm, SKU, SelectedSla, SelectedDeliveryChannel, DeliveryID, AvailableDeliveryWindow, PickupStoreInfo, Sla } from "apps/vtex/utils/types.ts";
 import { IS_BROWSER } from "$fresh/runtime.ts";
 import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
+
+export interface SlaComponent {
+  id: SelectedSla;
+  deliveryChannel: SelectedDeliveryChannel;
+  name: SelectedSla;
+  deliveryIds: DeliveryID[];
+  shippingEstimate?: string;
+  shippingEstimateDate: null;
+  lockTTL: null;
+  availableDeliveryWindows: AvailableDeliveryWindow[];
+  deliveryWindow: null;
+  price: number;
+  listPrice: number;
+  tax: number;
+  pickupStoreInfo: PickupStoreInfo;
+  pickupPointId: null | string;
+  pickupDistance: number | null;
+  polygonName: string;
+  transitTime: string;
+  isFaster?: boolean;
+}
+
 export interface Props {
   items: Array<SKU>;
 }
 
 const formatShippingEstimate = (estimate: string) => {
+  if(!estimate) return;
+  
   const [, time, type] = estimate.split(/(\d+)/);
 
   if (type === "bd") return `${time} dias úteis`;
@@ -19,36 +43,38 @@ const formatShippingEstimate = (estimate: string) => {
   if (type === "h") return `${time} horas`;
 };
 
-function ShippingContent({ simulation }: {
-  simulation: Signal<SimulationOrderForm | null>;
-}) {
+function ShippingContent({ simulation }: { simulation: Signal<SimulationOrderForm | null> }) {
   const { cart } = useCart();
   const { simulationState } = useUI();
 
   const methods = simulation.value?.logisticsInfo?.reduce(
-    (initial, { slas }) => [...initial, ...slas],
-    [] as Sla[],
+    (initial: SlaComponent[], { slas }) => {
+      if (slas) {
+        return [...initial, ...slas.map((sla: Sla) => ({ ...sla, isFaster: false }))];
+      }
+      return initial;
+    },
+    [] as SlaComponent[]
   ) ?? [];
-  
-  const sortMethods = () => {
 
+  const sortMethods = (): SlaComponent[] => {
     const convertShippingEstimateToMinutes = (estimate: string): number => {
       if (estimate.endsWith('bd')) {
         return parseInt(estimate) * 24 * 60;
       } else if (estimate.endsWith('h')) {
-        return parseInt(estimate) * 60; 
+        return parseInt(estimate) * 60;
       }
       return 0;
     };
   
     methods.sort((a, b) => {
-      const timeA = convertShippingEstimateToMinutes(a.shippingEstimate);
-      const timeB = convertShippingEstimateToMinutes(b.shippingEstimate);
+      const timeA = convertShippingEstimateToMinutes(a.shippingEstimate || '');
+      const timeB = convertShippingEstimateToMinutes(b.shippingEstimate || '');
   
       if (timeA !== timeB) {
-        return timeA - timeB; 
+        return timeA - timeB;
       } else {
-        return a.listPrice - b.listPrice; 
+        return a.listPrice - b.listPrice;
       }
     });
   
@@ -56,18 +82,36 @@ function ShippingContent({ simulation }: {
     const deliveryMethods = methods.filter(method => method.deliveryChannel === 'delivery');
   
     const fastestPickup = pickupMethods.length > 0 ? pickupMethods[0] : null;
-  
     const fastestDelivery = deliveryMethods.slice(0, 2);
   
     const resultArray = [];
+
     if (fastestPickup) {
       resultArray.push(fastestPickup);
     }
+    
     resultArray.push(...fastestDelivery);
   
-    return resultArray;
-  };
+    const { fastestTime, updatedResultArray } = resultArray.reduce(
+      (acumulator, method) => {
+        const methodTime = convertShippingEstimateToMinutes(method.shippingEstimate || '');
+        if (methodTime < acumulator.fastestTime) {
+          acumulator.fastestTime = methodTime;
+        }
+        acumulator.updatedResultArray.push(method);
+        return acumulator;
+      }, 
+      { fastestTime: Infinity, updatedResultArray: [] as SlaComponent[] }
+    );
   
+    const result = updatedResultArray.map(method => {
+      method.isFaster = convertShippingEstimateToMinutes(method.shippingEstimate || '') === fastestTime;
+      return method;
+    });
+  
+    return result;
+  };
+
   const topMethods = sortMethods();
 
   const locale = cart.value?.clientPreferencesData.locale || "pt-BR";
@@ -88,17 +132,17 @@ function ShippingContent({ simulation }: {
   return (
     <ul class="flex flex-col bg-base-200 rounded-[4px] border border-brand-secondary-50 lg:rounded-lg w-full ">
       {topMethods.map((method, idx) => (
-        <li class={`${idx === 0 && "faster-pickup"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
+        <li class={`${method.isFaster && "faster-pickup"} flex justify-between items-center border-base-200 not-first-child:border-t text-left gap-1 border-b border-brand-secondary-50 p-2`}>
           <div class="flex flex-col">
             <span class="text-button text-left small-regular">
               {method.deliveryChannel === "pickup-in-point" ?
                 `Retirada ${method?.pickupStoreInfo?.friendlyName?.split("-")?.[1]?.trim()}`
                 :
-                `Entrega ${method.name}`
+                `Transportadora ${idx}`
               }
             </span>
-            <span class="text-button small-regular">
-              até {formatShippingEstimate(method.shippingEstimate)}
+            <span class={`flex gap-1 text-button small-regular ${method.isFaster && "faster-pickup-info"} bold`}>
+              até {formatShippingEstimate(method.shippingEstimate || '')}
             </span>
           </div>
 
@@ -115,10 +159,10 @@ function ShippingContent({ simulation }: {
 
 function ShippingSimulation({ items }: Props) {
   const postalCode = useSignal("");
-  const loading = useSignal(false);  
+  const loading = useSignal(false);
   const simulateResult = useSignal<SimulationOrderForm | null>(null);
   const { simulate, cart } = useCart();
-  const currentCepIsExist = IS_BROWSER ? localStorage?.getItem("USER_CEP") : undefined
+  const currentCepIsExist = IS_BROWSER ? localStorage?.getItem("USER_CEP") : undefined;
   const { simulationState } = useUI();
 
   const formatarCEP = (cep: string) => {
@@ -132,7 +176,7 @@ function ShippingSimulation({ items }: Props) {
     if (cepNumbers.length !== 8) {
       return;
     }
-  
+
     try {
       loading.value = true;
       const result = await simulate({
@@ -140,24 +184,23 @@ function ShippingSimulation({ items }: Props) {
         postalCode: cepNumbers,
         country: cart.value?.storePreferencesData.countryCode || "BRA",
       });
-  
+
       simulateResult.value = result;
-      if(result) {
+      if (result) {
         simulationState.value = result?.messages?.[0]?.status || ""
       }
-      return result; 
+      return result;
     } finally {
       loading.value = false;
     }
-  }, []);
+  }, [postalCode, simulate, items, cart, simulationState]);
 
   useEffect(() => {
     if (currentCepIsExist) {
       postalCode.value = currentCepIsExist;
       handleSimulation();
     }
-  }, [])
-
+  }, [currentCepIsExist, handleSimulation, postalCode]);
 
   return (
     <div class="flex flex-col border border-brand-secondary-50 rounded-lg p-4 w-full gap-4 overflow-y-auto">
@@ -181,8 +224,9 @@ function ShippingSimulation({ items }: Props) {
           maxLength={9}
           size={9}
           value={postalCode.value}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-            postalCode.value = formatarCEP((e.target as HTMLInputElement).value)
+          onChange={(e: Event) => {
+            const target = e.target as HTMLInputElement;
+            postalCode.value = formatarCEP(target.value);
           }}
         />
         <Button class="min-w-[86px]" type="submit" loading={loading.value}>

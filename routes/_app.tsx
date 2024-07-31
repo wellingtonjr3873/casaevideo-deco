@@ -1,6 +1,9 @@
 import { AppProps } from "$fresh/server.ts";
 import GlobalTags from "$store/components/GlobalTags.tsx";
 import Theme from "$store/sections/Theme/Theme.tsx";
+import { PmWeb } from "deco-sites/casaevideo/islands/PmWeb.tsx";
+import SentryConfig from "deco-sites/casaevideo/islands/Header/SentryConfig.tsx";
+
 
 import Account from '../context.tsx';
 const sw = () =>
@@ -26,6 +29,10 @@ function App(props: AppProps) {
         <props.Component />
 
       </Account.Provider>
+
+      {/* PMWeb */}
+      <PmWeb key="PM-N929DLT" />
+      <SentryConfig />
 
       {/* Include service worker */}
       <script

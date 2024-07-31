@@ -2,33 +2,31 @@ import Image from "apps/website/components/Image.tsx";
 
 function zoom(event: MouseEvent) {
   const imagem = document.getElementById('imagem') as HTMLElement;
-  const container = document.querySelector('.img-container');
+  const container = document.querySelector('.img-container') as HTMLElement;
 
-  const rect = container?.getBoundingClientRect();
+  const rect = container.getBoundingClientRect();
 
   // Calcula a posição do mouse em relação ao container
-  const mouseX = event.clientX - rect?.left!;
-  const mouseY = event.clientY - rect?.top!;
+  const mouseX = event.clientX - rect.left;
+  const mouseY = event.clientY - rect.top;
 
   // Calcula o percentual do zoom baseado na posição do mouse
-  const percentualZoom = 2; // Ajuste conforme necessário
-  const novoTamanho = (100 * percentualZoom) + '%';
+  const percentualZoom = 1.5; // Ajuste conforme necessário
 
   // Calcula a nova posição da imagem
-  const novaPosicaoX = Math.min(0, -((mouseX * percentualZoom) - mouseX)) + 'px';
-  const novaPosicaoY = Math.min(0, -((mouseY * percentualZoom) - mouseY)) + 'px';
+  const centerX = rect.width / 2;
+  const centerY = rect.height / 2;
+  const offsetX = centerX - (mouseX * percentualZoom);
+  const offsetY = centerY - (mouseY * percentualZoom);
 
   // Aplica o zoom e a nova posição na imagem
-  imagem.style.width = novoTamanho;
-  imagem.style.height = novoTamanho;
-  imagem.style.transformOrigin = mouseX + 'px ' + mouseY + 'px';
-  imagem.style.transform = 'scale(' + percentualZoom + ')';
-  imagem.style.marginLeft = novaPosicaoX;
-  imagem.style.marginTop = novaPosicaoY;
+  imagem.style.transformOrigin = 'center center';
+  imagem.style.transform = `scale(${percentualZoom}) translate(${offsetX}px, ${offsetY}px)`;
 }
 
+
 function reset() {
-  const imagem = document.getElementById('imagem') as any;
+  const imagem = document.getElementById('imagem') as HTMLElement;
   imagem.style.width = '';
   imagem.style.height = '';
   imagem.style.transform = '';
@@ -53,18 +51,15 @@ export default function ImageZoom(image: Props) {
     height,
     index,
   } = image;
-  const aspectRatio = `${width} / ${height}`;
 
   return (
     <div
      onMouseMove={zoom}
      onMouseLeave={reset}
-     class="img-container" style="overflow: hidden;object-fit: scale-down;position: relative;width: 100%;height: 400px;">
+     class="img-container max-h-[440px]">
       <Image
         id="imagem"
-        class="w-full"
-        sizes="(max-width: 640px) 100vw, 40vw"
-        style={` aspectRatio: ${aspectRatio}; transform-origin: 816px 296px;`}
+        class="w-full max-h-[inherit]"
         src={url!}
         title={image.title}
         alt={alternateName}

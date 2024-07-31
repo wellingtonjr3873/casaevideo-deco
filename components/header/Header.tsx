@@ -11,8 +11,9 @@ import Searchbar from "$store/islands/Header/Searchbar.tsx";
 import { Props as MinicartProps } from "$store/components/minicart/ProductShelfMinicart.tsx";
 import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
 import LoggedUserMobile from "$store/islands/Header/LoggedUserMobile.tsx";
-import SentryConfig from "deco-sites/casaevideo/islands/Header/SentryConfig.tsx";
 import  {Props as NavbarProps} from 'deco-sites/casaevideo/components/header/Menu.tsx'
+import { SendPageViewEvent } from "deco-sites/casaevideo/islands/Analytics.tsx";
+
 interface Categories {
   items: {
     label: string;
@@ -183,6 +184,8 @@ function Header({
           <div className="lg:hidden">
             <GeoLocationPointBar />
           </div>
+
+          <SendPageViewEvent />
         </header>
       </>
     )
@@ -291,7 +294,7 @@ function Header({
           <GeoLocationPointBar />
         </div>
 
-        <SentryConfig />
+        <SendPageViewEvent />
       </header>
 
     </>

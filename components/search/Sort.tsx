@@ -41,7 +41,7 @@ function Sort({ sortOptions }: Props) {
         id="sort"
         name="sort"
         onInput={applySort}
-        class="bg-[unset] w-min h-[41px] px-1 rounded m-2 text-base-content cursor-pointer outline-none small-regular md:h6-regular text-neutral-900 max-w-[120px]"
+        class="bg-white md:bg-[unset] p-2 w-min h-[41px] rounded m-0 md:m-1 text-base-content cursor-pointer outline-none small-regular md:h6-regular text-neutral-900 max-w-[130px] md:max-w-[210px] border-[#DDD] border-[1px] border-solid md:border-none"
       >
         {sortOptions.map(({ value, label }) => ({
           value,

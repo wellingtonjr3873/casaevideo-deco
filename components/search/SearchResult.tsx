@@ -78,6 +78,8 @@ export interface Props {
   startingPage?: 0 | 1;
   /** @title FAQ */
   questions?: Question[];
+  /** *@hide */
+  device: "mobile" | "desktop" | "tablet";
 }
 
 function Result({
@@ -90,9 +92,12 @@ function Result({
   questions,
   startingPage = 0,
   cardHorizontal,
-
+  device
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
-  const { products, filters, breadcrumb, pageInfo, sortOptions, } = page;
+
+  const { products, filters, breadcrumb, pageInfo, sortOptions, seo} = page;
+  const getPagePath = new URL(seo?.canonical ?? "").pathname || "";
+
   const pageName = breadcrumb?.itemListElement?.[0]?.name || ""
   const perPage = pageInfo.recordPerPage || products.length;
 
@@ -101,23 +106,26 @@ function Result({
   const zeroIndexedOffsetPage = pageInfo.currentPage - startingPage;
   const offset = zeroIndexedOffsetPage * perPage;
 
-  const beforeDots = pageInfo.pagination.before.slice(0, 2).map(item => {
+  const beforeDots = pageInfo!.pagination!.before.slice(0, 2).map(item => {
     return new URLSearchParams(item.proxyUrl).get("page")
   })
 
 
-  const afterDots = pageInfo.pagination.after.slice(0, 2).map(item => {
+  const afterDots = pageInfo!.pagination!.after.slice(0, 2).map(item => {
     return new URLSearchParams(item.proxyUrl).get("page")
   })
 
-  const currentPageNumber = Number(new URLSearchParams(pageInfo.pagination.current.proxyUrl).get("page")) || 0;
-  const beforeDisabledDots = pageInfo.pagination.before.length && currentPageNumber >= 4 ? new Array(pageInfo.pagination.before[0].index - (pageInfo.pagination.first.index)).fill(0).map((_, index) => {
-    const currentPageNumber = new URLSearchParams(pageInfo.pagination.before[0].proxyUrl).get("page");
+  const pagination = pageInfo.pagination!;
+  
+  const currentPageNumber = Number(new URLSearchParams(pagination!.current.proxyUrl).get("page")) || 0;
+  const beforeDisabledDots = pagination.before.length && currentPageNumber >= 4 ? new Array(pagination.before[0].index - (pagination.first.index)).fill(0).map((_, index) => {
+    const currentPageNumber = new URLSearchParams(pagination.before[0].proxyUrl).get("page");
     return pageInfo.previousPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) - (index + 1)))
   }) : []
-  
-  const afterDisabledDots = pageInfo.pagination.after.length ? new Array(pageInfo.pagination.last.index - pageInfo.pagination.after[1].index).fill(0).map((_, index) => {
-    const currentPageNumber = new URLSearchParams(pageInfo.pagination.after[1].proxyUrl).get("page");
+
+  const lastIndex = pagination.after.pop()
+  const afterDisabledDots = pagination.after.length && pagination.last.index > lastIndex!.index || 0 ? new Array(pagination.last.index - lastIndex!.index || 0).fill(0).map((_, index) => {
+    const currentPageNumber = new URLSearchParams(lastIndex!.proxyUrl).get("page");
     return pageInfo.nextPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) + (index + 1)))
   }) : []
   
@@ -133,7 +141,7 @@ function Result({
         <div class="flex flex-row gap-5">
           {layout?.variant === "aside" && filters.length > 0 && (
             <aside class="hidden sm:block w-min min-w-[264px]">
-              <Filters filters={filters}/>
+              <Filters filters={filters} urlPath={getPagePath ?? ""}/>
             </aside>
           )}
           <div class="flex-grow w-full" id={id}>
@@ -180,29 +188,29 @@ function Result({
               </div>
             }
 
-
-            <div class="flex md:hidden gap-[10px] text-left mt-[32px]">
-              <span class="body-bold">{pageName && pageName} </span>
-              ({pageInfo?.records && pageInfo?.records <= 1 ? `${pageInfo?.records} Produto` : `${pageInfo?.records} Produtos`})
-            </div>
-
             <SearchControls
+              device={device}
+              records={pageInfo?.records}
+              pageName={pageName}
               sortOptions={sortOptions}
               filters={filters}
               productQnt={pageInfo?.records}
               displayFilter={layout?.variant === "drawer"}
+              urlPath={getPagePath}
             />
             <ProductGalleryIsland
               products={products}
               offset={offset}
-              layout={{ card: cardLayout, columns: layout?.columns, cardHorizontal  }}
+              layout={{ card: cardLayout, columns: layout?.columns, cardHorizontal }}
             />
             <div class="flex justify-center my-4">
               <div class="join">
-                <div class='hidden'>
+
+               <div class='hidden'>
                     {beforeDisabledDots.map(item => <a href={item} /> )}
                 </div>
-              {pageInfo.previousPage &&                <a
+                {pageInfo.previousPage && <a
+
                   aria-label="previous page link"
                   rel="prev"
                   href={pageInfo.previousPage ?? "#"}
@@ -217,7 +225,7 @@ function Result({
                   {zeroIndexedOffsetPage + 1}
                 </span>
                 {afterDots.map((item) => {
-                  return <a  class="btn btn-ghost join-item" href={pageInfo.nextPage!.replace(PAGE_REGEX, "page" + item)}>{item}</a>
+                  return <a class="btn btn-ghost join-item" href={pageInfo.nextPage!.replace(PAGE_REGEX, "page" + item)}>{item}</a>
                 })}
                 <a
                   aria-label="next page link"
@@ -269,7 +277,7 @@ function SearchResult({ page, ...props }: Props) {
       text: NOT_FOUND_SEARCH_TEXT,
       ctaText: "Editar filtros",
       ctaStyles: {
-        backgroundColor: 'bg-brand-primary-1', 
+        backgroundColor: 'bg-brand-primary-1',
         color: 'text-[white]'
       }
     } : props.notFoundPage

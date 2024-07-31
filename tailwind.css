@@ -811,18 +811,55 @@
   }
 }
 
+@keyframes pulseBorder {
+  0% {
+    box-shadow: 0 0 0 7px rgba(255, 242, 0, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 1 rgba(255, 242, 0, 0.7);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    font-size: 14px;
+  }
+  100% {
+    font-size: 15px;
+  }
+}
+
 .faster-pickup{
-  border: 1px solid #FFF100;
+  border: 1px solid #007652;
+  animation: pulseBorder 0.8s ease-in-out infinite alternate;
   position: relative;
 }
 
 .faster-pickup::after{
-  content: url("/image/faster-tag.png");
-  width: 88px;
+  animation: pulse 0.8s ease-in-out infinite alternate;
+  content: "Mais rápido";
+  width: auto;
   height: 20px;
-  display: block;
+  display: flex;
+  background: #007652;
+  color: white;
+  justify-content: center;
+  align-items: center;
+  border-radius: 7px;
+  line-height: 8px;
+  font-weight: bold;
   position: absolute;
-  top: -15px;
+  top: -11px;
   right: -5px;
+  padding: 6px;
+  font-size: 14px;
 }
 
+.crm-form input[type="checkbox"]:checked::before {
+  content: '';
+  background: url('https://casaevideonewio.vteximg.com.br/arquivos/checked-form-crm.png');
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  display: block;
+}

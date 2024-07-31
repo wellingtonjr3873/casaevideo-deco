@@ -17,6 +17,7 @@ import * as $Analytics from "./islands/Analytics.tsx";
 import * as $BannerStopWatch from "./islands/BannerStopWatch.tsx";
 import * as $BuyTogetherSelectButton from "./islands/BuyTogetherSelectButton.tsx";
 import * as $BuyTogetherTotal from "./islands/BuyTogetherTotal.tsx";
+import * as $CrmForm from "./islands/CrmForm.tsx";
 import * as $DemoUpButton from "./islands/DemoUpButton.tsx";
 import * as $DisplayFortuneWheel from "./islands/DisplayFortuneWheel.tsx";
 import * as $Form from "./islands/Form.tsx";
@@ -35,6 +36,7 @@ import * as $Header_LoggedUser from "./islands/Header/LoggedUser.tsx";
 import * as $Header_LoggedUserMobile from "./islands/Header/LoggedUserMobile.tsx";
 import * as $Header_Searchbar from "./islands/Header/Searchbar.tsx";
 import * as $Header_SentryConfig from "./islands/Header/SentryConfig.tsx";
+import * as $Iframe from "./islands/Iframe.tsx";
 import * as $ImageZoom from "./islands/ImageZoom.tsx";
 import * as $Installments from "./islands/Installments.tsx";
 import * as $Live from "./islands/Live.tsx";
@@ -43,6 +45,7 @@ import * as $MyAccountButton from "./islands/MyAccountButton.tsx";
 import * as $Newsletter from "./islands/Newsletter.tsx";
 import * as $OursStores from "./islands/OursStores.tsx";
 import * as $OutOfStock from "./islands/OutOfStock.tsx";
+import * as $PmWeb from "./islands/PmWeb.tsx";
 import * as $PrivacyPolicyPopup from "./islands/PrivacyPolicyPopup.tsx";
 import * as $ProductGalleryIsland from "./islands/ProductGalleryIsland.tsx";
 import * as $ProductImageZoom from "./islands/ProductImageZoom.tsx";
@@ -78,6 +81,7 @@ const manifest = {
     "./islands/BannerStopWatch.tsx": $BannerStopWatch,
     "./islands/BuyTogetherSelectButton.tsx": $BuyTogetherSelectButton,
     "./islands/BuyTogetherTotal.tsx": $BuyTogetherTotal,
+    "./islands/CrmForm.tsx": $CrmForm,
     "./islands/DemoUpButton.tsx": $DemoUpButton,
     "./islands/DisplayFortuneWheel.tsx": $DisplayFortuneWheel,
     "./islands/Form.tsx": $Form,
@@ -98,6 +102,7 @@ const manifest = {
     "./islands/Header/LoggedUserMobile.tsx": $Header_LoggedUserMobile,
     "./islands/Header/Searchbar.tsx": $Header_Searchbar,
     "./islands/Header/SentryConfig.tsx": $Header_SentryConfig,
+    "./islands/Iframe.tsx": $Iframe,
     "./islands/ImageZoom.tsx": $ImageZoom,
     "./islands/Installments.tsx": $Installments,
     "./islands/Live.tsx": $Live,
@@ -106,6 +111,7 @@ const manifest = {
     "./islands/Newsletter.tsx": $Newsletter,
     "./islands/OursStores.tsx": $OursStores,
     "./islands/OutOfStock.tsx": $OutOfStock,
+    "./islands/PmWeb.tsx": $PmWeb,
     "./islands/PrivacyPolicyPopup.tsx": $PrivacyPolicyPopup,
     "./islands/ProductGalleryIsland.tsx": $ProductGalleryIsland,
     "./islands/ProductImageZoom.tsx": $ProductImageZoom,

@@ -1,7 +1,6 @@
 import type { AnalyticsEvent } from "apps/commerce/types.ts";
-import { scriptAsDataURI } from "apps/utils/dataURI.ts";
 import { useEffect } from "preact/hooks";
-import * as Sentry from "@sentry/react";
+import { sendEvent } from "deco-sites/casaevideo/sdk/analytics.tsx";
 
 /**
  * This function is usefull for sending events on click. Works with both Server and Islands components
@@ -19,8 +18,8 @@ export const SendEventOnClick = <E extends AnalyticsEvent>({ event, id }: {
       );
     }
     elem.addEventListener("click", () => {
-        
-      window.DECO.events.dispatch(event);
+      sendEvent(event)
+      // window.DECO.events.dispatch(event); // erro SERVICE_ENDPOINT
     });
     // scriptAsDataURI(
     //   (id: string, event: AnalyticsEvent) => {
@@ -51,14 +50,48 @@ export const SendEventOnView = <E extends AnalyticsEvent>(
     const observer = new IntersectionObserver((items) => {
       for (const item of items) {
         if (!item.isIntersecting) continue;
-
-        window.DECO.events.dispatch(event);
+        sendEvent(event)
+        // window.DECO.events.dispatch(event); // erro SERVICE_ENDPOINT
         observer.unobserve(elem);
       }
     });
 
     observer.observe(elem);
     
+  }, []);
+
+  return <></>;
+}
+
+export const SendPageViewEvent = () => {
+  useEffect(() => {
+    globalThis.addEventListener("load", () => {
+      const eventId = window?.dataLayer?.[window.dataLayer.length - 1];
+
+      const event = {
+        event: "pageView",
+        "gtm.uniqueEventId": eventId,
+        location: window.location.origin,
+        originalLocation: window.location.origin,
+        originalReferrer: "",
+        page: window.location.pathname,
+        referrer: "",
+        title: document.title,
+      } as unknown as AnalyticsEvent;
+      
+      window.dataLayer.push(event)
+      // sendEvent(event) deco apps does not send page view correclty to dataLake
+    });
+  }, []);
+
+  return <></>;
+}
+
+export const SendEventOnLoad = <E extends AnalyticsEvent>(
+  { event }: { event: E },
+) => {
+  useEffect(() => {
+    globalThis.addEventListener("load", () => sendEvent(event))
   }, []);
 
   return <></>;

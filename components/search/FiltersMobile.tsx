@@ -6,24 +6,34 @@ import RangePrice from "deco-sites/casaevideo/components/search/RangePrice.tsx";
 
 import { useEffect } from "preact/hooks";
 
+interface ProductListingPageWithUrlPath extends Pick<ProductListingPage, "filters" | "sortOptions"> {
+    urlPath: string;
+}
 
+interface FilterToggleValuePath extends FilterToggleValue {
+    urlPath: string;
+}
+
+interface FilterTogglePath extends FilterToggle {
+    urlPath: string;
+}
 
 type ChildrenFilter = {
     composeFilters: (filterName: string, value: string, url: string) => void;
-    selectedFilters: string
+    selectedFilters: string;
 }
 const isToggle = (filter: Filter): filter is FilterToggle =>
     filter["@type"] === "FilterToggle";
 
-function ValueItem({ url, label, value, composeFilters, selectedFilters, rootCategory }: FilterToggleValue & ChildrenFilter & {rootCategory: string}) {
- 
+function ValueItem({ url, label, value, composeFilters, selectedFilters, rootCategory, urlPath }: FilterToggleValuePath & ChildrenFilter & { rootCategory: string }) {
+
     const composedFilter = `filter.${rootCategory}=${value}`
     const isSelected = selectedFilters.includes(composedFilter);
 
     return (
         <li className="py-2 w-full">
-            <button href={url} rel="nofollow" className="flex items-center gap-2" onClick={() => {
-                composeFilters(rootCategory, value, url)
+            <button href={urlPath + url} rel="nofollow" className="flex items-center gap-2" onClick={() => {
+                composeFilters(rootCategory, value, urlPath + url)
             }}>
                 <div checked={isSelected} className="checkbox checkbox-warning w-4 h-4 border-brand-secondary-200 rounded-[4px] border-[2.75px]" />
                 <span className="small-regular w-full break-words text-left">{label}</span>
@@ -32,17 +42,17 @@ function ValueItem({ url, label, value, composeFilters, selectedFilters, rootCat
     );
 }
 
-function FilterListSelected({ values }: FilterToggle) {
+function FilterListSelected({ values, urlPath }: FilterTogglePath) {
     return (
         <>
             {
                 values.map((item, index) => {
                     const { selected, url } = item;
-                    
+
                     return selected && (
                         <li key={`selected-item-${index}`} className="">
-                            
-                            <a href={url} rel="nofollow" className="flex items-center justify-center gap-2 w-fit rounded-md border border-brand-secondary-400 bg-brand-terciary-1 p-2">
+
+                            <a href={urlPath + url} rel="nofollow" className="flex items-center justify-center gap-2 w-fit rounded-md border border-brand-secondary-400 bg-brand-terciary-1 p-2">
                                 <div aria-checked={selected} className="border rounded-full font-normal text-sm p-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" className="h-3 w-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M6 18L18 6M6 6l12 12" /></svg>
                                 </div>
@@ -57,7 +67,7 @@ function FilterListSelected({ values }: FilterToggle) {
     )
 }
 
-function FilterValues({ key, values, selectedFilters, composeFilters }: FilterToggle & ChildrenFilter) {
+function FilterValues({ key, values, selectedFilters, composeFilters, urlPath }: FilterTogglePath & ChildrenFilter) {
     const flexDirection = ["tamanho"].includes(key) ? "flex-row" : "flex-col";
 
     return (
@@ -69,8 +79,8 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
                 const isSelected = selectedFilters.includes(composedFilter);
 
                 if (key === "tamanho") {
-                    return (    
-                        <li key={index}>    
+                    return (
+                        <li key={index}>
                             <button rel="nofollow" onClick={() => {
                                 composeFilters(key, value, url)
                             }}>
@@ -80,7 +90,7 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
                     );
                 }
 
-                return <ValueItem key={index} {...item} composeFilters={composeFilters} selectedFilters={selectedFilters} rootCategory={key} />;
+                return <ValueItem key={index} {...item} composeFilters={composeFilters} selectedFilters={selectedFilters} rootCategory={key} urlPath={urlPath}/>;
             })}
 
             {values.length > 6 && (
@@ -89,14 +99,14 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
                         <ul className="flex flex-wrap gap-2 flex-row">
                             {values.slice(6).map((item, index) => {
                                 const { url, value } = item;
-                                
+
                                 const composedFilter = `&filter.${key}=${value}`
                                 const isSelected = selectedFilters.includes(composedFilter);
-                                
+
                                 if (key === "tamanho") {
                                     return (
                                         <li key={index}>
-                                            <button href={url} rel="nofollow" onClick={() => {
+                                            <button href={urlPath + url} rel="nofollow" onClick={() => {
                                                 composeFilters(key, value, url)
                                             }}>
                                                 <Avatar content={value} variant={isSelected ? "active" : "default"} />
@@ -105,7 +115,7 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
                                     );
                                 }
                                 return <ValueItem key={index} {...item} composeFilters={composeFilters}
-                                    selectedFilters={selectedFilters} rootCategory={key} />;
+                                    selectedFilters={selectedFilters} rootCategory={key} urlPath={urlPath}/>;
                             })}
                         </ul>
                     </div>
@@ -119,65 +129,18 @@ function FilterValues({ key, values, selectedFilters, composeFilters }: FilterTo
         </ul>
     );
 }
-// function FilterValuesPrice({ key, values, composeFilters, selectedFilters }: FilterToggle &  ChildrenFilter) {
-//     const flexDirection = ["tamanho"].includes(key) ? "flex-row" : "flex-col";
 
-//     return (
-//         <ul className={`flex flex-wrap gap-2 ${flexDirection} pt-3`}>
-//             {values.slice(0, 6).map((item, index) => {
-//                 if (key === "price") {
-//                     const range = parseRange(item.value);
-//                     return range && (
-//                         <>
-//                             {index === values.length - 1 && (<RangePrice />)}
-//                         </>
-//                     );
-//                 }
-
-//                 return <ValueItem key={index} {...item} composeFilters={composeFilters} selectedFilters={selectedFilters}/>;
-//             })}
-
-//             {values.length > 6 && (
-//                 <li className="w-full">
-//                     <details className={`collapse`}>
-//                         <summary className="w-full block pt-2 px-4 collapse-title text-right text-base font-bold">Ver mais</summary>
-//                         <ul className="flex flex-wrap gap-2 flex-row">
-//                             {values.slice(6).map((item, index) => {
-//                                 const { selected, value } = item;
-
-//                                 if (key === "tamanho") {
-//                                     return (
-//                                         <li key={index}>
-//                                             <button rel="nofollow" onClick={() => {
-//    
-//                                             }}>
-//                                                 <Avatar content={value} variant={selected ? "active" : "default"} />
-//                                             </button>
-//                                         </li>
-//                                     );
-//                                 }
-//                                 return <ValueItem key={index} {...item} composeFilters={composeFilters} selectedFilters={selectedFilters} />;
-//                             })}
-
-//                         </ul>
-//                     </details>
-//                 </li>
-//             )}
-//         </ul>
-//     );
-// }
-
-const FilstersMobile = (props: Pick<ProductListingPage, "filters" | "sortOptions">) => {
-    const { filters } = props;
+const FilstersMobile = (props: ProductListingPageWithUrlPath) => {
+    const { filters, urlPath } = props;
 
     const selectedFilters = useSignal("");
 
     const composeFilters = (filterName: string, filterValue: string, url: string) => {
         const firstParameter = url.split("&")[0].substring(1);
-    
+
         const categoryParameterIsExist = selectedFilters.value.includes(firstParameter)
-    
-        const composedFilter = categoryParameterIsExist ? `&filter.${filterName}=${filterValue}` : `${firstParameter}&filter.${filterName}=${filterValue}` ;
+
+        const composedFilter = categoryParameterIsExist ? `&filter.${filterName}=${filterValue}` : `${firstParameter}&filter.${filterName}=${filterValue}`;
 
         if (selectedFilters.value.includes(composedFilter)) {
             selectedFilters.value = selectedFilters.value.replace(composedFilter, "");
@@ -210,11 +173,11 @@ const FilstersMobile = (props: Pick<ProductListingPage, "filters" | "sortOptions
                         <ul className="flex flex-wrap justify-start items-center gap-2 px-4 py-2">
                             {
                                 filters.filter(isToggle).map((filter) => {
-                                    return <FilterListSelected  {...filter} />
+                                    return <FilterListSelected  {...filter} urlPath={urlPath}/>
                                 })
                             }
                         </ul>
-                        <a href="?" className="block w-full text-right py-2 px-4 text-base font-bold">Limpar Filtros</a>
+                        <a href={urlPath} className="block w-full text-right py-2 px-4 text-base font-bold">Limpar Filtros</a>
                     </div>
                 )
             }
@@ -235,7 +198,7 @@ const FilstersMobile = (props: Pick<ProductListingPage, "filters" | "sortOptions
                                         </span>
                                     </summary>
                                     <FilterValues {...filter} composeFilters={composeFilters}
-                                        selectedFilters={selectedFilters.value} />
+                                        selectedFilters={selectedFilters.value} urlPath={urlPath}/>
                                 </details>
                             </li>
                             :
@@ -246,7 +209,7 @@ const FilstersMobile = (props: Pick<ProductListingPage, "filters" | "sortOptions
                                             filter.label !== 'Preço' ? filter.label : 'Faixa de Preço'
                                         }
                                     </div>
-                                    <RangePrice {...filter}/>
+                                    <RangePrice {...filter} />
                                 </div>
                             </li>
                     ))
