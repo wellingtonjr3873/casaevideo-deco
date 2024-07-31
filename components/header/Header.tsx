@@ -12,7 +12,7 @@ import { Props as MinicartProps } from "$store/components/minicart/ProductShelfM
 import LoggedUser from "$store/islands/Header/LoggedUser.tsx";
 import LoggedUserMobile from "$store/islands/Header/LoggedUserMobile.tsx";
 import SentryConfig from "deco-sites/casaevideo/islands/Header/SentryConfig.tsx";
-
+import  {Props as NavbarProps} from 'deco-sites/casaevideo/components/header/Menu.tsx'
 interface Categories {
   items: {
     label: string;
@@ -38,7 +38,6 @@ export interface Props {
   /** @title Search Bar */
   searchbar: Omit<SearchbarProps, "platform">;
   // deno-lint-ignore no-explicit-any
-  navItems: any;
   alerts: string[];
   /**
    * @title Navigation items
@@ -59,6 +58,7 @@ export interface Props {
   categories?: Categories;
   isMobile: boolean,
   minicartProps: MinicartProps;
+  navbarProps: NavbarProps;
   /** 
   * @hide
   */
@@ -97,11 +97,11 @@ function Header({
       { href: "/", isSazonal: false, label: "Categoria 6" },
     ],
   },
-  navItems,
   isMobile,
   minicartProps,
   device,
-  currentSearchParam
+  currentSearchParam,
+  navbarProps
 }: Props) {
 
   const platform = usePlatform();
@@ -137,7 +137,7 @@ function Header({
                 <span class="flex">
                   <MenuButton />
                   {isMobile && <Drawers
-                    menu={{ items: navItems }}
+                    menu={navbarProps}
                     platform={platform}
                     minicartProps={minicartProps}
                   />}
@@ -266,7 +266,7 @@ function Header({
                   <span class="flex w-8 h-8 md:w-auto md:h-auto">
                     <MenuButton />
                     {!isMobile && <Drawers
-                      menu={{ items: navItems }}
+                      menu={navbarProps}
                       platform={platform}
                       minicartProps={minicartProps}
                     />}

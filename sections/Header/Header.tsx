@@ -29,7 +29,7 @@ export async function loader(props: Props, req: Request, ctx: AppContext){
 
         const currentSearchParam = getQueryValue(req.url)
        
-    return {...props, navItems: result, isMobile, device: ctx.device, currentSearchParam}
+    return {...props, isMobile, device: ctx.device, currentSearchParam, navbarProps: {...props.navbarProps, items: result as any}}
 }
 
 export default function (props: SectionProps<typeof loader>){

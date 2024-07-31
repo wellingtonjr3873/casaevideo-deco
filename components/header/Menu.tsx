@@ -8,6 +8,7 @@ import { createPortal } from 'preact/compat';
 
 import  Drawer from "$store/components/ui/Drawer.tsx";
 import { useState } from "preact/hooks";
+import { ImageWidget } from "apps/admin/widgets.ts";
 
 
 
@@ -22,8 +23,31 @@ type CategoryChildren = {
 }
 
 const { displayMenu, displaySubMenu, displaySubMenuIndex } = useUI();
+
+
+export interface LinksApp {
+    android: string;
+    apple: string;
+    text: string;
+}
 export interface Props {
+    /** 
+  * @hide
+  */
   items: CategoryChildren[];
+  topList: {
+      label: string;
+      link: string;
+      icon: ImageWidget;
+      alt: string;
+  }[],
+  subList: {
+    label: string;
+    link: string;
+    icon: ImageWidget;
+    alt: string;
+  }[];
+  linksApp: LinksApp
 }
 
 function SubMenuItem(
@@ -155,21 +179,21 @@ function MenuItem(
   );
 }
 const visibleAllDepartaments = signal(false);
-const FooterMenu = () => {
+const FooterMenu = ({apple, android, text}: LinksApp) => {
   return <div class="flex flex-col justify-between items-center gap-[8px] py-[16px] px-[40px] self-end">
-  <span class="text-center">Baixe o nosso novo app Casa&Video</span>
+  <span class="text-center">{text}</span>
   <div class="flex justify-between items-center gap-[8px]">
-    <a href="https://casaevideo.onelink.me/QIjQ/m3ukjv5d">
+    <a href={apple}>
       <Icon id="AppleStoreImg" width={133} height={44} strokeWidth={0} />
     </a>
-    <a href="https://casaevideo.onelink.me/QIjQ/m3ukjv5d">
+    <a href={android}>
       <Icon id="GooglePlayImg" width={133} height={44} strokeWidth={0} />
     </a>
   </div>
 </div>
 }
 
-function Menu({ items }: Props) {
+function Menu({ items, subList = [], topList = [], linksApp }: Props) {
   const departaments = visibleAllDepartaments.value ? items : items.slice(0, 9);
 
   const handleVisibleAllDepartaments = () => {
@@ -180,53 +204,22 @@ function Menu({ items }: Props) {
   return (
     <div class="flex flex-col h-full px-[7px] py-[16px] overflow-auto bg-brand-secondary-50">
       <div class="flex flex-col h-full">
-        <ul class="flex flex-col gap-[2px] pb-[16px] bg-brand-secondary-50">
-          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+        {!!topList.length && <ul class="flex flex-col gap-[2px] pb-[16px] bg-brand-secondary-50">
+          {topList.map(item => {
+            return <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
             <a
               class="flex items-center gap-[8px]"
-              href="/account/#/orders"
+              href={item.link}
             >
-              <Icon id="MyOrders" size={24} strokeWidth={2} class="text-neutral-900" />
+              <img src={item.icon} alt={item.alt} />
               <span class="text-sm flex justify-between items-center text-left w-full">
-                Meus Pedidos
+                {item.label}
               </span>
             </a>
           </li>
-          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
-            <a
-              class="flex items-center gap-[8px]"
-              href="/cupom-de-desconto"
-            >
-              <Icon id="MyCoupons" size={24} strokeWidth={2} class="text-brand-secondary-900" />
-              <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                Pegue seu Cupom
-              </span>
-            </a>
-          </li>
-          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
-            <a
-              class="flex items-center gap-[8px]"
-              href="https://api.whatsapp.com/send?1=pt_BR&phone=5521991043269"
-            >
-              <Icon id="BuyWhatsapp" size={24} strokeWidth={2} />
-              <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                Faça sua compra pelo Whatsapp!
-              </span>
-            </a>
-          </li>
-          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
-            <a
-              class="flex items-center gap-[8px]"
-              href="tel:+552140023535"
-            >
-              <Icon id="Televendas" size={24} strokeWidth={2} />
-              <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                Televendas: (21) 4002-3535
-              </span>
-            </a>
-          </li>
-        </ul>
-
+          })}
+     
+        </ul>}
         <ul class="flex flex-col gap-[2px] bg-brand-secondary-50">
           {departaments.map((item, idx) => (
             <li class="border-none" key={idx}>
@@ -256,44 +249,25 @@ function Menu({ items }: Props) {
           </li>}
         </ul>
 
-        <ul class="flex flex-col pt-[16px] gap-[2px] bg-brand-secondary-50">
-          {/* <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
-            <a
-              class="flex items-center gap-[8px]"
-              href="/wishlist"
-            >
-              <Icon id="HelpCentral" size={24} strokeWidth={2} />
-              <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                Central de Atendimento
-              </span>
-            </a>
-          </li> */}
-          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
-            <a
-              class="flex items-center gap-[8px]"
-              href="/cartaocasaevideo"
-            >
-              <Icon id="CreditCard" size={24} strokeWidth={1} />
-              <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                Cartão Casa&Video
-              </span>
-            </a>
-          </li>
-          <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
-            <a
-              class="flex items-center gap-[8px]"
-              href="/nossas-lojas"
-            >
-              <Icon id="OurStores" size={24} strokeWidth={2} />
-              <span class="text-sm flex justify-between items-center text-left w-[100%]">
-                Nossas Lojas
-              </span>
-            </a>
-          </li>
-        </ul>
+
+
+        {!!subList.length && <ul class="flex flex-col pt-[16px] gap-[2px] bg-brand-secondary-50">
+          {subList.map(item => {
+            return <li class="block justify-between items-center text-left py-[10px] px-[24px] w-[100%] bg-neutral-50">
+              <a
+                class="flex items-center gap-[8px]"
+                href={item.link}
+              >
+                 <img src={item.icon} alt={item.alt} />
+                <span class="text-sm flex justify-between items-center text-left w-[100%]">
+                  {item.label}
+                </span>
+              </a>
+            </li>})}
+        </ul>}
       </div>
 
-              <FooterMenu />
+              <FooterMenu {...linksApp}/>
     </div>
   );
 }
