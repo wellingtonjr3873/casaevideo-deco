@@ -16,6 +16,8 @@ export default {
     colors: {
       ...addOklchColor(DEFAULT_THEME),
       black: "black",
+      'grade-bg':  '#393939',
+      'grade': '#FFF200'
     },
     extend: {
       colors: {

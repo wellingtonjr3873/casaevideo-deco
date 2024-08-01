@@ -89,7 +89,7 @@ function Drawers({ menu, children, platform, minicartProps }: Props) {
         onClose={() => displayCart.value = false}
         aside={
           <Aside
-            iconTitle={<Icon id="Cart" size={24} strokeWidth={2} />}
+            iconTitle={<Icon id="Cart" size={24} strokeWidth={2} class="text-color-header"/>}
             title="Produtos Adicionados"
             onClose={() => displayCart.value = false}
             style="w-[85%] grid-rows-[48px] lg:max-w-[404px]"

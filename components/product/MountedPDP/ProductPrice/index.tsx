@@ -3,6 +3,7 @@ import { useOffer } from "deco-sites/casaevideo/sdk/useOffer.ts";
 import Icon from "deco-sites/casaevideo/components/ui/Icon.tsx";
 import { formatPrice } from "deco-sites/casaevideo/sdk/format.ts";
 import Installments from "deco-sites/casaevideo/islands/Installments.tsx";
+import {useAccount} from 'deco-sites/casaevideo/hooks/useAccount.tsx'
 interface Props {
   product: Product;
 
@@ -12,6 +13,8 @@ function ProductPrice({ product }: Props) {
   const {
     offers
   } = product;
+
+  const isCv = useAccount()
 
   const allProduct = product
 
@@ -75,11 +78,11 @@ function ProductPrice({ product }: Props) {
           <>
             <Installments installments={product.offers?.offers[0]!}/>
 
-            <div class="small-regular md:body-regular text-neutral-900 flex gap-1 items-center">
+           { isCv && <div class="small-regular md:body-regular text-neutral-900 flex gap-1 items-center">
               <Icon id="CVCreditCard" width="21" height="16" />
               <span>Parcele em até</span>
               <strong class="text-brand-primary-1 small-bold md:body-bold">10x no cartão Casa&Video</strong>
-            </div>
+            </div>}
           </>
         )}
       </div>

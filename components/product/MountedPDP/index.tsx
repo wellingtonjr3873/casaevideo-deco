@@ -16,7 +16,7 @@ import { ImageWidget } from "apps/admin/widgets.ts";
 import OursStores from "deco-sites/casaevideo/islands/OursStores.tsx";
 import { SendEventOnLoad } from "deco-sites/casaevideo/islands/Analytics.tsx";
 import { mapProductToAnalyticsItem } from "apps/commerce/utils/productToAnalyticsItem.ts";
-
+import { useAccount } from "deco-sites/casaevideo/hooks/useAccount.tsx";
 export interface tagsProps {
   active?: boolean;
   id?: string;
@@ -24,7 +24,6 @@ export interface tagsProps {
   text?: string;
   bgColor: string;
 }
-
 export interface Props {
   page: ProductDetailsPage | null;
   tags?: tagsProps[];
@@ -36,7 +35,7 @@ function MountedPDP({
 }: Props) {
   const platform = usePlatform();
   const id = useId();
-
+  const isCv = useAccount()
   if (page === null) {
     throw new Error("Missing Product Details Page Info");
   }
@@ -91,7 +90,7 @@ function MountedPDP({
           <div class="w-full md:w-1/2 flex flex-col gap-4 pr-4 px-4">
             <ProductBasicInfo product={product} tags={tags?.slice(0, 2)} />
             <ProductSelector product={product} />
-            <CVCreditCardBanner />
+            {isCv && <CVCreditCardBanner />}
           </div>
         </div>
 

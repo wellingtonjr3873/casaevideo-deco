@@ -166,15 +166,15 @@ function Header({
               </div>
               <div className="flex items-center justify-end">
                 <LoggedUserMobile />
-                {platform === "vtex" && (
+
                   <CartButtonVTEX>
                     <Icon
                       id="Cart"
                       size={24}
-                      className="fill-brand-secondary-900"
+                      class="text-color-header"
                     />
                   </CartButtonVTEX>
-                )}
+
               </div>
             </div>
             <div>

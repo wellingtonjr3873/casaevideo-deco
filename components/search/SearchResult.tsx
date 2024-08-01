@@ -1,6 +1,5 @@
 import { SendEventOnView } from "deco-sites/casaevideo/islands/Analytics.tsx";
 
-import { Layout as CardLayout } from "$store/components/product/ProductCard.tsx";
 import { Layout as CardLayoutHorizontal } from "$store/components/product/ProductCardHorizontal.tsx";
 
 import Filters from "$store/components/search/Filters.tsx";
@@ -20,6 +19,7 @@ import MiniBannerCarousel, { MiniBanner } from "deco-sites/casaevideo/components
 import NotFoundPage from "$store/sections/Product/NotFound.tsx"
 import { Props as NotFoundProps } from "$store/sections/Product/NotFound.tsx"
 import Faq, { Question } from "deco-sites/casaevideo/sections/Content/Faq.tsx";
+import { useAccount } from "deco-sites/casaevideo/hooks/useAccount.tsx";
 
 
 const PAGE_REGEX = /page([1-9]\d*)/;
@@ -68,8 +68,6 @@ export interface Props {
   /** @title Integration */
   page: ProductListingPage | null;
   layout?: Layout;
-  cardLayout?: CardLayout;
-  cardHorizontal?: CardLayoutHorizontal;
   bannerCarousel?: Banner[];
   /** @maxItems 1 */
   bannerGrid?: SingleBanner[];
@@ -85,13 +83,11 @@ export interface Props {
 function Result({
   page,
   layout,
-  cardLayout,
   bannerCarousel,
   bannerGrid,
   miniBannerCarousel,
   questions,
   startingPage = 0,
-  cardHorizontal,
   device
 }: Omit<Props, "page"> & { page: ProductListingPage }) {
 
@@ -129,11 +125,13 @@ function Result({
     return pageInfo.nextPage!.replace(PAGE_REGEX, "page" + (Number(currentPageNumber) + (index + 1)))
   }) : []
   
-  return (
+  const isCv = useAccount();
+  
+    return (
     <>
       <div class="container px-4 sm:py-10">
         <div class="flex flex-col md:flex-row items-left sm:p-0 mb-2  text-left mt-[24px]">
-          <Breadcrumb itemListElement={breadcrumb?.itemListElement} isCategory={true} />
+          <Breadcrumb itemListElement={breadcrumb?.itemListElement} isCategory={true} homeName={isCv ? "Casa&Video" : "Lebiscuit"} />
           <span class="block md:hidden h6-bold mt-[24px]">
             {pageName && pageName}
           </span>
@@ -201,7 +199,6 @@ function Result({
             <ProductGalleryIsland
               products={products}
               offset={offset}
-              layout={{ card: cardLayout, columns: layout?.columns, cardHorizontal }}
             />
             <div class="flex justify-center my-4">
               <div class="join">

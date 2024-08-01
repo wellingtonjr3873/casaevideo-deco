@@ -37,6 +37,11 @@ interface VTEXCommerceStableFull extends VTEXCommerceStable {
   };
 }
 
+const ENDPOINT_DICTIONARY = {
+  'casaevideonewio': 'https://secure.casaevideo.com.br',
+  'lebiscuit': 'https://lebiscuit.com.br'
+}
+
 /**
  * @title Product buy together
  * @description Product buy together
@@ -55,22 +60,6 @@ export default function productDetailsPage(
 
     const productID = productDetailsPage.product.inProductGroupWithID || "";
     const segment = getSegmentFromBag(ctx as unknown as LegacyAppContext);
-
-    const apiKey = ctx.GatewayApiKey.get();
-    const buyTogetherApi = createHttpClient<BuyTogetherApi>({
-      base: `https://api-cev-gateway.lebiscuit.io`,
-      fetcher: fetchSafe,
-      headers: withSegmentCookie(
-        segment,
-        new Headers({
-          "content-type": "application/json",
-          accept: "application/json",
-          deviceId: "site",
-          "X-Api-Key": apiKey!,
-        }),
-      ),
-    });
-
     // deno-lint-ignore ban-ts-comment
     // @ts-ignore
     // const account = ctx.account || ctx.commerce.account || "casaevideonewio";
@@ -87,24 +76,12 @@ export default function productDetailsPage(
       ),
     });
 
+
     const vtexApi = createHttpClient<VTEXCommerceStableFull>({
-      base: `https://secure.casaevideo.com.br`,
+      base: ENDPOINT_DICTIONARY[ctx.account],
       fetcher: fetchSafe,
     });
 
-    const getWhoBoughtAlsoBought = async (
-      productId: string,
-    ) => {
-      const response = await buyTogetherApi
-        ["GET /core/v1/produtos/api/showcase/who-bought-also-bought/:productId"](
-          {
-            productId,
-          },
-        );
-
-      const data = await response.json();
-      return data[0];
-    };
 
     const getShowTogether = async (
       productId: string,

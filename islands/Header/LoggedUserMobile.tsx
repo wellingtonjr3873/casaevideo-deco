@@ -13,7 +13,7 @@ const LoggedUserMobile = () => {
       id="User"
       strokeWidth={0.4}
       size={24}
-      class="text-neutral-900 fill-transparent"
+      class="text-color-header fill-transparent"
     />
   </a> 
 }

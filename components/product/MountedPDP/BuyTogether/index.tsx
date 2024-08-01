@@ -35,7 +35,8 @@ function BuyTogether(props: Props) {
 
   const availableProducts = showTogether?.filter(product => product?.price > 0);
   
-  if(availableProducts.length < 2) return <></>
+  console.log(availableProducts)
+  if(!availableProducts && availableProducts.length < 2) return <></>
 
   return (
     <div class="container p-4 md:p-0 md:mt-[-170px]">

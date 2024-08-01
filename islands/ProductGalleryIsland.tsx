@@ -1,11 +1,7 @@
 import { Product } from "apps/commerce/types.ts";
 import { useUI } from "deco-sites/casaevideo/sdk/useUI.ts";
-import ProductCard, {
-  Layout as CardLayout,
-} from "deco-sites/casaevideo/components/product/ProductCard.tsx";
-import ProductCardHorizontal, {
-  Layout as CardLayoutIsland
-} from "deco-sites/casaevideo/components/product/ProductCardHorizontal.tsx";
+import ProductCard from "deco-sites/casaevideo/components/product/ProductCard.tsx";
+import ProductCardHorizontal from "deco-sites/casaevideo/components/product/ProductCardHorizontal.tsx";
 
 export interface Columns {
   mobile?: 1 | 2;
@@ -15,14 +11,9 @@ export interface Columns {
 export interface Props {
   products: Product[] | null;
   offset: number;
-  layout?: {
-    card?: CardLayout;
-    cardHorizontal?: CardLayoutIsland;
-    columns?: Columns;
-  };
 }
 
-function ProductGalleryIsland({ products, layout, offset }: Props,) {
+function ProductGalleryIsland({ products, offset }: Props,) {
   const { layoutSelected } = useUI();
 
   return (
@@ -33,14 +24,12 @@ function ProductGalleryIsland({ products, layout, offset }: Props,) {
           product={product}
           preload={index === 0}
           index={offset + index}
-          layout={layout?.cardHorizontal}
         />
         :
         <ProductCard
           product={product}
           preload={index === 0}
           index={offset + index}
-          layout={layout?.card}
           dataVanPlacement={"top_search"}
         />
       ))}

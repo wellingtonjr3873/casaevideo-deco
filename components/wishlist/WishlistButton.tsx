@@ -107,7 +107,7 @@ function WishlistButton({
           size={32}
           strokeWidth={2}
           style={{
-            color: inWishlist ? "text-brand-secondary-900" : "white",
+            color: inWishlist ? "text-brand-primary-1" : "text-brand-secondary-900",
             minWidth: "32px",
             minHeight: "32px"
           }}
